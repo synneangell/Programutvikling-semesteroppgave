@@ -1,3 +1,12 @@
 .button {
     -fx-font-weight: bold;
 }
+
+#hello {
+    /*-fx-background-color: #B0C4DE;*/
+    -fx-background-color: #FFFFFF;
+}
+
+.hello {
+    -fx-font-weight: bold;
+}
