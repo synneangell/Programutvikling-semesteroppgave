@@ -1,4 +1,4 @@
 package org.openjfx.Base;
 
-public class Foredragssal {
+public class Foredragssal extends DeltakerLokale {
 }

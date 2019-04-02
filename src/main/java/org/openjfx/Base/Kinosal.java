@@ -1,4 +1,5 @@
 package org.openjfx.Base;
 
-public class Kinosal {
+public class Kinosal extends ForestillingsLokale {
+    
 }
