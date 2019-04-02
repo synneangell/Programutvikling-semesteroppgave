@@ -22,6 +22,6 @@
       <Button fx:id="KHKjøpBillett" layoutX="171.0" layoutY="43.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="258.0" styleClass="knapper" stylesheets="@styles.css" text="Kjøp billett" />
       <Button fx:id="KHBookLokale" layoutX="171.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="258.0" styleClass="knapper" stylesheets="@styles.css" text="Book lokale" />
       <Button fx:id="KHVisArrangementer" layoutX="172.0" layoutY="173.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="258.0" styleClass="knapper" stylesheets="@styles.css" text="Vis arrangementer" />
-      <Label fx:id="KHLabel" layoutX="96.0" layoutY="257.0" prefHeight="262.0" prefWidth="410.0" stylesheets="@Knapp.css" />
+      <Label fx:id="KHLabel" layoutX="96.0" layoutY="257.0" prefHeight="262.0" prefWidth="410.0" stylesheets="@styles.css" />
    </children>
 </AnchorPane>
