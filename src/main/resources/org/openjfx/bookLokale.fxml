@@ -5,7 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller.BookLokaleController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller.BookLokaleController">
    <children>
       <Label layoutX="243.0" layoutY="27.0" prefHeight="20.0" prefWidth="143.0" stylesheets="@styles.css" text="Book lokale" />
       <MenuButton layoutX="22.0" layoutY="66.0" mnemonicParsing="false" text="Velg type arrangement">
