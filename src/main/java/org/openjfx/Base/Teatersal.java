@@ -1,4 +1,4 @@
 package org.openjfx.Base;
 
-public class Teatersal {
+public class Teatersal extends ForestillingsLokale {
 }
