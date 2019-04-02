@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 // martine sin testkommentar
 
+//Nikola sin kommentar
+
 public class MainApp extends Application {
 
     @Override
