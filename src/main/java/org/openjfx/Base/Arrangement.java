@@ -2,7 +2,7 @@ package org.openjfx.Base;
 
 import java.util.Date;
 
-public class Arrangement {
+public abstract class Arrangement {
     private Kontaktperson kontaktperson;
     private String arrangementNavn;
     private int billettpris;
