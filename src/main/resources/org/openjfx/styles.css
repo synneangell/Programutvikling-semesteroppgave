@@ -6,3 +6,12 @@
     -fx-background-color: #b0c4de;
 }
 
+.knapperForside {
+    -fx-font-size: 20;
+    -fx-background-color: E6E6FA;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 10em;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.65), 10, 0.5, 0.0, 0.0);
+    -fx-font-family: "Courier New";
+}
+
