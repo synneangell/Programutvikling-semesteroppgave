@@ -11,5 +11,6 @@ public class Billett {
 
 
     //private int genererPlass(){}
+    //private String formaterBillett(){}
 
 }
