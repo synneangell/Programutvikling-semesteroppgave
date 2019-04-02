@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.openjfx.Controller.BookLokaleController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller.BookLokaleController">
+   <children>
+      <Label layoutX="243.0" layoutY="27.0" prefHeight="20.0" prefWidth="143.0" stylesheets="@styles.css" text="Book lokale" />
+      <MenuButton layoutX="22.0" layoutY="66.0" mnemonicParsing="false" text="Velg type arrangement">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
+      <Label layoutX="226.0" layoutY="71.0" text="Kontaktopplysninger" />
+      <Label layoutX="226.0" layoutY="93.0" text="Navn:" />
+      <Label layoutX="226.0" layoutY="168.0" text="Label" />
+      <Label layoutX="226.0" layoutY="240.0" text="Label" />
+   </children>
 </AnchorPane>
