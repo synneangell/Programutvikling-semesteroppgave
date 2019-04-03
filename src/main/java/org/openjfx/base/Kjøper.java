@@ -1,4 +1,4 @@
-package org.openjfx.Base;
+package org.openjfx.base;
 
 public class Kjøper extends Person {
     private String telefonNr;
