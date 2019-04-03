@@ -1,4 +1,4 @@
-package org.openjfx.Controller;
+package org.openjfx.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

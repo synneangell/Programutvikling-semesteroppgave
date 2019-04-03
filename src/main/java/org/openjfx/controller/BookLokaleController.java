@@ -85,8 +85,8 @@ public class BookLokaleController {
                 Date tidspunkt = new SimpleDateFormat("HH:mm den dd/MM/yyyy").parse(heleTidspunkt);
 
 
-                DeltakerArrangement DeltakerArrangement = new DeltakerArrangement(kontaktperson, txtNavnArrangement.getText(), billettpris,
-                        tidspunkt);
+          //      DeltakerArrangement DeltakerArrangement = new DeltakerArrangement(kontaktperson, txtNavnArrangement.getText(),
+           //             billettpris, tidspunkt);
             }
             catch(Exception e){
                 //feilmelding ut til bruker
@@ -95,8 +95,6 @@ public class BookLokaleController {
             }
 
         }
-
-
     }
 
 }

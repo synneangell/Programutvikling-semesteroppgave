@@ -1,4 +1,4 @@
-package org.openjfx.Controller;
+package org.openjfx.controller;
 
 public class KjøpBillettController {
 }
