@@ -17,14 +17,4 @@ public class Kjøper extends Person {
     public void setTelefonNr(String telefonNr) {
         this.telefonNr = telefonNr;
     }
-
-    public String getemail() {
-        return email;
-    }
-
-    public void setemail(String email) {
-        this.email = email;
-    }
-
-
 }

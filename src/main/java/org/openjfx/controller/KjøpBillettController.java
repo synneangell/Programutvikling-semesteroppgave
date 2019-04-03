@@ -27,10 +27,24 @@ public class KjøpBillettController {
     @FXML
     private TextField txtVelgAntall;
 
+    // Kontoopplysninger:
+
+    @FXML
+    private TextField txtKontonummer;
+
+    @FXML
+    private TextField txtNavnKortholder;
+
     //Kjøp:
 
     @FXML
     private Label lblDittKjøp;
+
+    @FXML
+    private Label lblÅBetale;
+
+    @FXML
+    private MenuButton mbtnBetalingskort;
 
     @FXML
     private MenuButton mbtnKvitteringForKjøp;
@@ -44,21 +58,21 @@ public class KjøpBillettController {
     @FXML
     private ChoiceBox cboxVelgDatoTid;
 
-    @FXML
-    private ChoiceBox cboxVelgAntall;
-
 
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
 
-        if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty() &&
-                !txtVelgAntall.getText().isEmpty()) {
+        if(!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty() &&
+                !txtVelgAntall.getText().isEmpty() && !txtKontonummer.getText().isEmpty() &&
+                !txtNavnKortholder.getText().isEmpty()){
 
-            Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
+            Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText(),
+                    txtVelgAntall.getText(), txtKontonummer.getText(), txtNavnKortholder.getText());
 
-            // Skal vi også ha med velgantall?
+            // Feilmelding ovenfor kommer pga at: Kjøper inneholder super Navn og telefonnummer.
+            // Skal vi også ha med email, velgantall, kontonummer og navn på kortholder???
 
-            /*try{
+            try{
                 int billettpris = Integer.parseInt(arrangement_pris.getText());
                 String innTidspunkt = arrangement_tidspunkt.getText();
                 Date tidspunkt =new SimpleDateFormat("dd/MM/yyyy").parse(innTidspunkt);
@@ -72,8 +86,8 @@ public class KjøpBillettController {
                 //feilmelding ut til bruker
                 lblDittKjøp.setText("feilmelding");
 
-            }*/
+            }
 
         }
-    }
+
 }
