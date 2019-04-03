@@ -1,4 +1,4 @@
-package org.openjfx.Base;
+package org.openjfx.base;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package org.openjfx.Base;
+package org.openjfx.base;
 
 public class Deltaker extends Person {
     private String egenskap;

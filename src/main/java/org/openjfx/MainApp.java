@@ -7,11 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-// test
 
-// martine sin testkommentar
-
-//Nikola sin kommentar
 
 public class MainApp extends Application {
 

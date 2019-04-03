@@ -1,8 +1,8 @@
-package org.openjfx.Base;
+package org.openjfx.base;
 
 import java.util.Date;
 
-public abstract class Arrangement {
+public class Arrangement {
     private Kontaktperson kontaktperson;
     private String arrangementNavn;
     private int billettpris;
