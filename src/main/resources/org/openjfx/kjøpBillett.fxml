@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="884.0" prefWidth="711.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller.KjøpBillettController">
+<AnchorPane prefHeight="884.0" prefWidth="711.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.KjøpBillettController">
    <children>
       <Label layoutX="309.0" layoutY="18.0" text="Billettkjøp">
          <font>
