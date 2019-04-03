@@ -2,10 +2,12 @@ package org.openjfx.base;
 
 public class Kjøper extends Person {
     private String telefonNr;
+    private String email;
 
-    public Kjøper(String navn, String telefonNr) {
+    public Kjøper(String navn, String telefonNr, String email) {
         super(navn);
         this.telefonNr = telefonNr;
+        this.email = email;
     }
 
     public String getTelefonNr() {
