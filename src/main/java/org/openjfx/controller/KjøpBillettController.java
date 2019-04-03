@@ -27,24 +27,10 @@ public class KjøpBillettController {
     @FXML
     private TextField txtVelgAntall;
 
-    // Kontoopplysninger:
-
-    @FXML
-    private TextField txtKontonummer;
-
-    @FXML
-    private TextField txtNavnKortholder;
-
     //Kjøp:
 
     @FXML
     private Label lblDittKjøp;
-
-    @FXML
-    private Label lblÅBetale;
-
-    @FXML
-    private MenuButton mbtnBetalingskort;
 
     @FXML
     private MenuButton mbtnKvitteringForKjøp;
@@ -58,13 +44,15 @@ public class KjøpBillettController {
     @FXML
     private ChoiceBox cboxVelgDatoTid;
 
+    @FXML
+    private ChoiceBox cboxVelgAntall;
+
 
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
 
         if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty() &&
-                !txtVelgAntall.getText().isEmpty() && !txtKontonummer.getText().isEmpty() &&
-                !txtNavnKortholder.getText().isEmpty()) {
+                !txtVelgAntall.getText().isEmpty()) {
 
             Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
 
