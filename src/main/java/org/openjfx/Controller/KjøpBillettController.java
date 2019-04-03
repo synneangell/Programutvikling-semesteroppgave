@@ -3,9 +3,9 @@ package org.openjfx.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.openjfx.Base.DeltakerArrangement;
-import org.openjfx.Base.ForestillingsArrangement;
-import org.openjfx.Base.Kjøper;
+import org.openjfx.base.ForestillingsArrangement;
+import org.openjfx.base.ForestillingsArrangement;
+import org.openjfx.base.Kjøper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -78,7 +78,7 @@ public class KjøpBillettController {
                 Date tidspunkt =new SimpleDateFormat("dd/MM/yyyy").parse(innTidspunkt);
 
 
-                ForestillingsArrangement ForestillingsArrangement = new ForestillingsArrangement
+                ForestillingsArrangement ForesetillingsArrangement = new ForestillingsArrangement
                         (kontaktperson, arrangement_navn.getText(), billettpris,
                         tidspunkt);
             }
