@@ -1,4 +1,4 @@
-package org.openjfx.Base;
+package org.openjfx.base;
 
 public class Lokale {
     private int plasser;
