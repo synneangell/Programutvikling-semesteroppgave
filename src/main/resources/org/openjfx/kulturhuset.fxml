@@ -7,7 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="vindu" prefHeight="572.0" prefWidth="600.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller.KulturhusetController">
+<AnchorPane fx:id="vindu" prefHeight="623.0" prefWidth="600.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.Controller.KulturhusetController">
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
@@ -22,6 +22,8 @@
       <Button fx:id="btnKHKjøpBillett" layoutX="171.0" layoutY="43.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Kjøp billett" />
       <Button fx:id="btnKHBookLokale" layoutX="171.0" layoutY="110.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Book lokale" />
       <Button fx:id="btnKHVisArrangementer" layoutX="172.0" layoutY="173.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Vis arrangementer" />
-      <Label fx:id="lblKHLabel" layoutX="96.0" layoutY="257.0" prefHeight="262.0" prefWidth="410.0" stylesheets="@styles.css" />
+      <Label fx:id="lblKHLabel" layoutX="82.0" layoutY="250.0" prefHeight="262.0" prefWidth="438.0" stylesheets="@styles.css" />
+      <Button fx:id="btnKHDato" layoutX="110.0" layoutY="538.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="154.0" styleClass="knapperForside" stylesheets="@styles.css" text="Dato" />
+      <Button fx:id="btnKHAlfabetisk" layoutX="352.0" layoutY="538.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="154.0" styleClass="knapperForside" stylesheets="@styles.css" text="Alfabetisk" />
    </children>
 </AnchorPane>
