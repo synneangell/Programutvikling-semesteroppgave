@@ -51,12 +51,11 @@ public class KjøpBillettController {
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
 
-        if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty() &&
-                !txtVelgAntall.getText().isEmpty()) {
+        if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()
+        && !cboxVelgForestilling.getItems().isEmpty() && !cboxVelgDatoTid.getItems().isEmpty() && !cboxVelgAntall.getItems().isEmpty()) {
 
             Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
 
-            // Skal vi også ha med velgantall?
 
             /*try{
                 int billettpris = Integer.parseInt(arrangement_pris.getText());
