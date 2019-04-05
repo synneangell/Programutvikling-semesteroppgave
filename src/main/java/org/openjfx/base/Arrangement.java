@@ -1,8 +1,9 @@
 package org.openjfx.base;
 
+import java.util.Comparator;
 import java.util.Date;
 
-public class Arrangement {
+public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangement> {
     private Kontaktperson kontaktperson;
     private String arrangementNavn;
     private int billettpris;
@@ -47,6 +48,23 @@ public class Arrangement {
         this.tidspunkt = tidspunkt;
     }
 
-    //private String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){}
+
+    public int compareTo(Arrangement arrangement) {
+        return (this.arrangementNavn).compareTo(arrangement.arrangementNavn);
+
+    }
+
+    //Sortere arrangmenter etter dato?
+    @Override
+    public int compare(Arrangement a1, Arrangement a2) {
+        if (a1.getTidspunkt() == null || a2.getTidspunkt() == null)
+            return 0;
+        return a1.getTidspunkt().compareTo(a2.getTidspunkt());
+    }
+
+    public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){
+        return "";
+    }
+
 
 }
