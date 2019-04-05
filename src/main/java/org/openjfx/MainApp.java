@@ -13,7 +13,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("kjøpBillett.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("BookLokale.fxml"));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
