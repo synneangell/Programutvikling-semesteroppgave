@@ -45,5 +45,6 @@
       <ChoiceBox fx:id="cboxVelgForestilling" layoutX="264.0" layoutY="103.0" prefWidth="150.0" />
       <ChoiceBox fx:id="cboxVelgDatoTid" layoutX="469.0" layoutY="103.0" prefWidth="150.0" />
       <ChoiceBox fx:id="cboxVelgAntall" layoutX="264.0" layoutY="300.0" prefWidth="150.0" />
+      <Label layoutX="35.0" layoutY="79.0" text="Velg billetttype:" />
    </children>
 </AnchorPane>
