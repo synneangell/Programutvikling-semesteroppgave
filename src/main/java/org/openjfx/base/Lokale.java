@@ -13,6 +13,7 @@ public abstract class Lokale {
         this.id = id;
     }
 
+
     public void leggTilArrangement(Arrangement etArrangement){
         arrangementer.add(etArrangement);
     }
