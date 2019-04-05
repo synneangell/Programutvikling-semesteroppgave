@@ -3,6 +3,7 @@ package org.openjfx.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import org.openjfx.base.ForestillingsArrangement;
 import org.openjfx.base.ForestillingsArrangement;
 import org.openjfx.base.Kjøper;
@@ -49,6 +50,7 @@ public class KjøpBillettController {
     @FXML
     private MenuButton mbtnKvitteringForKjøp;
 
+
     @FXML
     private Button btnFullfør;
 
@@ -87,7 +89,5 @@ public class KjøpBillettController {
                 lblDittKjøp.setText("feilmelding");
 
             }
-
         }
-
 }
