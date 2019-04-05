@@ -3,11 +3,10 @@ package org.openjfx.controller;
 import java.text.ParseException;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import org.openjfx.base.Deltaker;
 import org.openjfx.base.DeltakerArrangement;
 import org.openjfx.base.Kontaktperson;
 import java.text.SimpleDateFormat;
@@ -46,6 +45,12 @@ public class BookLokaleController {
     private TextField txtDato;
 
     @FXML
+    private TextField txtDeltakerNavn;
+
+    @FXML
+    private TextField txtEgenskapDeltaker;
+
+    @FXML
     private Label lblFullførBestilling;
 
     @FXML
@@ -60,20 +65,36 @@ public class BookLokaleController {
     @FXML
     private MenuButton mbtnTypeArrangement;
 
+    @FXML
+    private MenuButton mbtnKvitteringForBooking;
+
+    @FXML
+    private MenuItem mitemKonsert;
+
+    @FXML
+    private MenuItem mitemForedrag;
+
+
 
     @FXML
     void fullførBooking(ActionEvent event) throws ParseException {
 
-        if(!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty() &&
-                !txtNettside.getText().isEmpty() && !txtAndreOpplysninger.getText().isEmpty() &&
-                !txtVirksomhet.getText().isEmpty() && !txtNavnArrangement.getText().isEmpty() &&
-                !txtBillettpris.getText().isEmpty() && !txtTidspunkt.getText().isEmpty()  && !txtDato.getText().isEmpty()){
+        if(!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
+                !txtEmail.getText().isEmpty() && !txtNettside.getText().isEmpty() &&
+                !txtAndreOpplysninger.getText().isEmpty() && !txtVirksomhet.getText().isEmpty() &&
+                !txtNavnArrangement.getText().isEmpty() && !txtBillettpris.getText().isEmpty() &&
+                !txtTidspunkt.getText().isEmpty() && !txtDato.getText().isEmpty() &&
+                !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()){
 
-            Kontaktperson kontaktperson = new Kontaktperson(txtNavn.getText(),txtTelefonnummer.getText(),txtEmail.getText(),
-                    txtNettside.getText(),txtAndreOpplysninger.getText(),
-                    txtVirksomhet.getText());
+            Kontaktperson kontaktperson = new Kontaktperson(
+                    txtNavn.getText(),txtTelefonnummer.getText(),txtEmail.getText(),
+                    txtNettside.getText(),txtAndreOpplysninger.getText(), txtVirksomhet.getText());
 
-            try{
+            Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(),txtEgenskapDeltaker.getText());
+
+
+
+            try{    //MÅ SE PÅ HELE DELEN MED PARSING TIL DATOFORMAT
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
                 String innTidspunkt=txtTidspunkt.getText();
                 String innDato = txtDato.getText();
@@ -87,6 +108,8 @@ public class BookLokaleController {
 
                 DeltakerArrangement DeltakerArrangement = new DeltakerArrangement(kontaktperson, txtNavnArrangement.getText(), billettpris,
                         tidspunkt);
+
+
             }
             catch(Exception e){
                 //feilmelding ut til bruker
