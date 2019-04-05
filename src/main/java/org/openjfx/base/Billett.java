@@ -1,5 +1,7 @@
 package org.openjfx.base;
 
+import java.util.ArrayList;
+
 public class Billett {
     private Kjøper kjøper;
     private Arrangement arrangement;
