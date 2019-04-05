@@ -30,13 +30,13 @@ public class KulturhusetController {
     private Button btnKHAlfabetisk;
 
 
-
     @FXML
-    void btnKHKjøpBillett (ActionEvent event) throws IOException {
-        Parent root = null;
+    void OnActionKjøpBillett (ActionEvent event) throws IOException {
+        System.out.println("metode kalt!");
+        /*Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            root = fxmlLoader.load(getClass().getResource("KjøpBillett.fxml").openStream());
+            root = fxmlLoader.load(getClass().getResource("kjøpBillett.fxml").openStream());
             //openStream trengs for å laste inn controlleren
 
             // Får tak i controlleren og overfører referanse
@@ -44,11 +44,11 @@ public class KulturhusetController {
         } catch (IOException e) {
             e.printStackTrace(); // FXML document should be available
             return;
-        }
+        }*/
     }
 
     @FXML
-    void btnKHBookLokale (ActionEvent event) throws IOException {
+    void OnActionBookLokale (ActionEvent event) throws IOException {
             Parent root = FXMLLoader.load(getClass().getResource("bookLokale.fxml"));
 
             Scene scene = new Scene(root);
@@ -58,7 +58,7 @@ public class KulturhusetController {
     }
 
     @FXML
-    String btnKHVisArrangementer (ActionEvent event){
+    String OnActionVisArrangementer (ActionEvent event){
         return lblKHLabel.getText();
 
         }
