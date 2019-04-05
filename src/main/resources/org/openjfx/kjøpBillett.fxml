@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -42,9 +42,9 @@
       </MenuButton>
       <Label fx:id="lblDittKjøp" layoutX="35.0" layoutY="399.0" prefHeight="150.0" prefWidth="642.0" />
       <Label layoutX="486.0" layoutY="424.0" prefHeight="84.0" prefWidth="184.0" />
-      <ChoiceBox fx:id="cboxVelgForestilling" layoutX="264.0" layoutY="103.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="cboxVelgDatoTid" layoutX="469.0" layoutY="103.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="cboxVelgAntall" layoutX="264.0" layoutY="300.0" prefWidth="150.0" />
       <Label layoutX="35.0" layoutY="79.0" text="Velg billetttype:" />
+      <ComboBox fx:id="comboxVelgForestilling" layoutX="264.0" layoutY="103.0" prefWidth="150.0" />
+      <ComboBox fx:id="comboxVelgDatoTid" layoutX="469.0" layoutY="103.0" prefWidth="150.0" />
+      <ComboBox fx:id="comboxVelgAntall" layoutX="264.0" layoutY="300.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

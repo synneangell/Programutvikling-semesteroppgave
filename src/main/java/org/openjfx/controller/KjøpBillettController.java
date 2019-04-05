@@ -52,7 +52,7 @@ public class KjøpBillettController {
     void fullførBestilling(ActionEvent event) throws ParseException {
 
         if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()
-        && !cboxVelgForestilling.getItems().isEmpty() && !cboxVelgDatoTid.getItems().isEmpty() && !cboxVelgAntall.getItems().isEmpty()) {
+        && !comboxVelgForestilling.  && !cboxVelgDatoTid.getItems().isEmpty() && !cboxVelgAntall.getItems().isEmpty()) {
 
             Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
 
