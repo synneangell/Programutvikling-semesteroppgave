@@ -39,7 +39,7 @@ public class KulturhusetController {
             root = fxmlLoader.load(getClass().getResource("KjøpBillett.fxml").openStream());
             //openStream trengs for å laste inn controlleren
 
-            // Får tak i controlleren og overfører referanse til person-objektet
+            // Får tak i controlleren og overfører referanse
             KjøpBillettController controller = fxmlLoader.getController();
         } catch (IOException e) {
             e.printStackTrace(); // FXML document should be available
@@ -62,4 +62,14 @@ public class KulturhusetController {
         return lblKHLabel.getText();
 
         }
+
+     @FXML
+     void btnKHDato(ActionEvent event){
+
+     }
+
+     @FXML
+     void btnKHAlfabetisk(ActionEvent event){
+
+     }
     }

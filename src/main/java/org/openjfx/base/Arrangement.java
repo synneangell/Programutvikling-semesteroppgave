@@ -49,4 +49,10 @@ public class Arrangement {
 
     //private String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){}
 
+
+    public String toString(){
+        String ut = "Kontaktperson: "+kontaktperson+" Arrangementnavn: "+arrangementNavn+" Billettpris: "+billettpris+
+                "Tidspunkt: "+tidspunkt+"\n";
+        return ut;
+    }
 }

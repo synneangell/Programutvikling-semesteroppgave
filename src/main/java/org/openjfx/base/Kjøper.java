@@ -17,4 +17,9 @@ public class Kjøper extends Person {
     public void setTelefonNr(String telefonNr) {
         this.telefonNr = telefonNr;
     }
+
+    public String toString(){
+        String ut = "Telefonnr: "+telefonNr+" Email: "+email+"\n";
+        return ut;
+    }
 }
