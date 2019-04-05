@@ -8,6 +8,7 @@ import org.openjfx.base.ForestillingsArrangement;
 import org.openjfx.base.ForestillingsArrangement;
 import org.openjfx.base.Kjøper;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,6 +52,16 @@ public class KjøpBillettController {
     private MenuButton mbtnKvitteringForKjøp;
 
 
+    public void metode(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(null);
+
+        if (selectedFile != null) {
+
+        }
+    }
+
+
     @FXML
     private Button btnFullfør;
 
@@ -61,6 +72,9 @@ public class KjøpBillettController {
     private ChoiceBox cboxVelgDatoTid;
 
 
+}
+
+/*
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
 
@@ -90,4 +104,6 @@ public class KjøpBillettController {
 
             }
         }
+
 }
+*/
