@@ -21,4 +21,8 @@ public abstract class Lokale {
     public int getId() {
         return id;
     }
+
+    public int getPlasser() {
+        return plasser;
+    }
 }

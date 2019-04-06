@@ -8,17 +8,18 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import org.openjfx.base.*;
+import org.openjfx.controller.uihelpers.InputValidering;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookLokaleController {
 
     ObservableList<String> typeArrangementer = FXCollections.observableArrayList("Konsert", "Foredrag");
-
-    //initialiserings klasse?
     LokalRegister lokalregister = new LokalRegister();
-    ArrangementRegister arrangementregister = new ArrangementRegister();
+    // ArrangementRegister arrangementregister = new ArrangementRegister();
 
     @FXML
     private TextField txtNavn;
@@ -48,7 +49,7 @@ public class BookLokaleController {
     private TextField txtTidspunkt;
 
     @FXML
-    private TextField txtDato;
+    private DatePicker dpDato;
 
     @FXML
     private TextField txtDeltakerNavn;
@@ -69,29 +70,19 @@ public class BookLokaleController {
     private Button btnAvbryt;
 
     @FXML
-    private MenuButton mbtnTypeArrangement;
-
-    @FXML
-    private MenuButton mbtnKvitteringForBooking;
-
-    @FXML
-    private MenuItem mitemKonsert;
-
-    @FXML
-    private MenuItem mitemForedrag;
-
-    @FXML
     private ChoiceBox velgTypeArrangement;
 
 
     @FXML
     private void initialize(){
+
         velgTypeArrangement.setItems(typeArrangementer);
     }
 
 
     @FXML
     void fullførBooking(ActionEvent event) throws ParseException {
+
         boolean konsert = false;
         boolean foredrag = false;
         if(velgTypeArrangement.getValue() == "konsert"){
@@ -106,8 +97,24 @@ public class BookLokaleController {
                 !txtEmail.getText().isEmpty() && !txtNettside.getText().isEmpty() &&
                 !txtAndreOpplysninger.getText().isEmpty() && !txtVirksomhet.getText().isEmpty() &&
                 !txtNavnArrangement.getText().isEmpty() && !txtBillettpris.getText().isEmpty() &&
-                !txtTidspunkt.getText().isEmpty() && !txtDato.getText().isEmpty() &&
+                !txtTidspunkt.getText().isEmpty() &&
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()){
+            //må datepicker også sjekkes her?
+
+
+            //Input validering av alle feltene bruker skriver inn på
+            InputValidering.validerKunTekst(txtNavn, txtNavn.getText());
+            // InputValidering.validerKunTelefonnummer(txtTelefonnummer, txtTelefonnummer.getText());
+            //InputValidering.validerEmail(txtEmail, txtEmail.getText());
+            //InputValidering.validerNettside(txtNettside, txtNettside.getText());
+            InputValidering.validerKunTekst(txtAndreOpplysninger, txtAndreOpplysninger.getText());
+            InputValidering.validerKunTekst(txtVirksomhet, txtVirksomhet.getText());
+            InputValidering.validerKunTekst(txtNavnArrangement, txtNavnArrangement.getText());
+            InputValidering.validerKunTall(txtBillettpris, txtBillettpris.getText());
+            //Tidspunkt og dato??
+            InputValidering.validerKunTekst(txtEgenskapDeltaker, txtEgenskapDeltaker.getText());
+            InputValidering.validerKunTekst(txtDeltakerNavn, txtDeltakerNavn.getText());
+
 
             Kontaktperson kontaktperson = new Kontaktperson(
                     txtNavn.getText(),txtTelefonnummer.getText(),txtEmail.getText(),
@@ -118,23 +125,23 @@ public class BookLokaleController {
 
             try{    //MÅ SE PÅ HELE DELEN MED PARSING TIL DATOFORMAT
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
-                String innTidspunkt=txtTidspunkt.getText();
-                String innDato = txtDato.getText();
-
-                //setter sammen hele strengen som skal settes inn i datoformatet??
-                String heleTidspunkt = innTidspunkt + innDato;
+                String innTidspunkt=txtTidspunkt.getText()+ dpDato.getValue();
 
                 //Tidspunktet til arrangementet skal ha formatet for eks: 14:30 den 10/03/2019
-                Date tidspunkt = new SimpleDateFormat("HH:mm den dd/MM/yyyy").parse(heleTidspunkt);
+                Date tidspunkt = new SimpleDateFormat("HH:mm den yyyy/mm/dd").parse(innTidspunkt);
 
-                DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
-                        kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt);
+
 
                 if(konsert){
-                    arrangementregister.registrerKonsertArrangement(etDeltakerArrangement);
+                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
+                            kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 400);
+                    lokalregister.registrerKonsertArrangement(etDeltakerArrangement);
                 }
                 else if(foredrag){
-                    arrangementregister.registrerForedragsArrangement(etDeltakerArrangement);
+                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
+                    kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100);
+                    lokalregister.registrerForedragsArrangement(etDeltakerArrangement);
+
                 }
                 else{
                     //Feilhåndtere at ingen arrangementtype er valgt
@@ -156,5 +163,16 @@ public class BookLokaleController {
 
 
     }
+
+    //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
+    private void lukkVindu() {
+        Stage myStage = (Stage) btnAvbryt.getScene().getWindow();
+        myStage.close();
+    }
+
+    private void avsluttProgram() {
+
+    }
+
 
 }

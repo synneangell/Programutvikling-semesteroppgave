@@ -28,7 +28,8 @@ public class Kjøper extends Person {
 
     @Override
     public String toString() {
-        String ut = "Navn"
+        String ut = "Navn";
+        return ut;
     }
 
 }
