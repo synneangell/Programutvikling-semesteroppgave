@@ -31,7 +31,7 @@ public class KulturhusetController {
 
 
     @FXML
-    void OnActionKjøpBillett (ActionEvent event) throws IOException {
+    void KjøpBillett (ActionEvent event) throws IOException {
         System.out.println("metode kalt!");
         /*Parent root = null;
         try {
@@ -48,7 +48,7 @@ public class KulturhusetController {
     }
 
     @FXML
-    void OnActionBookLokale (ActionEvent event) throws IOException {
+    void BookLokale (ActionEvent event) throws IOException {
             Parent root = FXMLLoader.load(getClass().getResource("bookLokale.fxml"));
 
             Scene scene = new Scene(root);
@@ -58,18 +58,18 @@ public class KulturhusetController {
     }
 
     @FXML
-    String OnActionVisArrangementer (ActionEvent event){
+    String VisArrangementer (ActionEvent event){
         return lblKHLabel.getText();
 
         }
 
      @FXML
-     void btnKHDato(ActionEvent event){
+     void Dato(ActionEvent event){
 
      }
 
      @FXML
-     void btnKHAlfabetisk(ActionEvent event){
+     void Alfabetisk(ActionEvent event){
 
      }
     }
