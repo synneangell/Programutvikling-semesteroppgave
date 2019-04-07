@@ -7,8 +7,8 @@ import java.io.ObjectOutputStream;
 public class LagreDataTilCsvFil extends LagreDataTilFil {
 
     private void lagreTilFil(Object o) throws IOException  {
-        //ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("Kvittering.csv"));
-        //objectOutputStream.writeObject(o);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("Kvittering.csv"));
+        objectOutputStream.writeObject(o);
     }
 
     public static final String KOMMA = ",";
@@ -18,9 +18,7 @@ public class LagreDataTilCsvFil extends LagreDataTilFil {
 
     }
 
-
-
-
     }
 
 
+    //new FileChooser().showSaveDialog(null);
