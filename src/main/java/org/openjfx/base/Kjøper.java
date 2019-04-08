@@ -26,9 +26,9 @@ public class Kjøper extends Person {
         this.email = email;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         String ut = "Navn"
-    }
+    }*/
 
 }
