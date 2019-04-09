@@ -1,5 +1,6 @@
 package org.openjfx.base;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
@@ -8,12 +9,17 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
     private String arrangementNavn;
     private int billettpris;
     private Date tidspunkt;
+    private int antallBilletter;
 
-    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Date tidspunkt){
+    //Må dennne settes i konstruktøren?
+    ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
+
+    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Date tidspunkt, int antallBilletter){
         this.kontaktperson = kontaktperson;
         this.arrangementNavn = arrangementNavn;
         this.billettpris = billettpris;
         this.tidspunkt = tidspunkt;
+        this.antallBilletter = antallBilletter;
     }
 
     public Kontaktperson getKontaktperson() {
@@ -46,6 +52,26 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
 
     public void setTidspunkt(Date tidspunkt) {
         this.tidspunkt = tidspunkt;
+    }
+
+    public void leggTilBillett(Billett enBillett){
+       //Må returnere en feilmelding dersom det ikke er plass til flere billetter
+        billetter.add(enBillett);
+    }
+
+    private String slettBillett(int referansenummer){
+        for (Billett enBillett : billetter){
+            if(enBillett.getReferansenummer() == referansenummer){
+                    //billetten er funnet og man sletter den fra alleBilletter arrayet.
+                    billetter.remove(enBillett);
+                    return "Billetten er slettet";
+                }
+            }
+            return "Fant ikke referansenummer";
+    }
+
+    //Endre billett? Hva skal man kunne endre?
+    private void endreBillett(){
     }
 
 
