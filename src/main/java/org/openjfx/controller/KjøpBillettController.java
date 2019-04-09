@@ -64,7 +64,7 @@ public class KjøpBillettController {
     private Button setMbtnKvitteringForKjøp;
 
 
-
+/*
 
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
