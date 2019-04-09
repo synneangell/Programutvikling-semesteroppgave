@@ -43,6 +43,7 @@ public class KulturhusetController {
                                         "Kino: "+lokalregister.visAlleKinoArrangementer() +
                                         "Konserter: "+lokalregister.visAlleKonsertArrangementer() +
                                         "Teater: "+lokalregister.visAlleTeaterArrangementer());
+
         ChoiceBox<String> sorter = new ChoiceBox<>();
         sorter.setItems(sorteringsValg);
 
@@ -62,7 +63,7 @@ public class KulturhusetController {
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            root = fxmlLoader.load(getClass().getResource("kjøpBillett.fxml").openStream());
+            root = fxmlLoader.load(getClass().getResource("/org/openjfx/kjøpBillett.fxml").openStream());
 
             // Får tak i controlleren og overfører referanse til person-objektet
             KjøpBillettController controller = fxmlLoader.getController();
@@ -88,7 +89,7 @@ public class KulturhusetController {
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            root = fxmlLoader.load(getClass().getResource("bookLokale.fxml").openStream());
+            root = fxmlLoader.load(getClass().getResource("/org/openjfx/bookLokale.fxml").openStream());
 
             // Får tak i controlleren og overfører referanse til person-objektet
             BookLokaleController controller = fxmlLoader.getController();
