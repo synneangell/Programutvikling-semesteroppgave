@@ -1,9 +1,6 @@
 package org.openjfx.base;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 public class LagreDataTilJobjFil extends LagreDataTilFil {
 
@@ -11,8 +8,10 @@ public class LagreDataTilJobjFil extends LagreDataTilFil {
 
         //Opprette et objekt?
 
+        String filnavn = "Kvittering.jobj";
+
         try{
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("Kvittering.jobj"));
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(filnavn));
 
             os.writeObject(o);
             os.close();
@@ -27,8 +26,10 @@ public class LagreDataTilJobjFil extends LagreDataTilFil {
         System.out.println("Ferdig med å skrive til jobj fil!");
 
 
+
     }
 }
 
 
 //Må ha en klasse som jeg "serialiserer" fra, må implementere serializable et sted, but where??
+

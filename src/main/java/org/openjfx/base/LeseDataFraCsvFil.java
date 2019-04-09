@@ -8,9 +8,26 @@ import java.io.ObjectInputStream;
 public class LeseDataFraCsvFil extends LeseDataFraFil {
 
     private void leseFraFil() throws IOException, ClassNotFoundException {
-        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("BillettKvittering.csv"));
 
-        Object o = (Object)objectInputStream.readObject();
-        System.out.println(o);
+        String CsvFile = "navn.csv";
+        String FieldDelimiter = ",";
+
+        BufferedReader br;
+
+        try {
+            br = new BufferedReader(new FileReader(CsvFile));
+
+            String linje;
+            while ((linje = br.readLine()) != null){
+                String [] fields = linje.split(FieldDelimiter, -1);
+
+
+            }
+        } catch (Exception e){
+
+        }
+
+
+
     }
     }
