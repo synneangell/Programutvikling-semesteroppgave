@@ -1,7 +1,10 @@
 package org.openjfx.base;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class LokalRegister {
 
@@ -15,7 +18,51 @@ public class LokalRegister {
     Teatersal teatersal = new Teatersal(100, teaterArrangementer, 3);
     Kinosal kinosal = new Kinosal(100, kinoArrangementer, 4);
 
-    ForestillingsArrangement kinoArrangement = new ForestillingsArrangement<>();
+    // Oppretter en kontaktperson som er ansvarlig for kino- og teatervisninger
+    Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
+            "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
+
+    // Oppretter kinofilmer:
+
+    Date dato = new Date (2019, 07, 23, 18, 30);
+    String settDato = new SimpleDateFormat("HH:mm den yyyy/MM/dd").format(dato);
+
+    ForestillingsArrangement kinofilm = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, 100);
+
+    Date dato2 = new Date (2019, 07, 23, 18, 30);
+    String settDato2 = new SimpleDateFormat("HH:mm den yyyy/MM/dd").format(dato);
+
+    ForestillingsArrangement kinofilm2 = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, 100);
+
+    Date dato3 = new Date (2019, 07, 23, 18, 30);
+    String settDato3 = new SimpleDateFormat("HH:mm den yyyy/MM/dd").format(dato);
+
+    ForestillingsArrangement kinofilm3 = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, 100);
+
+
+
+    // Oppretter teaterforestilling:
+    Date dato4 = new Date (2019, 07, 23, 18, 30);
+    String settDato4 = new SimpleDateFormat("HH:mm den yyyy/MM/dd").format(dato);
+
+    ForestillingsArrangement teaterforestilling = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Sweeney Todd", 200, dato4, 100);
+
+    Date dato5 = new Date (2019, 07, 23, 18, 30);
+    String settDato5 = new SimpleDateFormat("HH:mm den yyyy/MM/dd").format(dato);
+
+    ForestillingsArrangement teaterforestilling2 = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Cats", 220, dato5, 100);
+
+    Date dato6 = new Date (2019, 07, 23, 18, 30);
+    String settDato6 = new SimpleDateFormat("HH:mm den yyyy/MM/dd").format(dato);
+
+    ForestillingsArrangement teaterforestilling3 = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Les Miserables", 250, dato6, 100);
+
 
 
     public void registrerKinoArrangement(Arrangement etArrangement) {
@@ -66,7 +113,6 @@ public class LokalRegister {
         }
         return arrangementer;
     }
-
 
 
     //metoder for å slette/endre arrangementer?
