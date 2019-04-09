@@ -125,12 +125,9 @@ public class BookLokaleController {
 
             try{    //MÅ SE PÅ HELE DELEN MED PARSING TIL DATOFORMAT
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
-                String innTidspunkt=txtTidspunkt.getText()+ dpDato.getValue();
-
                 //Tidspunktet til arrangementet skal ha formatet for eks: 14:30 den 10/03/2019
-                Date tidspunkt = new SimpleDateFormat("HH:mm den yyyy/mm/dd").parse(innTidspunkt);
-
-
+                //Blir dette riktig?
+                Date tidspunkt = new Date(txtTidspunkt.getText() + dpDato.getValue());
 
                 if(konsert){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(

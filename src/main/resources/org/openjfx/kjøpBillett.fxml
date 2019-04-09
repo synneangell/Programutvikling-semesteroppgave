@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -36,9 +35,9 @@
       <Label fx:id="lblDittKjøp" layoutX="35.0" layoutY="399.0" prefHeight="150.0" prefWidth="642.0" />
       <Label layoutX="486.0" layoutY="424.0" prefHeight="84.0" prefWidth="184.0" />
       <Label layoutX="35.0" layoutY="79.0" text="Velg billettype:" />
-      <ComboBox fx:id="comboxVelgForestilling" layoutX="264.0" layoutY="103.0" onAction="#velgForestilling" prefWidth="150.0" />
-      <ComboBox fx:id="comboxVelgDatoTid" layoutX="469.0" layoutY="103.0" onAction="#velgDatoTid" prefWidth="150.0" />
-      <ComboBox fx:id="comboxVelgAntall" layoutX="264.0" layoutY="300.0" onAction="#velgAntall" prefWidth="150.0" />
       <ChoiceBox fx:id="chboxVelgBillettType" layoutX="35.0" layoutY="103.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="chboxVelgForestilling" layoutX="244.0" layoutY="103.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="chboxVelgDatoTid" layoutX="456.0" layoutY="102.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="chboxVelgAntall" layoutX="257.0" layoutY="300.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
