@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="vindu" prefHeight="623.0" prefWidth="600.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.KulturhusetController">
+<AnchorPane fx:id="vindu" prefHeight="572.0" prefWidth="600.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.KulturhusetController">
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
@@ -14,11 +14,9 @@
       <Insets />
    </opaqueInsets>
    <children>
-      <Button fx:id="btnKHKjøpBillett" layoutX="171.0" layoutY="43.0" mnemonicParsing="false" onAction="#KjøpBillett" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Kjøp billett" />
-      <Button fx:id="btnKHBookLokale" layoutX="171.0" layoutY="110.0" mnemonicParsing="false" onAction="#BookLokale" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Book lokale" />
-      <Button fx:id="btnKHVisArrangementer" layoutX="172.0" layoutY="173.0" mnemonicParsing="false" onAction="#VisArrangementer" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Vis arrangementer" />
-      <Label fx:id="lblKHLabel" layoutX="82.0" layoutY="250.0" prefHeight="262.0" prefWidth="438.0" stylesheets="@styles.css" />
-      <Button fx:id="btnKHDato" layoutX="110.0" layoutY="538.0" mnemonicParsing="false" onAction="#Dato" prefHeight="48.0" prefWidth="154.0" styleClass="knapperForside" stylesheets="@styles.css" text="Dato" />
-      <Button fx:id="btnKHAlfabetisk" layoutX="352.0" layoutY="538.0" mnemonicParsing="false" onAction="#Alfabetisk" prefHeight="48.0" prefWidth="154.0" styleClass="knapperForside" stylesheets="@styles.css" text="Alfabetisk" />
+      <Button fx:id="btnKjøpBillett" layoutX="171.0" layoutY="43.0" mnemonicParsing="false" onAction="#kjøpBillett" prefHeight="48.0" prefWidth="258.0" styleClass="knapper" stylesheets="@styles.css" text="Kjøp billett" />
+      <Button fx:id="btnBooklokale" layoutX="171.0" layoutY="110.0" mnemonicParsing="false" onAction="#bookLokale" prefHeight="48.0" prefWidth="258.0" styleClass="knapper" stylesheets="@styles.css" text="Book lokale" />
+      <Button fx:id="btnVisArrangementer" layoutX="172.0" layoutY="173.0" mnemonicParsing="false" onAction="#visAlleArrangementer" prefHeight="48.0" prefWidth="258.0" styleClass="knapper" stylesheets="@styles.css" text="Vis arrangementer" />
+      <Label fx:id="lblOversiktArrangementer" layoutX="96.0" layoutY="257.0" prefHeight="262.0" prefWidth="410.0" stylesheets="@styles.css" />
    </children>
 </AnchorPane>

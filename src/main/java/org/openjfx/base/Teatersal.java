@@ -1,4 +1,9 @@
 package org.openjfx.base;
 
-public class Teatersal extends ForestillingsLokale {
+import java.util.ArrayList;
+
+public class Teatersal extends Lokale {
+    Teatersal(int plasser, ArrayList<Arrangement> arrangementer, int id) {
+        super(plasser, arrangementer, id);
+    }
 }

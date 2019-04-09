@@ -1,19 +1,26 @@
 package org.openjfx.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
+import org.openjfx.base.*;
 import org.openjfx.base.ForestillingsArrangement;
-import org.openjfx.base.ForestillingsArrangement;
-import org.openjfx.base.Kjøper;
 
-import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class KjøpBillettController {
+
+    LokalRegister lokalRegister = new LokalRegister();
+
+    ObservableList<String> BillettType = FXCollections.observableArrayList("Kino", "Teater", "Konsert", "Foredrag");
+
+    ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+
+    final ComboBox<String> Forestilling = new ComboBox<>();
 
     // Kjøperinfo:
 
@@ -26,74 +33,101 @@ public class KjøpBillettController {
     @FXML
     private TextField txtEmail;
 
-    @FXML
-    private TextField txtVelgAntall;
-
-    // Kontoopplysninger:
+    // Valg:
 
     @FXML
-    private TextField txtKontonummer;
+    private ComboBox comboxVelgForestilling;
 
     @FXML
-    private TextField txtNavnKortholder;
+    private ComboBox comboxVelgDatoTid;
 
-    //Kjøp:
+    @FXML
+    private ComboBox comboxVelgAntall;
+
+    @FXML
+    private ChoiceBox chboxVelgBillettType;
+
+    // Kjøp:
 
     @FXML
     private Label lblDittKjøp;
 
     @FXML
-    private Label lblÅBetale;
-
-    @FXML
-    private MenuButton mbtnBetalingskort;
+    private Button btnFullfør;
 
     @FXML
     private MenuButton mbtnKvitteringForKjøp;
 
+
+
+    // Setter billettype
     @FXML
-    private Button btnFullfør;
+    public void initialize() {
+        chboxVelgBillettType.setItems(BillettType);
+    }
 
     @FXML
-    private ChoiceBox cboxVelgForestilling;
+    public void velgForestilling(ActionEvent event) {
+    }
 
     @FXML
-    private ChoiceBox cboxVelgDatoTid;
+    public void velgDatoTid(ActionEvent actionEvent) {
+    }
 
     @FXML
-    private Button setMbtnKvitteringForKjøp;
+    public void velgAntall(ActionEvent actionEvent) {
+        comboxVelgAntall.setItems(AntallBilletter);
 
+    }
 
-/*
+    @FXML
+    public void DittKjøp() {
+        lblDittKjøp.setText("Hello");
+    }
 
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
 
-        if(!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty() &&
-                !txtVelgAntall.getText().isEmpty() && !txtKontonummer.getText().isEmpty() &&
-                !txtNavnKortholder.getText().isEmpty()){
+        // Hvis alle feltene på Billettkjøp er fylt ut/ valgt..
+        if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()
+                && chboxVelgBillettType.getOnAction().equals(true)
+                && comboxVelgForestilling.getOnKeyPressed().equals(true) && comboxVelgDatoTid.getOnKeyPressed().equals(true)
+                && comboxVelgAntall.getOnKeyPressed().equals(true)) {
 
-            Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText(),
-                    txtVelgAntall.getText(), txtKontonummer.getText(), txtNavnKortholder.getText());
-
-            // Feilmelding ovenfor kommer pga at: Kjøper inneholder super Navn og telefonnummer.
-            // Skal vi også ha med email, velgantall, kontonummer og navn på kortholder???
-
-            try{
-                int billettpris = Integer.parseInt(arrangement_pris.getText());
-                String innTidspunkt = arrangement_tidspunkt.getText();
-                Date tidspunkt =new SimpleDateFormat("dd/MM/yyyy").parse(innTidspunkt);
-
-
-                ForestillingsArrangement ForesetillingsArrangement = new ForestillingsArrangement
-                        (kontaktperson, arrangement_navn.getText(), billettpris,
-                        tidspunkt);
-            }
-            catch(Exception e){
-                //feilmelding ut til bruker
-                lblDittKjøp.setText("feilmelding");
-            }
+            // ..oppretter vi en ny Kjøper:
+            Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
         }
+    }
+
+    public void lagreKvittering(ActionEvent event) {
+    }
+
+
+
+    /*
+    @FXML
+    public void Kino(ActionEvent actionEvent) {
+        comboxVelgForestilling.getItems().addAll(
+                "Titanic",
+                "Mission Impossible",
+                "Pulp Fiction"
+        );
+    }
+
+    @FXML
+    public void Teater(ActionEvent actionEvent) {
+        comboxVelgForestilling.getItems().addAll(
+                "Sweeney Todd",
+                "Cats",
+                "Rent"
+        );
+    }
+
+    @FXML
+    public void Konsert(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void Foredrag(ActionEvent actionEvent) {
+    }*/
 }
-
-

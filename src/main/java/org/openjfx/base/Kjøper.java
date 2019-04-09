@@ -18,8 +18,18 @@ public class Kjøper extends Person {
         this.telefonNr = telefonNr;
     }
 
-    public String toString(){
-        String ut = "Telefonnr: "+telefonNr+" Email: "+email+"\n";
+    public String getemail() {
+        return email;
+    }
+
+    public void setemail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        String ut = "Navn";
         return ut;
     }
+
 }

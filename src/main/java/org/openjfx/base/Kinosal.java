@@ -1,5 +1,14 @@
 package org.openjfx.base;
 
-public class Kinosal extends ForestillingsLokale {
-    
+import java.util.ArrayList;
+
+public class Kinosal extends Lokale {
+
+    Kinosal(int plasser, ArrayList<Arrangement> arrangementer, int id) {
+        super(plasser, arrangementer, id);
+    }
+
+    public int getPlasser(){
+        return getPlasser();
+    }
 }

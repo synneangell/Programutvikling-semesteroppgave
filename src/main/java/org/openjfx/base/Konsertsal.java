@@ -1,4 +1,15 @@
 package org.openjfx.base;
 
-public class Konsertsal extends DeltakerLokale {
+import java.util.ArrayList;
+
+public class Konsertsal extends Lokale{
+
+    Konsertsal(int plasser, ArrayList<Arrangement> arrangementer, int id) {
+        super(plasser, arrangementer, id);
+    }
+
+    @Override
+    public int getPlasser() {
+        return super.getPlasser();
+    }
 }
