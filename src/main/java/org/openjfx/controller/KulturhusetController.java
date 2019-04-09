@@ -87,7 +87,7 @@ public class KulturhusetController {
     	public void Button1(ActionEvent actionEvent) {
 		FileChooser fc = new FileChooser();
 
-		//Denne over er alternativ. Her kan jeg sette inn linken til der hvor jeg vil at programmet skal åpne filen
+		//Denne under er alternativ. Her kan jeg sette inn linken til der hvor jeg vil at programmet skal åpne filen
 		fc.setInitialDirectory(new File ("//Users//nikolasekiw//Documents")); //alternativ
 
 		//Hvis jeg vil filtrere valgene brukeren får kan jeg bruke koden under, feks at det bare skal komme opp pdf filer

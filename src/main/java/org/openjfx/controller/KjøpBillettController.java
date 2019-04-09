@@ -51,17 +51,6 @@ public class KjøpBillettController {
     @FXML
     private MenuButton mbtnKvitteringForKjøp;
 
-
-    public void metode(ActionEvent event) {
-        FileChooser fc = new FileChooser();
-        File selectedFile = fc.showOpenDialog(null);
-
-        if (selectedFile != null) {
-
-        }
-    }
-
-
     @FXML
     private Button btnFullfør;
 
@@ -71,10 +60,12 @@ public class KjøpBillettController {
     @FXML
     private ChoiceBox cboxVelgDatoTid;
 
+    @FXML
+    private Button setMbtnKvitteringForKjøp;
 
-}
 
-/*
+
+
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
 
@@ -101,9 +92,8 @@ public class KjøpBillettController {
             catch(Exception e){
                 //feilmelding ut til bruker
                 lblDittKjøp.setText("feilmelding");
-
             }
         }
-
 }
-*/
+
+
