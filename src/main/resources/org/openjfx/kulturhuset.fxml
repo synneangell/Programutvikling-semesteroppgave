@@ -14,9 +14,9 @@
       <Insets />
    </opaqueInsets>
    <children>
-      <Button fx:id="btnKjøpBillett" layoutX="171.0" layoutY="43.0" mnemonicParsing="false" onAction="#kjøpBillett" prefHeight="48.0" prefWidth="258.0" styleClass="knapper" stylesheets="@styles.css" text="Kjøp billett" />
-      <Button fx:id="btnBooklokale" layoutX="171.0" layoutY="110.0" mnemonicParsing="false" onAction="#bookLokale" prefHeight="48.0" prefWidth="258.0" styleClass="knapper" stylesheets="@styles.css" text="Book lokale" />
-      <Button fx:id="btnVisArrangementer" layoutX="172.0" layoutY="173.0" mnemonicParsing="false" onAction="#visAlleArrangementer" prefHeight="48.0" prefWidth="258.0" styleClass="knapper" stylesheets="@styles.css" text="Vis arrangementer" />
+      <Button fx:id="btnKjøpBillett" layoutX="171.0" layoutY="43.0" mnemonicParsing="false" onAction="#kjøpBillett" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Kjøp billett" />
+      <Button fx:id="btnBooklokale" layoutX="171.0" layoutY="110.0" mnemonicParsing="false" onAction="#bookLokale" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Book lokale" />
+      <Button fx:id="btnVisArrangementer" layoutX="172.0" layoutY="173.0" mnemonicParsing="false" onAction="#visAlleArrangementer" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Vis arrangementer" />
       <Label fx:id="lblOversiktArrangementer" layoutX="96.0" layoutY="257.0" prefHeight="262.0" prefWidth="410.0" stylesheets="@styles.css" />
    </children>
 </AnchorPane>

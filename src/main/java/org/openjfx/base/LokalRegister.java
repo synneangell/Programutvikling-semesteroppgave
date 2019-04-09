@@ -15,7 +15,6 @@ public class LokalRegister {
     Teatersal teatersal = new Teatersal(100, teaterArrangementer, 3);
     Kinosal kinosal = new Kinosal(100, kinoArrangementer, 4);
 
-
     public void registrerKinoArrangement(Arrangement etArrangement) {
         kinoArrangementer.add(etArrangement);
     }
@@ -65,10 +64,7 @@ public class LokalRegister {
         return arrangementer;
     }
 
-
-
     //metoder for å slette/endre arrangementer?
-
 
 
  /*   Har vi bruk for dette?
@@ -87,5 +83,4 @@ public class LokalRegister {
         }
         return null;
     }*/
-
 }
