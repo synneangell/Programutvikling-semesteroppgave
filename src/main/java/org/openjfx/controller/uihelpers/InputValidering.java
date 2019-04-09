@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
     private int billettpris;
     private Date tidspunkt;
 
+
  */
 
 public class InputValidering {

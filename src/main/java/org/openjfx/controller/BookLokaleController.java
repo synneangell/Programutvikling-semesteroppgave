@@ -107,7 +107,7 @@ public class BookLokaleController {
             // InputValidering.validerKunTelefonnummer(txtTelefonnummer, txtTelefonnummer.getText());
             //InputValidering.validerEmail(txtEmail, txtEmail.getText());
             //InputValidering.validerNettside(txtNettside, txtNettside.getText());
-            InputValidering.validerKunTekst(txtAndreOpplysninger, txtAndreOpplysninger.getText());
+            //Andre opplysninger ikke nødvendig å input validere? Fri tekst, kan ha tall
             InputValidering.validerKunTekst(txtVirksomhet, txtVirksomhet.getText());
             InputValidering.validerKunTekst(txtNavnArrangement, txtNavnArrangement.getText());
             InputValidering.validerKunTall(txtBillettpris, txtBillettpris.getText());

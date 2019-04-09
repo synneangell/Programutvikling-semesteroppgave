@@ -17,7 +17,7 @@ import java.io.IOException;
 public class KulturhusetController {
 
     //Skal man opprette disse i alle controllerne? Skal dette i en public void initialize?
-    ArrangementRegister arrangementregister = new ArrangementRegister();
+    LokalRegister lokalregister = new LokalRegister();
 
 
     /*
@@ -39,7 +39,10 @@ public class KulturhusetController {
 
     @FXML
     void visAlleArrangementer (ActionEvent event) {
-        lblOversiktArrangementer.setText(arrangementregister.visAlleArrangementer());
+        lblOversiktArrangementer.setText("Foredrag: "+lokalregister.visAlleForedragsArrangementer() +
+                                        "Kino: "+lokalregister.visAlleKinoArrangementer() +
+                                        "Konserter: "+lokalregister.visAlleKonsertArrangementer() +
+                                        "Teater: "+lokalregister.visAlleTeaterArrangementer());
         ChoiceBox<String> sorter = new ChoiceBox<>();
         sorter.setItems(sorteringsValg);
 

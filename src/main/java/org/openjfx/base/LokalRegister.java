@@ -33,7 +33,7 @@ public class LokalRegister {
     }
 
     //egne metoder for å vise arrangementer kun i kinosal/teatersal/foredragssal/konsertsal?
-    private String visAlleKonsertArrangementer(){
+    public String visAlleKonsertArrangementer(){
         String arrangementer = "";
         for(Arrangement etArrangement : konsertArrangementer){
             arrangementer += etArrangement + "\n";
@@ -41,7 +41,7 @@ public class LokalRegister {
         return arrangementer;
     }
 
-    private String visAlleForedragsArrangementer(){
+    public String visAlleForedragsArrangementer(){
         String arrangementer = "";
         for(Arrangement etArrangement : foredragsArrangementer){
             arrangementer += etArrangement + "\n";
@@ -49,7 +49,7 @@ public class LokalRegister {
         return arrangementer;
     }
 
-    private String visAlleKinoArrangementer(){
+    public String visAlleKinoArrangementer(){
         String arrangementer = "";
         for(Arrangement etArrangement : kinoArrangementer){
             arrangementer += etArrangement + "\n";
@@ -57,7 +57,7 @@ public class LokalRegister {
         return arrangementer;
     }
 
-    private String visAlleTeaterArrangementer(){
+    public String visAlleTeaterArrangementer(){
         String arrangementer = "";
         for(Arrangement etArrangement : teaterArrangementer){
             arrangementer += etArrangement + "\n";
