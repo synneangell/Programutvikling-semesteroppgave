@@ -30,4 +30,29 @@ public class KinoFilmer {
     }
 
 
+    public String kjøpKinovisning(String navn, String telefonNr, String email, String tittel){
+        // sjekk om filmen har visning
+        String resultat = "";
+        boolean funnet = false;
+        for (Film enFilm : register){
+            if(enFilm.tittel.equals(tittel)){
+                // filmen funnet
+                funnet=true;
+                if(enFilm.tittel==null){
+                    // den finnes
+                    // opprett personobjekt og lenk det inn i filmen
+                    Kjøper enKjøper = new Kjøper(navn, telefonNr, email);
+                    enFilm.tittel = tittel;
+                    resultat += "Film: " + tittel + "\n";
+                    resultat += "Pris per billett er " + enFilm.billettPris + " kr";
+                }
+                else{
+                    resultat += "Feil";
+                }
+            }
+        }
+        return resultat;
+    }
+
+
 }

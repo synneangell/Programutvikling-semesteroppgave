@@ -14,11 +14,11 @@ import java.util.Date;
 
 public class KjøpBillettController {
 
-    LokalRegister lokalRegister = new LokalRegister();
-
     ObservableList<String> BillettType = FXCollections.observableArrayList("Kino", "Teater", "Konsert", "Foredrag");
 
     ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+
+    LokalRegister lokalRegister = new LokalRegister();
 
     final ComboBox<String> Forestilling = new ComboBox<>();
 
@@ -68,6 +68,10 @@ public class KjøpBillettController {
 
     @FXML
     public void velgForestilling(ActionEvent event) {
+        // Hvis forestilling ikke er valgt, må det velges en kinofilm
+        if (!comboxVelgForestilling.getOnKeyPressed().equals(true)) {
+
+        }
     }
 
     @FXML
