@@ -1,5 +1,7 @@
 package org.openjfx.base;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -90,6 +92,10 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
 
     public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){
         return "";
+    }
+
+    public String toString() {
+        return arrangementNavn+" "+ new SimpleDateFormat("dd.MM.YYYY HH:mm").format(tidspunkt);
     }
 
 
