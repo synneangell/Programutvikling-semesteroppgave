@@ -1,12 +1,12 @@
-package org.openjfx.base;
+package org.openjfx.Filbehandling;
+
+import org.openjfx.Filbehandling.SkriveTilFil;
 
 import java.io.*;
 
-public class LagreDataTilJobjFil extends LagreDataTilFil {
+public class SkriveTilJobjFil extends SkriveTilFil {
 
     private void lagreTilFil(Object o) throws IOException {
-
-        //Opprette et objekt?
 
         String filnavn = "Kvittering.jobj";
 
@@ -24,8 +24,6 @@ public class LagreDataTilJobjFil extends LagreDataTilFil {
         }
 
         System.out.println("Ferdig med å skrive til jobj fil!");
-
-
 
     }
 }

@@ -1,11 +1,9 @@
-package org.openjfx.base;
+package org.openjfx.Filbehandling;
 
 import java.io.*;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 
-public class LeseDataFraCsvFil extends LeseDataFraFil {
+public class LeseDataFraCsvFil extends LeseFraFil {
 
     private void leseFraFil() throws IOException, ClassNotFoundException {
 

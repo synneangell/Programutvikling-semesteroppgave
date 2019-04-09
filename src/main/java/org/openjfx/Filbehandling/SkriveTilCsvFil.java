@@ -1,15 +1,51 @@
-package org.openjfx.base;
+package org.openjfx.Filbehandling;
 
-import java.io.*;
+import org.openjfx.base.Billett;
 
-public class LagreDataTilCsvFil extends LagreDataTilFil {
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-    private String nyLinje = System.getProperty("Linje.separator");
+
+public class SkriveTilCsvFil extends SkriveTilFil {
+
+        public void skrivBillett(List<Billett> billetter, String path) throws IOException {
+            PrintWriter writer = null;
+
+            try {
+                writer = new PrintWriter(path, "UTF-8");
+
+                for (Billett enBillett : billetter) {
+                    writer.println(enBillett);
+                }
+            } finally {
+                if (writer != null) {
+                    writer.close();
+                }
+            }
+
+
+
+
+            List<String> data = new ArrayList<>();
+
+            billetter.forEach(p -> data.add(p.toString()));
+
+            Path file = Paths.get(path);
+            Files.write(file, data, Charset.forName("UTF-8"));
+        }
+    }
+
+
+    /*private String nyLinje = System.getProperty("Linje.separator");
     private OutputStreamWriter writer = null;
     private int nbrCols = 0;
-    private int nbrRows = 0;
-
-
+    private int nbrRows = 0;*/
 
     /**
      * @param encoding encoding to use or null (=defualt)
@@ -17,7 +53,7 @@ public class LagreDataTilCsvFil extends LagreDataTilFil {
      * file - den filen man skriver data til
      */
 
-    public void CSVSkriver(File file, String encoding) throws IOException {
+    /*public void CSVSkriver(File file, String encoding) throws IOException {
         if (encoding == null){
             encoding = System.getProperty("file.encoding");
         }
@@ -78,7 +114,7 @@ public class LagreDataTilCsvFil extends LagreDataTilFil {
     private void lagreTilFil()  {
 
     }
-}
-
+    */
+//}
 
     //new FileChooser().showSaveDialog(null);

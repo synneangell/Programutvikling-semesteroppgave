@@ -1,11 +1,8 @@
-package org.openjfx.base;
+package org.openjfx.Filbehandling;
 
-
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 
-public class LeseDataFraJobjFil extends LeseDataFraFil {
+public class LeseDataFraJobjFil extends LeseFraFil {
 
 
     private void leseFraFil() throws IOException, ClassNotFoundException {

@@ -97,7 +97,6 @@ public class KjøpBillettController {
         if(chboxVelgForestilling.isPressed()) {
             chboxVelgAntall.setItems(AntallBilletter);
         }
-
     }
 
     @FXML

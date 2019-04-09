@@ -113,16 +113,6 @@ public class KulturhusetController {
     }
 }
 
-
-/**
- * Kode til knappene (kjøp billett og book lokale
- */
-
-/*
-
- */
-
-
 /**
  *  Kode som skal plasseres i controlleren til kjøpbillett og booklokale som laster opp en fil fra maskinen
  */
@@ -146,37 +136,6 @@ public class KulturhusetController {
 
      if (merkertFil != null){
         listView.getItems().add(merkertFil.getName());
-     } else {
-        System.out.println("Filen er ikke gyldig");
-     }
-  }
-    */
-
-/**
- * Hvis jeg vil ha muligheten til å hente flere filer (må kobles til forskjellige knapper i så fall
- */
-
-
-   /*
-  public void Button1(ActionEvent actionEvent) {
-     FileChooser fc = new FileChooser();
-
-     //Denne over er alternativ. Her kan jeg sette inn linken til der hvor jeg vil at programmet skal åpne filen
-     fc.setInitialDirectory(new File ("//Users//nikolasekiw//Documents")); //alternativ
-
-     //Hvis jeg vil filtrere valgene brukeren får kan jeg bruke koden under, feks at det bare skal komme opp pdf filer
-     //ExtentionFilter filtrerer hvilke filer som kan bli valgt med fileChooser
-     //"PDF files" er teksten jeg vil skal vises i filechooser, "*.pdf" gjør at den kun viser alle pdf filer.
-     fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
-
-     //Hvis jeg vil ha muligheten til å velte flere filer
-     List<File> merkerteFiler = fc.showOpenMultipleDialog(null);
-
-     if (merkerteFiler != null){
-        for (int i = 0; i < merkerteFiler.size(); i++){
-           listView.getItems().add(merkerteFiler.get(i).getAbsolutePath());
-        }
-
      } else {
         System.out.println("Filen er ikke gyldig");
      }
