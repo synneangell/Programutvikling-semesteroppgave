@@ -18,7 +18,13 @@ public class KulturhusetController {
 
     //Skal man opprette disse i alle controllerne? Skal dette i en public void initialize?
     LokalRegister lokalregister = new LokalRegister();
+
+    public void initialize() {
+        lokalregister.leggInnFilmer();
+    }
+
     ObservableList<String> sorteringsValg = FXCollections.observableArrayList("Alfabetisk", "Etter tidspunkt");
+
 
     /*
     @FXML
