@@ -18,7 +18,7 @@ public class KulturhusetController {
 
     //Skal man opprette disse i alle controllerne? Skal dette i en public void initialize?
     LokalRegister lokalregister = new LokalRegister();
-
+    ObservableList<String> sorteringsValg = FXCollections.observableArrayList("Alfabetisk", "Etter tidspunkt");
 
     /*
     @FXML
@@ -30,12 +30,13 @@ public class KulturhusetController {
     @FXML
     private Button  btnVisArrangementer;*/
 
-
-
     @FXML
     private Label  lblOversiktArrangementer;
 
-    ObservableList<String> sorteringsValg = FXCollections.observableArrayList("Alfabetisk", "Etter tidspunkt");
+    @FXML
+    private ChoiceBox chboxSorter;
+
+    //sette inn hide choicebox på en måte?
 
     @FXML
     void visAlleArrangementer (ActionEvent event) {
@@ -43,10 +44,6 @@ public class KulturhusetController {
                                         "Kino: "+lokalregister.visAlleKinoArrangementer() +
                                         "Konserter: "+lokalregister.visAlleKonsertArrangementer() +
                                         "Teater: "+lokalregister.visAlleTeaterArrangementer());
-
-        ChoiceBox<String> sorter = new ChoiceBox<>();
-        sorter.setItems(sorteringsValg);
-
     }
 
     @FXML

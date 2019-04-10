@@ -15,10 +15,10 @@ public class LokalRegister {
     Teatersal teatersal = new Teatersal(100, teaterArrangementer, 3);
     Kinosal kinosal = new Kinosal(100, kinoArrangementer, 4);
 
-
     public void registrerKinoArrangement(Arrangement etArrangement) {
         kinoArrangementer.add(etArrangement);
     }
+
 
     public void registrerTeaterArrangement(Arrangement etArrangement) {
         teaterArrangementer.add(etArrangement);
@@ -32,7 +32,7 @@ public class LokalRegister {
         konsertArrangementer.add(etArrangement);
     }
 
-    //egne metoder for å vise arrangementer kun i kinosal/teatersal/foredragssal/konsertsal?
+    //egne metoder for å vise arrangementer kun i kinosal/teatersal/foredragssal/konsertsal
     public String visAlleKonsertArrangementer(){
         String arrangementer = "";
         for(Arrangement etArrangement : konsertArrangementer){

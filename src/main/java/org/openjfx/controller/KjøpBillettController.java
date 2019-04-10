@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.openjfx.base.*;
-import org.openjfx.base.ForestillingsArrangement;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,7 +21,7 @@ public class KjøpBillettController {
 
     ObservableList<Integer> AntallBilletter = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10);
 
-    ObservableList<Arrangement> Kino = FXCollections.observableList(lokalRegister.kinoArrangementer);
+    ObservableList<Arrangement> Kino = FXCollections.observableArrayList(lokalRegister.kinoArrangementer);
 
     ObservableList<Arrangement> Teater = FXCollections.observableArrayList(lokalRegister.teaterArrangementer);
 
@@ -44,16 +43,16 @@ public class KjøpBillettController {
     // Valg:
 
     @FXML
-    private ChoiceBox chboxVelgForestilling;
+    private ComboBox chboxVelgForestilling;
 
     @FXML
-    private ChoiceBox chboxVelgDatoTid;
+    private ComboBox chboxVelgDatoTid;
 
     @FXML
-    private ChoiceBox chboxVelgAntall;
+    private ComboBox chboxVelgAntall;
 
     @FXML
-    private ChoiceBox chboxVelgBillettType;
+    private ComboBox chboxVelgBillettType;
 
     // Kjøp:
 
@@ -72,32 +71,30 @@ public class KjøpBillettController {
     @FXML
     public void initialize() {
         chboxVelgBillettType.setItems(BillettType);
+        Test test = new Test();
+        test.leggTilFilmer();
     }
 
     @FXML
-    public void velgForestilling(ActionEvent event){
-        if(chboxVelgBillettType.isPressed()) {
-            if (BillettType.equals("Kino")) {
+    public void velgForestilling(){
+        if(chboxVelgBillettType.getValue().equals("Kino")) {
                 chboxVelgForestilling.setItems(Kino);
-            } else if (BillettType.equals("Teater")) {
+            } else if (chboxVelgBillettType.getValue().equals("Teater")) {
                 chboxVelgForestilling.setItems(Teater);
-            } else if (BillettType.equals("Konsert")) {
+            } else if (chboxVelgBillettType.getValue().equals("Konsert")) {
                 chboxVelgForestilling.setItems(Konsert);
-            } else if (BillettType.equals("Foredrag")) {
+            } else if (chboxVelgBillettType.getValue().equals("Foredrag")) {
                 chboxVelgForestilling.setItems(Foredrag);
             } else {
                 //egen label for feilmelding?
                 lblDittKjøp.setText("Du må velge type forestilling");
             }
-        }
     }
 
-    @FXML
-    public void velgAntall(ActionEvent event) {
-        if(chboxVelgForestilling.isPressed()) {
-            chboxVelgAntall.setItems(AntallBilletter);
-        }
 
+    @FXML
+    public void velgAntall() {
+            chboxVelgAntall.setItems(AntallBilletter);
     }
 
     @FXML
@@ -127,6 +124,8 @@ public class KjøpBillettController {
                 //må kjøre metode til arrangementet som legger billett til arrangement
 
             }*/
+
+
         }
     }
 

@@ -4,6 +4,6 @@ import java.util.ArrayList;
 
 public class KjøperRegister {
 
-    ArrayList<Kontaktperson> kontaktpersoner = new ArrayList<>();
+    ArrayList<Kjøper> kjøpere = new ArrayList<>();
 
 }

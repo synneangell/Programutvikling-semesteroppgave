@@ -2,8 +2,7 @@ package org.openjfx.controller;
 
 import java.text.ParseException;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,8 +10,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InputValidering;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookLokaleController {
@@ -75,7 +72,6 @@ public class BookLokaleController {
 
     @FXML
     private void initialize(){
-
         velgTypeArrangement.setItems(typeArrangementer);
     }
 
@@ -85,10 +81,14 @@ public class BookLokaleController {
 
         boolean konsert = false;
         boolean foredrag = false;
-        if(velgTypeArrangement.getValue() == "konsert"){
+        //Får nullpointerException på linje 84
+
+        String valg = velgTypeArrangement.getValue().toString();
+
+        if(valg == "Konsert"){
             konsert = true;
         }
-        else if(velgTypeArrangement.getValue() == "foredrag"){
+        else if(valg == "Foredrag"){
             foredrag = true;
         }
 
@@ -123,11 +123,10 @@ public class BookLokaleController {
             Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(),txtEgenskapDeltaker.getText());
 
 
-            try{    //MÅ SE PÅ HELE DELEN MED PARSING TIL DATOFORMAT
+            try{    //MÅ SE OM IGJEN PÅ HELE DELEN MED PARSING TIL DATOFORMAT
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
-                //Tidspunktet til arrangementet skal ha formatet for eks: 14:30 den 10/03/2019
-                //Blir dette riktig?
-                Date tidspunkt = new Date(txtTidspunkt.getText() + dpDato.getValue());
+                //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
+                Date tidspunkt = new Date(dpDato.getValue()+txtTidspunkt.getText());
 
                 if(konsert){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
