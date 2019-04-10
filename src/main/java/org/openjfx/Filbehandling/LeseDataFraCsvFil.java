@@ -25,7 +25,5 @@ public class LeseDataFraCsvFil extends LeseFraFil {
 
         }
 
-
-
     }
     }

@@ -30,8 +30,6 @@ public class SkriveTilCsvFil extends SkriveTilFil {
             }
 
 
-
-
             List<String> data = new ArrayList<>();
 
             billetter.forEach(p -> data.add(p.toString()));
