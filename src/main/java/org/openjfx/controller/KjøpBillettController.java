@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.base.ForestillingsArrangement;
 
@@ -71,6 +72,12 @@ public class KjøpBillettController {
 
     @FXML
     private MenuButton mbtnKvitteringForKjøp;
+
+    @FXML
+    private Button btnAvslutt;
+
+    @FXML
+    private Button btnAvbryt;
 
 
 
@@ -146,6 +153,17 @@ public class KjøpBillettController {
     }
 
     public void lagreKvittering(ActionEvent event) {
+    }
+
+    @FXML
+    private void Avslutt(ActionEvent event){
+        Stage stage = (Stage) btnAvslutt.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void Tilbake (ActionEvent event){
+
     }
 
 

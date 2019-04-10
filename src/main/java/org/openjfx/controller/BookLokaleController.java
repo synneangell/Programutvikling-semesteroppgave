@@ -64,13 +64,15 @@ public class BookLokaleController {
     private Label lblOversiktOpplysninger;
 
     @FXML
-    private Button btnAvslutt;
-
-    @FXML
-    private Button btnAvbryt;
-
-    @FXML
     private ChoiceBox velgTypeArrangement;
+
+    @FXML
+    private Button BtnAvslutt;
+
+    @FXML
+    private Button BtnTilbake;
+
+
 
 
     @FXML
@@ -153,17 +155,24 @@ public class BookLokaleController {
                 lblFullførBestilling.setText(feilmelding);
 
             }
-
-
-
         }
+    }
 
+    @FXML
+    private void Avslutt(ActionEvent event){
+        Stage stage2 = (Stage) BtnAvslutt.getScene().getWindow();
+        stage2.close();
+    }
+
+    @FXML
+    private void Tilbake (ActionEvent event){
 
     }
 
+
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
     private void lukkVindu() {
-        Stage myStage = (Stage) btnAvbryt.getScene().getWindow();
+        Stage myStage = (Stage) BtnAvslutt.getScene().getWindow();
         myStage.close();
     }
 

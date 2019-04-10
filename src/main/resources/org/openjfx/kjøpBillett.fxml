@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="759.0" prefWidth="736.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.KjøpBillettController">
    <children>
-      <Label layoutX="309.0" layoutY="18.0" text="Billettkjøp">
+      <Label layoutX="309.0" layoutY="18.0" styleClass="overskrift" stylesheets="@styles.css" text="Billettkjøp">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
@@ -39,5 +39,7 @@
       <ChoiceBox fx:id="chboxVelgForestilling" layoutX="244.0" layoutY="103.0" prefWidth="150.0" />
       <ChoiceBox fx:id="chboxVelgDatoTid" layoutX="456.0" layoutY="102.0" prefWidth="150.0" />
       <ChoiceBox fx:id="chboxVelgAntall" layoutX="257.0" layoutY="300.0" prefWidth="150.0" />
+      <Button fx:id="btnAvslutt" layoutX="593.0" layoutY="638.0" mnemonicParsing="false" onAction="#Avslutt" prefHeight="27.0" prefWidth="116.0" text="Avslutt" cancelButton = "true"/>
+      <Button fx:id="btnTilbake" layoutX="593.0" layoutY="674.0" mnemonicParsing="false" onAction="#Tilbake" prefHeight="27.0" prefWidth="116.0" text="Avbryt" />
    </children>
 </AnchorPane>
