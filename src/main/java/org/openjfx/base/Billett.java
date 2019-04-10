@@ -1,8 +1,10 @@
 package org.openjfx.base;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Billett {
+public class Billett implements Serializable {
+    private static final long serialVersionUID = 1;
     private Kjøper kjøper;
     private Arrangement arrangement;
     private int referansenummer;

@@ -65,10 +65,7 @@ public class LokalRegister {
         return arrangementer;
     }
 
-
-
     //metoder for å slette/endre arrangementer?
-
 
 
  /*   Har vi bruk for dette?
@@ -87,5 +84,4 @@ public class LokalRegister {
         }
         return null;
     }*/
-
 }

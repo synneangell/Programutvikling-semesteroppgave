@@ -65,18 +65,32 @@ public class KjøpBillettController {
     @FXML
     private MenuButton mbtnKvitteringForKjøp;
 
-
-
-    // Setter billettype
     @FXML
     public void initialize() {
         chboxVelgBillettType.setItems(BillettType);
+
         Test test = new Test();
         test.leggTilFilmer();
+        chboxVelgBillettType.valueProperty().addListener((ob, o, n)-> {
+            if(n.toString().equals("Kino")) {
+                System.out.print("Jeg er her");
+               chboxVelgForestilling.setItems(Kino);
+            } else if (n.toString().equals("Teater")) {
+               chboxVelgForestilling.setItems(Teater);
+            } else if (n.toString().equals("Konsert")) {
+               chboxVelgForestilling.setItems(Konsert);
+            } else if (n.toString().equals("Foredrag")) {
+               chboxVelgForestilling.setItems(Foredrag);
+            } else {
+                //egen label for feilmelding?
+                lblDittKjøp.setText("Du må velge type forestilling");
+            }
+        });
     }
 
     @FXML
     public void velgForestilling(){
+        /*
         if(chboxVelgBillettType.getValue().equals("Kino")) {
                 chboxVelgForestilling.setItems(Kino);
             } else if (chboxVelgBillettType.getValue().equals("Teater")) {
@@ -88,7 +102,7 @@ public class KjøpBillettController {
             } else {
                 //egen label for feilmelding?
                 lblDittKjøp.setText("Du må velge type forestilling");
-            }
+            }                      */
     }
 
 
