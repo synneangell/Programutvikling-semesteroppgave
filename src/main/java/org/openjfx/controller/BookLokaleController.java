@@ -101,21 +101,6 @@ public class BookLokaleController {
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()){
             //må datepicker også sjekkes her?
 
-
-            //Input validering av alle feltene bruker skriver inn på
-            InputValidering.validerKunTekst(txtNavn, txtNavn.getText());
-            // InputValidering.validerKunTelefonnummer(txtTelefonnummer, txtTelefonnummer.getText());
-            //InputValidering.validerEmail(txtEmail, txtEmail.getText());
-            //InputValidering.validerNettside(txtNettside, txtNettside.getText());
-            //Andre opplysninger ikke nødvendig å input validere? Fri tekst, kan ha tall
-            InputValidering.validerKunTekst(txtVirksomhet, txtVirksomhet.getText());
-            InputValidering.validerKunTekst(txtNavnArrangement, txtNavnArrangement.getText());
-            InputValidering.validerKunTall(txtBillettpris, txtBillettpris.getText());
-            //Tidspunkt og dato??
-            InputValidering.validerKunTekst(txtEgenskapDeltaker, txtEgenskapDeltaker.getText());
-            InputValidering.validerKunTekst(txtDeltakerNavn, txtDeltakerNavn.getText());
-
-
             Kontaktperson kontaktperson = new Kontaktperson(
                     txtNavn.getText(),txtTelefonnummer.getText(),txtEmail.getText(),
                     txtNettside.getText(),txtAndreOpplysninger.getText(), txtVirksomhet.getText());
@@ -152,12 +137,7 @@ public class BookLokaleController {
                 lblFullførBestilling.setText(feilmelding);
 
             }
-
-
-
         }
-
-
     }
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
