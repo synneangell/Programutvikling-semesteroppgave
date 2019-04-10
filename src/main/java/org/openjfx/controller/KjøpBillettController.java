@@ -6,11 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.openjfx.base.*;
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+
 
 public class KjøpBillettController {
 
@@ -19,18 +16,15 @@ public class KjøpBillettController {
 
     ObservableList<String> BillettType = FXCollections.observableArrayList("Kino", "Teater", "Konsert", "Foredrag");
 
-    ObservableList<Integer> AntallBilletter = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10);
+    ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10");
 
+    ObservableList<String> Kino = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.kinoArrangementer));
 
-    ObservableList<Arrangement> Kino = FXCollections.observableArrayList(lokalRegister.kinoArrangementer);
+    ObservableList<String> Teater = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.teaterArrangementer));
 
-    ObservableList<Arrangement> Teater = FXCollections.observableArrayList(lokalRegister.teaterArrangementer);
+    ObservableList<String> Konsert = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.konsertArrangementer));
 
-    ObservableList<Arrangement> Konsert = FXCollections.observableArrayList(lokalRegister.konsertArrangementer);
-
-    final ComboBox<String> Forestilling = new ComboBox<>();
-
-    ObservableList<Arrangement> Foredrag = FXCollections.observableArrayList(lokalRegister.foredragsArrangementer);
+    ObservableList<String> Foredrag = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.foredragsArrangementer));
 
     // Kjøperinfo:
 
@@ -71,19 +65,17 @@ public class KjøpBillettController {
     @FXML
     public void initialize() {
         chboxVelgBillettType.setItems(BillettType);
+        chboxVelgAntall.setItems(AntallBilletter);
 
-        Test test = new Test();
-        test.leggTilFilmer();
-        chboxVelgBillettType.valueProperty().addListener((ob, o, n)-> {
-            if(n.toString().equals("Kino")) {
-                System.out.print("Jeg er her");
-               chboxVelgForestilling.setItems(Kino);
+        chboxVelgBillettType.valueProperty().addListener((ob, o, n) -> {
+            if (n.toString().equals("Kino")) {
+                chboxVelgForestilling.setItems(Kino);
             } else if (n.toString().equals("Teater")) {
-               chboxVelgForestilling.setItems(Teater);
+                chboxVelgForestilling.setItems(Teater);
             } else if (n.toString().equals("Konsert")) {
-               chboxVelgForestilling.setItems(Konsert);
+                chboxVelgForestilling.setItems(Konsert);
             } else if (n.toString().equals("Foredrag")) {
-               chboxVelgForestilling.setItems(Foredrag);
+                chboxVelgForestilling.setItems(Foredrag);
             } else {
                 //egen label for feilmelding?
                 lblDittKjøp.setText("Du må velge type forestilling");
@@ -91,32 +83,10 @@ public class KjøpBillettController {
         });
     }
 
+    // Skriver ut info om kjøp på Kjøp Billetter
     @FXML
-    public void velgForestilling(){
-        /*
-        if(chboxVelgBillettType.getValue().equals("Kino")) {
-                chboxVelgForestilling.setItems(Kino);
-            } else if (chboxVelgBillettType.getValue().equals("Teater")) {
-                chboxVelgForestilling.setItems(Teater);
-            } else if (chboxVelgBillettType.getValue().equals("Konsert")) {
-                chboxVelgForestilling.setItems(Konsert);
-            } else if (chboxVelgBillettType.getValue().equals("Foredrag")) {
-                chboxVelgForestilling.setItems(Foredrag);
-            } else {
-                //egen label for feilmelding?
-                lblDittKjøp.setText("Du må velge type forestilling");
-            }                      */
-    }
-
-
-    @FXML
-    public void velgAntall() {
-            chboxVelgAntall.setItems(AntallBilletter);
-    }
-
-    @FXML
-    public void DittKjøp() {
-        lblDittKjøp.setText("Hello");
+    public void DittKjøp(ActionEvent event) {
+        lblDittKjøp.setText(lokalRegister.toString());
     }
 
 
@@ -124,57 +94,31 @@ public class KjøpBillettController {
     void fullførBestilling(ActionEvent event) throws ParseException {
 
         // Hvis alle feltene på Billettkjøp er fylt ut/ valgt..
-        if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()
+       /* if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()
                 && chboxVelgBillettType.getOnAction().equals(true)
                 && chboxVelgForestilling.getOnKeyPressed().equals(true) && chboxVelgDatoTid.getOnKeyPressed().equals(true)
-                && chboxVelgAntall.getOnKeyPressed().equals(true)) {
+                && chboxVelgAntall.getOnKeyPressed().equals(true)) {          */
 
-            // ..oppretter vi en ny Kjøper:
+
+            //Oppretter kjøper:
             Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
 
-            //oppretter x antall billetter
-            //Hvordan få tak i arrangementobjektene og antall billetter?
-          /*int i = chboxVelgAntall.getValue();
-            for(int i = 0; i<chboxVelgAntall.getValue(); i++){
-                Billett enBillett = new Billett(kjøper,chboxVelgForestilling.getValue());
+            //Oppretter x billetter:
+            int antallBilletter = Integer.valueOf((String)chboxVelgAntall.getValue());
+            for(int i= 0; i<antallBilletter; i++){
+                Billett enBillett = new Billett(kjøper, null);
                 billettRegister.registrerBillett(enBillett);
-                //må kjøre metode til arrangementet som legger billett til arrangement
+            }
 
-            }*/
+            //TODO: Legger billett(er) til i valgt arrangement:
+            String valgtForestilling = String.valueOf(chboxVelgForestilling.getValue());
+            System.out.println(valgtForestilling);
 
+            //Hvordan t oppfatte hvilket objekt det er ut i fra denne stringen?
 
         }
-    }
+
 
     public void lagreKvittering(ActionEvent event) {
     }
-
-
-
-    /*
-    @FXML
-    public void Kino(ActionEvent actionEvent) {
-        comboxVelgForestilling.getItems().addAll(
-                "Titanic",
-                "Mission Impossible",
-                "Pulp Fiction"
-        );
-    }
-
-    @FXML
-    public void Teater(ActionEvent actionEvent) {
-        comboxVelgForestilling.getItems().addAll(
-                "Sweeney Todd",
-                "Cats",
-                "Rent"
-        );
-    }
-
-    @FXML
-    public void Konsert(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void Foredrag(ActionEvent actionEvent) {
-    }*/
 }
