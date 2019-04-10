@@ -21,11 +21,14 @@ public class KjøpBillettController {
 
     ObservableList<Integer> AntallBilletter = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10);
 
+
     ObservableList<Arrangement> Kino = FXCollections.observableArrayList(lokalRegister.kinoArrangementer);
 
     ObservableList<Arrangement> Teater = FXCollections.observableArrayList(lokalRegister.teaterArrangementer);
 
     ObservableList<Arrangement> Konsert = FXCollections.observableArrayList(lokalRegister.konsertArrangementer);
+
+    final ComboBox<String> Forestilling = new ComboBox<>();
 
     ObservableList<Arrangement> Foredrag = FXCollections.observableArrayList(lokalRegister.foredragsArrangementer);
 

@@ -1,6 +1,7 @@
 package org.openjfx.base;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -94,11 +95,15 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
         return "";
     }
 
+    @Override
+    public String toString() {
+        return arrangementNavn+" : kl. "+ new SimpleDateFormat("HH:mm, EEEEE dd. MMMMM YYYY").format(tidspunkt);
+    }
 
-
+    /*
     public String toString(){
         String ut = "Kontaktperson: "+kontaktperson+" Arrangementnavn: "+arrangementNavn+" Billettpris: "+billettpris+
                 "Tidspunkt: "+tidspunkt+"\n";
         return ut;
-    }
+    }*/
 }
