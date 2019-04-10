@@ -168,8 +168,5 @@ public class BookLokaleController {
     }
 
     private void avsluttProgram() {
-
     }
-
-
 }

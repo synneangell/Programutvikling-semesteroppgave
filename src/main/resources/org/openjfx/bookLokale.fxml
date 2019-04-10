@@ -9,10 +9,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="759.0" prefWidth="736.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.BookLokaleController">
+<AnchorPane prefHeight="759.0" prefWidth="736.0" styleClass="Overskrift" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.BookLokaleController">
    <children>
       <Label layoutX="243.0" layoutY="27.0" prefHeight="20.0" prefWidth="143.0" styleClass="overskrift" stylesheets="@styles.css" text="Book lokale" />
-      <Label layoutX="16.0" layoutY="80.0" prefHeight="17.0" prefWidth="155.0" styleClass="underoverskrift" text="Velg type arrangement:" />
+      <Label layoutX="16.0" layoutY="80.0" prefHeight="17.0" prefWidth="167.0" styleClass="underoverskrift" text="Velg type arrangement:" />
       <Label layoutX="221.0" layoutY="103.0" text="Navn:" />
       <Label layoutX="220.0" layoutY="146.0" text="Telefonnummer:" />
       <Label layoutX="219.0" layoutY="192.0" text="E-mail:" />
@@ -20,7 +20,7 @@
       <Label layoutX="221.0" layoutY="243.0" text="Nettside:" />
       <Label layoutX="218.0" layoutY="293.0" text="Virksomhet:" />
       <Label layoutX="221.0" layoutY="343.0" prefHeight="20.0" prefWidth="143.0" text="Andre opplysninger:" />
-      <Label layoutX="476.0" layoutY="80.0" prefHeight="17.0" prefWidth="170.0" styleClass="underoverskrift" text="Arrangementopplysninger" />
+      <Label layoutX="476.0" layoutY="80.0" prefHeight="18.0" prefWidth="176.0" styleClass="underoverskrift" text="Arrangementopplysninger" />
       <Label layoutX="475.0" layoutY="343.0" prefHeight="17.0" prefWidth="213.0" text="Navn på artist/foredragsholder:" />
       <Label layoutX="475.0" layoutY="101.0" prefHeight="20.0" prefWidth="143.0" text="Navn på arrangement:" />
       <Label layoutX="475.0" layoutY="145.0" prefHeight="20.0" prefWidth="143.0" text="Billettpris:" />
@@ -51,7 +51,7 @@
       <Label layoutX="475.0" layoutY="398.0" prefHeight="17.0" prefWidth="213.0" text="Egenskap til deltaker:" />
       <TextField fx:id="txtEgenskapDeltaker" layoutX="474.0" layoutY="415.0" />
       <ChoiceBox fx:id="velgTypeArrangement" layoutX="14.0" layoutY="107.0" prefWidth="150.0" />
-      <Label layoutX="218.0" layoutY="80.0" styleClass="underoverskrift" text="Kontaktopplysninger:" />
+      <Label layoutX="218.0" layoutY="80.0" styleClass="underoverskrift" text="Kontaktopplysninger" />
       <DatePicker fx:id="dpDato" layoutX="475.0" layoutY="210.0" prefHeight="27.0" prefWidth="170.0" />
    </children>
 </AnchorPane>
