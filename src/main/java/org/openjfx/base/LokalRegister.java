@@ -64,6 +64,7 @@ public class LokalRegister {
         kinoArrangementer.add(etArrangement);
     }
 
+
     public void registrerTeaterArrangement(Arrangement etArrangement) {
         teaterArrangementer.add(etArrangement);
     }
@@ -76,7 +77,7 @@ public class LokalRegister {
         konsertArrangementer.add(etArrangement);
     }
 
-    //egne metoder for å vise arrangementer kun i kinosal/teatersal/foredragssal/konsertsal?
+    //egne metoder for å vise arrangementer kun i kinosal/teatersal/foredragssal/konsertsal
     public String visAlleKonsertArrangementer(){
         String arrangementer = "";
         for(Arrangement etArrangement : konsertArrangementer){

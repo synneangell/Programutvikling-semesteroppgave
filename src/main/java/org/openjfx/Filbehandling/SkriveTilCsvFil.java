@@ -14,6 +14,9 @@ import java.nio.file.Paths;
 
 public class SkriveTilCsvFil extends SkriveTilFil {
 
+
+
+
         public void skrivBillett(List<Billett> billetter, String path) throws IOException {
             PrintWriter writer = null;
 
@@ -37,7 +40,12 @@ public class SkriveTilCsvFil extends SkriveTilFil {
             Path file = Paths.get(path);
             Files.write(file, data, Charset.forName("UTF-8"));
         }
+
+    @Override
+    public void skriveTilFil(String filsti, Object o) {
+
     }
+}
 
 
     /*private String nyLinje = System.getProperty("Linje.separator");

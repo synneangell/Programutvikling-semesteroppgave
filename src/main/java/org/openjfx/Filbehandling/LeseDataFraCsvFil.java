@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LeseDataFraCsvFil extends LeseFraFil {
 
-    private void leseFraFil() throws IOException, ClassNotFoundException {
+    public void leseFraFil(String filsti){
 
         String CsvFile = "Kinofilmer.csv";
         String FieldDelimiter = ",";
