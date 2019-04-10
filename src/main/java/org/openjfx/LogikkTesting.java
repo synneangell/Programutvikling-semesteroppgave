@@ -6,7 +6,7 @@ import org.openjfx.base.Billett;
 public class LogikkTesting {
     public static void main(String[] args) {
 
-        //Billett billett = new Billett();
+        // Billett billett = new Billett();
 
     }
 }

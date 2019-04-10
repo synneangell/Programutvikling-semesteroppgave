@@ -28,5 +28,6 @@
             <TableColumn prefWidth="75.0" text="Dato" />
         </columns>
       </TableView>
+      <Label layoutX="82.0" layoutY="267.0" text="Forestillinger:" />
    </children>
 </AnchorPane>

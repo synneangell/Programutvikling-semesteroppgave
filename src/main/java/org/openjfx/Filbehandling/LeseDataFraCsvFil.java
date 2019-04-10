@@ -3,11 +3,18 @@ package org.openjfx.Filbehandling;
 import java.io.*;
 import java.io.IOException;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class LeseDataFraCsvFil extends LeseFraFil {
 
     private void leseFraFil() throws IOException, ClassNotFoundException {
 
-        String CsvFile = "/Users/martine/Documents/GitHub/Programutvikling-semesteroppgave/Kinofilmer.csv";
+        String CsvFile = "Kinofilmer.csv";
         String FieldDelimiter = ",";
 
         BufferedReader br;
@@ -18,7 +25,6 @@ public class LeseDataFraCsvFil extends LeseFraFil {
             String linje;
             while ((linje = br.readLine()) != null){
                 String [] fields = linje.split(FieldDelimiter, -1);
-
 
             }
         } catch (Exception e){
@@ -32,7 +38,7 @@ public class LeseDataFraCsvFil extends LeseFraFil {
     List<Person> persons = null;
 
         try {
-                persons = PersonReader.readPersons("Data.csv");
+                persons = PersonReader.readPersons("Kinofilmer.csv");
                 } catch (IOException e) {
                 System.err.println("Could not read the requested file. Cause: " + e.getCause());
                 } catch (InvalidPersonFormatException e) {
