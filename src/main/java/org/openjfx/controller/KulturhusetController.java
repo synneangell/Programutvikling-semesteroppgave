@@ -31,7 +31,8 @@ public class KulturhusetController {
     private Button  btnBookLokale;
 
     @FXML
-    private Button  btnVisArrangementer;*/
+    private Button  btnVisArrangementer;
+    */
 
 
 
@@ -42,10 +43,11 @@ public class KulturhusetController {
 
     @FXML
     void visAlleArrangementer (ActionEvent event) {
-        lblOversiktArrangementer.setText("Foredrag: "+lokalregister.visAlleForedragsArrangementer() +
-                                        "Kino: "+lokalregister.visAlleKinoArrangementer() +
-                                        "Konserter: "+lokalregister.visAlleKonsertArrangementer() +
-                                        "Teater: "+lokalregister.visAlleTeaterArrangementer());
+        lblOversiktArrangementer.setText("Foredrag: "+ "\n" + lokalregister.visAlleForedragsArrangementer() + "\n" +
+                                        "Kino: " + "\n" + lokalregister.visAlleKinoArrangementer() + "\n" +
+                                        "Konserter: "+ "\n" + lokalregister.visAlleKonsertArrangementer() + "\n" +
+                                        "Teater: "+ "\n" + lokalregister.visAlleTeaterArrangementer());
+
         ChoiceBox<String> sorter = new ChoiceBox<>();
         sorter.setItems(sorteringsValg);
 
@@ -65,7 +67,7 @@ public class KulturhusetController {
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            root = fxmlLoader.load(getClass().getResource("kjøpBillett.fxml").openStream());
+            root = fxmlLoader.load(getClass().getResource("/org/openjfx/kjøpBillett.fxml").openStream());
 
             // Får tak i controlleren og overfører referanse til person-objektet
             KjøpBillettController controller = fxmlLoader.getController();
@@ -91,7 +93,7 @@ public class KulturhusetController {
         Parent root = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            root = fxmlLoader.load(getClass().getResource("bookLokale.fxml").openStream());
+            root = fxmlLoader.load(getClass().getResource("/org/openjfx/bookLokale.fxml").openStream());
 
             // Får tak i controlleren og overfører referanse til person-objektet
             BookLokaleController controller = fxmlLoader.getController();
@@ -113,3 +115,32 @@ public class KulturhusetController {
         bookLokaleStage.show();
     }
 }
+
+/**
+ *  Kode som skal plasseres i controlleren til kjøpbillett og booklokale som laster opp en fil fra maskinen
+ */
+   /*
+
+   //Denne koden må både i kjøpbillett og book lokale. I tillegg til dette må det lages kode som håndterer filtypene i base mappen.
+   //Jeg har laget klassene, men de er langt i fra ferdige.
+
+      public void Button1(ActionEvent actionEvent) {
+     FileChooser fc = new FileChooser();
+
+     //Denne under er alternativ. Her kan jeg sette inn linken til der hvor jeg vil at programmet skal åpne filen
+     fc.setInitialDirectory(new File ("//Users//nikolasekiw//Documents")); //alternativ
+
+     //Hvis jeg vil filtrere valgene brukeren får kan jeg bruke koden under, feks at det bare skal komme opp pdf filer
+     //ExtentionFilter filtrerer hvilke filer som kan bli valgt med fileChooser
+     //"PDF files" er teksten jeg vil skal vises i filechooser, "*.pdf" gjør at den kun viser alle pdf filer.
+     fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
+
+     File merkertFil = fc.showOpenDialog(null);
+
+     if (merkertFil != null){
+        listView.getItems().add(merkertFil.getName());
+     } else {
+        System.out.println("Filen er ikke gyldig");
+     }
+  }
+    */

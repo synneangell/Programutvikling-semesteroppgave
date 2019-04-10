@@ -8,7 +8,7 @@ public class BillettRegister {
     ArrayList<Billett> alleBilletter = new ArrayList<>();
 
     //Metode som både registrerer billett og genererer et referansenummer på billetten
-    private void registrerBillett(Billett enBillett){
+    public void registrerBillett(Billett enBillett){
         alleBilletter.add(enBillett);
         genererReferansenummer(enBillett);
     }

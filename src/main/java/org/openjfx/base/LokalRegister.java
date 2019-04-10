@@ -31,11 +31,11 @@ public class LokalRegister {
     ForestillingsArrangement kinofilm = new ForestillingsArrangement
             (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, 100);
 
-    Date dato2 = new Date (2019, 07, 23, 18, 30);
+    Date dato2 = new Date (2019, 07, 25, 18, 00);
     ForestillingsArrangement kinofilm2 = new ForestillingsArrangement
             (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, 100);
 
-    Date dato3 = new Date (2019, 07, 23, 18, 30);
+    Date dato3 = new Date (2019, 07, 28, 21, 00);
     ForestillingsArrangement kinofilm3 = new ForestillingsArrangement
             (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, 100);
 

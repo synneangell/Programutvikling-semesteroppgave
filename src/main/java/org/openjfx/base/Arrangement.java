@@ -94,9 +94,14 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
         return "";
     }
 
-    public String toString() {
-        return arrangementNavn+" "+ new SimpleDateFormat("dd.MM.YYYY HH:mm").format(tidspunkt);
+   public String toString() {
+        return arrangementNavn+" : kl. "+ new SimpleDateFormat("HH:mm, EEEEE dd. MMMMM YYYY").format(tidspunkt);
     }
 
-
+    /*
+    public String toString(){
+        String ut = "Kontaktperson: "+kontaktperson+" Arrangementnavn: "+arrangementNavn+" Billettpris: "+billettpris+
+                "Tidspunkt: "+tidspunkt+"\n";
+        return ut;
+    }*/
 }
