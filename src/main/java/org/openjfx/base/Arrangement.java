@@ -98,11 +98,5 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
         return arrangementNavn+" "+ new SimpleDateFormat("dd.MM.YYYY HH:mm").format(tidspunkt);
     }
 
-
-
-    public String toString(){
-        String ut = "Kontaktperson: "+kontaktperson+" Arrangementnavn: "+arrangementNavn+" Billettpris: "+billettpris+
-                "Tidspunkt: "+tidspunkt+"\n";
-        return ut;
     }
-}
+

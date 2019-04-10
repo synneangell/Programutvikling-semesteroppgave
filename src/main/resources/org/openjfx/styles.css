@@ -22,5 +22,6 @@
 }
 
 .overskrift {
-
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
 }
