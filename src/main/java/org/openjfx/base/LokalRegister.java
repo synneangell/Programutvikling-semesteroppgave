@@ -16,6 +16,7 @@ public class LokalRegister {
 
     public LokalRegister() {
         leggInnFilmer();
+
     }
 
     Foredragssal foredragsal = new Foredragssal(100, foredragsArrangementer, 1);
@@ -34,29 +35,29 @@ public class LokalRegister {
     // Oppretter kinofilmer:
     Date dato = new Date(2019, 07, 23, 18, 30);
     ForestillingsArrangement kinofilm = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, 100);
+            (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, 100, TypeArrangement.KINO);
 
     Date dato2 = new Date(2019, 07, 25, 18, 00);
     ForestillingsArrangement kinofilm2 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, 100);
+            (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, 100, TypeArrangement.KINO);
 
     Date dato3 = new Date(2019, 07, 28, 21, 00);
     ForestillingsArrangement kinofilm3 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, 100);
+            (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, 100, TypeArrangement.KINO);
 
 
     // Oppretter teaterforestilling:
     Date dato4 = new Date(2019, 07, 23, 18, 30);
     ForestillingsArrangement teaterforestilling = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Sweeney Todd", 200, dato4, 100);
+            (forestillingsAnsvarlig, "Sweeney Todd", 200, dato4, 100, TypeArrangement.TEATER);
 
     Date dato5 = new Date(2019, 07, 23, 18, 30);
     ForestillingsArrangement teaterforestilling2 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Cats", 220, dato5, 100);
+            (forestillingsAnsvarlig, "Cats", 220, dato5, 100, TypeArrangement.TEATER);
 
     Date dato6 = new Date(2019, 07, 23, 18, 30);
     ForestillingsArrangement teaterforestilling3 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Les Miserables", 250, dato6, 100);
+            (forestillingsAnsvarlig, "Les Miserables", 250, dato6, 100, TypeArrangement.TEATER);
 
 
     public void leggInnFilmer() {
@@ -64,6 +65,49 @@ public class LokalRegister {
         kinoArrangementer.add(kinofilm2);
         kinoArrangementer.add(kinofilm3);
     }
+
+    //TODO: kan man finne antall solgte og antall billetter igjen slik?
+    public int antallSolgte(Arrangement etArrangement){
+
+        int teller = 0;
+        for(Billett enBillett:etArrangement.billetter){
+            if(!etArrangement.billetter.contains(null)){
+                teller++;
+                return teller;
+            }
+        }
+        return teller;
+    }
+
+    public int antallBilletterIgjen(Arrangement etArrangement){
+
+        int teller = 0;
+        for(Billett enBillett:etArrangement.billetter){
+            if(etArrangement.billetter.contains(null)){
+                teller++;
+                return teller;
+            }
+        }
+        return teller;
+    }
+
+
+ /*   //TODO: Se om vi trenger fyllAlleArrangementerArray, eller skal dette gjøres fra starten av fra fil?
+
+    public void fyllAlleArrangementerArray(){
+        for(Arrangement etArrangement : kinoArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+        for(Arrangement etArrangement : teaterArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+        for(Arrangement etArrangement : foredragsArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+        for(Arrangement etArrangement : kinoArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+    } */
 
     public void registrerKinoArrangement(Arrangement etArrangement) {
         kinoArrangementer.add(etArrangement);
@@ -119,7 +163,7 @@ public class LokalRegister {
     public ArrayList ArrayTilString(ArrayList<Arrangement> arraylist) {
         ArrayList<String> navnOgTidArrangementer = new ArrayList<>();
         for (int i = 0; i < arraylist.size(); i++) {
-            navnOgTidArrangementer.add(arraylist.get(i).getArrangementNavn() + " " +arraylist.get(i).getTidspunkt());
+            navnOgTidArrangementer.add(arraylist.get(i).getArrangementNavn() + ": " +arraylist.get(i).getTidspunkt());
         }
         return navnOgTidArrangementer;
     }
