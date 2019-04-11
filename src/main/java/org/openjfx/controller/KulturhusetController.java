@@ -5,20 +5,30 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.openjfx.base.*;
+import org.openjfx.base.Arrangement;
+import org.openjfx.base.ForestillingsArrangement;
+import org.openjfx.base.LokalRegister;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class KulturhusetController {
+public class KulturhusetController implements Initializable {
 
     //Skal man opprette disse i alle controllerne? Skal dette i en public void initialize?
-    LokalRegister lokalregister = new LokalRegister();
+    LokalRegister lokalRegister = new LokalRegister();
     ObservableList<String> sorteringsValg = FXCollections.observableArrayList("Alfabetisk", "Etter tidspunkt");
+
+
+    ObservableList<ForestillingsArrangement> filmer = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.kinoArrangementer));
 
     /*
     @FXML
@@ -34,19 +44,37 @@ public class KulturhusetController {
     @FXML
     private Label  lblOversiktArrangementer;
 
+    // Table View - tabellen:
+    @FXML
+    private TableView <ForestillingsArrangement> tbVisArrangementer;
+
+    @FXML
+    private TableColumn<ForestillingsArrangement, String> ArrangementColumn;
+
+    @FXML
+    private TableColumn<ForestillingsArrangement, String> DagColumn;
+
+    @FXML
+    private TableColumn<ForestillingsArrangement, String> KlokkeslettColumn;
+
+    @FXML
+    private TableColumn<ForestillingsArrangement, String> DatoColumn;
+
+
+
     @FXML
     private ChoiceBox chboxSorter;
 
     //sette inn hide choicebox på en måte?
 
-    @FXML
+    /*@FXML
     void visAlleArrangementer (ActionEvent event) {
         lblOversiktArrangementer.setText (
-                        "Kino: " + "\n" + lokalregister.visAlleKinoArrangementer() + "\n" +
-                        "Teater: "+ "\n" + lokalregister.visAlleTeaterArrangementer() + "\n" +
-                        "Konserter: "+ "\n" + lokalregister.visAlleKonsertArrangementer() + "\n" +
-                        "Foredrag: "+ "\n" + lokalregister.visAlleForedragsArrangementer());
-    }
+                        "Kino: " + "\n" + lokalRegister.visAlleKinoArrangementer() + "\n" +
+                        "Teater: "+ "\n" + lokalRegister.visAlleTeaterArrangementer() + "\n" +
+                        "Konserter: "+ "\n" + lokalRegister.visAlleKonsertArrangementer() + "\n" +
+                        "Foredrag: "+ "\n" + lokalRegister.visAlleForedragsArrangementer());
+    }*/
 
     @FXML
     void kjøpBillett (ActionEvent event) {
@@ -108,6 +136,37 @@ public class KulturhusetController {
         bookLokaleStage.initOwner(lblOversiktArrangementer.getScene().getWindow());  //får tak i vinduet
         bookLokaleStage.initModality(Modality.WINDOW_MODAL);    //fryser hovedvinduet
         bookLokaleStage.show();
+    }
+
+    @FXML
+    void visAlleArrangementer (ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource(("FXMLDocument.fxml")));
+        Scene tableViewScene = new Scene(tableViewParent);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene((tableViewScene));
+        window.show();
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // Setter opp kolonnene i Table View - tabellen
+        ArrangementColumn.setCellValueFactory(new PropertyValueFactory<ForestillingsArrangement, String>("arrangementNavn"));
+        DagColumn.setCellValueFactory(new PropertyValueFactory<ForestillingsArrangement,String>("tidspunkt"));
+        KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<ForestillingsArrangement,String>("Klokkeslett"));
+        DatoColumn.setCellValueFactory(new PropertyValueFactory<ForestillingsArrangement,String>("dato"));
+
+        tbVisArrangementer.setItems(getForestillingsArrangement());
+    }
+
+    public ObservableList<ForestillingsArrangement> getForestillingsArrangement() {
+
+        ObservableList<ForestillingsArrangement> ForestillingsArrangement = FXCollections.observableArrayList();
+
+        filmer.add(new ForestillingsArrangement(null, "PulpFiction", 100, null, 100));
+        return filmer;
     }
 }
 

@@ -13,6 +13,7 @@ public class KjøpBillettController {
 
     LokalRegister lokalRegister = new LokalRegister();
     BillettRegister billettRegister = new BillettRegister();
+    //Kjøper kjøperRegister = new Kjøper();
 
     ObservableList<String> BillettType = FXCollections.observableArrayList("Kino", "Teater", "Konsert", "Foredrag");
 

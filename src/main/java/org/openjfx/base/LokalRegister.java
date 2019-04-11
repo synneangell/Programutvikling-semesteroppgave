@@ -153,24 +153,4 @@ public class LokalRegister {
         return null;
     }*/
 
-    public ArrayList<Arrangement> register = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        String ut = "";
-        // løp igjennom hele registrert og formater
-        for (Arrangement etArrangement : register) {
-            ut += Person.class.getName() + Kjøper.class.toString();
-            /*if(kjøpBillettController.txtNavn !=null){
-                ut+="er utleid til "+enFilm.leidAv.navn+" "+enFilm.leidAv.telefonnr+"\n";
-            }
-            else{
-                ut+= "er ikke utleid\n";
-            }
-            ut+="---------------\n";
-        }*/
-
-        }
-        return ut;
-    }
 }
