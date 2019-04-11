@@ -22,6 +22,7 @@ public class Billett implements Serializable {
         return referansenummer;
     }
 
+    //TODO: trenger vi disse metodene?
     //private int genererPlass(){}
     //private String formaterBillett(){}
 

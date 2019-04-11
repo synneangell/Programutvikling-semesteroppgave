@@ -3,7 +3,7 @@ package org.openjfx.base;
 public class Deltaker extends Person {
     private String egenskap;
 
-    public Deltaker(String navn, String deltaker) {
+    public Deltaker(String navn, String egenskap) {
         super(navn);
         this.egenskap = egenskap;
     }

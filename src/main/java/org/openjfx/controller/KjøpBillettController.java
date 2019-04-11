@@ -7,12 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.openjfx.base.*;
 import java.text.ParseException;
+import java.util.Date;
 
 
 public class KjøpBillettController {
 
     LokalRegister lokalRegister = new LokalRegister();
     BillettRegister billettRegister = new BillettRegister();
+    ArrangementRegister arrangementRegister = new ArrangementRegister();
 
     ObservableList<String> BillettType = FXCollections.observableArrayList("Kino", "Teater", "Konsert", "Foredrag");
 
@@ -56,11 +58,6 @@ public class KjøpBillettController {
     @FXML
     private Label lblDittKjøp;
 
-    @FXML
-    private Button btnFullfør;
-
-    @FXML
-    private MenuButton mbtnKvitteringForKjøp;
 
     @FXML
     public void initialize() {
@@ -83,11 +80,6 @@ public class KjøpBillettController {
         });
     }
 
-    @FXML
-    public void DittKjøp() {
-        lblDittKjøp.setText("Hello");
-    }
-
 
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
@@ -98,57 +90,41 @@ public class KjøpBillettController {
                 && chboxVelgForestilling.getOnKeyPressed().equals(true) && chboxVelgDatoTid.getOnKeyPressed().equals(true)
                 && chboxVelgAntall.getOnKeyPressed().equals(true)) {          */
 
+       //TODO: må kjøre metoden antallBilletterIgjen for å se om det er ledige billetter før noe gjøres
+       // if(lokalRegister.antallBilletterIgjen(finnArrangement()>0);
 
             //Oppretter kjøper:
             Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
 
             //Oppretter x billetter:
+            //TODO: legg inn arrangement objektet
             int antallBilletter = Integer.valueOf((String)chboxVelgAntall.getValue());
+
             for(int i= 0; i<antallBilletter; i++){
-                Billett enBillett = new Billett(kjøper, null);
+                Billett enBillett = new Billett(kjøper,finnArrangement());
                 billettRegister.registrerBillett(enBillett);
             }
-
-            //TODO: Legger billett(er) til i valgt arrangement:
-            String valgtForestilling = String.valueOf(chboxVelgForestilling.getValue());
-            System.out.println(valgtForestilling);
-
-            //Hvordan t oppfatte hvilket objekt det er ut i fra denne stringen?
-
-
-
         }
 
 
-    public void lagreKvittering(ActionEvent event) {
+    public Arrangement finnArrangement() {
+        //TODO: Legger billett(er) til i valgt arrangement:
+        String valgtForestilling = String.valueOf(chboxVelgForestilling.getValue());
+
+
+        //Må splitte objektet fra valgtForestilling for å finne arrangementNavn og tidspunkt til arrangement
+        String[] arrOfStr = valgtForestilling.split(": ");
+        String navnArrangementFraSplit = arrOfStr[0];
+        String tidspunktFraSplit = arrOfStr[1];
+        Date dato = new Date(tidspunktFraSplit);
+
+
+        for (Arrangement etArrangement : arrangementRegister.alleArrangementer) {
+            if (etArrangement.getArrangementNavn().equals(navnArrangementFraSplit) && etArrangement.getTidspunkt().equals(dato)) {
+                return etArrangement;
+            }
+        }
+        return null;
+
     }
-
-
-
-    /*
-    @FXML
-    public void Kino(ActionEvent actionEvent) {
-        comboxVelgForestilling.getItems().addAll(
-                "Titanic",
-                "Mission Impossible",
-                "Pulp Fiction"
-        );
-    }
-
-    @FXML
-    public void Teater(ActionEvent actionEvent) {
-        comboxVelgForestilling.getItems().addAll(
-                "Sweeney Todd",
-                "Cats",
-                "Rent"
-        );
-    }
-
-    @FXML
-    public void Konsert(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void Foredrag(ActionEvent actionEvent) {
-    }*/
 }

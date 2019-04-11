@@ -12,16 +12,17 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
     private int billettpris;
     private Date tidspunkt;
     private int antallBilletter;
-
-    //Må dennne settes i konstruktøren?
+    TypeArrangement typeArrangement;
     ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
 
-    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Date tidspunkt, int antallBilletter){
+    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Date tidspunkt, int antallBilletter, TypeArrangement typeArrangement){
         this.kontaktperson = kontaktperson;
         this.arrangementNavn = arrangementNavn;
         this.billettpris = billettpris;
         this.tidspunkt = tidspunkt;
         this.antallBilletter = antallBilletter;
+        this.typeArrangement = typeArrangement;
+        ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
     }
 
     public Kontaktperson getKontaktperson() {
@@ -72,7 +73,7 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
             return "Fant ikke referansenummer";
     }
 
-    //Endre billett? Hva skal man kunne endre?
+    //TODO: Endre billett? Hva skal man kunne endre?
     private void endreBillett(){
     }
 
@@ -82,7 +83,7 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
 
     }
 
-    //Sortere arrangmenter etter dato?
+    //TODO: Riktig måte for å sortere arrangementer etter dato/tidspunkt?
     @Override
     public int compare(Arrangement a1, Arrangement a2) {
         if (a1.getTidspunkt() == null || a2.getTidspunkt() == null)
@@ -90,6 +91,7 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
         return a1.getTidspunkt().compareTo(a2.getTidspunkt());
     }
 
+    //TODO: Lage program man kan skrive ut?
     public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){
         return "";
     }
