@@ -138,6 +138,7 @@ public class KjøpBillettController {
         String[] arrOfStr = valgtForestilling.split(": ");
         String navnArrangementFraSplit = arrOfStr[0];
         String tidspunktFraSplit = arrOfStr[1];
+        System.out.println(tidspunktFraSplit);
         Date dato = new Date(tidspunktFraSplit);
 
         for (Arrangement etArrangement : lokalRegister.alleArrangementer) {
