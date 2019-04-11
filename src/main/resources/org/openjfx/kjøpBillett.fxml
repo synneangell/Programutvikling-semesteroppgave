@@ -40,6 +40,6 @@
       <ChoiceBox fx:id="chboxVelgDatoTid" layoutX="456.0" layoutY="102.0" prefWidth="150.0" />
       <ChoiceBox fx:id="chboxVelgAntall" layoutX="257.0" layoutY="300.0" prefWidth="150.0" />
       <Button fx:id="btnAvslutt" cancelButton="true" layoutX="593.0" layoutY="638.0" mnemonicParsing="false" onAction="#Avslutt" prefHeight="27.0" prefWidth="116.0" text="Avslutt" />
-      <Button fx:id="btnAvbryt" layoutX="593.0" layoutY="674.0" mnemonicParsing="false" onAction="#Avbryt" prefHeight="27.0" prefWidth="116.0" text="Avbryt" />
+      <Button fx:id="btnTilbake" layoutX="593.0" layoutY="674.0" mnemonicParsing="false" onAction="#Tilbake" prefHeight="27.0" prefWidth="116.0" text="Tilbake" />
    </children>
 </AnchorPane>

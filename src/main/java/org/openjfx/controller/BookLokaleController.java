@@ -73,14 +73,13 @@ public class BookLokaleController {
     private ChoiceBox velgTypeArrangement;
 
     @FXML
-    private Button BtnAvslutt;
+    private Button btnAvslutt;
 
     @FXML
-    private Button BtnTilbake;
+    private Button btnTilbake;
 
     @FXML
     private AnchorPane rootPane;
-
 
 
 
@@ -169,22 +168,12 @@ public class BookLokaleController {
 
     @FXML
     private void Avslutt(ActionEvent event){
-        Stage stage2 = (Stage) BtnAvslutt.getScene().getWindow();
+        Stage stage2 = (Stage) btnAvslutt.getScene().getWindow();
         stage2.close();
     }
 
     @FXML
     private void Tilbake (ActionEvent event) throws IOException {
 
-    }
-
-    //Trenger vi fortsatt tenne?
-    //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
-    private void lukkVindu() {
-        Stage myStage = (Stage) BtnAvslutt.getScene().getWindow();
-        myStage.close();
-    }
-
-    private void avsluttProgram() {
     }
 }

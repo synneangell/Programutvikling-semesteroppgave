@@ -82,7 +82,7 @@ public class KjøpBillettController {
     private Button btnAvslutt;
 
     @FXML
-    private Button btnAvbryt;
+    private Button btnTilbake;
 
 
 
@@ -172,15 +172,6 @@ public class KjøpBillettController {
 
     }
 
-    @FXML
-    public void back(String instance,Stage stage) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
-        Scene scene = new Scene(parent);
-        scene.getStylesheets().add("/css/Style.css");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-
 
     /*
     @FXML
@@ -208,4 +199,4 @@ public class KjøpBillettController {
     @FXML
     public void Foredrag(ActionEvent actionEvent) {
     }*/
-    }}
+    }
