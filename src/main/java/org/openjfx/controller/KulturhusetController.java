@@ -14,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.openjfx.base.Arrangement;
-import org.openjfx.base.ForestillingsArrangement;
 import org.openjfx.base.LokalRegister;
 
 import java.io.IOException;
@@ -28,7 +27,7 @@ public class KulturhusetController implements Initializable {
     ObservableList<String> sorteringsValg = FXCollections.observableArrayList("Alfabetisk", "Etter tidspunkt");
 
 
-    ObservableList<String> kino = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.kinoArrangementer));
+    ObservableList<Arrangement> kinoprogram = FXCollections.observableArrayList(lokalRegister.kinoArrangementer);
 
     /*
     @FXML
@@ -46,19 +45,19 @@ public class KulturhusetController implements Initializable {
 
     // Table View - tabellen:
     @FXML
-    private TableView <ForestillingsArrangement> tbVisArrangementer;
+    private TableView <Arrangement> tbVisArrangementer;
 
     @FXML
-    private TableColumn<ForestillingsArrangement, String> ArrangementColumn;
+    private TableColumn<Arrangement, String> ArrangementColumn;
 
     @FXML
-    private TableColumn<ForestillingsArrangement, String> DagColumn;
+    private TableColumn<Arrangement, String> DagColumn;
 
     @FXML
-    private TableColumn<ForestillingsArrangement, String> KlokkeslettColumn;
+    private TableColumn<Arrangement, String> KlokkeslettColumn;
 
     @FXML
-    private TableColumn<ForestillingsArrangement, String> DatoColumn;
+    private TableColumn<Arrangement, String> DatoColumn;
 
 
 
@@ -153,18 +152,18 @@ public class KulturhusetController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Setter opp kolonnene i Table View - tabellen
-        ArrangementColumn.setCellValueFactory(new PropertyValueFactory<ForestillingsArrangement, String>("arrangementNavn"));
-        DagColumn.setCellValueFactory(new PropertyValueFactory<ForestillingsArrangement,String>("tidspunkt"));
-        KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<ForestillingsArrangement,String>("Klokkeslett"));
-        DatoColumn.setCellValueFactory(new PropertyValueFactory<ForestillingsArrangement,String>("dato"));
+        ArrangementColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
+        DagColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("tidspunkt"));
+        KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("Klokkeslett"));
+        DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("dato"));
 
-        tbVisArrangementer.setItems(getForestillingsArrangement());
+        tbVisArrangementer.setItems(getArrangement());
     }
 
-    public ObservableList<ForestillingsArrangement> getForestillingsArrangement() {
+    public ObservableList<Arrangement> getArrangement() {
 
-        ObservableList<ForestillingsArrangement> ForestillingsArrangement = FXCollections.observableArrayList();
-        ForestillingsArrangement.add(new ForestillingsArrangement(null, "Test", 120, null, 100));
+        ObservableList<Arrangement> ForestillingsArrangement = FXCollections.observableArrayList();
+        ForestillingsArrangement.add(new Arrangement(null, "Test", 120, null, 100));
         return ForestillingsArrangement;
     }
 }
