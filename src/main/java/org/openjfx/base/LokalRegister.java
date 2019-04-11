@@ -15,8 +15,8 @@ public class LokalRegister {
     public ArrayList<Arrangement> teaterArrangementer = new ArrayList<>();
 
     public LokalRegister() {
-        leggInnFilmer();
-        leggInnTeaterforestilling();
+        leggInnArrangementer();
+
     }
 
     Foredragssal foredragsal = new Foredragssal(100, foredragsArrangementer, 1);
@@ -28,9 +28,9 @@ public class LokalRegister {
     Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
             "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
 
-    /*public String toString() {
+    public String toString() {
         return forestillingsAnsvarlig.getNavn();
-    }*/
+    }
 
     // Oppretter kinofilmer:
     Date dato = new Date(2019, 07, 23, 18, 30);
@@ -60,21 +60,63 @@ public class LokalRegister {
             (forestillingsAnsvarlig, "Les Miserables", 250, dato6, 100, TypeArrangement.TEATER);
 
 
-    public void leggInnFilmer() {
+    public void leggInnArrangementer() {
+        teaterArrangementer.add(teaterforestilling);
+        teaterArrangementer.add(teaterforestilling2);
+        teaterArrangementer.add(teaterforestilling3);
         kinoArrangementer.add(kinofilm);
         kinoArrangementer.add(kinofilm2);
         kinoArrangementer.add(kinofilm3);
+
     }
+
+    //TODO: kan man finne antall solgte og antall billetter igjen slik?
+    public int antallSolgte(Arrangement etArrangement){
+
+        int teller = 0;
+        for(Billett enBillett:etArrangement.billetter){
+            if(!etArrangement.billetter.contains(null)){
+                teller++;
+                return teller;
+            }
+        }
+        return teller;
+    }
+
+    public int antallBilletterIgjen(Arrangement etArrangement){
+
+        int teller = 0;
+        for(Billett enBillett:etArrangement.billetter){
+            if(etArrangement.billetter.contains(null)){
+                teller++;
+                return teller;
+            }
+        }
+        return teller;
+    }
+
+
+ /*   //TODO: Se om vi trenger fyllAlleArrangementerArray, eller skal dette gjøres fra starten av fra fil?
+
+    public void fyllAlleArrangementerArray(){
+        for(Arrangement etArrangement : kinoArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+        for(Arrangement etArrangement : teaterArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+        for(Arrangement etArrangement : foredragsArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+        for(Arrangement etArrangement : kinoArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+    } */
 
     public void registrerKinoArrangement(Arrangement etArrangement) {
         kinoArrangementer.add(etArrangement);
     }
 
-    public void leggInnTeaterforestilling() {
-        teaterArrangementer.add(teaterforestilling);
-        teaterArrangementer.add(teaterforestilling2);
-        teaterArrangementer.add(teaterforestilling3);
-    }
 
     public void registrerTeaterArrangement(Arrangement etArrangement) {
         teaterArrangementer.add(etArrangement);
@@ -125,7 +167,7 @@ public class LokalRegister {
     public ArrayList ArrayTilString(ArrayList<Arrangement> arraylist) {
         ArrayList<String> navnOgTidArrangementer = new ArrayList<>();
         for (int i = 0; i < arraylist.size(); i++) {
-            navnOgTidArrangementer.add(arraylist.get(i).getArrangementNavn() + " " + arraylist.get(i).getTidspunkt());
+            navnOgTidArrangementer.add(arraylist.get(i).getArrangementNavn() + ": " +arraylist.get(i).getTidspunkt());
         }
         return navnOgTidArrangementer;
     }
@@ -153,24 +195,4 @@ public class LokalRegister {
         return null;
     }*/
 
-    public ArrayList<Arrangement> register = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        String ut = "";
-        // løp igjennom hele registrert og formater
-        for (Arrangement etArrangement : register) {
-            ut += Person.class.getName() + Kjøper.class.toString();
-            /*if(kjøpBillettController.txtNavn !=null){
-                ut+="er utleid til "+enFilm.leidAv.navn+" "+enFilm.leidAv.telefonnr+"\n";
-            }
-            else{
-                ut+= "er ikke utleid\n";
-            }
-            ut+="---------------\n";
-        }*/
-
-        }
-        return ut;
-    }
 }

@@ -1,12 +1,15 @@
 package org.openjfx.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InputValidering;
@@ -66,10 +69,14 @@ public class BookLokaleController {
     private Button btnAvslutt;
 
     @FXML
-    private Button btnAvbryt;
+    private Button btnTilbake;
 
     @FXML
     private ChoiceBox velgTypeArrangement;
+
+    @FXML
+    private AnchorPane rootBookLokale;
+
 
 
     @FXML
@@ -152,14 +159,19 @@ public class BookLokaleController {
         }
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
-    private void lukkVindu() {
-        Stage myStage = (Stage) btnAvbryt.getScene().getWindow();
-        myStage.close();
-    }
-
     private void avsluttProgram() {
-
+        Stage stage = (Stage) btnAvslutt.getScene().getWindow();
+        stage.close();
     }
 
+    @FXML
+    private void Avslutt(ActionEvent event){
+        avsluttProgram();
+    }
 
+    @FXML
+    private void Tilbake(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
+        rootBookLokale.getChildren().setAll(pane);
+    }
 }
