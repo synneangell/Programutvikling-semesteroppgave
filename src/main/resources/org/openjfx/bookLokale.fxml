@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="AnchorPane" prefHeight="759.0" prefWidth="736.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.BookLokaleController">
+<AnchorPane fx:id="rootPane" prefHeight="759.0" prefWidth="736.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.BookLokaleController">
    <children>
       <Label layoutX="243.0" layoutY="27.0" prefHeight="20.0" prefWidth="143.0" styleClass="overskrift" stylesheets="@styles.css" text="Book lokale" />
       <Label layoutX="16.0" layoutY="80.0" prefHeight="17.0" prefWidth="167.0" styleClass="underoverskrift" text="Velg type arrangement:" />
@@ -36,8 +36,8 @@
       <TextField fx:id="txtDeltakerNavn" layoutX="474.0" layoutY="363.0" />
       <Button fx:id="btnFullførBestilling" layoutX="470.0" layoutY="507.0" mnemonicParsing="false" onAction="#fullførBooking" styleClass="knapp" text="Fullfør bestilling" />
       <Label layoutX="16.0" layoutY="487.0" prefHeight="20.0" prefWidth="249.0" text="Se over at opplysningene er korrekte" />
-      <Button fx:id="BtnAvslutt" layoutX="593.0" layoutY="638.0" mnemonicParsing="false" onAction="#Avslutt" prefHeight="27.0" prefWidth="116.0" styleClass="knapp" text="Avslutt" />
-      <Button fx:id="BtnTilbake" layoutX="594.0" layoutY="685.0" mnemonicParsing="false" onAction="#Tilbake" prefHeight="27.0" prefWidth="116.0" styleClass="knapp" text="Avbryt" />
+      <Button fx:id="btnAvslutt" layoutX="588.0" layoutY="636.0" mnemonicParsing="false" onAction="#Avslutt" prefHeight="27.0" prefWidth="116.0" styleClass="knapp" text="Avslutt" />
+      <Button fx:id="btnAvbryt" layoutX="588.0" layoutY="671.0" mnemonicParsing="false" onAction="#Avbryt" prefHeight="27.0" prefWidth="116.0" styleClass="knapp" text="Avbryt" />
       <Label fx:id="lblOversiktOpplysninger" layoutX="16.0" layoutY="507.0" prefHeight="239.0" prefWidth="428.0" />
       <Label fx:id="lblFullførBestilling" layoutX="472.0" layoutY="587.0" prefHeight="49.0" prefWidth="232.0" />
       <TextField fx:id="txtTidspunkt" layoutX="474.0" layoutY="260.0" />

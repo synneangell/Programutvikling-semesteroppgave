@@ -1,5 +1,6 @@
 package org.openjfx.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 
 import javafx.collections.FXCollections;
@@ -7,7 +8,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InputValidering;
@@ -71,6 +77,9 @@ public class BookLokaleController {
 
     @FXML
     private Button BtnTilbake;
+
+    @FXML
+    private AnchorPane rootPane;
 
 
 
@@ -165,11 +174,11 @@ public class BookLokaleController {
     }
 
     @FXML
-    private void Tilbake (ActionEvent event){
+    private void Tilbake (ActionEvent event) throws IOException {
 
     }
 
-
+    //Trenger vi fortsatt tenne?
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
     private void lukkVindu() {
         Stage myStage = (Stage) BtnAvslutt.getScene().getWindow();

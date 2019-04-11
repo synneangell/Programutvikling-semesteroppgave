@@ -15,8 +15,8 @@
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
-      <Label layoutX="264.0" layoutY="79.0" text="Velg forestilling:" />
-      <Label layoutX="469.0" layoutY="79.0" text="Velg dato og tid:" />
+      <Label layoutX="264.0" layoutY="79.0" styleClass="underoverskrift" stylesheets="@styles.css" text="Velg forestilling:" />
+      <Label layoutX="469.0" layoutY="79.0" styleClass="underoverskrift" stylesheets="@styles.css" text="Velg dato og tid:" />
       <Label layoutX="37.0" layoutY="177.0" text="Navn:" />
       <Label layoutX="35.0" layoutY="231.0" text="Telefonnummer:" />
       <Label layoutX="37.0" layoutY="283.0" text="E-mail:" />
@@ -34,12 +34,12 @@
       </MenuButton>
       <Label fx:id="lblDittKjøp" layoutX="35.0" layoutY="399.0" prefHeight="150.0" prefWidth="642.0" />
       <Label layoutX="486.0" layoutY="424.0" prefHeight="84.0" prefWidth="184.0" />
-      <Label layoutX="35.0" layoutY="79.0" text="Velg billettype:" />
+      <Label layoutX="35.0" layoutY="79.0" styleClass="underoverskrift" stylesheets="@styles.css" text="Velg billettype:" />
       <ChoiceBox fx:id="chboxVelgBillettType" layoutX="35.0" layoutY="103.0" prefWidth="150.0" />
       <ChoiceBox fx:id="chboxVelgForestilling" layoutX="244.0" layoutY="103.0" prefWidth="150.0" />
       <ChoiceBox fx:id="chboxVelgDatoTid" layoutX="456.0" layoutY="102.0" prefWidth="150.0" />
       <ChoiceBox fx:id="chboxVelgAntall" layoutX="257.0" layoutY="300.0" prefWidth="150.0" />
-      <Button fx:id="btnAvslutt" layoutX="593.0" layoutY="638.0" mnemonicParsing="false" onAction="#Avslutt" prefHeight="27.0" prefWidth="116.0" text="Avslutt" cancelButton = "true"/>
-      <Button fx:id="btnTilbake" layoutX="593.0" layoutY="674.0" mnemonicParsing="false" onAction="#Tilbake" prefHeight="27.0" prefWidth="116.0" text="Avbryt" />
+      <Button fx:id="btnAvslutt" cancelButton="true" layoutX="593.0" layoutY="638.0" mnemonicParsing="false" onAction="#Avslutt" prefHeight="27.0" prefWidth="116.0" text="Avslutt" />
+      <Button fx:id="btnAvbryt" layoutX="593.0" layoutY="674.0" mnemonicParsing="false" onAction="#Avbryt" prefHeight="27.0" prefWidth="116.0" text="Avbryt" />
    </children>
 </AnchorPane>

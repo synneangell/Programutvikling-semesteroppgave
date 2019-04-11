@@ -4,15 +4,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.base.ForestillingsArrangement;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
 
 public class KjøpBillettController {
 
@@ -162,10 +167,19 @@ public class KjøpBillettController {
     }
 
     @FXML
-    private void Tilbake (ActionEvent event){
+    private void Tilbake (ActionEvent event) throws IOException {
+
 
     }
 
+    @FXML
+    public void back(String instance,Stage stage) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
+        Scene scene = new Scene(parent);
+        scene.getStylesheets().add("/css/Style.css");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
 
 
     /*
@@ -194,4 +208,4 @@ public class KjøpBillettController {
     @FXML
     public void Foredrag(ActionEvent actionEvent) {
     }*/
-}
+    }}
