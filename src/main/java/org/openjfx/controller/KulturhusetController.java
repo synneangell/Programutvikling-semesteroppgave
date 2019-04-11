@@ -41,10 +41,11 @@ public class KulturhusetController {
 
     @FXML
     void visAlleArrangementer (ActionEvent event) {
-        lblOversiktArrangementer.setText("Foredrag: "+lokalregister.visAlleForedragsArrangementer() +
-                                        "Kino: "+lokalregister.visAlleKinoArrangementer() +
-                                        "Konserter: "+lokalregister.visAlleKonsertArrangementer() +
-                                        "Teater: "+lokalregister.visAlleTeaterArrangementer());
+        lblOversiktArrangementer.setText (
+                        "Kino: " + "\n" + lokalregister.visAlleKinoArrangementer() + "\n" +
+                        "Teater: "+ "\n" + lokalregister.visAlleTeaterArrangementer() + "\n" +
+                        "Konserter: "+ "\n" + lokalregister.visAlleKonsertArrangementer() + "\n" +
+                        "Foredrag: "+ "\n" + lokalregister.visAlleForedragsArrangementer());
     }
 
     @FXML
