@@ -77,6 +77,8 @@ public class BookLokaleController {
     @FXML
     private AnchorPane rootBookLokale;
 
+    public BookLokaleController() throws ParseException {
+    }
 
 
     @FXML

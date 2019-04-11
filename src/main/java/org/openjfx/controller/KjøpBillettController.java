@@ -12,6 +12,7 @@ import org.openjfx.base.*;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -77,6 +78,9 @@ public class KjøpBillettController {
     @FXML
     private AnchorPane rootKjøpBillett;
 
+    public KjøpBillettController() throws ParseException {
+    }
+
     @FXML
     public void initialize() {
         chboxVelgBillettType.setItems(BillettType);
@@ -108,6 +112,8 @@ public class KjøpBillettController {
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
 
+        finnArrangement();
+
         // Hvis alle feltene på Billettkjøp er fylt ut/ valgt..
        /* if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()
                 && chboxVelgBillettType.getOnAction().equals(true)
@@ -125,21 +131,25 @@ public class KjøpBillettController {
         int antallBilletter = Integer.valueOf((String)chboxVelgAntall.getValue());
         for (int i = 0; i < antallBilletter; i++) {
             Billett enBillett = new Billett(kjøper, finnArrangement());
+            System.out.println("Jeg er her");
             billettRegister.registrerBillett(enBillett);
         }
 
 
     }
 
-    public Arrangement finnArrangement() {
+    public Arrangement finnArrangement() throws ParseException {
         //splitte String valgtForestilling og finne arrangementNavn og tidspunkt i arraylisten med alle arrangementer?
         String valgtForestilling = String.valueOf(chboxVelgForestilling.getValue());
         System.out.println(valgtForestilling);
         String[] arrOfStr = valgtForestilling.split(": ");
         String navnArrangementFraSplit = arrOfStr[0];
-        String tidspunktFraSplit = arrOfStr[1];
 
-        Date dato = new Date(tidspunktFraSplit);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String tidspunktFraSplit = arrOfStr[1];
+        System.out.println(tidspunktFraSplit);
+        System.out.println(arrOfStr[1]);
+        Date dato = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(tidspunktFraSplit);
 
         for (Arrangement etArrangement : lokalRegister.alleArrangementer) {
             if (etArrangement.getArrangementNavn().equals(navnArrangementFraSplit) && etArrangement.getTidspunkt().equals(dato)) {

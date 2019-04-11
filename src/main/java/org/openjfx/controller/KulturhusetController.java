@@ -14,11 +14,21 @@ import javafx.stage.Stage;
 import org.openjfx.base.*;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 public class KulturhusetController {
 
     //Skal man opprette disse i alle controllerne? Skal dette i en public void initialize?
-    LokalRegister lokalregister = new LokalRegister();
+    LokalRegister lokalregister;
+
+    {
+        try {
+            lokalregister = new LokalRegister();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     ObservableList<String> sorteringsValg = FXCollections.observableArrayList("Alfabetisk", "Etter tidspunkt");
 
     /*

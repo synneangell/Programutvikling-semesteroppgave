@@ -2,6 +2,7 @@ package org.openjfx.base;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +16,7 @@ public class LokalRegister {
     public ArrayList<Arrangement> kinoArrangementer = new ArrayList<>();
     public ArrayList<Arrangement> teaterArrangementer = new ArrayList<>();
 
-    public LokalRegister() {
+    public LokalRegister() throws ParseException {
         leggInnArrangementer();
         fyllAlleArrangementerArray();
     }
@@ -34,15 +35,18 @@ public class LokalRegister {
     }
 
     // Oppretter kinofilmer:
-    Date dato = new Date(2019, 07, 23, 18, 30);
+    String datoString = "27/10/2019 18:30";
+    Date dato = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(datoString);
     ForestillingsArrangement kinofilm = new ForestillingsArrangement
             (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, 100, TypeArrangement.KINO);
 
-    Date dato2 = new Date(2019, 07, 25, 18, 00);
+    String datoString2 = "28/10/2019 18:00";
+    Date dato2 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(datoString2);
     ForestillingsArrangement kinofilm2 = new ForestillingsArrangement
             (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, 100, TypeArrangement.KINO);
 
-    Date dato3 = new Date(2019, 07, 28, 21, 00);
+    String datoString3 = "28/10/2019 21:30";
+    Date dato3 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(datoString3);
     ForestillingsArrangement kinofilm3 = new ForestillingsArrangement
             (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, 100, TypeArrangement.KINO);
 
@@ -179,7 +183,7 @@ public class LokalRegister {
 
 
 
- /*   Har vi bruk for dette?
+ /* TODO:  Har vi bruk for dette?
 
     ArrayList<Lokale> lokaler = new ArrayList<>();
 
