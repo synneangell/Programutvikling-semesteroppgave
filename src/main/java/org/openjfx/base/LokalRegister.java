@@ -28,9 +28,9 @@ public class LokalRegister {
     Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
             "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
 
-    /*public String toString() {
+    public String toString() {
         return forestillingsAnsvarlig.getNavn();
-    }*/
+    }
 
     // Oppretter kinofilmer:
     Date dato = new Date(2019, 07, 23, 18, 30);
