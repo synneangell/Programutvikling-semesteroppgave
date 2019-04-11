@@ -12,6 +12,7 @@ import org.openjfx.base.*;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Date;
 
 
 public class KjøpBillettController {
@@ -21,7 +22,7 @@ public class KjøpBillettController {
 
     ObservableList<String> BillettType = FXCollections.observableArrayList("Kino", "Teater", "Konsert", "Foredrag");
 
-    ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10");
+    ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 
     ObservableList<String> Kino = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.kinoArrangementer));
 
@@ -113,28 +114,41 @@ public class KjøpBillettController {
                 && chboxVelgForestilling.getOnKeyPressed().equals(true) && chboxVelgDatoTid.getOnKeyPressed().equals(true)
                 && chboxVelgAntall.getOnKeyPressed().equals(true)) {          */
 
+        //TODO: må kjøre metoden antallBilletterIgjen for å se om det er ledige billetter før noe gjøres
+        // if(lokalRegister.antallBilletterIgjen(finnArrangement()>0);
 
-            //Oppretter kjøper:
-            Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
+        //Oppretter kjøper:
+        Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
 
-            //Oppretter x billetter:
-            int antallBilletter = Integer.valueOf((String)chboxVelgAntall.getValue());
-            for(int i= 0; i<antallBilletter; i++){
-                Billett enBillett = new Billett(kjøper, null);
-                billettRegister.registrerBillett(enBillett);
-            }
-
-            //TODO: Legger billett(er) til i valgt arrangement:
-            String valgtForestilling = String.valueOf(chboxVelgForestilling.getValue());
-            System.out.println(valgtForestilling);
-
-            //Hvordan t oppfatte hvilket objekt det er ut i fra denne stringen?
-
+        //TODO: legg inn arrangement objektet
+        //Oppretter x billetter:
+        int antallBilletter = Integer.valueOf((String)chboxVelgAntall.getValue());
+        for (int i = 0; i < antallBilletter; i++) {
+            Billett enBillett = new Billett(kjøper, finnArrangement());
+            billettRegister.registrerBillett(enBillett);
         }
 
 
-    public void lagreKvittering(ActionEvent event) {
     }
+
+    public Arrangement finnArrangement() {
+        //splitte String valgtForestilling og finne arrangementNavn og tidspunkt i arraylisten med alle arrangementer?
+        String valgtForestilling = String.valueOf(chboxVelgForestilling.getValue());
+        System.out.println(valgtForestilling);
+        String[] arrOfStr = valgtForestilling.split(": ");
+        String navnArrangementFraSplit = arrOfStr[0];
+        String tidspunktFraSplit = arrOfStr[1];
+        Date dato = new Date(tidspunktFraSplit);
+
+        for (Arrangement etArrangement : lokalRegister.alleArrangementer) {
+            if (etArrangement.getArrangementNavn().equals(navnArrangementFraSplit) && etArrangement.getTidspunkt().equals(dato)) {
+                return etArrangement;
+            }
+        }
+        return null;
+
+    }
+
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
     private void avsluttProgram() {
@@ -143,7 +157,7 @@ public class KjøpBillettController {
     }
 
     @FXML
-    private void Avslutt(ActionEvent event){
+    private void Avslutt(ActionEvent event) {
         avsluttProgram();
     }
 

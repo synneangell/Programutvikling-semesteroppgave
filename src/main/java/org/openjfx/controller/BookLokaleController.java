@@ -130,24 +130,21 @@ public class BookLokaleController {
 
                 //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
 
-                SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm");
-                String innTidspunkt = format.format(dpDato.getValue()+" "+txtTidspunkt.getText());
-                Date tidspunkt = new Date(innTidspunkt);
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                String innTidspunkt = dpDato.getValue()+" "+txtTidspunkt.getText();
+                Date tidspunkt = format.parse(innTidspunkt);
                 System.out.println(tidspunkt);
 
-                /*
                 if(konsert){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
                             kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 400, TypeArrangement.KONSERT);
                     lokalregister.registrerKonsertArrangement(etDeltakerArrangement);
-                    System.out.println("Inne i konsert if");
                 }
                 else if(foredrag){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
                     kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
                     lokalregister.registrerForedragsArrangement(etDeltakerArrangement);
-
-                }*/
+                }
 
             }
             catch(Exception e){
