@@ -98,8 +98,6 @@ public class BookLokaleController {
     @FXML
     void fullførBooking(ActionEvent event) throws ParseException {
 
-        lblOversiktOpplysninger.setText("Her er oversikt over din bestilling :");
-
         boolean konsert = false;
         boolean foredrag = false;
         String valg = velgTypeArrangement.getValue().toString();
@@ -133,29 +131,27 @@ public class BookLokaleController {
                 //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                System.out.println(dpDato.getValue() + " " + txtTidspunkt.getText());
-                String innTidspunkt = dpDato.getValue() + " " + txtTidspunkt.getText();
+                String innTidspunkt = dpDato.getValue()+" "+txtTidspunkt.getText();
                 Date tidspunkt = format.parse(innTidspunkt);
                 System.out.println(tidspunkt);
-
 
                 if(konsert){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
                             kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 400, TypeArrangement.KONSERT);
                     lokalregister.registrerKonsertArrangement(etDeltakerArrangement);
-                    System.out.println("Inne i konsert if");
                 }
                 else if(foredrag){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
-                            kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
+                    kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
                     lokalregister.registrerForedragsArrangement(etDeltakerArrangement);
                 }
+
             }
             catch(Exception e){
                 //feilmelding ut til bruker
                 String feilmelding = "Noe gikk galt.";
                 lblFullførBestilling.setText(feilmelding);
-                e.printStackTrace();
+
             }
         }
 

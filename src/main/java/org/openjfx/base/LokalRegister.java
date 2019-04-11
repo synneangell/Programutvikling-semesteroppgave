@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class LokalRegister {
 
+    public ArrayList<Arrangement> alleArrangementer = new ArrayList<>();
     public ArrayList<Arrangement> konsertArrangementer = new ArrayList<>();
     public ArrayList<Arrangement> foredragsArrangementer = new ArrayList<>();
     public ArrayList<Arrangement> kinoArrangementer = new ArrayList<>();
@@ -16,7 +17,7 @@ public class LokalRegister {
 
     public LokalRegister() {
         leggInnArrangementer();
-
+        fyllAlleArrangementerArray();
     }
 
     Foredragssal foredragsal = new Foredragssal(100, foredragsArrangementer, 1);
@@ -31,6 +32,8 @@ public class LokalRegister {
     public String toString() {
         return forestillingsAnsvarlig.getNavn();
     }
+
+    //TODO: må spørre igjen om hvorfor det kommer strek over dato (duplicated?)
 
     // Oppretter kinofilmer:
     Date dato = new Date(2019, 07, 23, 18, 30);
@@ -96,7 +99,7 @@ public class LokalRegister {
     }
 
 
- /*   //TODO: Se om vi trenger fyllAlleArrangementerArray, eller skal dette gjøres fra starten av fra fil?
+   //TODO: Se om vi trenger fyllAlleArrangementerArray, eller skal dette gjøres fra starten av fra fil?
 
     public void fyllAlleArrangementerArray(){
         for(Arrangement etArrangement : kinoArrangementer){
@@ -111,7 +114,7 @@ public class LokalRegister {
         for(Arrangement etArrangement : kinoArrangementer){
             alleArrangementer.add(etArrangement);
         }
-    } */
+    }
 
     public void registrerKinoArrangement(Arrangement etArrangement) {
         kinoArrangementer.add(etArrangement);

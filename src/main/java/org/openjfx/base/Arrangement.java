@@ -99,6 +99,6 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
 
     @Override
     public String toString() {
-        return arrangementNavn+" : kl. "+ new SimpleDateFormat("HH:mm, EEEEE dd. MMMMM YYYY").format(tidspunkt);
+        return arrangementNavn+" : kl. "+ new SimpleDateFormat("HH:mm, EEEEE dd. MMMMM yyyy").format(tidspunkt);
     }
 }
