@@ -9,42 +9,62 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
-import org.openjfx.base.Arrangement;
-import org.openjfx.base.ForestillingsArrangement;
-import org.openjfx.base.Kinosal;
-import org.openjfx.base.Kontaktperson;
+import org.openjfx.base.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class TableViewVisArrangementer {
-    private SimpleStringProperty kinofilmer;
-    private Date dato;
+    public ArrayList<Arrangement> kinoArrangementer = new ArrayList<>();
 
-    public TableViewVisArrangementer (String kinofilmer, Date dato) {
-        this.kinofilmer = new SimpleStringProperty(kinofilmer);
-        this.dato = dato;
+    public TableViewVisArrangementer() {
+        leggInnFilmer();;
     }
 
-    public String getKinofilmer() {
-        return kinofilmer.get();
+    Kinosal kinosal = new Kinosal(100, kinoArrangementer, 4);
+
+    // Oppretter en kontaktperson som er ansvarlig for kino- og teatervisninger
+    Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
+            "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
+
+    /*public String toString() {
+        return forestillingsAnsvarlig.getNavn();
+    }*/
+
+    // Oppretter kinofilmer:
+    Date dato = new Date(2019, 07, 23, 18, 30);
+    ForestillingsArrangement kinofilm = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, 100);
+
+    Date dato2 = new Date(2019, 07, 25, 18, 00);
+    ForestillingsArrangement kinofilm2 = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, 100);
+
+    Date dato3 = new Date(2019, 07, 28, 21, 00);
+    ForestillingsArrangement kinofilm3 = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, 100);
+
+
+    // Oppretter teaterforestilling:
+    Date dato4 = new Date(2019, 07, 23, 18, 30);
+    ForestillingsArrangement teaterforestilling = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Sweeney Todd", 200, dato4, 100);
+
+    Date dato5 = new Date(2019, 07, 23, 18, 30);
+    ForestillingsArrangement teaterforestilling2 = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Cats", 220, dato5, 100);
+
+    Date dato6 = new Date(2019, 07, 23, 18, 30);
+    ForestillingsArrangement teaterforestilling3 = new ForestillingsArrangement
+            (forestillingsAnsvarlig, "Les Miserables", 250, dato6, 100);
+
+
+    public void leggInnFilmer() {
+        kinoArrangementer.add(kinofilm);
+        kinoArrangementer.add(kinofilm2);
+        kinoArrangementer.add(kinofilm3);
     }
 
-    public SimpleStringProperty kinofilmerProperty() {
-        return kinofilmer;
-    }
-
-    public void setKinofilmer(String kinofilmer) {
-        this.kinofilmer.set(kinofilmer);
-    }
-
-    public Date getDato() {
-        return dato;
-    }
-
-    public void setDato(Date dato) {
-        this.dato = dato;
-    }
 }
     /*
     @Override

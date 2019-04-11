@@ -28,7 +28,7 @@ public class KulturhusetController implements Initializable {
     ObservableList<String> sorteringsValg = FXCollections.observableArrayList("Alfabetisk", "Etter tidspunkt");
 
 
-    ObservableList<ForestillingsArrangement> filmer = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.kinoArrangementer));
+    ObservableList<String> kino = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.kinoArrangementer));
 
     /*
     @FXML
@@ -164,9 +164,8 @@ public class KulturhusetController implements Initializable {
     public ObservableList<ForestillingsArrangement> getForestillingsArrangement() {
 
         ObservableList<ForestillingsArrangement> ForestillingsArrangement = FXCollections.observableArrayList();
-
-        filmer.add(new ForestillingsArrangement(null, "PulpFiction", 100, null, 100));
-        return filmer;
+        ForestillingsArrangement.add(new ForestillingsArrangement(null, "Test", 120, null, 100));
+        return ForestillingsArrangement;
     }
 }
 
