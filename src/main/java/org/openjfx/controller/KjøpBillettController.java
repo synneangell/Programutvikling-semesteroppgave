@@ -21,7 +21,6 @@ import java.util.Date;
 
 public class KjøpBillettController {
 
-
     LokalRegister lokalRegister = new LokalRegister();
     BillettRegister billettRegister = new BillettRegister();
 

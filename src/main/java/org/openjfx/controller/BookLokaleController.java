@@ -82,13 +82,10 @@ public class BookLokaleController {
     private AnchorPane rootPane;
 
 
-
     @FXML
     private void initialize(){
-
         velgTypeArrangement.setItems(typeArrangementer);
     }
-
 
     @FXML
     void fullførBooking(ActionEvent event) throws ParseException {
@@ -155,13 +152,11 @@ public class BookLokaleController {
                     String feilmelding = "Ingen arrangementtype er valgt!";
                     lblFullførBestilling.setText(feilmelding);
                 }
-
             }
             catch(Exception e){
                 //feilmelding ut til bruker
                 String feilmelding = "Noe gikk galt.";
                 lblFullførBestilling.setText(feilmelding);
-
             }
         }
     }
@@ -174,6 +169,6 @@ public class BookLokaleController {
 
     @FXML
     private void Tilbake (ActionEvent event) throws IOException {
-
+        btnTilbake.getScene().getWindow().hide();
     }
 }
