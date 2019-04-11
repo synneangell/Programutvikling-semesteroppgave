@@ -5,16 +5,20 @@ import org.openjfx.Filbehandling.SkriveTilJobjFil;
 import org.openjfx.base.Arrangement;
 import org.openjfx.base.Billett;
 
-public class LogikkTesting {
-    public static void main(String[] args) {
-        /*
-        Billett billett = new Billett(null, null);
-        Arrangement arrangement = new Arrangement(null, null, 10, null, 10);
-        SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
-        skrivTilFil.skriveTilFil("arrangement.jobj", arrangement);
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-        LeseDataFraJobjFil lesefrajobj = new LeseDataFraJobjFil();
-        lesefrajobj.leseFraFil("arrangement.jobj"); */
+public class LogikkTesting {
+    public static void main(String[] args) throws ParseException {
+
+        Date date = new Date();
+        SimpleDateFormat simpleDate = new SimpleDateFormat("YYYY-MM-dd HH:mm");
+        String input = "2019-01-04 10:20";
+
+
+
+        System.out.println(date);
 
     }
 }

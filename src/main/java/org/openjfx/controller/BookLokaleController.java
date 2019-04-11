@@ -1,12 +1,15 @@
 package org.openjfx.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InputValidering;
@@ -66,10 +69,14 @@ public class BookLokaleController {
     private Button btnAvslutt;
 
     @FXML
-    private Button btnAvbryt;
+    private Button btnTilbake;
 
     @FXML
     private ChoiceBox velgTypeArrangement;
+
+    @FXML
+    private AnchorPane rootBookLokale;
+
 
 
     @FXML
@@ -90,6 +97,8 @@ public class BookLokaleController {
 
     @FXML
     void fullførBooking(ActionEvent event) throws ParseException {
+
+        lblOversiktOpplysninger.setText("Her er oversikt over din bestilling :");
 
         boolean konsert = false;
         boolean foredrag = false;
@@ -123,12 +132,13 @@ public class BookLokaleController {
 
                 //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
 
-                SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm");
-                String innTidspunkt = format.format(dpDato.getValue()+" "+txtTidspunkt.getText());
-                Date tidspunkt = new Date(innTidspunkt);
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                System.out.println(dpDato.getValue() + " " + txtTidspunkt.getText());
+                String innTidspunkt = dpDato.getValue() + " " + txtTidspunkt.getText();
+                Date tidspunkt = format.parse(innTidspunkt);
                 System.out.println(tidspunkt);
 
-                /*
+
                 if(konsert){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
                             kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 400, TypeArrangement.KONSERT);
@@ -137,29 +147,32 @@ public class BookLokaleController {
                 }
                 else if(foredrag){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
-                    kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
+                            kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
                     lokalregister.registrerForedragsArrangement(etDeltakerArrangement);
-
-                }*/
-
+                }
             }
             catch(Exception e){
                 //feilmelding ut til bruker
                 String feilmelding = "Noe gikk galt.";
                 lblFullførBestilling.setText(feilmelding);
-
+                e.printStackTrace();
             }
         }
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
-    private void lukkVindu() {
-        Stage myStage = (Stage) btnAvbryt.getScene().getWindow();
-        myStage.close();
-    }
-
     private void avsluttProgram() {
-
+        Stage stage = (Stage) btnAvslutt.getScene().getWindow();
+        stage.close();
     }
 
+    @FXML
+    private void Avslutt(ActionEvent event){
+        avsluttProgram();
+    }
 
+    @FXML
+    private void Tilbake(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
+        rootBookLokale.getChildren().setAll(pane);
+    }
 }
