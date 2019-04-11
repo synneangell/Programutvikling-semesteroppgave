@@ -120,7 +120,6 @@ public class LokalRegister {
         kinoArrangementer.add(etArrangement);
     }
 
-
     public void registrerTeaterArrangement(Arrangement etArrangement) {
         teaterArrangementer.add(etArrangement);
     }

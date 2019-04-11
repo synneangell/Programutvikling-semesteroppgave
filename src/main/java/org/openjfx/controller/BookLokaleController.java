@@ -98,6 +98,8 @@ public class BookLokaleController {
     @FXML
     void fullførBooking(ActionEvent event) throws ParseException {
 
+        lblOversiktOpplysninger.setText("Her er oversikten over bookingen: ");
+
         boolean konsert = false;
         boolean foredrag = false;
         String valg = velgTypeArrangement.getValue().toString();
