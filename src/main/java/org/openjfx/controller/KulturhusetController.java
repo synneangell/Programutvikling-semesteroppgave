@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import org.openjfx.base.Arrangement;
 import org.openjfx.base.Kontaktperson;
 import org.openjfx.base.LokalRegister;
+import org.openjfx.controller.uihelpers.KinoFilmer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -150,7 +151,6 @@ public class KulturhusetController implements Initializable {
         window.show();
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Setter opp kolonnene i Table View - tabellen
@@ -164,9 +164,12 @@ public class KulturhusetController implements Initializable {
 
     public ObservableList<Arrangement> getArrangement() {
 
-        ObservableList<Arrangement>  Arrangement = FXCollections.observableArrayList();
-        Arrangement.add(new Arrangement(null, Arrangement.toString(), 120, null, 100));
-        return Arrangement;
+        ObservableList<Arrangement>  arrangement = FXCollections.observableArrayList();
+        //Arrangement.add(new Arrangement(null, Arrangement.toString(), 120, null, 100));
+        //Arrangement.addAll(Arrangement.queryForAll());
+        arrangement.add((Arrangement) kinoprogram);
+        return arrangement;
+
     }
 }
 

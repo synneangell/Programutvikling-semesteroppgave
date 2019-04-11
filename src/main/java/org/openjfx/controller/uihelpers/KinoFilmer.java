@@ -14,11 +14,65 @@ import org.openjfx.base.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class TableViewVisArrangementer {
+public class KinoFilmer {
+
+    /*public String filmNavn;
+    public int klokkeslett;
+    public String dag;
+    public int dato;
+
+
+
+    public KinoFilmer() {
+        this.filmNavn = "";
+        this.klokkeslett = 0;
+        this.dag = "";
+        this.dato = 0;
+    }
+
+    public KinoFilmer(String filmNavn, int klokkeslett, String dag, int dato) {
+        this.filmNavn = filmNavn;
+        this.klokkeslett = klokkeslett;
+        this.dag = dag;
+        this.dato = dato;
+    }
+
+    public String getFilmNavn() {
+        return filmNavn;
+    }
+
+    public void setFilmNavn(String filmNavn) {
+        this.filmNavn = filmNavn;
+    }
+
+    public int getKlokkeslett() {
+        return klokkeslett;
+    }
+
+    public void setKlokkeslett(int klokkeslett) {
+        this.klokkeslett = klokkeslett;
+    }
+
+    public String getDag() {
+        return dag;
+    }
+
+    public void setDag(String dag) {
+        this.dag = dag;
+    }
+
+    public int getDato() {
+        return dato;
+    }
+
+    public void setDato(int dato) {
+        this.dato = dato;
+    }
+}*/
     public ArrayList<Arrangement> kinoArrangementer = new ArrayList<>();
 
-    public TableViewVisArrangementer() {
-        leggInnFilmer();;
+    public KinoFilmer() {
+        kinofilmer();;
     }
 
     Kinosal kinosal = new Kinosal(100, kinoArrangementer, 4);
@@ -27,11 +81,11 @@ public class TableViewVisArrangementer {
     Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
             "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
 
-    /*public String toString() {
+    public String toString() {
         return forestillingsAnsvarlig.getNavn();
-    }*/
+    }
 
-    // Oppretter kinofilmer:
+   // Oppretter kinofilmer:
     Date dato = new Date(2019, 07, 23, 18, 30);
     ForestillingsArrangement kinofilm = new ForestillingsArrangement
             (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, 100);
@@ -59,7 +113,7 @@ public class TableViewVisArrangementer {
             (forestillingsAnsvarlig, "Les Miserables", 250, dato6, 100);
 
 
-    public void leggInnFilmer() {
+    public void kinofilmer() {
         kinoArrangementer.add(kinofilm);
         kinoArrangementer.add(kinofilm2);
         kinoArrangementer.add(kinofilm3);
