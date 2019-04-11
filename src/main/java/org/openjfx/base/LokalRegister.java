@@ -15,7 +15,7 @@ public class LokalRegister {
     public ArrayList<Arrangement> teaterArrangementer = new ArrayList<>();
 
     public LokalRegister() {
-        leggInnFilmer();
+        leggInnArrangementer();
 
     }
 
@@ -60,10 +60,14 @@ public class LokalRegister {
             (forestillingsAnsvarlig, "Les Miserables", 250, dato6, 100, TypeArrangement.TEATER);
 
 
-    public void leggInnFilmer() {
+    public void leggInnArrangementer() {
+        teaterArrangementer.add(teaterforestilling);
+        teaterArrangementer.add(teaterforestilling2);
+        teaterArrangementer.add(teaterforestilling3);
         kinoArrangementer.add(kinofilm);
         kinoArrangementer.add(kinofilm2);
         kinoArrangementer.add(kinofilm3);
+
     }
 
     //TODO: kan man finne antall solgte og antall billetter igjen slik?
