@@ -3,8 +3,7 @@ package org.openjfx.controller;
 import java.io.IOException;
 import java.text.ParseException;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,8 +16,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InputValidering;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookLokaleController {
@@ -92,10 +89,14 @@ public class BookLokaleController {
 
         boolean konsert = false;
         boolean foredrag = false;
-        if(velgTypeArrangement.getValue() == "konsert"){
+        //Får nullpointerException på linje 84
+
+        String valg = velgTypeArrangement.getValue().toString();
+
+        if(valg == "Konsert"){
             konsert = true;
         }
-        else if(velgTypeArrangement.getValue() == "foredrag"){
+        else if(valg == "Foredrag"){
             foredrag = true;
         }
 
@@ -108,21 +109,6 @@ public class BookLokaleController {
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()){
             //må datepicker også sjekkes her?
 
-
-            //Input validering av alle feltene bruker skriver inn på
-            InputValidering.validerKunTekst(txtNavn, txtNavn.getText());
-            // InputValidering.validerKunTelefonnummer(txtTelefonnummer, txtTelefonnummer.getText());
-            //InputValidering.validerEmail(txtEmail, txtEmail.getText());
-            //InputValidering.validerNettside(txtNettside, txtNettside.getText());
-            //Andre opplysninger ikke nødvendig å input validere? Fri tekst, kan ha tall
-            InputValidering.validerKunTekst(txtVirksomhet, txtVirksomhet.getText());
-            InputValidering.validerKunTekst(txtNavnArrangement, txtNavnArrangement.getText());
-            InputValidering.validerKunTall(txtBillettpris, txtBillettpris.getText());
-            //Tidspunkt og dato??
-            InputValidering.validerKunTekst(txtEgenskapDeltaker, txtEgenskapDeltaker.getText());
-            InputValidering.validerKunTekst(txtDeltakerNavn, txtDeltakerNavn.getText());
-
-
             Kontaktperson kontaktperson = new Kontaktperson(
                     txtNavn.getText(),txtTelefonnummer.getText(),txtEmail.getText(),
                     txtNettside.getText(),txtAndreOpplysninger.getText(), txtVirksomhet.getText());
@@ -130,11 +116,10 @@ public class BookLokaleController {
             Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(),txtEgenskapDeltaker.getText());
 
 
-            try{    //MÅ SE PÅ HELE DELEN MED PARSING TIL DATOFORMAT
+            try{    //MÅ SE OM IGJEN PÅ HELE DELEN MED PARSING TIL DATOFORMAT
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
-                //Tidspunktet til arrangementet skal ha formatet for eks: 14:30 den 10/03/2019
-                //Blir dette riktig?
-                Date tidspunkt = new Date(txtTidspunkt.getText() + dpDato.getValue());
+                //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
+                Date tidspunkt = new Date(dpDato.getValue()+txtTidspunkt.getText());
 
                 if(konsert){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(

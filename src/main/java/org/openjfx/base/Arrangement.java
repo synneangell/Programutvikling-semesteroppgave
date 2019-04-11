@@ -1,12 +1,12 @@
 package org.openjfx.base;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
-public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangement> {
+public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangement>, Serializable {
+    private static final long serialVersionUID = 1;
     private Kontaktperson kontaktperson;
     private String arrangementNavn;
     private int billettpris;
@@ -94,9 +94,11 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
         return "";
     }
 
-    public String toString() {
-        return arrangementNavn+" "+ new SimpleDateFormat("dd.MM.YYYY HH:mm").format(tidspunkt);
-    }
 
-    }
 
+    public String toString(){
+        String ut = "Kontaktperson: "+kontaktperson+" Arrangementnavn: "+arrangementNavn+" Billettpris: "+billettpris+
+                "Tidspunkt: "+tidspunkt+"\n";
+        return ut;
+    }
+}
