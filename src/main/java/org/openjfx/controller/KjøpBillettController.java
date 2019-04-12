@@ -134,8 +134,6 @@ public class KjøpBillettController {
             System.out.println("Jeg er her");
             billettRegister.registrerBillett(enBillett);
         }
-
-
     }
 
     public Arrangement finnArrangement() throws ParseException {
