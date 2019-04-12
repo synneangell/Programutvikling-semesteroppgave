@@ -14,13 +14,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.openjfx.base.Arrangement;
-import org.openjfx.base.Kontaktperson;
 import org.openjfx.base.LokalRegister;
-import org.openjfx.controller.uihelpers.KinoFilmer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 public class KulturhusetController implements Initializable {
@@ -48,7 +45,7 @@ public class KulturhusetController implements Initializable {
 
     // Table View - tabellen:
     @FXML
-    private TableView <Arrangement> tbVisArrangementer;
+    private TableView <Arrangement> tvVisArrangementer;
 
     @FXML
     private TableColumn<Arrangement, String> ArrangementColumn;
@@ -139,7 +136,7 @@ public class KulturhusetController implements Initializable {
 
     @FXML
     void visAlleArrangementer (ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource(("FXMLDocument.fxml")));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource(("kulturhuset.fxml")));
         Scene tableViewScene = new Scene(tableViewParent);
 
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -153,19 +150,16 @@ public class KulturhusetController implements Initializable {
         // Setter opp kolonnene i Table View - tabellen
         ArrangementColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("Klokkeslett"));
-        DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("dato"));
+        DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("Dato"));
 
-        tbVisArrangementer.setItems(getArrangement());
+        tvVisArrangementer.setItems(getArrangement());
     }
 
     public ObservableList<Arrangement> getArrangement() {
 
         ObservableList<Arrangement>  arrangement = FXCollections.observableArrayList();
-        //Arrangement.add(new Arrangement(null, Arrangement.toString(), 120, null, 100));
-        //Arrangement.addAll(Arrangement.queryForAll());
-        arrangement.add((Arrangement) kinoprogram);
+        //arrangement.add((Arrangement) kinoprogram);
         return arrangement;
-
     }
 }
 
