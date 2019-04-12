@@ -1,11 +1,6 @@
 package org.openjfx.base;
 
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 
 public class LokalRegister {
 
@@ -33,31 +28,37 @@ public class LokalRegister {
     }
 
     // Oppretter kinofilmer:
-    Date dato = new Date(2019, 07, 23, 18, 30);
+    Dato dato = new Dato(25, 7, 2019);
+    Klokkeslett klokkeslett = new Klokkeslett(18, 30);
     ForestillingsArrangement kinofilm = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, 100);
+            (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, klokkeslett, 100);
 
-    Date dato2 = new Date(2019, 07, 25, 18, 00);
+    Dato dato2 = new Dato(25, 7, 2019);
+    Klokkeslett klokkeslett2 = new Klokkeslett(18, 30);
     ForestillingsArrangement kinofilm2 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, 100);
+            (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, klokkeslett,100);
 
-    Date dato3 = new Date(2019, 07, 28, 21, 00);
+    Dato dato3 = new Dato(25, 7, 2019);
+    Klokkeslett klokkeslett3 = new Klokkeslett(18, 30);
     ForestillingsArrangement kinofilm3 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, 100);
+            (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, klokkeslett,100);
 
 
     // Oppretter teaterforestilling:
-    Date dato4 = new Date(2019, 07, 23, 18, 30);
+    Dato dato4 = new Dato(25, 7, 2019);
+    Klokkeslett klokkeslett4 = new Klokkeslett(18, 30);
     ForestillingsArrangement teaterforestilling = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Sweeney Todd", 200, dato4, 100);
+            (forestillingsAnsvarlig, "Sweeney Todd", 200, dato4, klokkeslett,100);
 
-    Date dato5 = new Date(2019, 07, 23, 18, 30);
+    Dato dato5 = new Dato(25, 7, 2019);
+    Klokkeslett klokkeslett5 = new Klokkeslett(18, 30);
     ForestillingsArrangement teaterforestilling2 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Cats", 220, dato5, 100);
+            (forestillingsAnsvarlig, "Cats", 220, dato5, klokkeslett,100);
 
-    Date dato6 = new Date(2019, 07, 23, 18, 30);
+    Dato dato6 = new Dato(25, 7, 2019);
+    Klokkeslett klokkeslett6 = new Klokkeslett(18, 30);
     ForestillingsArrangement teaterforestilling3 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Les Miserables", 250, dato6, 100);
+            (forestillingsAnsvarlig, "Les Miserables", 250, dato6, klokkeslett,100);
 
 
     public void leggInnFilmer() {
@@ -122,15 +123,15 @@ public class LokalRegister {
     }
 
     //Metoden som formaterer arraylisten med arrangementer til string, som igjen brukes i combobox menyen i GUIet
-    public ArrayList ArrayTilString(ArrayList<Arrangement> arraylist) {
+    /*public ArrayList ArrayTilString(ArrayList<Arrangement> arraylist) {
         ArrayList<String> navnOgTidArrangementer = new ArrayList<>();
         for (int i = 0; i < arraylist.size(); i++) {
-            navnOgTidArrangementer.add(arraylist.get(i).getArrangementNavn() + " " + arraylist.get(i).getTidspunkt());
+            navnOgTidArrangementer.add(arraylist.get(i).getArrangementNavn() + " " + arraylist.get(i).getDato());
         }
         return navnOgTidArrangementer;
     }
 
-    ArrayList stringKinoArrangementer = ArrayTilString(kinoArrangementer);
+    ArrayList stringKinoArrangementer = ArrayTilString(kinoArrangementer);*/
 
     //metoder for å slette/endre arrangementer?
 

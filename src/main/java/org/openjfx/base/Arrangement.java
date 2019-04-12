@@ -4,24 +4,25 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 
-public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangement>, Serializable {
+public class Arrangement implements Serializable {
     private static final long serialVersionUID = 1;
     private Kontaktperson kontaktperson;
     private String arrangementNavn;
     private int billettpris;
-    private Date tidspunkt;
+    private Dato dato;
+    private Klokkeslett klokkeslett;
     private int antallBilletter;
 
     //Må dennne settes i konstruktøren?
     ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
 
-    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Date tidspunkt, int antallBilletter){
+    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Dato dato, Klokkeslett klokkeslett, int antallBilletter){
         this.kontaktperson = kontaktperson;
         this.arrangementNavn = arrangementNavn;
         this.billettpris = billettpris;
-        this.tidspunkt = tidspunkt;
+        this.dato = dato;
+        this.klokkeslett = klokkeslett;
         this.antallBilletter = antallBilletter;
     }
 
@@ -37,8 +38,12 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
         return billettpris;
     }
 
-    public Date getTidspunkt() {
-        return tidspunkt;
+    public Dato dato() {
+        return dato;
+    }
+
+    public Klokkeslett klokkeslett() {
+        return klokkeslett;
     }
 
     public void setKontaktperson(Kontaktperson kontaktperson) {
@@ -53,8 +58,12 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
         this.billettpris = billettpris;
     }
 
-    public void setTidspunkt(Date tidspunkt) {
-        this.tidspunkt = tidspunkt;
+    public void setDato(Dato dato) {
+        this.dato = dato;
+    }
+
+    public void setKLokkeslett(Klokkeslett kLokkeslett) {
+        this.klokkeslett = klokkeslett;
     }
 
     public void leggTilBillett(Billett enBillett){
@@ -83,21 +92,21 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
 
     }
 
-    //Sortere arrangmenter etter dato?
+    /*//Sortere arrangmenter etter dato?
     @Override
     public int compare(Arrangement a1, Arrangement a2) {
         if (a1.getTidspunkt() == null || a2.getTidspunkt() == null)
             return 0;
         return a1.getTidspunkt().compareTo(a2.getTidspunkt());
-    }
+    }*/
 
-    public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){
+    public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Dato dato, Klokkeslett klokkeslett){
         return "";
     }
 
     @Override
     public String toString() {
-        return arrangementNavn+" : kl. "+ new SimpleDateFormat("HH:mm, EEEEE dd. MMMMM YYYY").format(tidspunkt);
+        return arrangementNavn+" "+klokkeslett+" "+dato;
     }
 
     /*

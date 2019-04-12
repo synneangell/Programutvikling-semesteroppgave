@@ -111,7 +111,7 @@ public class BookLokaleController {
             try{    //MÅ SE OM IGJEN PÅ HELE DELEN MED PARSING TIL DATOFORMAT
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
                 //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
-                Date tidspunkt = new Date(dpDato.getValue()+txtTidspunkt.getText());
+                Date dato = new Dato(txtDato.getText());
 
                 if(konsert){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(

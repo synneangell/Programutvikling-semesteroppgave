@@ -3,7 +3,7 @@ package org.openjfx.base;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Dato {
-    private SimpleIntegerProperty dag, måned, år, minutt, time;
+    private SimpleIntegerProperty dag, måned, år;
 
     public Dato (int dag, int måned, int år) {
         this.dag = new SimpleIntegerProperty (dag);
@@ -47,29 +47,6 @@ public class Dato {
         this.år.set(år);
     }
 
-    public int getMinutt() {
-        return minutt.get();
-    }
-
-    public SimpleIntegerProperty minuttProperty() {
-        return minutt;
-    }
-
-    public void setMinutt(int minutt) {
-        this.minutt.set(minutt);
-    }
-
-    public int getTime() {
-        return time.get();
-    }
-
-    public SimpleIntegerProperty timeProperty() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time.set(time);
-    }
 
     public String toString() {
         String utDato = dag + "."+måned+ "." + år; // Format: dd.mmmmm.YYYY (dag.måned.årstall)
