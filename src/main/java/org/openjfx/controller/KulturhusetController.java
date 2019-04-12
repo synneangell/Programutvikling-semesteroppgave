@@ -14,6 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.openjfx.base.Arrangement;
+import org.openjfx.base.Dato;
+import org.openjfx.base.Klokkeslett;
 import org.openjfx.base.LokalRegister;
 
 import java.io.IOException;
@@ -48,13 +50,13 @@ public class KulturhusetController implements Initializable {
     private TableView <Arrangement> tvVisArrangementer;
 
     @FXML
-    private TableColumn<Arrangement, String> ArrangementColumn;
+    private TableColumn<Arrangement, Arrangement> ArrangementColumn;
 
     @FXML
-    private TableColumn<Arrangement, String> KlokkeslettColumn;
+    private TableColumn<Klokkeslett, Integer> KlokkeslettColumn;
 
     @FXML
-    private TableColumn<Arrangement, String> DatoColumn;
+    private TableColumn<Dato, Integer> DatoColumn;
 
 
 
@@ -136,7 +138,7 @@ public class KulturhusetController implements Initializable {
 
     @FXML
     void visAlleArrangementer (ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource(("kulturhuset.fxml")));
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource(("org/openjfx/kulturhuset.fxml")));
         Scene tableViewScene = new Scene(tableViewParent);
 
         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -148,19 +150,19 @@ public class KulturhusetController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Setter opp kolonnene i Table View - tabellen
-        ArrangementColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
-        KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("Klokkeslett"));
-        DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("Dato"));
+        ArrangementColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, Arrangement>("arrangementNavn"));
+        KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Klokkeslett, Integer>(null));
+        DatoColumn.setCellValueFactory(new PropertyValueFactory<Dato, Integer>(null));
 
-        tvVisArrangementer.setItems(getArrangement());
+        tvVisArrangementer.setItems(kinoprogram);
     }
 
-    public ObservableList<Arrangement> getArrangement() {
+    /*public ObservableList<Arrangement> getArrangement() {
 
         ObservableList<Arrangement>  arrangement = FXCollections.observableArrayList();
         //arrangement.add((Arrangement) kinoprogram);
         return arrangement;
-    }
+    }*/
 }
 
 /**

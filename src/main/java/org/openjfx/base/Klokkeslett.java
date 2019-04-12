@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class Klokkeslett {
     private SimpleIntegerProperty minutt, time;
 
-    public Klokkeslett (int minutt, int time) {
+    public Klokkeslett (int time, int minutt) {
         this.minutt = new SimpleIntegerProperty (minutt);
         this.time = new SimpleIntegerProperty (time);
     }

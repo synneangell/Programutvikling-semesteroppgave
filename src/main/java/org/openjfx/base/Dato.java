@@ -47,7 +47,6 @@ public class Dato {
         this.år.set(år);
     }
 
-
     public String toString() {
         String utDato = dag + "."+måned+ "." + år; // Format: dd.mmmmm.YYYY (dag.måned.årstall)
         return utDato;
