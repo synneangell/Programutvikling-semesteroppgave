@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InputValidering;
@@ -51,7 +52,7 @@ public class BookLokaleController {
     private TextField txtTidspunkt;
 
     @FXML
-    private DatePicker dpDato;
+    private TextField txtDato;
 
     @FXML
     private TextField txtDeltakerNavn;
@@ -67,9 +68,6 @@ public class BookLokaleController {
 
     @FXML
     private Button btnAvslutt;
-
-    @FXML
-    private Button btnTilbake;
 
     @FXML
     private ChoiceBox velgTypeArrangement;
@@ -129,12 +127,10 @@ public class BookLokaleController {
 
             try{    //MÅ SE OM IGJEN PÅ HELE DELEN MED PARSING TIL DATOFORMAT
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
-
+                int innTid = Integer.parseInt(txtTidspunkt.getText());
+                int innDato = Integer.parseInt(txtDato.getText());
                 //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
-
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                String innTidspunkt = dpDato.getValue()+" "+txtTidspunkt.getText();
-                Date tidspunkt = format.parse(innTidspunkt);
+                Date tidspunkt = new Date(innDato, innTid);
                 System.out.println(tidspunkt);
 
                 if(konsert){
