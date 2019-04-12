@@ -78,7 +78,6 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
     private void endreBillett(){
     }
 
-
     public int compareTo(Arrangement arrangement) {
         return (this.arrangementNavn).compareTo(arrangement.arrangementNavn);
 
