@@ -72,7 +72,7 @@ public class Dato {
     }
 
     public String toString() {
-        String ut = dag + "."+måned+ "." + år; // Format: dd.mmmmm.YYYY (dag.måned.årstall)
-        return ut;
+        String utDato = dag + "."+måned+ "." + år; // Format: dd.mmmmm.YYYY (dag.måned.årstall)
+        return utDato;
     }
 }

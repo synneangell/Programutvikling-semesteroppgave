@@ -54,9 +54,6 @@ public class KulturhusetController implements Initializable {
     private TableColumn<Arrangement, String> ArrangementColumn;
 
     @FXML
-    private TableColumn<Arrangement, String> DagColumn;
-
-    @FXML
     private TableColumn<Arrangement, String> KlokkeslettColumn;
 
     @FXML
@@ -155,7 +152,6 @@ public class KulturhusetController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Setter opp kolonnene i Table View - tabellen
         ArrangementColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
-        DagColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("tidspunkt"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("Klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("dato"));
 

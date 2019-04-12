@@ -35,7 +35,7 @@ public class Klokkeslett {
     }
 
     public String toString () {
-        String ut = minutt + ":" + time; // format: mm:tt
-        return ut;
+        String utKlokkeslett = minutt + ":" + time; // format: mm:tt
+        return utKlokkeslett;
     }
 }
