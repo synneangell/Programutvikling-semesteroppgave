@@ -1,29 +1,31 @@
 package org.openjfx.base;
 
+import javafx.beans.property.StringProperty;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
-public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangement>, Serializable {
-    private static final long serialVersionUID = 1;
+public class Arrangement implements Serializable {
     private Kontaktperson kontaktperson;
     private String arrangementNavn;
     private int billettpris;
-    private Date tidspunkt;
+    private Dato dato;
+    private Klokkeslett klokkeslett;
     private int antallBilletter;
     TypeArrangement typeArrangement;
+
+    //Må dennne settes i konstruktøren?
     ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
 
-    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Date tidspunkt, int antallBilletter, TypeArrangement typeArrangement){
+    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Dato dato, Klokkeslett klokkeslett, int antallBilletter, TypeArrangement typeArrangement){
         this.kontaktperson = kontaktperson;
         this.arrangementNavn = arrangementNavn;
         this.billettpris = billettpris;
-        this.tidspunkt = tidspunkt;
+        this.dato = dato;
         this.antallBilletter = antallBilletter;
-        this.typeArrangement = typeArrangement;
-        ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
     }
 
     public Kontaktperson getKontaktperson() {
@@ -38,8 +40,12 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
         return billettpris;
     }
 
-    public Date getTidspunkt() {
-        return tidspunkt;
+    public Dato getDato() {
+        return dato;
+    }
+
+    public Klokkeslett getKlokkeslett() {
+        return klokkeslett;
     }
 
     public void setKontaktperson(Kontaktperson kontaktperson) {
@@ -54,8 +60,12 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
         this.billettpris = billettpris;
     }
 
-    public void setTidspunkt(Date tidspunkt) {
-        this.tidspunkt = tidspunkt;
+    public void setDato(Dato dato) {
+        this.dato = dato;
+    }
+
+    public void setKlokketslett(Klokkeslett klokkeslett) {
+        this.klokkeslett = klokkeslett;
     }
 
     public void leggTilBillett(Billett enBillett){
@@ -74,30 +84,37 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
             return "Fant ikke referansenummer";
     }
 
-    //TODO: Endre billett? Hva skal man kunne endre?
+    //Endre billett? Hva skal man kunne endre?
     private void endreBillett(){
     }
 
+    /*
     public int compareTo(Arrangement arrangement) {
         return (this.arrangementNavn).compareTo(arrangement.arrangementNavn);
 
     }
 
-    //TODO: Riktig måte for å sortere arrangementer etter dato/tidspunkt?
+    //Sortere arrangementer etter dato?
     @Override
     public int compare(Arrangement a1, Arrangement a2) {
         if (a1.getTidspunkt() == null || a2.getTidspunkt() == null)
             return 0;
         return a1.getTidspunkt().compareTo(a2.getTidspunkt());
-    }
+    }   */
 
-    //TODO: Lage program man kan skrive ut?
     public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){
         return "";
     }
 
     @Override
     public String toString() {
-        return arrangementNavn+" : kl. "+ new SimpleDateFormat("HH:mm, EEEEE dd. MMMMM yyyy").format(tidspunkt);
+        return arrangementNavn+" : kl."+klokkeslett+" den "+dato;
     }
+
+    /*
+    public String toString(){
+        String ut = "Kontaktperson: "+kontaktperson+" Arrangementnavn: "+arrangementNavn+" Billettpris: "+billettpris+
+                "Tidspunkt: "+tidspunkt+"\n";
+        return ut;
+    }*/
 }
