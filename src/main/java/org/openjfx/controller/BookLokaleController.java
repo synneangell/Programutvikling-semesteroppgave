@@ -130,7 +130,7 @@ public class BookLokaleController {
                 int innTid = Integer.parseInt(txtTidspunkt.getText());
                 int innDato = Integer.parseInt(txtDato.getText());
                 //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
-                Date tidspunkt = new Date(innDato, innTid);
+               /* Date tidspunkt = new Date(innDato, innTid);
                 System.out.println(tidspunkt);
 
                 if(konsert){
@@ -142,7 +142,7 @@ public class BookLokaleController {
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
                     kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
                     lokalregister.registrerForedragsArrangement(etDeltakerArrangement);
-                }
+                } */
 
             }
             catch(Exception e){
