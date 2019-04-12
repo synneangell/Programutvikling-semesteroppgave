@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.openjfx.base.Arrangement;
@@ -72,55 +73,13 @@ public class KulturhusetController implements Initializable {
     }
 
     private void launchKjøpBillett() {
-        Parent root = null;
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            root = fxmlLoader.load(getClass().getResource("/org/openjfx/kjøpBillett.fxml").openStream());
 
-            // Får tak i controlleren og overfører referanse til person-objektet
-            KjøpBillettController controller = fxmlLoader.getController();
-            // controller.setPerson(myPerson); ???
-        } catch (IOException e) {
-            e.printStackTrace(); // FXML document should be available
-            return;
-        }
 
-        Scene scene = new Scene(root);
-        // add CSS etc. should be here
-        Stage kjøpBillettStage = new Stage();
-        kjøpBillettStage.setTitle("Kjøp billett");
-        kjøpBillettStage.setScene(scene);
-
-        // set modality - låser "parent" winduet mens dette vinduet er åpent
-        kjøpBillettStage.initOwner(lblOversiktArrangementer.getScene().getWindow());  //får tak i vinduet
-        kjøpBillettStage.initModality(Modality.WINDOW_MODAL);    //fryser hovedvinduet
-        kjøpBillettStage.show();
     }
 
     private void launchBookLokale() {
-        Parent root = null;
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            root = fxmlLoader.load(getClass().getResource("/org/openjfx/bookLokale.fxml").openStream());
-
-            // Får tak i controlleren og overfører referanse til person-objektet
-            BookLokaleController controller = fxmlLoader.getController();
-            // controller.setPerson(myPerson); ??
-        } catch (IOException e) {
-            e.printStackTrace(); // FXML document should be available
-            return;
-        }
-
-        Scene scene = new Scene(root);
-        // add CSS etc. should be here
-        Stage bookLokaleStage = new Stage();
-        bookLokaleStage.setTitle("Book lokale");
-        bookLokaleStage.setScene(scene);
-
-        // set modality - låser "parent" winduet mens dette vinduet er åpent
-        bookLokaleStage.initOwner(lblOversiktArrangementer.getScene().getWindow());  //får tak i vinduet
-        bookLokaleStage.initModality(Modality.WINDOW_MODAL);    //fryser hovedvinduet
-        bookLokaleStage.show();
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kjøpBillett.fxml"));
+        rootPane.getChildren().setAll(pane);
     }
 
     @FXML
