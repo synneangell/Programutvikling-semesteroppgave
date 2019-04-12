@@ -4,26 +4,26 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 
-public class Arrangement implements Serializable {
+public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangement>, Serializable {
     private static final long serialVersionUID = 1;
     private Kontaktperson kontaktperson;
     private String arrangementNavn;
     private int billettpris;
-    private Dato dato;
-    private Klokkeslett klokkeslett;
+    private Date tidspunkt;
     private int antallBilletter;
-
-    //Må dennne settes i konstruktøren?
+    TypeArrangement typeArrangement;
     ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
 
-    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Dato dato, Klokkeslett klokkeslett, int antallBilletter){
+    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Date tidspunkt, int antallBilletter, TypeArrangement typeArrangement){
         this.kontaktperson = kontaktperson;
         this.arrangementNavn = arrangementNavn;
         this.billettpris = billettpris;
-        this.dato = dato;
-        this.klokkeslett = klokkeslett;
+        this.tidspunkt = tidspunkt;
         this.antallBilletter = antallBilletter;
+        this.typeArrangement = typeArrangement;
+        ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
     }
 
     public Kontaktperson getKontaktperson() {
@@ -38,12 +38,8 @@ public class Arrangement implements Serializable {
         return billettpris;
     }
 
-    public Dato dato() {
-        return dato;
-    }
-
-    public Klokkeslett klokkeslett() {
-        return klokkeslett;
+    public Date getTidspunkt() {
+        return tidspunkt;
     }
 
     public void setKontaktperson(Kontaktperson kontaktperson) {
@@ -58,12 +54,8 @@ public class Arrangement implements Serializable {
         this.billettpris = billettpris;
     }
 
-    public void setDato(Dato dato) {
-        this.dato = dato;
-    }
-
-    public void setKLokkeslett(Klokkeslett kLokkeslett) {
-        this.klokkeslett = klokkeslett;
+    public void setTidspunkt(Date tidspunkt) {
+        this.tidspunkt = tidspunkt;
     }
 
     public void leggTilBillett(Billett enBillett){
@@ -82,7 +74,7 @@ public class Arrangement implements Serializable {
             return "Fant ikke referansenummer";
     }
 
-    //Endre billett? Hva skal man kunne endre?
+    //TODO: Endre billett? Hva skal man kunne endre?
     private void endreBillett(){
     }
 
@@ -92,27 +84,21 @@ public class Arrangement implements Serializable {
 
     }
 
-    /*//Sortere arrangmenter etter dato?
+    //TODO: Riktig måte for å sortere arrangementer etter dato/tidspunkt?
     @Override
     public int compare(Arrangement a1, Arrangement a2) {
         if (a1.getTidspunkt() == null || a2.getTidspunkt() == null)
             return 0;
         return a1.getTidspunkt().compareTo(a2.getTidspunkt());
-    }*/
+    }
 
-    public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Dato dato, Klokkeslett klokkeslett){
+    //TODO: Lage program man kan skrive ut?
+    public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){
         return "";
     }
 
     @Override
     public String toString() {
-        return arrangementNavn+" "+klokkeslett+" "+dato;
+        return arrangementNavn+" : kl. "+ new SimpleDateFormat("yyyy-MM-dd HH:mm").format(tidspunkt);
     }
-
-    /*
-    public String toString(){
-        String ut = "Kontaktperson: "+kontaktperson+" Arrangementnavn: "+arrangementNavn+" Billettpris: "+billettpris+
-                "Tidspunkt: "+tidspunkt+"\n";
-        return ut;
-    }*/
 }

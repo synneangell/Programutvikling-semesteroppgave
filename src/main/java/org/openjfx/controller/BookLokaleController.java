@@ -1,15 +1,21 @@
 package org.openjfx.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InputValidering;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookLokaleController {
@@ -46,7 +52,7 @@ public class BookLokaleController {
     private TextField txtTidspunkt;
 
     @FXML
-    private DatePicker dpDato;
+    private TextField txtDato;
 
     @FXML
     private TextField txtDeltakerNavn;
@@ -64,25 +70,36 @@ public class BookLokaleController {
     private Button btnAvslutt;
 
     @FXML
-    private Button btnAvbryt;
+    private ChoiceBox velgTypeArrangement;
 
     @FXML
-    private ChoiceBox velgTypeArrangement;
+    private AnchorPane rootBookLokale;
+
+    public BookLokaleController() throws ParseException {
+    }
 
 
     @FXML
     private void initialize(){
         velgTypeArrangement.setItems(typeArrangementer);
+        velgTypeArrangement.setValue("Konsert");
     }
 
+  /*  //TODO: Er dette nødvendig å ha med? I så fall bør det kanskje løses annerledes?
+    @FXML
+    private void alleOpplysningerRegistrert(ActionEvent e){
+        //TODO: Sett inn også dato/tidspunkt i lblOversiktOpplysninger
+        lblOversiktOpplysninger.setText("Informasjon om arrangement: \n"+txtNavnArrangement.getText()+txtBillettpris.getText()+"\n"+
+                "Informasjon om kontaktperson: \n"+txtNavn.getText()+txtTelefonnummer.getText()+txtEmail.getText()+"\n"+
+                txtNettside.getText()+txtAndreOpplysninger.getText()+txtVirksomhet.getText()+"\n"+
+                "Informasjon om deltaker: \n"+txtDeltakerNavn.getText()+txtEgenskapDeltaker.getText());
+    } */
 
     @FXML
     void fullførBooking(ActionEvent event) throws ParseException {
 
         boolean konsert = false;
         boolean foredrag = false;
-        //Får nullpointerException på linje 84
-
         String valg = velgTypeArrangement.getValue().toString();
 
         if(valg == "Konsert"){
@@ -93,12 +110,12 @@ public class BookLokaleController {
         }
 
         //Sjekker her at alle felt er fylt inn
-        if(!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
+       /* if(!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
                 !txtEmail.getText().isEmpty() && !txtNettside.getText().isEmpty() &&
                 !txtAndreOpplysninger.getText().isEmpty() && !txtVirksomhet.getText().isEmpty() &&
                 !txtNavnArrangement.getText().isEmpty() && !txtBillettpris.getText().isEmpty() &&
                 !txtTidspunkt.getText().isEmpty() &&
-                !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()){
+                !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()){ */
             //må datepicker også sjekkes her?
 
             Kontaktperson kontaktperson = new Kontaktperson(
@@ -110,25 +127,22 @@ public class BookLokaleController {
 
             try{    //MÅ SE OM IGJEN PÅ HELE DELEN MED PARSING TIL DATOFORMAT
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
+                int innTid = Integer.parseInt(txtTidspunkt.getText());
+                int innDato = Integer.parseInt(txtDato.getText());
                 //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
-                Date dato = new Dato(txtDato.getText());
+               /* Date tidspunkt = new Date(innDato, innTid);
+                System.out.println(tidspunkt);
 
                 if(konsert){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
-                            kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 400);
+                            kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 400, TypeArrangement.KONSERT);
                     lokalregister.registrerKonsertArrangement(etDeltakerArrangement);
                 }
                 else if(foredrag){
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
-                    kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100);
+                    kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
                     lokalregister.registrerForedragsArrangement(etDeltakerArrangement);
-
-                }
-                else{
-                    //Feilhåndtere at ingen arrangementtype er valgt
-                    String feilmelding = "Ingen arrangementtype er valgt!";
-                    lblFullførBestilling.setText(feilmelding);
-                }
+                } */
 
             }
             catch(Exception e){
@@ -138,17 +152,21 @@ public class BookLokaleController {
 
             }
         }
-    }
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
-    private void lukkVindu() {
-        Stage myStage = (Stage) btnAvbryt.getScene().getWindow();
-        myStage.close();
-    }
-
     private void avsluttProgram() {
-
+        Stage stage = (Stage) btnAvslutt.getScene().getWindow();
+        stage.close();
     }
 
+    @FXML
+    private void Avslutt(ActionEvent event){
+        avsluttProgram();
+    }
 
+    @FXML
+    private void Tilbake(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
+        rootBookLokale.getChildren().setAll(pane);
+    }
 }

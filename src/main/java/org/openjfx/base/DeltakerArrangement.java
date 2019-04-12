@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class DeltakerArrangement extends Arrangement {
 
-    public DeltakerArrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Dato dato, Klokkeslett klokkeslett, int antallBilletter) {
-        super(kontaktperson, arrangementNavn, billettpris, dato, klokkeslett, antallBilletter);
+    public DeltakerArrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Date tidspunkt, int antallBilletter, TypeArrangement typeArrangement) {
+        super(kontaktperson, arrangementNavn, billettpris, tidspunkt, antallBilletter, typeArrangement);
     }
 }

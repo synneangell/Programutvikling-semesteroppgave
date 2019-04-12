@@ -18,6 +18,4 @@ public class BillettRegister {
         enBillett.setReferansenummer(referansenummer++);
     }
 
-	//metoder for å vise antallSolgte og antallLedige billetter for hvert arrangement? Kommer dette inn her?
-
 }

@@ -4,20 +4,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.openjfx.base.*;
+
+import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class KjøpBillettController {
 
     LokalRegister lokalRegister = new LokalRegister();
     BillettRegister billettRegister = new BillettRegister();
-    //Kjøper kjøperRegister = new Kjøper();
 
     ObservableList<String> BillettType = FXCollections.observableArrayList("Kino", "Teater", "Konsert", "Foredrag");
 
-    ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10");
+    ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 
     ObservableList<String> Kino = FXCollections.observableArrayList(lokalRegister.ArrayTilString(lokalRegister.kinoArrangementer));
 
@@ -64,6 +70,18 @@ public class KjøpBillettController {
     private MenuButton mbtnKvitteringForKjøp;
 
     @FXML
+    private Button btnAvslutt;
+
+    @FXML
+    private Button btnTilbake;
+
+    @FXML
+    private AnchorPane rootKjøpBillett;
+
+    public KjøpBillettController() throws ParseException {
+    }
+
+    @FXML
     public void initialize() {
         chboxVelgBillettType.setItems(BillettType);
         chboxVelgAntall.setItems(AntallBilletter);
@@ -94,32 +112,67 @@ public class KjøpBillettController {
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException {
 
+        finnArrangement();
+
         // Hvis alle feltene på Billettkjøp er fylt ut/ valgt..
        /* if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()
                 && chboxVelgBillettType.getOnAction().equals(true)
                 && chboxVelgForestilling.getOnKeyPressed().equals(true) && chboxVelgDatoTid.getOnKeyPressed().equals(true)
                 && chboxVelgAntall.getOnKeyPressed().equals(true)) {          */
 
+        //TODO: må kjøre metoden antallBilletterIgjen for å se om det er ledige billetter før noe gjøres
+        // if(lokalRegister.antallBilletterIgjen(finnArrangement()>0);
 
-            //Oppretter kjøper:
-            Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
+        //Oppretter kjøper:
+        Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
 
-            //Oppretter x billetter:
-            int antallBilletter = Integer.valueOf((String)chboxVelgAntall.getValue());
-            for(int i= 0; i<antallBilletter; i++){
-                Billett enBillett = new Billett(kjøper, null);
-                billettRegister.registrerBillett(enBillett);
-            }
-
-            //TODO: Legger billett(er) til i valgt arrangement:
-            String valgtForestilling = String.valueOf(chboxVelgForestilling.getValue());
-            System.out.println(valgtForestilling);
-
-            //Hvordan t oppfatte hvilket objekt det er ut i fra denne stringen?
-
+        //TODO: legg inn arrangement objektet
+        //Oppretter x billetter:
+        int antallBilletter = Integer.valueOf((String)chboxVelgAntall.getValue());
+        for (int i = 0; i < antallBilletter; i++) {
+            Billett enBillett = new Billett(kjøper, finnArrangement());
+            System.out.println("Jeg er her");
+            billettRegister.registrerBillett(enBillett);
         }
+    }
+
+    public Arrangement finnArrangement() throws ParseException {
+        //splitte String valgtForestilling og finne arrangementNavn og tidspunkt i arraylisten med alle arrangementer?
+        String valgtForestilling = String.valueOf(chboxVelgForestilling.getValue());
+        System.out.println(valgtForestilling);
+        String[] arrOfStr = valgtForestilling.split(": ");
+        String navnArrangementFraSplit = arrOfStr[0];
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String tidspunktFraSplit = arrOfStr[1];
+        System.out.println(tidspunktFraSplit);
+        System.out.println(arrOfStr[1]);
+        Date dato = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(tidspunktFraSplit);
+
+        for (Arrangement etArrangement : lokalRegister.alleArrangementer) {
+            if (etArrangement.getArrangementNavn().equals(navnArrangementFraSplit) && etArrangement.getTidspunkt().equals(dato)) {
+                return etArrangement;
+            }
+        }
+        return null;
+
+    }
 
 
-    public void lagreKvittering(ActionEvent event) {
+    //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
+    private void avsluttProgram() {
+        Stage stage = (Stage) btnAvslutt.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void Avslutt(ActionEvent event) {
+        avsluttProgram();
+    }
+
+    @FXML
+    private void Tilbake(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
+        rootKjøpBillett.getChildren().setAll(pane);
     }
 }
