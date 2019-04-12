@@ -9,6 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
+import org.openjfx.controller.uihelpers.InvalidEmailException;
+import org.openjfx.controller.uihelpers.InvalidInputException;
+import org.openjfx.controller.uihelpers.SjekkOmGyldig;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -105,13 +108,18 @@ public class KjøpBillettController {
     }
 
     @FXML
-    void fullførBestilling(ActionEvent event) throws ParseException {
+    void fullførBestilling(ActionEvent event) throws ParseException, InvalidInputException, NumberFormatException {
 
         // Hvis alle feltene på Billettkjøp er fylt ut/ valgt..
        /* if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()
                 && chboxVelgBillettType.getOnAction().equals(true)
                 && chboxVelgForestilling.getOnKeyPressed().equals(true) && chboxVelgDatoTid.getOnKeyPressed().equals(true)
                 && chboxVelgAntall.getOnKeyPressed().equals(true)) {          */
+
+        SjekkOmGyldig.sjekkGyldigNavn(txtNavn.getText());
+        SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText());
+        SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText());
+
 
         //TODO: må kjøre metoden antallBilletterIgjen for å se om det er ledige billetter før noe gjøres
         // if(lokalRegister.antallBilletterIgjen(finnArrangement()>0);

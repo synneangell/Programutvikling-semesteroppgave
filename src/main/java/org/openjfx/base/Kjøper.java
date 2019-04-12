@@ -1,5 +1,7 @@
 package org.openjfx.base;
 
+import org.openjfx.controller.uihelpers.InvalidEmailException;
+
 public class Kjøper extends Person {
     private String telefonNr;
     private String email;
@@ -31,5 +33,4 @@ public class Kjøper extends Person {
         String ut = "Navn";
         return ut;
     }
-
 }

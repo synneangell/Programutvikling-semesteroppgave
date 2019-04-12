@@ -19,9 +19,9 @@ import javafx.scene.control.TextField;
 
  */
 
-public class InputValidering {
+/*public class InputValidering {
 
-    public static int validerKunTekst(TextField input, String tekst) {
+    public static int validerKunTekst(TextField input, String tekst){
         boolean numeric = true;
         numeric = tekst.matches("-?\\d+(\\.\\d+)?");
         if (numeric) {
@@ -30,7 +30,7 @@ public class InputValidering {
         return 0;
     }
 
-    public static int validerKunTall(TextField input, String tall) /* throws InvalidTallException */ {
+    public static int validerKunTall(TextField input, String tall) *//* throws InvalidTallException *//* {
         try {
             int innTall = Integer.parseInt(tall);
             if (innTall > 0) {
@@ -44,7 +44,7 @@ public class InputValidering {
 
     }
 
-}
+}*/
 /*
     public static int validerEmail (TextField input, String email) throws InvalidEmailException {
         String[] splitStrAlpha = email.split("@");

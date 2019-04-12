@@ -9,10 +9,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
-import org.openjfx.controller.uihelpers.InputValidering;
+import org.openjfx.controller.uihelpers.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -96,7 +97,7 @@ public class BookLokaleController {
     } */
 
     @FXML
-    void fullførBooking(ActionEvent event) throws ParseException {
+    void fullførBooking(ActionEvent event) throws ParseException, InvalidInputException, InvalidEmailException {
 
         lblOversiktOpplysninger.setText("Her er oversikten over bookingen: ");
 
@@ -119,6 +120,12 @@ public class BookLokaleController {
                 !txtTidspunkt.getText().isEmpty() &&
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()){ */
             //må datepicker også sjekkes her?
+
+        SjekkOmGyldig.sjekkGyldigNavn(txtNavn.getText());
+        SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText());
+        SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText());
+        //SjekkOmGyldig.sjekkGyldigBillettPris(txtBillettpris.getText());
+
 
             Kontaktperson kontaktperson = new Kontaktperson(
                     txtNavn.getText(),txtTelefonnummer.getText(),txtEmail.getText(),
