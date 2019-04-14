@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Konsertsal extends Lokale{
 
-    Konsertsal(int plasser, ArrayList<Arrangement> arrangementer, int id) {
-        super(plasser, arrangementer, id);
+    public Konsertsal(int plasser, int id) {
+        super(plasser, id);
     }
 
     @Override

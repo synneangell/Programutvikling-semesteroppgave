@@ -18,4 +18,28 @@ public class BillettRegister {
         enBillett.setReferansenummer(referansenummer++);
     }
 
+    public int antallSolgte(Arrangement etArrangement){
+
+        int teller = 0;
+        for(Billett enBillett:etArrangement.billetter){
+            if(!etArrangement.billetter.contains(null)){
+                teller++;
+                return teller;
+            }
+        }
+        return teller;
+    }
+
+    public int antallBilletterIgjen(Arrangement etArrangement){
+
+        int teller = 0;
+        for(Billett enBillett:etArrangement.billetter){
+            if(etArrangement.billetter.contains(null)){
+                teller++;
+                return teller;
+            }
+        }
+        return teller;
+    }
 }
+

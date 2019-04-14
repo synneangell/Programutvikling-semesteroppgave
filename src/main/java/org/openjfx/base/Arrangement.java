@@ -1,62 +1,103 @@
 package org.openjfx.base;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
 
-public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangement>, Serializable {
-    private static final long serialVersionUID = 1;
+public class Arrangement implements Serializable {
     private Kontaktperson kontaktperson;
     private String arrangementNavn;
     private int billettpris;
-    private Date tidspunkt;
+    private String dato;
+    private String klokkeslett;
     private int antallBilletter;
     TypeArrangement typeArrangement;
+
     ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
 
-    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Date tidspunkt, int antallBilletter, TypeArrangement typeArrangement){
+    public Arrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, String dato, String klokkeslett, int antallBilletter, TypeArrangement typeArrangement) {
         this.kontaktperson = kontaktperson;
         this.arrangementNavn = arrangementNavn;
         this.billettpris = billettpris;
-        this.tidspunkt = tidspunkt;
+        this.dato = dato;
         this.antallBilletter = antallBilletter;
+        this.klokkeslett = klokkeslett;
         this.typeArrangement = typeArrangement;
-        ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
     }
 
     public Kontaktperson getKontaktperson() {
         return kontaktperson;
     }
 
-    public String getArrangementNavn() {
-        return arrangementNavn;
-    }
-
-    public int getBillettpris() {
-        return billettpris;
-    }
-
-    public Date getTidspunkt() {
-        return tidspunkt;
-    }
-
     public void setKontaktperson(Kontaktperson kontaktperson) {
         this.kontaktperson = kontaktperson;
+    }
+
+    public String getArrangementNavn() {
+        return arrangementNavn;
     }
 
     public void setArrangementNavn(String arrangementNavn) {
         this.arrangementNavn = arrangementNavn;
     }
 
+    public int getBillettpris() {
+        return billettpris;
+    }
+
     public void setBillettpris(int billettpris) {
         this.billettpris = billettpris;
     }
 
-    public void setTidspunkt(Date tidspunkt) {
-        this.tidspunkt = tidspunkt;
+    public String getDato() {
+        return dato;
     }
+
+    public void setDato(String dato) {
+        this.dato = dato;
+    }
+
+    public String getKlokkeslett() {
+        return klokkeslett;
+    }
+
+    public void setKlokkeslett(String klokkeslett) {
+        this.klokkeslett = klokkeslett;
+    }
+
+    public int getAntallBilletter() {
+        return antallBilletter;
+    }
+
+    public void setAntallBilletter(int antallBilletter) {
+        this.antallBilletter = antallBilletter;
+    }
+
+    public String getTypeArrangement() {
+        String type = "";
+        if (typeArrangement == TypeArrangement.KINO) {
+            type = "Kino";
+        }
+
+        if (typeArrangement == TypeArrangement.FOREDRAG) {
+            type = "Foredrag";
+        }
+
+        if (typeArrangement == TypeArrangement.TEATER) {
+            type = "Teater";
+        }
+
+        if (typeArrangement == TypeArrangement.KONSERT) {
+            type = "Konsert";
+        }
+        return type;
+    }
+
+    public void setTypeArrangement(TypeArrangement typeArrangement) {
+        this.typeArrangement = typeArrangement;
+    }
+}
+
+    /*
 
     public void leggTilBillett(Billett enBillett){
        //Må returnere en feilmelding dersom det ikke er plass til flere billetter
@@ -74,30 +115,6 @@ public class Arrangement implements Comparator<Arrangement>, Comparable<Arrangem
             return "Fant ikke referansenummer";
     }
 
-    //TODO: Endre billett? Hva skal man kunne endre?
-    private void endreBillett(){
-    }
 
-    public int compareTo(Arrangement arrangement) {
-        return (this.arrangementNavn).compareTo(arrangement.arrangementNavn);
-
-    }
-
-    //TODO: Riktig måte for å sortere arrangementer etter dato/tidspunkt?
-    @Override
-    public int compare(Arrangement a1, Arrangement a2) {
-        if (a1.getTidspunkt() == null || a2.getTidspunkt() == null)
-            return 0;
-        return a1.getTidspunkt().compareTo(a2.getTidspunkt());
-    }
-
-    //TODO: Lage program man kan skrive ut?
-    public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){
-        return "";
-    }
-
-    @Override
-    public String toString() {
-        return arrangementNavn+" : kl. "+ new SimpleDateFormat("HH:mm, EEEEE dd. MMMMM yyyy").format(tidspunkt);
-    }
 }
+ */

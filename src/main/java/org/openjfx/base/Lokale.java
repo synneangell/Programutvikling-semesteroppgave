@@ -7,9 +7,8 @@ public abstract class Lokale {
     private int id;
     ArrayList <Arrangement> arrangementer;
 
-    Lokale (int plasser, ArrayList<Arrangement> arrangementer, int id) {
+    Lokale (int plasser, int id) {
         this.plasser = plasser;
-        this.arrangementer = arrangementer;
         this.id = id;
     }
 

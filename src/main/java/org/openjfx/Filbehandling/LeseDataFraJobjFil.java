@@ -1,5 +1,7 @@
 package org.openjfx.Filbehandling;
 
+import org.openjfx.base.Arrangement;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;

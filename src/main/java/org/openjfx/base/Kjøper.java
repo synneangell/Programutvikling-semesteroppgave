@@ -1,8 +1,8 @@
 package org.openjfx.base;
 
-import org.openjfx.controller.uihelpers.InvalidEmailException;
+import java.io.Serializable;
 
-public class Kjøper extends Person {
+public class Kjøper extends Person implements Serializable {
     private String telefonNr;
     private String email;
 
@@ -33,4 +33,5 @@ public class Kjøper extends Person {
         String ut = "Navn";
         return ut;
     }
+
 }

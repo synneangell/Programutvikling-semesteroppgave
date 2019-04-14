@@ -1,6 +1,8 @@
 package org.openjfx.base;
 
-public enum TypeArrangement {
+import java.io.Serializable;
+
+public enum TypeArrangement implements Serializable {
     TEATER,
     KINO,
     FOREDRAG,
