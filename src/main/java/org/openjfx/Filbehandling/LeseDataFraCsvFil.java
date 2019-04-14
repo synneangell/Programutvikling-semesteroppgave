@@ -16,7 +16,7 @@ public class LeseDataFraCsvFil extends LeseFraFil {
 
     }
 
-   /* public static List<Billett> readObject(Billett enBillett, String path) throws IOException {
+   /*public static List<Billett> readObject(Billett enBillett, String path) throws IOException {
         ArrayList<Billett> object = new ArrayList<>();
         BufferedReader reader = null;
 

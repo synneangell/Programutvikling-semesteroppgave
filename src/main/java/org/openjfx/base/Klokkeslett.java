@@ -2,40 +2,21 @@ package org.openjfx.base;
 
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Klokkeslett {
-    private SimpleIntegerProperty minutt, time;
+import java.io.Serializable;
 
-    public Klokkeslett (int time, int minutt) {
-        this.minutt = new SimpleIntegerProperty (minutt);
-        this.time = new SimpleIntegerProperty (time);
+public class Klokkeslett implements Serializable {
+    private String klokkeslett;
+
+    public Klokkeslett (String klokkeslett) {
+        this.klokkeslett = klokkeslett;
     }
 
-    public int getMinutt() {
-        return minutt.get();
+    public String getKlokkeslett() {
+        return klokkeslett;
     }
 
-    public SimpleIntegerProperty minuttProperty() {
-        return minutt;
+    public void setKlokkeslett(String klokkeslett) {
+        this.klokkeslett = klokkeslett;
     }
 
-    public void setMinutt(int minutt) {
-        this.minutt.set(minutt);
-    }
-
-    public int getTime() {
-        return time.get();
-    }
-
-    public SimpleIntegerProperty timeProperty() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time.set(time);
-    }
-
-    public String toString () {
-        String utKlokkeslett = minutt + ":" + time; // format: mm:tt
-        return utKlokkeslett;
-    }
 }

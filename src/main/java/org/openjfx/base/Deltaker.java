@@ -1,6 +1,8 @@
 package org.openjfx.base;
 
-public class Deltaker extends Person {
+import java.io.Serializable;
+
+public class Deltaker extends Person implements Serializable {
     private String egenskap;
 
     public Deltaker(String navn, String egenskap) {

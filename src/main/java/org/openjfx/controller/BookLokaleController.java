@@ -5,24 +5,20 @@ import java.text.ParseException;
 
 import javafx.collections.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.openjfx.Filbehandling.SkriveTilJobjFil;
 import org.openjfx.base.*;
-import org.openjfx.controller.uihelpers.InputValidering;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class BookLokaleController {
 
+    SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
     ObservableList<String> typeArrangementer = FXCollections.observableArrayList("Konsert", "Foredrag");
     LokalRegister lokalregister = new LokalRegister();
-    // ArrangementRegister arrangementregister = new ArrangementRegister();
 
     @FXML
     private TextField txtNavn;
@@ -75,25 +71,35 @@ public class BookLokaleController {
     @FXML
     private AnchorPane rootBookLokale;
 
-    public BookLokaleController() throws ParseException {
-    }
-
+    @FXML
+    private TableView<Arrangement> Tableview;
 
     @FXML
-    private void initialize(){
+    private TableColumn<Arrangement, String> TypeColumn;
+
+    @FXML
+    private TableColumn<Arrangement, String> ArrangementNavnColumn;
+
+    @FXML
+    private TableColumn<Arrangement, String> KlokkeslettColumn;
+
+    @FXML
+    private TableColumn<Arrangement, String> DatoColumn;
+
+    ModelViewArrangement tabellInformasjon = new ModelViewArrangement();
+
+    @FXML
+    public void initialize() {
+        // Setter opp kolonnene i Table View - tabellen
+        TypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
+        ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
+        KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
+        DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
+
+        Tableview.setItems(tabellInformasjon.getArrangementer());
         velgTypeArrangement.setItems(typeArrangementer);
         velgTypeArrangement.setValue("Konsert");
     }
-
-  /*  //TODO: Er dette nødvendig å ha med? I så fall bør det kanskje løses annerledes?
-    @FXML
-    private void alleOpplysningerRegistrert(ActionEvent e){
-        //TODO: Sett inn også dato/tidspunkt i lblOversiktOpplysninger
-        lblOversiktOpplysninger.setText("Informasjon om arrangement: \n"+txtNavnArrangement.getText()+txtBillettpris.getText()+"\n"+
-                "Informasjon om kontaktperson: \n"+txtNavn.getText()+txtTelefonnummer.getText()+txtEmail.getText()+"\n"+
-                txtNettside.getText()+txtAndreOpplysninger.getText()+txtVirksomhet.getText()+"\n"+
-                "Informasjon om deltaker: \n"+txtDeltakerNavn.getText()+txtEgenskapDeltaker.getText());
-    } */
 
     @FXML
     void fullførBooking(ActionEvent event) throws ParseException {
@@ -102,60 +108,61 @@ public class BookLokaleController {
         boolean foredrag = false;
         String valg = velgTypeArrangement.getValue().toString();
 
-        if(valg == "Konsert"){
+        if (valg == "Konsert") {
             konsert = true;
-        }
-        else if(valg == "Foredrag"){
+        } else if (valg == "Foredrag") {
             foredrag = true;
         }
 
-        //Sjekker her at alle felt er fylt inn
-       /* if(!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
+        if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
                 !txtEmail.getText().isEmpty() && !txtNettside.getText().isEmpty() &&
                 !txtAndreOpplysninger.getText().isEmpty() && !txtVirksomhet.getText().isEmpty() &&
                 !txtNavnArrangement.getText().isEmpty() && !txtBillettpris.getText().isEmpty() &&
-                !txtTidspunkt.getText().isEmpty() &&
-                !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()){ */
-            //må datepicker også sjekkes her?
+                !txtTidspunkt.getText().isEmpty() && !txtDato.getText().isEmpty() &&
+                !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()) {
+
 
             Kontaktperson kontaktperson = new Kontaktperson(
-                    txtNavn.getText(),txtTelefonnummer.getText(),txtEmail.getText(),
-                    txtNettside.getText(),txtAndreOpplysninger.getText(), txtVirksomhet.getText());
+                    txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText(),
+                    txtNettside.getText(), txtAndreOpplysninger.getText(), txtVirksomhet.getText());
 
-            Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(),txtEgenskapDeltaker.getText());
+            Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(), txtEgenskapDeltaker.getText());
 
 
-            try{    //MÅ SE OM IGJEN PÅ HELE DELEN MED PARSING TIL DATOFORMAT
+            try {
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
-                int innTid = Integer.parseInt(txtTidspunkt.getText());
-                int innDato = Integer.parseInt(txtDato.getText());
-                //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
-               /* Date tidspunkt = new Date(innDato, innTid);
-                System.out.println(tidspunkt);
 
-                if(konsert){
-                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
-                            kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 400, TypeArrangement.KONSERT);
-                    lokalregister.registrerKonsertArrangement(etDeltakerArrangement);
+
+                if (konsert) {
+
+                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
+                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
+                                    txtTidspunkt.getText(), tabellInformasjon.antallPlasserKonsertsal(), TypeArrangement.KONSERT);
+                    Tableview.getItems().add(etDeltakerArrangement);
+                    skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
+                } else if (foredrag) {
+                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
+                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
+                                    txtTidspunkt.getText(), tabellInformasjon.antallPlasserForedragssal(), TypeArrangement.FOREDRAG);
+                    Tableview.getItems().add(etDeltakerArrangement);
+                    skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
+
                 }
-                else if(foredrag){
-                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
-                    kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
-                    lokalregister.registrerForedragsArrangement(etDeltakerArrangement);
-                } */
 
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 //feilmelding ut til bruker
                 String feilmelding = "Noe gikk galt.";
                 lblFullførBestilling.setText(feilmelding);
 
             }
+
         }
+
+    }
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
     private void avsluttProgram() {
-        Stage stage = (Stage) btnAvslutt.getScene().getWindow();
+        Stage stage = (Stage) txtTidspunkt.getScene().getWindow();
         stage.close();
     }
 

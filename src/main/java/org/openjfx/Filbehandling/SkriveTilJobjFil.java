@@ -7,9 +7,8 @@ import java.io.*;
 public class SkriveTilJobjFil extends SkriveTilFil {
 
     public void skriveTilFil(String filsti, Object obj) {
-        String filepath = filsti;
         try (
-                FileOutputStream fos = new FileOutputStream(filepath);
+                FileOutputStream fos = new FileOutputStream(filsti);
                 ObjectOutputStream out = new ObjectOutputStream(fos);
         ) {
             out.writeObject(obj);

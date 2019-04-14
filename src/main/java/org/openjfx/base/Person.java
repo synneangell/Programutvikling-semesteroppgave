@@ -1,6 +1,6 @@
 package org.openjfx.base;
 
-public class Person {
+public class Person  {
     private String navn;
 
 
