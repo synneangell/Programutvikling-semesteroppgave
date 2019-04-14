@@ -9,7 +9,6 @@ import java.util.Date;
 
 public class LokalRegister {
 
-    //TODO: Må finne ut hvordan vi skal løse det med hvor arrangementene skal ligge?
     public ArrayList<Arrangement> alleArrangementer = new ArrayList<>();
     public ArrayList<Arrangement> konsertArrangementer = new ArrayList<>();
     public ArrayList<Arrangement> foredragsArrangementer = new ArrayList<>();
@@ -17,8 +16,8 @@ public class LokalRegister {
     public ArrayList<Arrangement> teaterArrangementer = new ArrayList<>();
 
     public LokalRegister() {
-        leggInnFilmer();
-        leggInnTeaterforestilling();
+        leggInnArrangementer();
+        fyllAlleArrangementerArray();
     }
 
     Foredragssal foredragsal = new Foredragssal(100, foredragsArrangementer, 1);
@@ -34,54 +33,91 @@ public class LokalRegister {
         return forestillingsAnsvarlig.getNavn();
     }
 
+    //TODO: må spørre igjen om hvorfor det kommer strek over dato (duplicated?)
+
     // Oppretter kinofilmer:
-    Dato dato = new Dato(20,03,2019);
-    Klokkeslett klokkeslett = new Klokkeslett(18,30);
+    Date dato = new Date(2019, 07, 23, 18, 30);
     ForestillingsArrangement kinofilm = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, klokkeslett, 100, TypeArrangement.KINO);
+            (forestillingsAnsvarlig, "Pulp Fiction", 110, dato, 100, TypeArrangement.KINO);
 
-    Dato dato2 = new Dato(20,03,2019);
-    Klokkeslett klokkeslett2 = new Klokkeslett(18,30);
+    Date dato2 = new Date(2019, 07, 25, 18, 00);
     ForestillingsArrangement kinofilm2 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, klokkeslett2,100, TypeArrangement.KINO);
+            (forestillingsAnsvarlig, "The Hateful Eight", 120, dato2, 100, TypeArrangement.KINO);
 
-    Dato dato3 = new Dato(20,03,2019);
-    Klokkeslett klokkeslett3 = new Klokkeslett(18,30);
+    Date dato3 = new Date(2019, 07, 28, 21, 00);
     ForestillingsArrangement kinofilm3 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, klokkeslett3, 100, TypeArrangement.KINO);
+            (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, dato3, 100, TypeArrangement.KINO);
 
 
     // Oppretter teaterforestilling:
-    Dato dato4 = new Dato(20,03,2019);
-    Klokkeslett klokkeslett4 = new Klokkeslett(18,30);
+    Date dato4 = new Date(2019, 07, 23, 18, 30);
     ForestillingsArrangement teaterforestilling = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Sweeney Todd", 200, dato4, klokkeslett4, 100, TypeArrangement.TEATER);
+            (forestillingsAnsvarlig, "Sweeney Todd", 200, dato4, 100, TypeArrangement.TEATER);
 
-    Dato dato5 = new Dato(2019, 07, 23);
-    Klokkeslett klokkeslett5 = new Klokkeslett(18,30);
+    Date dato5 = new Date(2019, 07, 23, 18, 30);
     ForestillingsArrangement teaterforestilling2 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Cats", 220, dato5, klokkeslett5, 100, TypeArrangement.TEATER);
+            (forestillingsAnsvarlig, "Cats", 220, dato5, 100, TypeArrangement.TEATER);
 
-    Dato dato6 = new Dato(2019, 07, 23);
-    Klokkeslett klokkeslett6 = new Klokkeslett(18,30);
+    Date dato6 = new Date(2019, 07, 23, 18, 30);
     ForestillingsArrangement teaterforestilling3 = new ForestillingsArrangement
-            (forestillingsAnsvarlig, "Les Miserables", 250, dato6, klokkeslett6, 100, TypeArrangement.TEATER);
+            (forestillingsAnsvarlig, "Les Miserables", 250, dato6, 100, TypeArrangement.TEATER);
 
 
-    public void leggInnFilmer() {
+    public void leggInnArrangementer() {
+        teaterArrangementer.add(teaterforestilling);
+        teaterArrangementer.add(teaterforestilling2);
+        teaterArrangementer.add(teaterforestilling3);
         kinoArrangementer.add(kinofilm);
         kinoArrangementer.add(kinofilm2);
         kinoArrangementer.add(kinofilm3);
+
+    }
+
+    //TODO: kan man finne antall solgte og antall billetter igjen slik?
+    public int antallSolgte(Arrangement etArrangement){
+
+        int teller = 0;
+        for(Billett enBillett:etArrangement.billetter){
+            if(!etArrangement.billetter.contains(null)){
+                teller++;
+                return teller;
+            }
+        }
+        return teller;
+    }
+
+    public int antallBilletterIgjen(Arrangement etArrangement){
+
+        int teller = 0;
+        for(Billett enBillett:etArrangement.billetter){
+            if(etArrangement.billetter.contains(null)){
+                teller++;
+                return teller;
+            }
+        }
+        return teller;
+    }
+
+
+   //TODO: Se om vi trenger fyllAlleArrangementerArray, eller skal dette gjøres fra starten av fra fil?
+
+    public void fyllAlleArrangementerArray(){
+        for(Arrangement etArrangement : kinoArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+        for(Arrangement etArrangement : teaterArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+        for(Arrangement etArrangement : foredragsArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
+        for(Arrangement etArrangement : kinoArrangementer){
+            alleArrangementer.add(etArrangement);
+        }
     }
 
     public void registrerKinoArrangement(Arrangement etArrangement) {
         kinoArrangementer.add(etArrangement);
-    }
-
-    public void leggInnTeaterforestilling() {
-        teaterArrangementer.add(teaterforestilling);
-        teaterArrangementer.add(teaterforestilling2);
-        teaterArrangementer.add(teaterforestilling3);
     }
 
     public void registrerTeaterArrangement(Arrangement etArrangement) {
@@ -130,11 +166,10 @@ public class LokalRegister {
     }
 
     //Metoden som formaterer arraylisten med arrangementer til string, som igjen brukes i combobox menyen i GUIet
-    //TODO: Må ha med klokkeslett her også dersom det skal med
     public ArrayList ArrayTilString(ArrayList<Arrangement> arraylist) {
         ArrayList<String> navnOgTidArrangementer = new ArrayList<>();
         for (int i = 0; i < arraylist.size(); i++) {
-            navnOgTidArrangementer.add(arraylist.get(i).getArrangementNavn() + ": " + arraylist.get(i).getKlokkeslett()+" den "+arraylist.get(i).getDato());
+            navnOgTidArrangementer.add(arraylist.get(i).getArrangementNavn() + ": " +arraylist.get(i).getTidspunkt());
         }
         return navnOgTidArrangementer;
     }

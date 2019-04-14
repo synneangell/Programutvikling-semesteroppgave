@@ -1,7 +1,5 @@
 package org.openjfx.controller.uihelpers;
 
-import javafx.scene.control.TextField;
-
 public class SjekkOmGyldig {
 
     public static String sjekkGyldigEmail(String email) throws InvalidEmailException {
@@ -17,12 +15,11 @@ public class SjekkOmGyldig {
             int innTall = Integer.parseInt(telefonNr);
             if (innTall > 0) {
                 return 0;
-            } else {
-                return -1;
             }
         } catch (NumberFormatException e) {
-            return -2;
+            return -1;
         }
+        return 0;
     }
 
     public static boolean sjekkGyldigNavn(String navn) throws InvalidInputException {
@@ -43,4 +40,12 @@ public class SjekkOmGyldig {
 
     //TODO: må lage en try/catch under alle disse metodene sånn at programmet ikke skal krasje og brukeren kan fortsette å skrive inn
     // etter at feilmeldingen kommer opp i en boks (alert - dette må også fikses).
+
+ /*   try {
+
+
+    } catch (IOException e){
+
+    }*/
+
 }

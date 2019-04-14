@@ -46,6 +46,9 @@ public class KulturhusetController implements Initializable {
     @FXML
     private TableColumn<Arrangement, String> DatoColumn;
 
+    @FXML
+    private AnchorPane rootPane;
+
 
 
     @FXML
@@ -63,23 +66,23 @@ public class KulturhusetController implements Initializable {
     }*/
 
     @FXML
-    void kjøpBillett (ActionEvent event) {
+    void kjøpBillett (ActionEvent event) throws IOException {
         launchKjøpBillett();
     }
 
     @FXML
-    void bookLokale (ActionEvent event) {
+    void bookLokale (ActionEvent event) throws IOException {
         launchBookLokale();
     }
 
-    private void launchKjøpBillett() {
-
-
-    }
-
-    private void launchBookLokale() {
+    private void launchKjøpBillett() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kjøpBillett.fxml"));
         rootPane.getChildren().setAll(pane);
+    }
+
+    private void launchBookLokale() throws IOException {
+        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/org/openjfx/bookLokale.fxml"));
+        rootPane.getChildren().setAll(pane2);
     }
 
     @FXML
@@ -96,11 +99,11 @@ public class KulturhusetController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Setter opp kolonnene i Table View - tabellen
-        ArrangementColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
-        KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("Klokkeslett"));
-        DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("dato"));
+        //ArrangementColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
+       //KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("Klokkeslett"));
+        //DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement,String>("dato"));
 
-        tvVisArrangementer.setItems(getArrangement());
+        //tvVisArrangementer.setItems(getArrangement());
     }
 
     public ObservableList<Arrangement> getArrangement() {

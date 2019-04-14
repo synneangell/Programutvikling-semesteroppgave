@@ -11,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.*;
@@ -53,7 +52,7 @@ public class BookLokaleController {
     private TextField txtTidspunkt;
 
     @FXML
-    private TextField txtDato;
+    private DatePicker dpDato;
 
     @FXML
     private TextField txtDeltakerNavn;
@@ -71,13 +70,14 @@ public class BookLokaleController {
     private Button btnAvslutt;
 
     @FXML
+    private Button btnTilbake;
+
+    @FXML
     private ChoiceBox velgTypeArrangement;
 
     @FXML
     private AnchorPane rootBookLokale;
 
-    public BookLokaleController() throws ParseException {
-    }
 
 
     @FXML
@@ -136,10 +136,12 @@ public class BookLokaleController {
 
             try{    //MÅ SE OM IGJEN PÅ HELE DELEN MED PARSING TIL DATOFORMAT
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
-                int innTid = Integer.parseInt(txtTidspunkt.getText());
-                int innDato = Integer.parseInt(txtDato.getText());
+
                 //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
-               /* Date tidspunkt = new Date(innDato, innTid);
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                String innTidspunkt = dpDato.getValue()+" "+txtTidspunkt.getText();
+                Date tidspunkt = format.parse(innTidspunkt);
                 System.out.println(tidspunkt);
 
                 if(konsert){
@@ -151,7 +153,7 @@ public class BookLokaleController {
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
                     kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
                     lokalregister.registrerForedragsArrangement(etDeltakerArrangement);
-                } */
+                }
 
             }
             catch(Exception e){

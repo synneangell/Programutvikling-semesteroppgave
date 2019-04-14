@@ -5,7 +5,8 @@ import java.util.Date;
 
 public class ForestillingsArrangement extends Arrangement {
 
-    public ForestillingsArrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Dato dato, Klokkeslett klokkeslett, int antallBilletter, TypeArrangement typeArrangement) {
-        super(kontaktperson, arrangementNavn, billettpris, dato, klokkeslett, antallBilletter, typeArrangement);
+    public ForestillingsArrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris,
+                                    Date tidspunkt, int antallBilletter, TypeArrangement typeArrangement) {
+        super(kontaktperson, arrangementNavn, billettpris, tidspunkt, antallBilletter, typeArrangement);
     }
 }

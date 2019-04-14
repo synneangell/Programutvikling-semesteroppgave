@@ -15,7 +15,6 @@ import org.openjfx.controller.uihelpers.SjekkOmGyldig;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -81,9 +80,6 @@ public class KjøpBillettController {
     @FXML
     private AnchorPane rootKjøpBillett;
 
-    public KjøpBillettController() throws ParseException {
-    }
-
     @FXML
     public void initialize() {
         chboxVelgBillettType.setItems(BillettType);
@@ -114,8 +110,6 @@ public class KjøpBillettController {
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException, InvalidInputException, NumberFormatException {
 
-        //finnArrangement();
-
         // Hvis alle feltene på Billettkjøp er fylt ut/ valgt..
        /* if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()
                 && chboxVelgBillettType.getOnAction().equals(true)
@@ -137,20 +131,31 @@ public class KjøpBillettController {
         //Oppretter x billetter:
         int antallBilletter = Integer.valueOf((String)chboxVelgAntall.getValue());
         for (int i = 0; i < antallBilletter; i++) {
-            Billett enBillett = new Billett(kjøper, null);
-            System.out.println("Jeg er her");
+            Billett enBillett = new Billett(kjøper, finnArrangement());
             billettRegister.registrerBillett(enBillett);
         }
+
+
     }
 
-    /*
-    public Arrangement finnArrangement() throws ParseException {
-        for(int i = 0; i<lokalRegister.ArrayTilString(lokalRegister.kinoArrangementer).size(); i++){
-            if(
+    public Arrangement finnArrangement() {
+        //splitte String valgtForestilling og finne arrangementNavn og tidspunkt i arraylisten med alle arrangementer?
+        String valgtForestilling = String.valueOf(chboxVelgForestilling.getValue());
+        System.out.println(valgtForestilling);
+        String[] arrOfStr = valgtForestilling.split(": ");
+        String navnArrangementFraSplit = arrOfStr[0];
+        String tidspunktFraSplit = arrOfStr[1];
 
+        Date dato = new Date(tidspunktFraSplit);
+
+        for (Arrangement etArrangement : lokalRegister.alleArrangementer) {
+            if (etArrangement.getArrangementNavn().equals(navnArrangementFraSplit) && etArrangement.getTidspunkt().equals(dato)) {
+                return etArrangement;
             }
         }
-    }                  */
+        return null;
+
+    }
 
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
