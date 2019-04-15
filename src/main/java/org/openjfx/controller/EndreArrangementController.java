@@ -42,7 +42,6 @@ public class EndreArrangementController {
     @FXML
     private TableColumn<Arrangement, String> DatoColumn;
 
-    ModelViewArrangement tabellInformasjon = new ModelViewArrangement();
 
     @FXML
     public void initialize() {
@@ -52,7 +51,7 @@ public class EndreArrangementController {
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
 
-        Tableview.setItems(tabellInformasjon.getArrangementer());
+        Tableview.setItems(ModelViewArrangement.getArrangementer());
 
         Tableview.setEditable(true);
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());

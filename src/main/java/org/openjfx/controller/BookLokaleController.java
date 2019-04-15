@@ -18,7 +18,6 @@ public class BookLokaleController {
 
     SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
     ObservableList<String> typeArrangementer = FXCollections.observableArrayList("Konsert", "Foredrag");
-    LokalRegister lokalregister = new LokalRegister();
 
     @FXML
     private TextField txtNavn;
@@ -86,8 +85,6 @@ public class BookLokaleController {
     @FXML
     private TableColumn<Arrangement, String> DatoColumn;
 
-    ModelViewArrangement tabellInformasjon = new ModelViewArrangement();
-
     @FXML
     public void initialize() {
         // Setter opp kolonnene i Table View - tabellen
@@ -96,7 +93,7 @@ public class BookLokaleController {
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
 
-        Tableview.setItems(tabellInformasjon.getArrangementer());
+        Tableview.setItems(ModelViewArrangement.getArrangementer());
         velgTypeArrangement.setItems(typeArrangementer);
         velgTypeArrangement.setValue("Konsert");
     }
@@ -137,13 +134,13 @@ public class BookLokaleController {
 
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
-                                    txtTidspunkt.getText(), tabellInformasjon.antallPlasserKonsertsal(), TypeArrangement.KONSERT);
+                                    txtTidspunkt.getText(), ModelViewArrangement.antallPlasserKonsertsal(), TypeArrangement.KONSERT);
                     Tableview.getItems().add(etDeltakerArrangement);
                     skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
                 } else if (foredrag) {
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
-                                    txtTidspunkt.getText(), tabellInformasjon.antallPlasserForedragssal(), TypeArrangement.FOREDRAG);
+                                    txtTidspunkt.getText(), ModelViewArrangement.antallPlasserForedragssal(), TypeArrangement.FOREDRAG);
                     Tableview.getItems().add(etDeltakerArrangement);
                     skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
 

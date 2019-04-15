@@ -3,18 +3,20 @@ package org.openjfx.base;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import static org.openjfx.base.LokalRegister.antallPlasser;
+import static org.openjfx.base.LokalRegister.leggTilLokaler;
+
 public class ModelViewArrangement {
-    LokalRegister lokalregister = new LokalRegister();
 
     public ModelViewArrangement(){
        // leggArrangementerILokaler();
-        lokalregister.leggTilLokaler(foredragssal);
-        lokalregister.leggTilLokaler(konsertsal);
-        lokalregister.leggTilLokaler(teatersal);
-        lokalregister.leggTilLokaler(kinosal);
+        leggTilLokaler(foredragssal);
+        leggTilLokaler(konsertsal);
+        leggTilLokaler(teatersal);
+        leggTilLokaler(kinosal);
     }
 
-    public ObservableList<Arrangement> getArrangementer(){
+    public static ObservableList<Arrangement> getArrangementer(){
         // Oppretter en kontaktperson som er ansvarlig for kino- og teatervisninger
         Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
                 "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
@@ -54,12 +56,12 @@ public class ModelViewArrangement {
         return arrangementer;
     }
 
-    Foredragssal foredragssal = new Foredragssal(100,  1);
-    Konsertsal konsertsal = new Konsertsal(400, 2);
-    Teatersal teatersal = new Teatersal(100, 3);
-    Kinosal kinosal = new Kinosal(100, 4);
+    static Foredragssal foredragssal = new Foredragssal(100,  1);
+    static Konsertsal konsertsal = new Konsertsal(400, 2);
+    static Teatersal teatersal = new Teatersal(100, 3);
+    static Kinosal kinosal = new Kinosal(100, 4);
 
-    public void leggArrangementerILokaler(){
+    public static void leggArrangementerILokaler(){
         for(Arrangement etArrangement : getArrangementer()){
             if(etArrangement.typeArrangement == TypeArrangement.KINO){
                 kinosal.leggTilArrangement(etArrangement);
@@ -76,12 +78,12 @@ public class ModelViewArrangement {
         }
     }
 
-    public int antallPlasserKonsertsal(){
-        return lokalregister.antallPlasser(konsertsal);
+    public static int antallPlasserKonsertsal(){
+        return antallPlasser(konsertsal);
     }
 
-    public int antallPlasserForedragssal(){
-        return lokalregister.antallPlasser(foredragssal);
+    public static int antallPlasserForedragssal(){
+        return antallPlasser(foredragssal);
     }
 
 
