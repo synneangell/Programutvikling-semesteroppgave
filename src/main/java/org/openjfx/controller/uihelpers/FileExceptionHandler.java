@@ -6,11 +6,11 @@ import java.io.IOException;
 
 public class FileExceptionHandler {
 
-    public static void generateIOExceptionMsg(IOException e) {
+    public static void generateAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Filhåndtering feil");
-        alert.setHeaderText("Filhåndtering feil");
-        alert.setContentText("Feil oppstod i lagringen av personen. \nMelding: " + e.getMessage());
+        alert.setTitle("Feil persondata");
+        alert.setHeaderText("Feil persondata");
+        alert.setContentText(msg);
 
         alert.showAndWait();
     }

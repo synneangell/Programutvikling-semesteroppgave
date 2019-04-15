@@ -56,9 +56,8 @@ public class EndreArrangementController {
 
         Tableview.setEditable(true);
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-       KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         DatoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
     }
 
     public void endreNavnArrangement(TableColumn.CellEditEvent endretCelle) {
@@ -84,7 +83,6 @@ public class EndreArrangementController {
             alleArrangementer.remove(etArrangement);
         }
     }
-
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
     private void avsluttProgram() {

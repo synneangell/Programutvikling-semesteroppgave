@@ -13,6 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.Filbehandling.SkriveTilJobjFil;
 import org.openjfx.base.*;
+import org.openjfx.controller.uihelpers.InvalidInputException;
+import org.openjfx.controller.uihelpers.SjekkOmGyldig;
 
 public class BookLokaleController {
 
@@ -21,49 +23,8 @@ public class BookLokaleController {
     LokalRegister lokalregister = new LokalRegister();
 
     @FXML
-    private TextField txtNavn;
-
-    @FXML
-    private TextField txtTelefonnummer;
-
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private TextField txtNettside;
-
-    @FXML
-    private TextField txtAndreOpplysninger;
-
-    @FXML
-    private TextField txtVirksomhet;
-
-    @FXML
-    private TextField txtNavnArrangement;
-
-    @FXML
-    private TextField txtBillettpris;
-
-    @FXML
-    private TextField txtTidspunkt;
-
-    @FXML
-    private TextField txtDato;
-
-    @FXML
-    private TextField txtDeltakerNavn;
-
-    @FXML
-    private TextField txtEgenskapDeltaker;
-
-    @FXML
-    private Label lblFullførBestilling;
-
-    @FXML
-    private Label lblOversiktOpplysninger;
-
-    @FXML
-    private Button btnAvslutt;
+    private TextField txtNavn, txtTelefonnummer, txtEmail, txtNettside, txtAndreOpplysninger, txtVirksomhet,
+            txtNavnArrangement, txtBillettpris, txtTidspunkt, txtDato, txtDeltakerNavn, txtEgenskapDeltaker;
 
     @FXML
     private ChoiceBox velgTypeArrangement;
@@ -102,7 +63,7 @@ public class BookLokaleController {
     }
 
     @FXML
-    void fullførBooking(ActionEvent event) throws ParseException {
+    void fullførBooking(ActionEvent event) throws ParseException, InvalidInputException {
 
         boolean konsert = false;
         boolean foredrag = false;
@@ -122,6 +83,11 @@ public class BookLokaleController {
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()) {
 
 
+            SjekkOmGyldig.sjekkGyldigNavn(txtNavn.getText());
+            SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText());
+            SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText());
+
+
             Kontaktperson kontaktperson = new Kontaktperson(
                     txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText(),
                     txtNettside.getText(), txtAndreOpplysninger.getText(), txtVirksomhet.getText());
@@ -131,7 +97,7 @@ public class BookLokaleController {
 
             try {
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
-
+                SjekkOmGyldig.sjekkGyldigBillettPris(billettpris);
 
                 if (konsert) {
 
@@ -152,12 +118,9 @@ public class BookLokaleController {
             } catch (Exception e) {
                 //feilmelding ut til bruker
                 String feilmelding = "Noe gikk galt.";
-                lblFullførBestilling.setText(feilmelding);
 
             }
-
         }
-
     }
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:

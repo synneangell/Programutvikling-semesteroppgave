@@ -24,13 +24,7 @@ public class KjøpBillettController {
     ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 
     @FXML
-    private TextField txtNavn;
-
-    @FXML
-    private TextField txtTelefonnummer;
-
-    @FXML
-    private TextField txtEmail;
+    private TextField txtNavn, txtTelefonnummer, txtEmail;
 
     @FXML
     private ComboBox chboxVelgAntall;
@@ -69,13 +63,11 @@ public class KjøpBillettController {
         chboxVelgAntall.setValue("1");
     }
 
-
     // Skriver ut info om kjøp på Kjøp Billetter
     @FXML
     public void DittKjøp(ActionEvent event) {
 
     }
-
 
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException, IOException {
@@ -116,4 +108,3 @@ public class KjøpBillettController {
             rootKjøpBillett.getChildren().setAll(pane);
         }
     }
-

@@ -13,7 +13,7 @@ public class SjekkOmGyldig {
     public static int sjekkGyldigTlfNr(String telefonNr) throws NumberFormatException {
         try {
             int innTall = Integer.parseInt(telefonNr);
-            if (innTall > 0) {
+            if (innTall > 0 || innTall < 9) {
                 return 0;
             }
         } catch (NumberFormatException e) {
