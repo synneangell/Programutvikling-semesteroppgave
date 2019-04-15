@@ -19,8 +19,7 @@ import java.text.ParseException;
 public class KjøpBillettController {
 
     SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
-    BillettRegister billettregister = new BillettRegister();
-    ModelViewArrangement tabellInformasjon = new ModelViewArrangement();
+    BillettRegister billettregister = new BillettRegister();        //TODO: se på denne
     ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 
     @FXML
@@ -58,7 +57,7 @@ public class KjøpBillettController {
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
 
-        tableView.setItems(tabellInformasjon.getArrangementer());
+        tableView.setItems(ModelViewArrangement.getArrangementer());
         chboxVelgAntall.setItems(AntallBilletter);
         chboxVelgAntall.setValue("1");
     }
@@ -73,6 +72,8 @@ public class KjøpBillettController {
     void fullførBestilling(ActionEvent event) throws ParseException, IOException {
 
         if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()) {
+
+
 
             Arrangement etArrangement = tableView.getSelectionModel().getSelectedItem();
 

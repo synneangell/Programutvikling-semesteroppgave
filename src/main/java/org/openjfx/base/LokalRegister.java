@@ -9,13 +9,13 @@ import java.util.Date;
 
 public class LokalRegister {
 
-    ArrayList<Lokale> lokaler = new ArrayList<>();
+    static ArrayList<Lokale> lokaler = new ArrayList<>();
 
-    public void leggTilLokaler(Lokale lokale) {
+    public static void leggTilLokaler(Lokale lokale) {
         lokaler.add(lokale);
     }
 
-    public int antallPlasser(Lokale etLokale){
+    public static int antallPlasser(Lokale etLokale){
         return etLokale.getPlasser();
     }
 

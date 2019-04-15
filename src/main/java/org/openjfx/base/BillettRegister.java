@@ -30,6 +30,7 @@ public class BillettRegister {
         return teller;
     }
 
+    //TODO: hvorfor fungerer ikke denne?
     public int antallBilletterIgjen(Arrangement etArrangement){
 
         int teller = 0;

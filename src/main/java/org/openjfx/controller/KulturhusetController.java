@@ -4,10 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import org.openjfx.base.ModelViewArrangement;
 
 import java.io.IOException;
 
 public class KulturhusetController {
+
+    ModelViewArrangement allInformasjon = new ModelViewArrangement();
 
     @FXML
     private AnchorPane rootPane;
@@ -27,6 +30,11 @@ public class KulturhusetController {
         launchBookLokale();
     }
 
+    @FXML
+    void lesInnBestilling (ActionEvent event) throws IOException {
+        launchLesInnBestillinger();
+    }
+
     private void launchKjøpBillett() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kjøpBillett.fxml"));
         rootPane.getChildren().setAll(pane);
@@ -40,6 +48,12 @@ public class KulturhusetController {
     private void launchEndreArrangement() throws IOException {
         AnchorPane pane3 = FXMLLoader.load(getClass().getResource("/org/openjfx/endreArrangement.fxml"));
         rootPane.getChildren().setAll(pane3);
+    }
+
+
+    private void launchLesInnBestillinger() throws IOException {
+        AnchorPane pane4 = FXMLLoader.load(getClass().getResource("/org/openjfx/lesInnBestillinger.fxml"));
+        rootPane.getChildren().setAll(pane4);
     }
 
 
