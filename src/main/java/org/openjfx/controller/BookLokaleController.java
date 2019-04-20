@@ -79,11 +79,10 @@ public class BookLokaleController {
                 !txtTidspunkt.getText().isEmpty() && !txtDato.getText().isEmpty() &&
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()) {
 
-
-            SjekkOmGyldig.sjekkGyldigNavn(txtNavn.getText());
+            /*SjekkOmGyldig.sjekkGyldigNavn(txtNavn.getText());
             SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText());
-            SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText());
-
+            SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText());*/
+            //SjekkOmGyldig.sjekkGyldigBillettPris(txtBillettpris.getText());
 
             Kontaktperson kontaktperson = new Kontaktperson(
                     txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText(),
@@ -91,10 +90,8 @@ public class BookLokaleController {
 
             Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(), txtEgenskapDeltaker.getText());
 
-
             try {
                 int billettpris = Integer.parseInt(txtBillettpris.getText());
-                SjekkOmGyldig.sjekkGyldigBillettPris(billettpris);
 
                 if (konsert) {
 
@@ -109,7 +106,6 @@ public class BookLokaleController {
                                     txtTidspunkt.getText(), ModelViewArrangement.antallPlasserForedragssal(), TypeArrangement.FOREDRAG);
                     Tableview.getItems().add(etDeltakerArrangement);
                     skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
-
                 }
 
             } catch (Exception e) {

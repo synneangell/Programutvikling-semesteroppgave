@@ -60,9 +60,9 @@ public class KjøpBillettController {
         tableView.setItems(ModelViewArrangement.getArrangementer());
         chboxVelgAntall.setItems(AntallBilletter);
         chboxVelgAntall.setValue("1");
-    }
+}
 
-    // Skriver ut info om kjøp på Kjøp Billetter
+    // Skriver ut info om kjøp på Kjøp Billetter, trenger vi denne?
     @FXML
     public void DittKjøp(ActionEvent event) {
 

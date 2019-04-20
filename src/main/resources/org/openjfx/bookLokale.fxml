@@ -10,48 +10,48 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootBookLokale" prefHeight="702.0" prefWidth="754.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.BookLokaleController">
+<AnchorPane fx:id="rootBookLokale" prefHeight="728.0" prefWidth="754.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.BookLokaleController">
    <children>
-      <Label layoutX="19.0" layoutY="57.0" prefHeight="20.0" prefWidth="293.0" styleClass="overskrift" stylesheets="@styles.css" text="Gjør endringer på eksisterende arrangementer:" />
-      <Label layoutX="8.0" layoutY="319.0" prefHeight="17.0" prefWidth="155.0" styleClass="underoverskrift" text="Velg type arrangement:" />
-      <Label layoutX="15.0" layoutY="442.0" text="Navn:" />
-      <Label layoutX="15.0" layoutY="494.0" text="Telefonnummer:" />
-      <Label layoutX="212.0" layoutY="494.0" text="E-mail:" />
-      <Label layoutX="348.0" layoutY="564.0" prefHeight="17.0" prefWidth="155.0" styleClass="underoverskrift" text="Deltakeropplysninger" />
-      <Label layoutX="205.0" layoutY="442.0" text="Nettside:" />
-      <Label layoutX="401.0" layoutY="442.0" text="Virksomhet:" />
-      <Label layoutX="13.0" layoutY="538.0" prefHeight="20.0" prefWidth="143.0" text="Andre opplysninger:" />
-      <Label layoutX="13.0" layoutY="296.0" prefHeight="17.0" prefWidth="170.0" styleClass="underoverskrift" text="Opprett nytt arrangement" />
-      <Label layoutX="348.0" layoutY="580.0" prefHeight="17.0" prefWidth="213.0" text="Navn på artist/foredragsholder:" />
-      <Label layoutX="184.0" layoutY="318.0" prefHeight="20.0" prefWidth="143.0" text="Navn på arrangement:" />
-      <Label layoutX="376.0" layoutY="318.0" prefHeight="20.0" prefWidth="143.0" text="Billettpris:" />
-      <Label layoutX="14.0" layoutY="372.0" prefHeight="20.0" prefWidth="143.0" text="Dato (dd/mm/åååå):" />
-      <TextField fx:id="txtNavn" layoutX="14.0" layoutY="459.0" />
-      <TextField fx:id="txtTelefonnummer" layoutX="14.0" layoutY="511.0" />
-      <TextField fx:id="txtEmail" layoutX="205.0" layoutY="511.0" />
-      <TextField fx:id="txtNettside" layoutX="209.0" layoutY="459.0" />
-      <TextField fx:id="txtAndreOpplysninger" layoutX="11.0" layoutY="560.0" prefHeight="122.0" prefWidth="312.0" />
-      <TextField fx:id="txtVirksomhet" layoutX="391.0" layoutY="459.0" />
-      <TextField fx:id="txtNavnArrangement" layoutX="178.0" layoutY="337.0" />
-      <TextField fx:id="txtBillettpris" layoutX="364.0" layoutY="337.0" />
-      <TextField fx:id="txtDeltakerNavn" layoutX="342.0" layoutY="594.0" />
-      <Button fx:id="btnFullførBestilling" layoutX="580.0" layoutY="621.0" mnemonicParsing="false" onAction="#fullførBooking" styleClass="knapp" text="Fullfør booking" />
-      <Button fx:id="btnTilbake" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#Tilbake" prefHeight="27.0" prefWidth="74.0" styleClass="knapp" text="Tilbake" />
-      <Button fx:id="btnAvslutt" layoutX="577.0" layoutY="655.0" mnemonicParsing="false" onAction="#Avslutt" prefHeight="27.0" prefWidth="116.0" styleClass="knapp" text="Avslutt" />
-      <TextField fx:id="txtTidspunkt" layoutX="205.0" layoutY="394.0" promptText="tt:mm" />
-      <Label layoutX="205.0" layoutY="372.0" prefHeight="20.0" prefWidth="143.0" text="Tidspunkt (tt:mm ):" />
-      <MenuButton fx:id="mbtnKvitteringForBooking" layoutX="577.0" layoutY="584.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="155.0" text="Lagre kvittering ">
+      <Label layoutX="15.0" layoutY="68.0" prefHeight="20.0" prefWidth="363.0" styleClass="underoverskrift" stylesheets="@styles.css" text="Gjør endringer på eksisterende arrangementer:" />
+      <Label layoutX="12.0" layoutY="328.0" prefHeight="20.0" prefWidth="178.0" text="Velg type arrangement:" />
+      <Label layoutX="15.0" layoutY="451.0" text="Navn:" />
+      <Label layoutX="14.0" layoutY="503.0" text="Telefonnummer:" />
+      <Label layoutX="213.0" layoutY="503.0" text="E-mail:" />
+      <Label layoutX="342.0" layoutY="571.0" prefHeight="20.0" prefWidth="167.0" styleClass="underoverskrift" text="Deltakeropplysninger" />
+      <Label layoutX="207.0" layoutY="451.0" text="Nettside:" />
+      <Label layoutX="391.0" layoutY="451.0" text="Virksomhet:" />
+      <Label layoutX="22.0" layoutY="561.0" prefHeight="20.0" prefWidth="143.0" text="Andre opplysninger:" />
+      <Label layoutX="8.0" layoutY="307.0" prefHeight="20.0" prefWidth="213.0" styleClass="underoverskrift" text="Opprett nytt arrangement" />
+      <Label layoutX="342.0" layoutY="590.0" prefHeight="17.0" prefWidth="213.0" text="Navn på artist/foredragsholder:" />
+      <Label layoutX="205.0" layoutY="327.0" prefHeight="20.0" prefWidth="143.0" text="Navn på arrangement:" />
+      <Label layoutX="393.0" layoutY="328.0" prefHeight="20.0" prefWidth="143.0" text="Billettpris:" />
+      <Label layoutX="14.0" layoutY="382.0" prefHeight="20.0" prefWidth="143.0" text="Dato:" />
+      <TextField fx:id="txtNavn" layoutX="12.0" layoutY="473.0" />
+      <TextField fx:id="txtTelefonnummer" layoutX="14.0" layoutY="525.0" />
+      <TextField fx:id="txtEmail" layoutX="205.0" layoutY="525.0" />
+      <TextField fx:id="txtNettside" layoutX="205.0" layoutY="473.0" />
+      <TextField fx:id="txtAndreOpplysninger" layoutX="15.0" layoutY="587.0" prefHeight="122.0" prefWidth="312.0" />
+      <TextField fx:id="txtVirksomhet" layoutX="391.0" layoutY="473.0" />
+      <TextField fx:id="txtNavnArrangement" layoutX="205.0" layoutY="351.0" />
+      <TextField fx:id="txtBillettpris" layoutX="391.0" layoutY="351.0" />
+      <TextField fx:id="txtDeltakerNavn" layoutX="342.0" layoutY="608.0" />
+      <Button fx:id="btnFullførBestilling" layoutX="578.0" layoutY="621.0" mnemonicParsing="false" onAction="#fullførBooking" styleClass="andreKnapper" stylesheets="@styles.css" text="Fullfør booking" />
+      <Button fx:id="btnTilbake" layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#Tilbake" prefHeight="27.0" prefWidth="87.0" styleClass="andreKnapper" stylesheets="@styles.css" text="Tilbake" />
+      <Button fx:id="btnAvslutt" layoutX="593.0" layoutY="669.0" mnemonicParsing="false" onAction="#Avslutt" prefHeight="27.0" prefWidth="116.0" styleClass="andreKnapper" text="Avslutt" />
+      <TextField fx:id="txtTidspunkt" layoutX="205.0" layoutY="404.0" promptText="tt:mm" />
+      <Label layoutX="205.0" layoutY="382.0" prefHeight="20.0" prefWidth="143.0" text="Tidspunkt:" />
+      <MenuButton fx:id="mbtnKvitteringForBooking" layoutX="558.0" layoutY="571.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="186.0" styleClass="andreKnapper" stylesheets="@styles.css" text="Lagre kvittering ">
          <items>
             <MenuItem mnemonicParsing="false" text=".csv" />
             <MenuItem mnemonicParsing="false" text=".jobj" />
          </items>
       </MenuButton>
-      <Label layoutX="341.0" layoutY="626.0" prefHeight="17.0" prefWidth="213.0" text="Egenskap til deltaker:" />
-      <TextField fx:id="txtEgenskapDeltaker" layoutX="342.0" layoutY="643.0" />
-      <ChoiceBox fx:id="velgTypeArrangement" layoutX="10.0" layoutY="337.0" prefWidth="150.0" />
-      <Label layoutX="13.0" layoutY="420.0" styleClass="underoverskrift" text="Kontaktopplysninger:" />
-      <TextField fx:id="txtDato" layoutX="14.0" layoutY="392.0" promptText="dd/mm/åååå" />
-      <TableView fx:id="Tableview" layoutX="13.0" layoutY="87.0" prefHeight="200.0" prefWidth="728.0">
+      <Label layoutX="342.0" layoutY="648.0" prefHeight="17.0" prefWidth="213.0" text="Egenskap til deltaker:" />
+      <TextField fx:id="txtEgenskapDeltaker" layoutX="344.0" layoutY="669.0" />
+      <ChoiceBox fx:id="velgTypeArrangement" layoutX="11.0" layoutY="351.0" prefWidth="150.0" />
+      <Label layoutX="13.0" layoutY="431.0" styleClass="underoverskrift" text="Kontaktopplysninger:" />
+      <TextField fx:id="txtDato" layoutX="12.0" layoutY="404.0" promptText="dd/mm/åååå" />
+      <TableView fx:id="Tableview" layoutX="13.0" layoutY="96.0" prefHeight="200.0" prefWidth="728.0">
         <columns>
           <TableColumn fx:id="TypeColumn" prefWidth="75.0" text="Type" />
           <TableColumn fx:id="ArrangementNavnColumn" prefWidth="313.0" text="Arrangementnavn" />
@@ -59,6 +59,6 @@
             <TableColumn fx:id="DatoColumn" prefWidth="125.0" text="Dato" />
         </columns>
       </TableView>
-      <Label layoutX="240.0" layoutY="28.0" prefHeight="20.0" prefWidth="249.0" styleClass="overskrift" stylesheets="@styles.css" text="Opprett/gjør endringer på arrangement" />
+      <Label layoutX="188.0" layoutY="30.0" prefHeight="23.0" prefWidth="426.0" styleClass="overskrift" stylesheets="@styles.css" text="Opprett/gjør endringer på arrangement" />
    </children>
 </AnchorPane>

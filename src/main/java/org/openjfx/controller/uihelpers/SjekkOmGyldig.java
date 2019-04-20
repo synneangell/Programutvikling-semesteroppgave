@@ -5,7 +5,7 @@ public class SjekkOmGyldig {
     public static String sjekkGyldigEmail(String email) throws InvalidEmailException {
         String[] splitStrAlpha = email.split("@");
         if (splitStrAlpha.length != 2) {
-            throw new InvalidEmailException(email + "er ikke en gyldig email-adresse.");
+            throw new InvalidEmailException(email + " er ikke en gyldig email-adresse.");
         }
         return email;
     }

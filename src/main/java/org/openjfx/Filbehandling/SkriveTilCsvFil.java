@@ -15,8 +15,6 @@ import java.nio.file.Paths;
 public class SkriveTilCsvFil extends SkriveTilFil {
 
 
-
-
         public void skrivBillett(List<Billett> billetter, String path) throws IOException {
             PrintWriter writer = null;
 

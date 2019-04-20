@@ -18,14 +18,8 @@ public class EndreArrangementController {
 
     SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
 
-   @FXML
-    private Button btnAvslutt;
-
     @FXML
     private AnchorPane rootEndreArrangement;
-
-    @FXML
-    private Button btnSlettArrangement;
 
     @FXML
     private TableView<Arrangement> Tableview;
