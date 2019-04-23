@@ -98,25 +98,3 @@ public class Arrangement implements Serializable {
         this.typeArrangement = typeArrangement;
     }
 }
-
-    /*
-
-    public void leggTilBillett(Billett enBillett){
-       //Må returnere en feilmelding dersom det ikke er plass til flere billetter
-        billetter.add(enBillett);
-    }
-
-    private String slettBillett(int referansenummer){
-        for (Billett enBillett : billetter){
-            if(enBillett.getReferansenummer() == referansenummer){
-                    //billetten er funnet og man sletter den fra alleBilletter arrayet.
-                    billetter.remove(enBillett);
-                    return "Billetten er slettet";
-                }
-            }
-            return "Fant ikke referansenummer";
-    }
-
-
-}
- */

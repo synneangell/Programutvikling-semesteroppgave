@@ -8,10 +8,8 @@ import java.io.ObjectInputStream;
 
 public class LeseDataFraJobjFil extends LeseFraFil {
 
-//TODO: mulig det er nødvendig å koble dette her opp mot filechooser i controller klassen?
-
     @Override
-    public void leseFraFil(String filsti) {
+    public String leseFraFil(String filsti) { //endre den til å ta imot fil
         try (FileInputStream fin = new FileInputStream(filsti);
              ObjectInputStream oin = new ObjectInputStream(fin)) {
             Object loadedObject = oin.readObject();
@@ -21,5 +19,6 @@ public class LeseDataFraJobjFil extends LeseFraFil {
         } catch(ClassNotFoundException e) {
             System.err.println("Could not convert Object");
         }
+        return filsti;
     }
 }

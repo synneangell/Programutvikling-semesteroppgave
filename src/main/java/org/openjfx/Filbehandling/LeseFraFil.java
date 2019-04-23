@@ -2,6 +2,6 @@ package org.openjfx.Filbehandling;
 
 public abstract class LeseFraFil {
 
-    public abstract void leseFraFil(String filsti);
+    public abstract String leseFraFil(String filsti);
 
 }

@@ -12,8 +12,9 @@ import java.util.List;
 
 public class LeseDataFraCsvFil extends LeseFraFil {
     @Override
-    public void leseFraFil(String filsti) {
+    public String leseFraFil(String filsti) {
 
+        return null;
     }
 
    /*public static List<Billett> readObject(Billett enBillett, String path) throws IOException {
