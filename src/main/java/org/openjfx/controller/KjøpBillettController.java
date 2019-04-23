@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.Filbehandling.*;
 import org.openjfx.base.*;
+import org.openjfx.controller.uihelpers.*;
+
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -73,23 +75,32 @@ public class KjøpBillettController {
 
         if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()) {
 
+            try {
+                if (SjekkOmGyldig.sjekkKunBokstaver(txtNavn.getText()) && SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText()) &&
+                        SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText())) {
 
+                    Arrangement etArrangement = tableView.getSelectionModel().getSelectedItem();
 
-            Arrangement etArrangement = tableView.getSelectionModel().getSelectedItem();
-
-            //Oppretter x billetter som inneholder en kjøper og valgt arrangement:
-            int antallBilletter = Integer.valueOf((String)chboxVelgAntall.getValue());
-                if(billettregister.antallBilletterIgjen(etArrangement)>antallBilletter) {
-                    Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
-                    for (int i = 0; i < antallBilletter; i++) {
-                        Billett enBillett = new Billett(kjøper, etArrangement);
-                        billettregister.registrerBillett(enBillett);
-                        skrivTilFil.skriveTilFil("billett.jobj", enBillett);
+                    //Oppretter x billetter som inneholder en kjøper og valgt arrangement:
+                    int antallBilletter = Integer.valueOf((String) chboxVelgAntall.getValue());
+                    if (billettregister.antallBilletterIgjen(etArrangement) > antallBilletter) {
+                        Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
+                        for (int i = 0; i < antallBilletter; i++) {
+                            Billett enBillett = new Billett(kjøper, etArrangement);
+                            billettregister.registrerBillett(enBillett);
+                            skrivTilFil.skriveTilFil("billett.jobj", enBillett);
+                        }
+                    } else {
+                        String feilmelding = "Det er ikke nok billetter igjen.";
                     }
                 }
-                else {
-                    String feilmelding = "Det er ikke nok billetter igjen.";
-                }
+            } catch (InvalidTekstException e) {
+                FileExceptionHandler.generateAlert("Det er brukt tall der det kun skal være tekst. ");
+            } catch (InvalidTelefonnummerException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
+            } catch (InvalidEmailException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig email skrevet inn.");
+            }
         }
     }
 
