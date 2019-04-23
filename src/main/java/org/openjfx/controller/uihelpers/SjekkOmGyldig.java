@@ -47,7 +47,7 @@ public class SjekkOmGyldig {
     public static boolean sjekkGyldigDato(String innDato) throws InvalidDatoException {
 
         boolean dato = true;
-        dato = innDato.matches("^[0-9][0-9][/][0-9][0-9][/][0-9][0-9][0-9][0-9]$");
+        dato = innDato.matches("^[0-3][0-9][/][0-1][0-9][/][2][0-9][1-9][0-9]$");
         if (!dato) {
             throw new InvalidDatoException("Ikke gyldig dato. Må skrives: dd/mm/åååå");
         }
@@ -57,7 +57,7 @@ public class SjekkOmGyldig {
     public static boolean sjekkGyldigKlokkeslett(String innKlokkeslett) throws InvalidKlokkeslettException {
 
         boolean klokkeslett = true;
-        klokkeslett = innKlokkeslett.matches("^[0-9][0-9][:][0-9][0-9]$");
+        klokkeslett = innKlokkeslett.matches("^[0-2][0-9][:][0-5][0-9]$");
         if (!klokkeslett) {
             throw new InvalidKlokkeslettException("Ikke gyldig klokkeslett. Må skrives: tt:mm");
         }

@@ -2,6 +2,7 @@ package org.openjfx.base;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.openjfx.Filbehandling.LeseDataFraJobjFil;
 
 import static org.openjfx.base.LokalRegister.antallPlasser;
 import static org.openjfx.base.LokalRegister.leggTilLokaler;
@@ -9,7 +10,6 @@ import static org.openjfx.base.LokalRegister.leggTilLokaler;
 public class ModelViewArrangement {
 
     public ModelViewArrangement(){
-       // leggArrangementerILokaler();
         leggTilLokaler(foredragssal);
         leggTilLokaler(konsertsal);
         leggTilLokaler(teatersal);

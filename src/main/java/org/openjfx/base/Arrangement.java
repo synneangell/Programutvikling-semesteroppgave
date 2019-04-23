@@ -14,7 +14,7 @@ public class Arrangement implements Serializable {
     private int antallBilletter;
     TypeArrangement typeArrangement;
 
-    ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
+    ArrayList<Billett> billetter = new ArrayList<>();
 
     public Arrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, String dato, String klokkeslett, int antallBilletter, TypeArrangement typeArrangement) {
         this.kontaktperson = kontaktperson;
@@ -24,6 +24,9 @@ public class Arrangement implements Serializable {
         this.antallBilletter = antallBilletter;
         this.klokkeslett = klokkeslett;
         this.typeArrangement = typeArrangement;
+        for(int i = 0; i < antallBilletter; i++) {
+            billetter.add(new Billett(null));
+        }
     }
 
     public Kontaktperson getKontaktperson() {
@@ -97,4 +100,26 @@ public class Arrangement implements Serializable {
     public void setTypeArrangement(TypeArrangement typeArrangement) {
         this.typeArrangement = typeArrangement;
     }
+
+
+    public void leggTilBillett(Kjøper enKjøper){
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() == null)
+                enBillett.setKjøper(enKjøper);
+            }
+    }
+
+    public int antallBilletterIgjen(){
+        int teller = 0;
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() == null){
+                teller++;
+            }
+        }
+        return teller;
+    }
+
+
+
 }
+

@@ -1,5 +1,6 @@
 package org.openjfx.Filbehandling;
 
+import org.openjfx.base.Arrangement;
 import org.openjfx.base.Billett;
 
 import java.io.PrintWriter;
@@ -13,19 +14,14 @@ import java.nio.file.Paths;
 
 
 public class SkriveTilCsvFil extends SkriveTilFil {
-
-        public void skrivTilFil(String path, Object o) throws IOException {
-        /*    List<String> data = new ArrayList<>();
-
-            people.forEach(p -> data.add(p.toString()));
-
-            Path file = Paths.get(path);
-            Files.write(file, data, Charset.forName("UTF-8"));
-        */
-        }
-
     @Override
-    public void skriveTilFil(String filsti, Object o) {
+    public void skriveTilFil(String filsti, Object o) throws IOException {
+        List<String> data = new ArrayList<>();
 
+        data.add(o.toString());
+
+        Path file = Paths.get(filsti);
+        Files.write(file, data, Charset.forName("UTF-8"));
     }
+
 }
