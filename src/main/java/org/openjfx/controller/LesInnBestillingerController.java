@@ -8,11 +8,16 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.openjfx.Filbehandling.LeseDataFraJobjFil;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class LesInnBestillingerController {
+
+    LeseDataFraJobjFil ldfj = new LeseDataFraJobjFil();
 
     @FXML
     private AnchorPane rootLesInnBestillinger;
@@ -39,21 +44,18 @@ public class LesInnBestillingerController {
         rootLesInnBestillinger.getChildren().setAll(pane);
     }
 
-    //TODO: hvis jeg skal lese fra CSV fil via filechooser må jeg lese filen inn i TableView (for øyeblikket bruker jeg listView.
-    // Må kanskje gjøre slik at det kommer opp TableView når brukeren velger csv fil? Tror ikke det går an å ha jobj fil i TableView.
-
 
     @FXML
     private void SøkEtterFil(ActionEvent event){
 
-      FileChooser fc = new FileChooser();
+     FileChooser fc = new FileChooser();
 
-     fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("TXT files", "*.txt"));
+     fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JOBJ filer", "*.jobj"));
 
      File merkertFil = fc.showOpenDialog(null);
 
      if (merkertFil != null){
-        lvOversikt.getItems().add(merkertFil.getName()); //Innholdet i filen kommer ikke opp fordi her sier jeg at kun navnet skal komme opp.
+        //lvOversikt.getItems().add(ldfj.leseFraFil("/Users/nikolasekiw/Desktop"));
      } else {
         System.out.println("Filen er ikke gyldig");
      }

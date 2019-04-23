@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 
 public class LeseDataFraJobjFil extends LeseFraFil {
 
+//TODO: mulig det er nødvendig å koble dette her opp mot filechooser i controller klassen?
 
     @Override
     public void leseFraFil(String filsti) {
