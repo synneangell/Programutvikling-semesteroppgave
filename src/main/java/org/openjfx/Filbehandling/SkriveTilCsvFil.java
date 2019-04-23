@@ -14,34 +14,18 @@ import java.nio.file.Paths;
 
 public class SkriveTilCsvFil extends SkriveTilFil {
 
+        public void skrivTilFil(String path, Object o) throws IOException {
+        /*    List<String> data = new ArrayList<>();
 
-        public void skrivBillett(List<Billett> billetter, String path) throws IOException {
-            PrintWriter writer = null;
-
-            try {
-                writer = new PrintWriter(path, "UTF-8");
-
-                for (Billett enBillett : billetter) {
-                    writer.println(enBillett);
-                }
-            } finally {
-                if (writer != null) {
-                    writer.close();
-                }
-            }
-
-
-            List<String> data = new ArrayList<>();
-
-            billetter.forEach(p -> data.add(p.toString()));
+            people.forEach(p -> data.add(p.toString()));
 
             Path file = Paths.get(path);
             Files.write(file, data, Charset.forName("UTF-8"));
+        */
         }
 
     @Override
     public void skriveTilFil(String filsti, Object o) {
-
 
     }
 }

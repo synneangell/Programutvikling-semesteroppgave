@@ -8,8 +8,8 @@ public class FileExceptionHandler {
 
     public static void generateAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Feil persondata");
-        alert.setHeaderText("Feil persondata");
+        alert.setTitle("Feil input");
+        alert.setHeaderText("Feil input");
         alert.setContentText(msg);
 
         alert.showAndWait();

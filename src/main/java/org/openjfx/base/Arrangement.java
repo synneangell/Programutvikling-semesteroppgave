@@ -1,5 +1,7 @@
 package org.openjfx.base;
 
+import org.openjfx.controller.uihelpers.InvalidBillettprisException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -44,7 +46,7 @@ public class Arrangement implements Serializable {
         return billettpris;
     }
 
-    public void setBillettpris(int billettpris) {
+    public void setBillettpris(int billettpris){
         this.billettpris = billettpris;
     }
 

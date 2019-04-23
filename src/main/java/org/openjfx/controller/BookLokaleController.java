@@ -1,5 +1,6 @@
 package org.openjfx.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -13,8 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.Filbehandling.SkriveTilJobjFil;
 import org.openjfx.base.*;
-import org.openjfx.controller.uihelpers.InvalidInputException;
-import org.openjfx.controller.uihelpers.SjekkOmGyldig;
+import org.openjfx.controller.uihelpers.*;
 
 public class BookLokaleController {
 
@@ -48,7 +48,7 @@ public class BookLokaleController {
 
     @FXML
     public void initialize() {
-        // Setter opp kolonnene i Table View - tabellen
+        //Tabellen lages her:
         TypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
@@ -60,7 +60,7 @@ public class BookLokaleController {
     }
 
     @FXML
-    void fullførBooking(ActionEvent event) throws ParseException, InvalidInputException {
+    void fullførBooking(ActionEvent event) throws ParseException, InvalidTekstException {
 
         boolean konsert = false;
         boolean foredrag = false;
@@ -79,10 +79,7 @@ public class BookLokaleController {
                 !txtTidspunkt.getText().isEmpty() && !txtDato.getText().isEmpty() &&
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()) {
 
-            /*SjekkOmGyldig.sjekkGyldigNavn(txtNavn.getText());
-            SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText());
-            SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText());*/
-            //SjekkOmGyldig.sjekkGyldigBillettPris(txtBillettpris.getText());
+
 
             Kontaktperson kontaktperson = new Kontaktperson(
                     txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText(),
@@ -90,28 +87,55 @@ public class BookLokaleController {
 
             Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(), txtEgenskapDeltaker.getText());
 
+
             try {
-                int billettpris = Integer.parseInt(txtBillettpris.getText());
+                if(SjekkOmGyldig.sjekkKunBokstaver(txtNavn.getText()) && SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText()) &&
+                SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText()) && SjekkOmGyldig.sjekkGyldigNettsideAdresse(txtNettside.getText()) &&
+                SjekkOmGyldig.sjekkKunBokstaver(txtAndreOpplysninger.getText()) && SjekkOmGyldig.sjekkKunBokstaver(txtVirksomhet.getText())
+                && SjekkOmGyldig.sjekkGyldigBillettpris(txtBillettpris.getText()) && SjekkOmGyldig.sjekkGyldigKlokkeslett(txtTidspunkt.getText())
+                && SjekkOmGyldig.sjekkGyldigDato(txtDato.getText())){
 
-                if (konsert) {
+                    int billettpris = Integer.parseInt(txtBillettpris.getText());
 
-                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
+                    if (konsert) {
+
+                        DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
-                                    txtTidspunkt.getText(), ModelViewArrangement.antallPlasserKonsertsal(), TypeArrangement.KONSERT);
-                    Tableview.getItems().add(etDeltakerArrangement);
-                    skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
-                } else if (foredrag) {
+                             txtTidspunkt.getText(), ModelViewArrangement.antallPlasserKonsertsal(), TypeArrangement.KONSERT);
+
+                        Tableview.getItems().add(etDeltakerArrangement);
+                        skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
+                    }
+                    else if (foredrag) {
                     DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
                                     txtTidspunkt.getText(), ModelViewArrangement.antallPlasserForedragssal(), TypeArrangement.FOREDRAG);
                     Tableview.getItems().add(etDeltakerArrangement);
                     skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
+
+                    }
                 }
-
-            } catch (Exception e) {
-                //feilmelding ut til bruker
-                String feilmelding = "Noe gikk galt.";
-
+            }
+            catch (InvalidTekstException e) {
+                FileExceptionHandler.generateAlert("Det er brukt tall der det kun skal være tekst. ");
+            }
+            catch (InvalidTelefonnummerException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
+            }
+            catch (InvalidDatoException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig dato. Format: dd/mm/åååå. ");
+            }
+            catch (InvalidKlokkeslettException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig klokkeslett. Format: tt:mm. ");
+            }
+            catch (InvalidNettsideAdresseException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig nettadresse skrevet inn.");
+            }
+            catch (InvalidEmailException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig email skrevet inn.");
+            }
+            catch (InvalidBillettprisException e) {
+                FileExceptionHandler.generateAlert("Billettpris må bestå av tall.");
             }
         }
     }

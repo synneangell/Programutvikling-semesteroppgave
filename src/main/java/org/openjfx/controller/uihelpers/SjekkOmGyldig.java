@@ -1,51 +1,74 @@
 package org.openjfx.controller.uihelpers;
 
+
 public class SjekkOmGyldig {
 
-    public static String sjekkGyldigEmail(String email) throws InvalidEmailException {
+    public static boolean sjekkGyldigEmail(String email) throws InvalidEmailException {
         String[] splitStrAlpha = email.split("@");
         if (splitStrAlpha.length != 2) {
-            throw new InvalidEmailException(email + " er ikke en gyldig email-adresse.");
+            throw new InvalidEmailException(email + "er ikke en gyldig email-adresse. ");
         }
-        return email;
+        return true;
     }
 
-    public static int sjekkGyldigTlfNr(String telefonNr) throws NumberFormatException {
-        try {
-            int innTall = Integer.parseInt(telefonNr);
-            if (innTall > 0 || innTall < 9) {
-                return 0;
-            }
-        } catch (NumberFormatException e) {
-            return -1;
+    public static boolean sjekkGyldigTlfNr(String telefonNr) throws InvalidTelefonnummerException {
+        boolean telefonnummer = true;
+        telefonnummer = telefonNr.matches("^[0-9]{8}$");
+        if (!telefonnummer) {
+            throw new InvalidTelefonnummerException("Telefonnummeret må bestå av 8 siffer. ");
         }
-        return 0;
+        return true;
     }
 
-    public static boolean sjekkGyldigNavn(String navn) throws InvalidInputException {
+    public static boolean sjekkKunBokstaver(String tekst) throws InvalidTekstException {
         boolean numeric = true;
-        numeric = navn.matches("-?\\d+(\\.\\d+)?");
+        numeric = tekst.matches("-?\\d+(\\.\\d+)?");
         if (numeric) {
-            throw new InvalidInputException("Det må stå tekst og ikke tall.");
+            throw new InvalidTekstException("Det må stå tekst og ikke tall.");
         }
-        return numeric;
+        return true;
     }
 
-    public static int sjekkGyldigBillettPris(int billettPris) throws InvalidPriceException {
-            if(billettPris > 0){
-                throw new InvalidPriceException(billettPris + "Det må være skrevet inn tall.");
+    public static boolean sjekkGyldigBillettpris(String InnBillettpris) throws InvalidBillettprisException {
+        try {
+            int billettpris = Integer.parseInt(InnBillettpris);
+            if (billettpris < 0) {
+                throw new InvalidBillettprisException(billettpris + "Det må være skrevet inn tall. ");
+            }
+        }
+        catch(NumberFormatException e){
+            throw new InvalidBillettprisException("Det må være skrevet inn tall. ");
+        }
+        return true;
     }
-            return billettPris;
+
+    //TODO: Hvordan sikre at datoer som har vært ikke kan velges??
+
+    public static boolean sjekkGyldigDato(String innDato) throws InvalidDatoException {
+
+        boolean dato = true;
+        dato = innDato.matches("^[0-9][0-9][/][0-9][0-9][/][0-9][0-9][0-9][0-9]$");
+        if (!dato) {
+            throw new InvalidDatoException("Ikke gyldig dato. Må skrives: dd/mm/åååå");
+        }
+        return true;
     }
 
-    //TODO: må lage en try/catch under alle disse metodene sånn at programmet ikke skal krasje og brukeren kan fortsette å skrive inn
-    // etter at feilmeldingen kommer opp i en boks (alert - dette må også fikses).
+    public static boolean sjekkGyldigKlokkeslett(String innKlokkeslett) throws InvalidKlokkeslettException {
 
- /*   try {
+        boolean klokkeslett = true;
+        klokkeslett = innKlokkeslett.matches("^[0-9][0-9][:][0-9][0-9]$");
+        if (!klokkeslett) {
+            throw new InvalidKlokkeslettException("Ikke gyldig klokkeslett. Må skrives: tt:mm");
+        }
+        return true;
+    }
 
-
-    } catch (IOException e){
-
-    }*/
-
+    public static boolean sjekkGyldigNettsideAdresse(String nettsideAdresse) throws InvalidNettsideAdresseException {
+        String[] splitNettside = nettsideAdresse.split(".");
+        if (splitNettside.length > 2) {
+            throw new InvalidNettsideAdresseException(nettsideAdresse + "er ikke en gyldig nettsideadresse. ");
+        }
+        return true;
+    }
 }

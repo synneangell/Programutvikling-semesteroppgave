@@ -10,8 +10,6 @@ import java.io.IOException;
 
 public class KulturhusetController {
 
-    ModelViewArrangement allInformasjon = new ModelViewArrangement();
-
     @FXML
     private AnchorPane rootPane;
 
