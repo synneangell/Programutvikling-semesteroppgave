@@ -34,7 +34,7 @@ public class BillettRegister {
     public int antallBilletterIgjen(Arrangement etArrangement){
 
         int teller = 0;
-        for(Billett enBillett:etArrangement.billetter){
+        for(Billett enBillett : etArrangement.billetter){
             if(etArrangement.billetter.contains(null)){
                 teller++;
                 return teller;
