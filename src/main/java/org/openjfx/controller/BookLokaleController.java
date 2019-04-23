@@ -12,14 +12,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.openjfx.Filbehandling.SkriveTilCsvFil;
 import org.openjfx.Filbehandling.SkriveTilJobjFil;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.*;
 
 public class BookLokaleController {
 
-    SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
+    SkriveTilJobjFil skrivTilJobj = new SkriveTilJobjFil();
+    SkriveTilCsvFil skrivTilCsv = new SkriveTilCsvFil();
     ObservableList<String> typeArrangementer = FXCollections.observableArrayList("Konsert", "Foredrag");
+    ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
 
     @FXML
     private TextField txtNavn, txtTelefonnummer, txtEmail, txtNettside, txtAndreOpplysninger, txtVirksomhet,
@@ -27,6 +30,9 @@ public class BookLokaleController {
 
     @FXML
     private ChoiceBox velgTypeArrangement;
+
+    @FXML
+    private ComboBox chBoxKvittering;
 
     @FXML
     private AnchorPane rootBookLokale;
@@ -57,19 +63,31 @@ public class BookLokaleController {
         Tableview.setItems(ModelViewArrangement.getArrangementer());
         velgTypeArrangement.setItems(typeArrangementer);
         velgTypeArrangement.setValue("Konsert");
+        chBoxKvittering.setItems(filtyper);
+        chBoxKvittering.setValue(".csv");
     }
 
     @FXML
-    void fullførBooking(ActionEvent event) throws ParseException, InvalidTekstException {
+    void fullførBooking(ActionEvent event) throws ParseException, InvalidTekstException, IOException {
 
         boolean konsert = false;
         boolean foredrag = false;
+        boolean csv = false;
+        boolean jobj = false;
         String valg = velgTypeArrangement.getValue().toString();
+        String filtype = velgTypeArrangement.getValue().toString();
 
         if (valg == "Konsert") {
             konsert = true;
         } else if (valg == "Foredrag") {
             foredrag = true;
+        }
+
+        if(filtype == ".csv"){
+            csv = true;
+        }
+        else if(filtype == ".jobj"){
+            jobj = true;
         }
 
         if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
@@ -104,16 +122,33 @@ public class BookLokaleController {
                              txtTidspunkt.getText(), ModelViewArrangement.antallPlasserKonsertsal(), TypeArrangement.KONSERT);
 
                         Tableview.getItems().add(etDeltakerArrangement);
-                        skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
-                    }
-                    else if (foredrag) {
-                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
-                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
-                                    txtTidspunkt.getText(), ModelViewArrangement.antallPlasserForedragssal(), TypeArrangement.FOREDRAG);
-                    Tableview.getItems().add(etDeltakerArrangement);
-                    skrivTilFil.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
+                        skrivTilJobj.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
+
+                        //Oppretter kvittering
+                        if(jobj){
+                            skrivTilJobj.skriveTilFil("kvittering.jobj", etDeltakerArrangement);
+                        }
+                        else if(csv){
+                            skrivTilCsv.skriveTilFil("kvittering.csv", etDeltakerArrangement);
+                        }
 
                     }
+                    else if (foredrag) {
+                        DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
+                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
+                                    txtTidspunkt.getText(), ModelViewArrangement.antallPlasserForedragssal(), TypeArrangement.FOREDRAG);
+                        Tableview.getItems().add(etDeltakerArrangement);
+                        skrivTilJobj.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
+
+                        //Oppretter kvittering
+                        if(jobj){
+                            skrivTilJobj.skriveTilFil("kvittering.jobj", etDeltakerArrangement);
+                        }
+                        else if(csv){
+                            skrivTilCsv.skriveTilFil("kvittering.csv", etDeltakerArrangement);
+                        }
+                    }
+
                 }
             }
             catch (InvalidTekstException e) {
@@ -140,7 +175,6 @@ public class BookLokaleController {
         }
     }
 
-    //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
     private void avsluttProgram() {
         Stage stage = (Stage) txtTidspunkt.getScene().getWindow();
         stage.close();

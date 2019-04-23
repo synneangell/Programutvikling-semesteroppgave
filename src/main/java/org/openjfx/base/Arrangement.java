@@ -14,7 +14,7 @@ public class Arrangement implements Serializable {
     private int antallBilletter;
     TypeArrangement typeArrangement;
 
-    ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
+    ArrayList<Billett> billetter = new ArrayList<>();
 
     public Arrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, String dato, String klokkeslett, int antallBilletter, TypeArrangement typeArrangement) {
         this.kontaktperson = kontaktperson;
@@ -24,6 +24,9 @@ public class Arrangement implements Serializable {
         this.antallBilletter = antallBilletter;
         this.klokkeslett = klokkeslett;
         this.typeArrangement = typeArrangement;
+        for(int i = 0; i < antallBilletter; i++) {
+            billetter.add(new Billett(null));
+        }
     }
 
     public Kontaktperson getKontaktperson() {
@@ -97,26 +100,26 @@ public class Arrangement implements Serializable {
     public void setTypeArrangement(TypeArrangement typeArrangement) {
         this.typeArrangement = typeArrangement;
     }
-}
 
-    /*
 
-    public void leggTilBillett(Billett enBillett){
-       //Må returnere en feilmelding dersom det ikke er plass til flere billetter
-        billetter.add(enBillett);
-    }
-
-    private String slettBillett(int referansenummer){
-        for (Billett enBillett : billetter){
-            if(enBillett.getReferansenummer() == referansenummer){
-                    //billetten er funnet og man sletter den fra alleBilletter arrayet.
-                    billetter.remove(enBillett);
-                    return "Billetten er slettet";
-                }
+    public void leggTilBillett(Kjøper enKjøper){
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() == null)
+                enBillett.setKjøper(enKjøper);
             }
-            return "Fant ikke referansenummer";
+    }
+
+    public int antallBilletterIgjen(){
+        int teller = 0;
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() == null){
+                teller++;
+            }
+        }
+        return teller;
     }
 
 
+
 }
- */
+

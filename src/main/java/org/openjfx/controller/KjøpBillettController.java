@@ -23,12 +23,16 @@ public class KjøpBillettController {
     SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
     BillettRegister billettregister = new BillettRegister();        //TODO: se på denne
     ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+    ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
 
     @FXML
     private TextField txtNavn, txtTelefonnummer, txtEmail;
 
     @FXML
     private ComboBox chboxVelgAntall;
+
+    @FXML
+    private ComboBox chBoxKvittering;
 
     @FXML
     private Button btnAvslutt;
@@ -62,13 +66,9 @@ public class KjøpBillettController {
         tableView.setItems(ModelViewArrangement.getArrangementer());
         chboxVelgAntall.setItems(AntallBilletter);
         chboxVelgAntall.setValue("1");
-    }
-
-    // Skriver ut info om kjøp på Kjøp Billetter
-    @FXML
-    public void DittKjøp(ActionEvent event) {
-
-    }
+        chBoxKvittering.setItems(filtyper);
+        chBoxKvittering.setValue(".csv");
+}
 
     @FXML
     void fullførBestilling(ActionEvent event) throws ParseException, IOException {
@@ -83,15 +83,16 @@ public class KjøpBillettController {
 
                     //Oppretter x billetter som inneholder en kjøper og valgt arrangement:
                     int antallBilletter = Integer.valueOf((String) chboxVelgAntall.getValue());
-                    if (billettregister.antallBilletterIgjen(etArrangement) > antallBilletter) {
-                        Kjøper kjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
+                    if (etArrangement.antallBilletterIgjen() >= antallBilletter) {
+                        Kjøper enKjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
                         for (int i = 0; i < antallBilletter; i++) {
-                            Billett enBillett = new Billett(kjøper, etArrangement);
-                            billettregister.registrerBillett(enBillett);
-                            skrivTilFil.skriveTilFil("billett.jobj", enBillett);
+                            etArrangement.leggTilBillett(enKjøper);
+                            FileExceptionHandler.generateAlert("Din bestillingen er gjennomført! ");
+                            //TODO: hva skal skrives til fil?
+                            skrivTilFil.skriveTilFil("billett.jobj", "Test");
                         }
                     } else {
-                        String feilmelding = "Det er ikke nok billetter igjen.";
+                        FileExceptionHandler.generateAlert("Det er ikke nok billetter igjen. ");
                     }
                 }
             } catch (InvalidTekstException e) {

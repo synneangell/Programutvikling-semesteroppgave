@@ -5,9 +5,11 @@ import org.openjfx.base.Arrangement;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 public class LeseDataFraJobjFil extends LeseFraFil {
 
+//TODO: mulig det er nødvendig å koble dette her opp mot filechooser i controller klassen?
 
     @Override
     public void leseFraFil(String filsti) {

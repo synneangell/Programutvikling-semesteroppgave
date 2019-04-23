@@ -53,6 +53,4 @@ public class KulturhusetController {
         AnchorPane pane4 = FXMLLoader.load(getClass().getResource("/org/openjfx/lesInnBestillinger.fxml"));
         rootPane.getChildren().setAll(pane4);
     }
-
-
 }
