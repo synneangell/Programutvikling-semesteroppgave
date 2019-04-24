@@ -87,7 +87,7 @@ public class KjøpBillettController {
                         Kjøper enKjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
                         for (int i = 0; i < antallBilletter; i++) {
                             etArrangement.leggTilBillett(enKjøper);
-                            FileExceptionHandler.generateAlert("Din bestillingen er gjennomført! ");
+                            AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
                             //TODO: hva skal skrives til fil?
                             skrivTilFil.skriveTilFil("billett.jobj", "Test");
                         }
