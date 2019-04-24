@@ -59,7 +59,7 @@ public class LesInnBestillingerController {
 
      FileChooser fc = new FileChooser();
 
-     fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JOBJ og CSV filer", "*.csv"));
+     fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JOBJ og CSV filer", "*.csv", "*.txt"));
 
      File merkertFil = fc.showOpenDialog(null);
 
