@@ -30,7 +30,8 @@ public class Kjøper extends Person implements Serializable {
 
     @Override
     public String toString() {
-        return "\nNavn: " + getNavn() + ", telefonnummer: "+telefonNr+", email: "+email+". ";
+        //return "\nNavn: " + getNavn() + ", telefonnummer: "+telefonNr+", email: "+email+". ";
+        return getNavn() + "," + telefonNr + "," + email;
     }
 
 }

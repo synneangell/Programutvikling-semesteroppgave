@@ -90,6 +90,8 @@ public class KjøpBillettController {
                             AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
                             //TODO: hva skal skrives til fil?
                             skrivTilFil.skriveTilFil("billett.jobj", "Test");
+                            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
+                            rootKjøpBillett.getChildren().setAll(pane);
                         }
                     } else {
                         FileExceptionHandler.generateAlert("Det er ikke nok billetter igjen. ");

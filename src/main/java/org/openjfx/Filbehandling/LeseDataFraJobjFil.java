@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-public class LeseDataFraJobjFil extends LeseFraFil {
+//public class LeseDataFraJobjFil extends LeseFraFil {
 
-    @Override
+    /*@Override
     public String leseFraFil(String filsti) { //endre den til å ta imot fil
         try (FileInputStream fin = new FileInputStream(filsti);
              ObjectInputStream oin = new ObjectInputStream(fin)) {
@@ -21,5 +21,5 @@ public class LeseDataFraJobjFil extends LeseFraFil {
             System.err.println("Could not convert Object");
         }
         return filsti;
-    }
-}
+    }*/
+//}

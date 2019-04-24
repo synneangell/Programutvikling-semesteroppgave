@@ -1,8 +1,8 @@
 package org.openjfx.Filbehandling;
 
-import org.openjfx.base.Arrangement;
 import org.openjfx.base.Billett;
-
+import org.openjfx.base.Kjøper;
+import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
 import java.io.*;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,49 +12,42 @@ import java.util.List;
 
 public class LesBillettFraCsvFil extends LeseFraFil {
     @Override
-    public void leseFraFil(String filsti) {
-       /* ArrayList<Billett> persons = new ArrayList<>();
+    public List<Billett> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException{
+       ArrayList<Billett> billett = new ArrayList<>();
         BufferedReader reader = null;
 
         try {
-            reader = Files.newBufferedReader(Paths.get(path));
-            String line = null; // read first line
+            reader = Files.newBufferedReader(Paths.get(filsti));
+            String line = null; // leser første linje
 
-            // read the rest and create Persons for each line
-            while((line=reader.readLine()) != null) {
-                persons.add(parsePerson(line));
+            // leser resten og lager billetter for hver linje
+            while ((line = reader.readLine()) != null) {
+                billett.add(parseBillett(line));
+                throw new InvalidBillettFormatException("Billetten er ikke formatert riktig");
             }
+
+        } catch (IOException e) {
+            System.out.println("");
+
         } finally {
             if(reader != null) {
                 reader.close();
             }
         }
-
-        return persons;
+        return billett;
     }
 
-    private static Billett parseBillett(String line) throws InvalidPersonFormatException {
-        // split line string into three using the separator ";"
-        String[] split = line.split(";");
+    private static Billett parseBillett(String line) throws InvalidBillettFormatException {
+        // Deler opp stringen i tre deler ved bruk av ";"
+        String[] split = line.split(",");
         if(split.length != 3) {
-            throw new InvalidPersonFormatException("Must use semicolon ; to separate the three data fields");
+            throw new InvalidBillettFormatException("Må bruke semikolon ; til å separere de tre datafeltene");
         }
 
         String name = split[0];
-        int age = parseNumber(split[1], "Age (second field) is not a number");
-        int id = parseNumber(split[2], "Id (third field) is not a number");
+        String telefonNr = split[1];
+        String email = split[2];
 
-        return new Billett();
-    }
-
-    private static int parseNumber(String str, String errorMessage) throws InvalidPersonFormatException{
-        int number;
-        try {
-            number = Integer.parseInt(str);
-        } catch (NumberFormatException e) {
-            throw new InvalidPersonFormatException(errorMessage);
-
-
-        return number; */
+        return new Billett(new Kjøper(name, telefonNr, email));
     }
 }
