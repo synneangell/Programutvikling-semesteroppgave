@@ -119,7 +119,15 @@ public class Arrangement implements Serializable {
         return teller;
     }
 
-
+    public String hentBillett(Kjøper enKjøper){
+        String ut = "";
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() == enKjøper){
+                ut = "Hei"+enBillett.toString() + getArrangementNavn();
+            }
+        }
+        return ut;
+    }
 
 }
 
