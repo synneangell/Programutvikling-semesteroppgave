@@ -14,6 +14,8 @@ public class test {
         SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
         skriveTilCsvFil.skriveTilFil("kvittering.csv", billett);
         System.out.println("Hei");
+
+
     }
 
 }

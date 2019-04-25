@@ -62,8 +62,8 @@ public class KjøpBillettController {
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
-
-        tableView.setItems(ModelViewArrangement.getArrangementer());
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
+        tableView.setItems(alleArrangementer.getArrangementer());
         chboxVelgAntall.setItems(AntallBilletter);
         chboxVelgAntall.setValue("1");
         chBoxKvittering.setItems(filtyper);

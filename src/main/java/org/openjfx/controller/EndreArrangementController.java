@@ -44,8 +44,8 @@ public class EndreArrangementController {
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
-
-        Tableview.setItems(ModelViewArrangement.getArrangementer());
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
+        Tableview.setItems(alleArrangementer.getArrangementer());
 
         Tableview.setEditable(true);
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -58,6 +58,7 @@ public class EndreArrangementController {
         valgtArrangement.setArrangementNavn(endretCelle.getNewValue().toString());
     }
 
+
     public void endreKlokkeslettArrangement(TableColumn.CellEditEvent endretCelle) {
         Arrangement valgtArrangement = Tableview.getSelectionModel().getSelectedItem();
         valgtArrangement.setKlokkeslett(endretCelle.getNewValue().toString());
@@ -69,12 +70,14 @@ public class EndreArrangementController {
     }
 
     public void slettArrangement(){
-        ObservableList<Arrangement> valgtRad, alleArrangementer;
-        alleArrangementer = Tableview.getItems();
+        ObservableList<Arrangement> valgtRad, arrangementer;
+        arrangementer = Tableview.getItems();
         valgtRad = Tableview.getSelectionModel().getSelectedItems();
         for(Arrangement etArrangement : valgtRad){
-            alleArrangementer.remove(etArrangement);
+            arrangementer.remove(etArrangement);
+
         }
+
     }
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:

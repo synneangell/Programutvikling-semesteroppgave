@@ -1,6 +1,5 @@
 package org.openjfx.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -59,8 +58,8 @@ public class BookLokaleController {
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
-
-        Tableview.setItems(ModelViewArrangement.getArrangementer());
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
+        Tableview.setItems(alleArrangementer.getArrangementer());
         velgTypeArrangement.setItems(typeArrangementer);
         velgTypeArrangement.setValue("Konsert");
         chBoxKvittering.setItems(filtyper);
@@ -113,14 +112,14 @@ public class BookLokaleController {
                 && SjekkOmGyldig.sjekkGyldigBillettpris(txtBillettpris.getText()) && SjekkOmGyldig.sjekkGyldigKlokkeslett(txtTidspunkt.getText())
                 && SjekkOmGyldig.sjekkGyldigDato(txtDato.getText())){
 
+                    AlleLokaler alleLokaler = AlleLokaler.getSingelton();
                     int billettpris = Integer.parseInt(txtBillettpris.getText());
 
                     if (konsert) {
 
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
-                             txtTidspunkt.getText(), ModelViewArrangement.antallPlasserKonsertsal(), TypeArrangement.KONSERT);
-
+                             txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getKonsertsal()), TypeArrangement.KONSERT);
                         Tableview.getItems().add(etDeltakerArrangement);
                         skrivTilJobj.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
 
@@ -136,7 +135,7 @@ public class BookLokaleController {
                     else if (foredrag) {
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
-                                    txtTidspunkt.getText(), ModelViewArrangement.antallPlasserForedragssal(), TypeArrangement.FOREDRAG);
+                                    txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getForedragssal()), TypeArrangement.FOREDRAG);
                         Tableview.getItems().add(etDeltakerArrangement);
                         skrivTilJobj.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
 
