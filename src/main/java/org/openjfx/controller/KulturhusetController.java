@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class KulturhusetController {
 
@@ -51,7 +52,7 @@ public class KulturhusetController {
         if (markertFil != null) {
             AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
-            String[] array = markertFil.getName().split(".");
+            String[] array = markertFil.getName().split("\\.");
             if(array.length > 1) {
                 if (array[1].equals("csv")){
                     if(array[0].equals("billett")){
@@ -73,7 +74,7 @@ public class KulturhusetController {
                     }
                     if(array[0].equals("arrangement")){
                         LeseDataFraJobjFil leseDataFraJobjFil = new LeseDataFraJobjFil();
-                        alleArrangementer.gjørOmTilObservableList((ArrayList<? extends Arrangement>) leseDataFraJobjFil.leseFraFil(markertFil.getPath()));
+                        alleArrangementer.gjørOmTilObservableList(leseDataFraJobjFil.leseFraFil(markertFil.getPath()));
                     }
                 }
 

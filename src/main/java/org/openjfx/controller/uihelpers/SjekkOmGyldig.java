@@ -65,7 +65,7 @@ public class SjekkOmGyldig {
     }
 
     public static boolean sjekkGyldigNettsideAdresse(String nettsideAdresse) throws InvalidNettsideAdresseException {
-        String[] splitNettside = nettsideAdresse.split(".");
+        String[] splitNettside = nettsideAdresse.split("\\.");
         if (splitNettside.length > 2) {
             throw new InvalidNettsideAdresseException(nettsideAdresse + "er ikke en gyldig nettsideadresse. ");
         }

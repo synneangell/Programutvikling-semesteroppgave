@@ -12,5 +12,5 @@ import java.util.List;
 
 public abstract class LeseFraFil {
 
-    public abstract ArrayList<?> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException;
+    public abstract ArrayList<Object> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException;
 }
