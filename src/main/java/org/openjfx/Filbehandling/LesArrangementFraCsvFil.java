@@ -1,5 +1,6 @@
 package org.openjfx.Filbehandling;
 
+import javafx.collections.ObservableList;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
 
@@ -13,7 +14,7 @@ import java.util.List;
 public class LesArrangementFraCsvFil extends LeseFraFil {
 
     @Override
-    public ArrayList<?> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException {
+    public ArrayList<? extends Arrangement> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException {
         ArrayList<Arrangement> arrangement = new ArrayList<>();
         BufferedReader reader = null;
 
@@ -24,7 +25,6 @@ public class LesArrangementFraCsvFil extends LeseFraFil {
             // leser resten og lager billetter for hver linje
             while ((line = reader.readLine()) != null) {
                 arrangement.add(parseArrangement(line));
-                throw new InvalidBillettFormatException("Billetten er ikke formatert riktig");
             }
 
         } catch (IOException e) {
@@ -39,10 +39,10 @@ public class LesArrangementFraCsvFil extends LeseFraFil {
     }
 
     private static Arrangement parseArrangement(String line) throws InvalidBillettFormatException {
-        // Deler opp stringen i tre deler ved bruk av ","
+        // Deler opp stringen i tre deler ved bruk av ";"
         String[] split = line.split(",");
         if(split.length != 12) {
-            throw new InvalidBillettFormatException("Må bruke komma , til å separere de tre datafeltene");
+            throw new InvalidBillettFormatException("Må bruke semikolon ; til å separere de tre datafeltene");
         }
 
         String navn = split[0];
@@ -60,7 +60,6 @@ public class LesArrangementFraCsvFil extends LeseFraFil {
         Kontaktperson kontaktperson = new Kontaktperson(navn, telefonNr, emailAdresse, nettside, virksomhet, opplysninger);
 
         return new Arrangement(kontaktperson, arrangementNavn, billettpris, dato, klokkeslett, antallBilletter, typeArrangement);
-        //return null;
     }
 
     private static int parseNummer (String str, String errorMelding) throws InvalidBillettFormatException {
@@ -72,4 +71,6 @@ public class LesArrangementFraCsvFil extends LeseFraFil {
         }
         return number;
     }
+
+
 }

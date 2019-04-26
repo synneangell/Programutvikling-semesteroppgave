@@ -2,7 +2,7 @@ package org.openjfx.base;
 
 import java.util.ArrayList;
 
-public class BillettRegister {
+public class AlleBilletter {
 
     ArrayList<Billett> alleBilletter = new ArrayList<>();
 

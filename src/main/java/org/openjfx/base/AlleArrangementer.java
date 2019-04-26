@@ -3,6 +3,8 @@ package org.openjfx.base;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+
 public class AlleArrangementer {
 
     private static AlleArrangementer instance;
@@ -50,6 +52,19 @@ public class AlleArrangementer {
         return alleArrangementer;
     }
 
+    public ArrayList<Arrangement> gjørOmTilArrayList(ObservableList<Arrangement> observableList){
+        ArrayList<Arrangement> arrangementer = new ArrayList<>();
+        for(Arrangement etArrangement : observableList){
+            arrangementer.add(etArrangement);
+        }
+        return arrangementer;
+    }
+
+    public void gjørOmTilObservableList(ArrayList<? extends  Arrangement> arrayList){
+        for(Arrangement etArrangement : arrayList){
+            leggTilArrangement(etArrangement);
+        }
+    }
 
     public static AlleArrangementer getSingelton(){
         if(instance == null){
@@ -62,6 +77,7 @@ public class AlleArrangementer {
     public void leggTilArrangement(Arrangement etArrangement){
             alleArrangementer.add(etArrangement);
     }
+
 
 }
 
