@@ -19,6 +19,9 @@ public class EndreArrangementController {
     SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
 
     @FXML
+    private ComboBox lagreTilFilBox;
+
+    @FXML
     private AnchorPane rootEndreArrangement;
 
     @FXML
@@ -44,8 +47,8 @@ public class EndreArrangementController {
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
-
-        Tableview.setItems(ModelViewArrangement.getArrangementer());
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
+        Tableview.setItems(alleArrangementer.getArrangementer());
 
         Tableview.setEditable(true);
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -53,10 +56,26 @@ public class EndreArrangementController {
         DatoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
+    @FXML
+    void Lagre (ActionEvent event){
+        boolean csv = false;
+        boolean jobj = false;
+        String filtype = lagreTilFilBox.getValue().toString();
+
+        if(filtype == ".csv"){
+            csv = true;
+        }
+        else if(filtype == ".jobj"){
+            jobj = true;
+        }
+
+    }
+
     public void endreNavnArrangement(TableColumn.CellEditEvent endretCelle) {
         Arrangement valgtArrangement = Tableview.getSelectionModel().getSelectedItem();
         valgtArrangement.setArrangementNavn(endretCelle.getNewValue().toString());
     }
+
 
     public void endreKlokkeslettArrangement(TableColumn.CellEditEvent endretCelle) {
         Arrangement valgtArrangement = Tableview.getSelectionModel().getSelectedItem();
@@ -69,12 +88,14 @@ public class EndreArrangementController {
     }
 
     public void slettArrangement(){
-        ObservableList<Arrangement> valgtRad, alleArrangementer;
-        alleArrangementer = Tableview.getItems();
+        ObservableList<Arrangement> valgtRad, arrangementer;
+        arrangementer = Tableview.getItems();
         valgtRad = Tableview.getSelectionModel().getSelectedItems();
         for(Arrangement etArrangement : valgtRad){
-            alleArrangementer.remove(etArrangement);
+            arrangementer.remove(etArrangement);
+
         }
+
     }
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:

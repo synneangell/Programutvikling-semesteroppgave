@@ -2,7 +2,7 @@ package org.openjfx.base;
 
 import java.util.ArrayList;
 
-public abstract class Lokale {
+public class Lokale {
     private int plasser;
     private int id;
     ArrayList <Arrangement> arrangementer;
@@ -23,5 +23,9 @@ public abstract class Lokale {
 
     public int getPlasser() {
         return plasser;
+    }
+
+    public ArrayList<Arrangement> hentArrangementer(){
+        return arrangementer;
     }
 }

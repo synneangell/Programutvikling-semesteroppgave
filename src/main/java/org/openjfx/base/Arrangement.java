@@ -1,7 +1,5 @@
 package org.openjfx.base;
 
-import org.openjfx.controller.uihelpers.InvalidBillettprisException;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -14,7 +12,7 @@ public class Arrangement implements Serializable {
     private int antallBilletter;
     TypeArrangement typeArrangement;
 
-    ArrayList<Billett> billetter = new ArrayList<>();
+  ArrayList<Billett> billetter = new ArrayList<>();
 
     public Arrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, String dato, String klokkeslett, int antallBilletter, TypeArrangement typeArrangement) {
         this.kontaktperson = kontaktperson;
@@ -119,14 +117,18 @@ public class Arrangement implements Serializable {
         return teller;
     }
 
-    public String hentBillett(Kjøper enKjøper){
-        String ut = "";
+    public ArrayList <Billett> hentBillettPerKjøper(Kjøper enKjøper){
+        ArrayList billetterTilKjøper = new ArrayList<>();
         for(Billett enBillett : billetter){
             if(enBillett.getKjøper() == enKjøper){
-                ut = "Hei"+enBillett.toString() + getArrangementNavn();
+                billetterTilKjøper.add(enBillett);
             }
         }
-        return ut;
+        return billetterTilKjøper;
+    }
+
+    public ArrayList <Billett> hentBilletterTilArrangement(Arrangement etArrangement){
+        return billetter;
     }
 
 }
