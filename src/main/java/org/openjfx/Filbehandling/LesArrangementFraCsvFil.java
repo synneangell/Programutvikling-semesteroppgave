@@ -10,10 +10,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LesArrangementFraCsvFil extends LeseFraFil{
+public class LesArrangementFraCsvFil extends LeseFraFil {
+
+
     @Override
     public ArrayList<?> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException {
-        ArrayList<Arrangement> arrangement = new ArrayList<>();
+     /*   ArrayList<Arrangement> arrangement = new ArrayList<>();
         BufferedReader reader = null;
 
         try {
@@ -63,4 +65,9 @@ public class LesArrangementFraCsvFil extends LeseFraFil{
     }
 
     private static int parseNummer (String str, String message) throws Inva
+
+
+        */
+        return null;
+    }
 }

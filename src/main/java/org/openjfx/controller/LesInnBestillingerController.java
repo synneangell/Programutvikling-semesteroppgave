@@ -10,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.openjfx.Filbehandling.LeseDataFraJobjFil;
 
 import java.io.BufferedReader;
 import java.io.File;
