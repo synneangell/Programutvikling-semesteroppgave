@@ -5,10 +5,10 @@ import org.openjfx.base.Billett;
 import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class LeseFraFil {
 
-    public abstract List<Billett> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException;
-    //public abstract List<Arrangement> leseFraFi
+    public abstract ArrayList<?> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException;
 }

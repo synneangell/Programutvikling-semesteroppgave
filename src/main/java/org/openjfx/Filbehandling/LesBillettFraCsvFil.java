@@ -12,7 +12,7 @@ import java.util.List;
 
 public class LesBillettFraCsvFil extends LeseFraFil {
     @Override
-    public List<Billett> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException{
+    public ArrayList<?> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException{
        ArrayList<Billett> billett = new ArrayList<>();
         BufferedReader reader = null;
 
