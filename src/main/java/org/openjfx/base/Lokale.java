@@ -10,6 +10,7 @@ public class Lokale {
     Lokale (int plasser, int id) {
         this.plasser = plasser;
         this.id = id;
+        arrangementer = new ArrayList<>();
     }
 
 

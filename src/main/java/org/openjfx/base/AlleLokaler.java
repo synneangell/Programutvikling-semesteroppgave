@@ -103,7 +103,7 @@ public class AlleLokaler {
     }
 
     public static int antallPlasser(Lokale etLokale){
-        return antallPlasser(etLokale);
+        return etLokale.getPlasser();
     }
 
 }
