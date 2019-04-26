@@ -18,8 +18,6 @@ import org.openjfx.controller.uihelpers.*;
 
 public class BookLokaleController {
 
-    SkriveTilJobjFil skrivTilJobj = new SkriveTilJobjFil();
-    SkriveTilCsvFil skrivTilCsv = new SkriveTilCsvFil();
     ObservableList<String> typeArrangementer = FXCollections.observableArrayList("Konsert", "Foredrag");
     ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
 
@@ -31,7 +29,7 @@ public class BookLokaleController {
     private ChoiceBox velgTypeArrangement;
 
     @FXML
-    private ComboBox chBoxKvittering;
+    private ComboBox lagreTilFilBox;
 
     @FXML
     private AnchorPane rootBookLokale;
@@ -62,8 +60,8 @@ public class BookLokaleController {
         Tableview.setItems(alleArrangementer.getArrangementer());
         velgTypeArrangement.setItems(typeArrangementer);
         velgTypeArrangement.setValue("Konsert");
-        chBoxKvittering.setItems(filtyper);
-        chBoxKvittering.setValue(".csv");
+        lagreTilFilBox.setItems(filtyper);
+        lagreTilFilBox.setValue(".csv");
     }
 
     @FXML
@@ -71,10 +69,7 @@ public class BookLokaleController {
 
         boolean konsert = false;
         boolean foredrag = false;
-        boolean csv = false;
-        boolean jobj = false;
         String valg = velgTypeArrangement.getValue().toString();
-        String filtype = velgTypeArrangement.getValue().toString();
 
         if (valg == "Konsert") {
             konsert = true;
@@ -82,12 +77,6 @@ public class BookLokaleController {
             foredrag = true;
         }
 
-        if(filtype == ".csv"){
-            csv = true;
-        }
-        else if(filtype == ".jobj"){
-            jobj = true;
-        }
 
         if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
                 !txtEmail.getText().isEmpty() && !txtNettside.getText().isEmpty() &&
@@ -121,15 +110,6 @@ public class BookLokaleController {
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
                              txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getKonsertsal()), TypeArrangement.KONSERT);
                         Tableview.getItems().add(etDeltakerArrangement);
-                        skrivTilJobj.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
-
-                        //Oppretter kvittering
-                        if(jobj){
-                            skrivTilJobj.skriveTilFil("kvittering.jobj", etDeltakerArrangement);
-                        }
-                        else if(csv){
-                            skrivTilCsv.skriveTilFil("kvittering.csv", etDeltakerArrangement);
-                        }
 
                     }
                     else if (foredrag) {
@@ -137,15 +117,7 @@ public class BookLokaleController {
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
                                     txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getForedragssal()), TypeArrangement.FOREDRAG);
                         Tableview.getItems().add(etDeltakerArrangement);
-                        skrivTilJobj.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
 
-                        //Oppretter kvittering
-                        if(jobj){
-                            skrivTilJobj.skriveTilFil("kvittering.jobj", etDeltakerArrangement);
-                        }
-                        else if(csv){
-                            skrivTilCsv.skriveTilFil("kvittering.csv", etDeltakerArrangement);
-                        }
                     }
 
                 }
@@ -172,6 +144,21 @@ public class BookLokaleController {
                 FileExceptionHandler.generateAlert("Billettpris må bestå av tall.");
             }
         }
+    }
+
+    @FXML
+    void Lagre (ActionEvent event){
+        boolean csv = false;
+        boolean jobj = false;
+        String filtype = lagreTilFilBox.getValue().toString();
+
+        if(filtype == ".csv"){
+            csv = true;
+        }
+        else if(filtype == ".jobj"){
+            jobj = true;
+        }
+
     }
 
     private void avsluttProgram() {

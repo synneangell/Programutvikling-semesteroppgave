@@ -19,6 +19,9 @@ public class EndreArrangementController {
     SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
 
     @FXML
+    private ComboBox lagreTilFilBox;
+
+    @FXML
     private AnchorPane rootEndreArrangement;
 
     @FXML
@@ -51,6 +54,21 @@ public class EndreArrangementController {
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         DatoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    }
+
+    @FXML
+    void Lagre (ActionEvent event){
+        boolean csv = false;
+        boolean jobj = false;
+        String filtype = lagreTilFilBox.getValue().toString();
+
+        if(filtype == ".csv"){
+            csv = true;
+        }
+        else if(filtype == ".jobj"){
+            jobj = true;
+        }
+
     }
 
     public void endreNavnArrangement(TableColumn.CellEditEvent endretCelle) {

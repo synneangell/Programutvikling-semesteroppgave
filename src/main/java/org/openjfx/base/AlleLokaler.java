@@ -3,6 +3,8 @@ package org.openjfx.base;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+
 import static org.openjfx.base.AlleArrangementer.*;
 
 public class AlleLokaler {
@@ -11,50 +13,50 @@ public class AlleLokaler {
     private static AlleLokaler instance;
     private ObservableList<Lokale> alleLokaler = null;
 
-    Foredragssal foredragssal = null;
-    Konsertsal konsertsal = null;
-    Teatersal teatersal = null;
-    Kinosal kinosal = null;
+    Lokale foredragssal = null;
+    Lokale konsertsal = null;
+    Lokale teatersal = null;
+    Lokale kinosal = null;
 
 
-    public Foredragssal getForedragssal() {
+    public Lokale getForedragssal() {
         return foredragssal;
     }
 
-    public void setForedragssal(Foredragssal foredragssal) {
+    public void setForedragssal(Lokale foredragssal) {
         this.foredragssal = foredragssal;
     }
 
-    public Konsertsal getKonsertsal() {
+    public Lokale getKonsertsal() {
         return konsertsal;
     }
 
-    public void setKonsertsal(Konsertsal konsertsal) {
+    public void setKonsertsal(Lokale konsertsal) {
         this.konsertsal = konsertsal;
     }
 
-    public Teatersal getTeatersal() {
+    public Lokale getTeatersal() {
         return teatersal;
     }
 
-    public void setTeatersal(Teatersal teatersal) {
+    public void setTeatersal(Lokale teatersal) {
         this.teatersal = teatersal;
     }
 
-    public Kinosal getKinosal() {
+    public Lokale getKinosal() {
         return kinosal;
     }
 
-    public void setKinosal(Kinosal kinosal) {
+    public void setKinosal(Lokale kinosal) {
         this.kinosal = kinosal;
     }
 
     protected AlleLokaler(){
         alleLokaler = FXCollections.observableArrayList();
-        foredragssal = new Foredragssal(100,  1);
-        konsertsal = new Konsertsal(400, 2);
-        teatersal = new Teatersal(100, 3);
-        kinosal = new Kinosal(100, 4);
+        foredragssal = new Lokale(100,  1);
+        konsertsal = new Lokale(400, 2);
+        teatersal = new Lokale(100, 3);
+        kinosal = new Lokale(100, 4);
 
         leggTilLokale(foredragssal);
         leggTilLokale(konsertsal);

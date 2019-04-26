@@ -32,7 +32,7 @@ public class KjøpBillettController {
     private ComboBox chboxVelgAntall;
 
     @FXML
-    private ComboBox chBoxKvittering;
+    private ComboBox lagreTilFilBox;
 
     @FXML
     private Button btnAvslutt;
@@ -66,12 +66,12 @@ public class KjøpBillettController {
         tableView.setItems(alleArrangementer.getArrangementer());
         chboxVelgAntall.setItems(AntallBilletter);
         chboxVelgAntall.setValue("1");
-        chBoxKvittering.setItems(filtyper);
-        chBoxKvittering.setValue(".csv");
-}
+        lagreTilFilBox.setItems(filtyper);
+        lagreTilFilBox.setValue(".csv");
+    }
 
     @FXML
-    void fullførBestilling(ActionEvent event) throws ParseException, IOException {
+     void fullførBestilling(ActionEvent event) throws ParseException, IOException {
 
         if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()) {
 
@@ -103,21 +103,37 @@ public class KjøpBillettController {
                 FileExceptionHandler.generateAlert("Ikke gyldig email skrevet inn.");
             }
         }
-    }
+     }
 
-        private void avsluttProgram() {
+     @FXML
+     void Lagre (ActionEvent event){
+         boolean csv = false;
+         boolean jobj = false;
+         String filtype = lagreTilFilBox.getValue().toString();
+
+         if(filtype == ".csv"){
+             csv = true;
+         }
+         else if(filtype == ".jobj"){
+             jobj = true;
+         }
+
+     }
+
+
+      private void avsluttProgram() {
             Stage stage = (Stage) btnAvslutt.getScene().getWindow();
             stage.close();
-        }
+      }
 
-        @FXML
-        private void Avslutt (ActionEvent event){
+      @FXML
+      private void Avslutt (ActionEvent event){
             avsluttProgram();
         }
 
-        @FXML
-        private void Tilbake (ActionEvent event) throws IOException {
+      @FXML
+      private void Tilbake (ActionEvent event) throws IOException {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
             rootKjøpBillett.getChildren().setAll(pane);
-        }
-    }
+      }
+}
