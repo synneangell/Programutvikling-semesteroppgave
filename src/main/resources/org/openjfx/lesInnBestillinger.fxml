@@ -12,5 +12,6 @@
        <Button fx:id="btnAvslutt" layoutX="643.0" layoutY="666.0" mnemonicParsing="false" onAction="#Avslutt" prefHeight="33.0" prefWidth="80.0" styleClass="andreKnapper" stylesheets="@styles.css" text="Avslutt" />
       <Button fx:id="btnSøkEtterFil" layoutX="308.0" layoutY="95.0" mnemonicParsing="false" onAction="#SøkEtterFil" styleClass="andreKnapper" stylesheets="@styles.css" text="Søk etter fil " />
       <ListView fx:id="lvOversikt" layoutX="111.0" layoutY="177.0" prefHeight="362.0" prefWidth="533.0" stylesheets="@styles.css" />
+      <Label fx:id="lblOversikt" layoutX="111.0" layoutY="558.0" prefHeight="135.0" prefWidth="521.0" />
    </children>
 </AnchorPane>

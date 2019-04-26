@@ -23,5 +23,4 @@ public class SkriveTilCsvFil extends SkriveTilFil {
         Path file = Paths.get(filsti);
         Files.write(file, data, Charset.forName("UTF-8"));
     }
-
 }

@@ -19,7 +19,7 @@ public class Billett implements Serializable {
     }
 
     public String toString(){
-        return "Kvittering for billett: "+kjøper.toString();
+        return kjøper.toString();
     }
 
 }
