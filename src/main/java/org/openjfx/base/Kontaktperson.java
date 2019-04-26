@@ -1,6 +1,8 @@
 package org.openjfx.base;
 
-public class Kontaktperson extends Person {
+import java.io.Serializable;
+
+public class Kontaktperson extends Person implements Serializable {
     private String telefonNr;
     private String emailAdresse;
     private String nettside;

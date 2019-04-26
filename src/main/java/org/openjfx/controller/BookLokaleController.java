@@ -1,161 +1,182 @@
 package org.openjfx.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 
 import javafx.collections.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.openjfx.Filbehandling.SkriveTilCsvFil;
+import org.openjfx.Filbehandling.SkriveTilJobjFil;
 import org.openjfx.base.*;
-import org.openjfx.controller.uihelpers.InputValidering;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import org.openjfx.controller.uihelpers.*;
 
 public class BookLokaleController {
 
+    SkriveTilJobjFil skrivTilJobj = new SkriveTilJobjFil();
+    SkriveTilCsvFil skrivTilCsv = new SkriveTilCsvFil();
     ObservableList<String> typeArrangementer = FXCollections.observableArrayList("Konsert", "Foredrag");
-    LokalRegister lokalregister = new LokalRegister();
-    // ArrangementRegister arrangementregister = new ArrangementRegister();
+    ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
 
     @FXML
-    private TextField txtNavn;
-
-    @FXML
-    private TextField txtTelefonnummer;
-
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private TextField txtNettside;
-
-    @FXML
-    private TextField txtAndreOpplysninger;
-
-    @FXML
-    private TextField txtVirksomhet;
-
-    @FXML
-    private TextField txtNavnArrangement;
-
-    @FXML
-    private TextField txtBillettpris;
-
-    @FXML
-    private TextField txtTidspunkt;
-
-    @FXML
-    private TextField txtDato;
-
-    @FXML
-    private TextField txtDeltakerNavn;
-
-    @FXML
-    private TextField txtEgenskapDeltaker;
-
-    @FXML
-    private Label lblFullførBestilling;
-
-    @FXML
-    private Label lblOversiktOpplysninger;
-
-    @FXML
-    private Button btnAvslutt;
+    private TextField txtNavn, txtTelefonnummer, txtEmail, txtNettside, txtAndreOpplysninger, txtVirksomhet,
+            txtNavnArrangement, txtBillettpris, txtTidspunkt, txtDato, txtDeltakerNavn, txtEgenskapDeltaker;
 
     @FXML
     private ChoiceBox velgTypeArrangement;
 
     @FXML
+    private ComboBox chBoxKvittering;
+
+    @FXML
     private AnchorPane rootBookLokale;
 
-    public BookLokaleController() throws ParseException {
-    }
-
+    @FXML
+    private TableView<Arrangement> Tableview;
 
     @FXML
-    private void initialize(){
+    private TableColumn<Arrangement, String> TypeColumn;
+
+    @FXML
+    private TableColumn<Arrangement, String> ArrangementNavnColumn;
+
+    @FXML
+    private TableColumn<Arrangement, String> KlokkeslettColumn;
+
+    @FXML
+    private TableColumn<Arrangement, String> DatoColumn;
+
+    @FXML
+    public void initialize() {
+        //Tabellen lages her:
+        TypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
+        ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
+        KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
+        DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
+
+        Tableview.setItems(ModelViewArrangement.getArrangementer());
         velgTypeArrangement.setItems(typeArrangementer);
         velgTypeArrangement.setValue("Konsert");
+        chBoxKvittering.setItems(filtyper);
+        chBoxKvittering.setValue(".csv");
     }
 
-  /*  //TODO: Er dette nødvendig å ha med? I så fall bør det kanskje løses annerledes?
     @FXML
-    private void alleOpplysningerRegistrert(ActionEvent e){
-        //TODO: Sett inn også dato/tidspunkt i lblOversiktOpplysninger
-        lblOversiktOpplysninger.setText("Informasjon om arrangement: \n"+txtNavnArrangement.getText()+txtBillettpris.getText()+"\n"+
-                "Informasjon om kontaktperson: \n"+txtNavn.getText()+txtTelefonnummer.getText()+txtEmail.getText()+"\n"+
-                txtNettside.getText()+txtAndreOpplysninger.getText()+txtVirksomhet.getText()+"\n"+
-                "Informasjon om deltaker: \n"+txtDeltakerNavn.getText()+txtEgenskapDeltaker.getText());
-    } */
-
-    @FXML
-    void fullførBooking(ActionEvent event) throws ParseException {
+    void fullførBooking(ActionEvent event) throws ParseException, InvalidTekstException, IOException {
 
         boolean konsert = false;
         boolean foredrag = false;
+        boolean csv = false;
+        boolean jobj = false;
         String valg = velgTypeArrangement.getValue().toString();
+        String filtype = velgTypeArrangement.getValue().toString();
 
-        if(valg == "Konsert"){
+        if (valg == "Konsert") {
             konsert = true;
-        }
-        else if(valg == "Foredrag"){
+        } else if (valg == "Foredrag") {
             foredrag = true;
         }
 
-        //Sjekker her at alle felt er fylt inn
-       /* if(!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
+        if(filtype == ".csv"){
+            csv = true;
+        }
+        else if(filtype == ".jobj"){
+            jobj = true;
+        }
+
+        if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
                 !txtEmail.getText().isEmpty() && !txtNettside.getText().isEmpty() &&
                 !txtAndreOpplysninger.getText().isEmpty() && !txtVirksomhet.getText().isEmpty() &&
                 !txtNavnArrangement.getText().isEmpty() && !txtBillettpris.getText().isEmpty() &&
-                !txtTidspunkt.getText().isEmpty() &&
-                !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()){ */
-            //må datepicker også sjekkes her?
+                !txtTidspunkt.getText().isEmpty() && !txtDato.getText().isEmpty() &&
+                !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()) {
+
+
 
             Kontaktperson kontaktperson = new Kontaktperson(
-                    txtNavn.getText(),txtTelefonnummer.getText(),txtEmail.getText(),
-                    txtNettside.getText(),txtAndreOpplysninger.getText(), txtVirksomhet.getText());
+                    txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText(),
+                    txtNettside.getText(), txtAndreOpplysninger.getText(), txtVirksomhet.getText());
 
-            Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(),txtEgenskapDeltaker.getText());
+            Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(), txtEgenskapDeltaker.getText());
 
 
-            try{    //MÅ SE OM IGJEN PÅ HELE DELEN MED PARSING TIL DATOFORMAT
-                int billettpris = Integer.parseInt(txtBillettpris.getText());
-                int innTid = Integer.parseInt(txtTidspunkt.getText());
-                int innDato = Integer.parseInt(txtDato.getText());
-                //Hvordan formatere denne riktig til date(år, måned, dag, time, minutt)??
-               /* Date tidspunkt = new Date(innDato, innTid);
-                System.out.println(tidspunkt);
+            try {
+                if(SjekkOmGyldig.sjekkKunBokstaver(txtNavn.getText()) && SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText()) &&
+                SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText()) && SjekkOmGyldig.sjekkGyldigNettsideAdresse(txtNettside.getText()) &&
+                SjekkOmGyldig.sjekkKunBokstaver(txtAndreOpplysninger.getText()) && SjekkOmGyldig.sjekkKunBokstaver(txtVirksomhet.getText())
+                && SjekkOmGyldig.sjekkGyldigBillettpris(txtBillettpris.getText()) && SjekkOmGyldig.sjekkGyldigKlokkeslett(txtTidspunkt.getText())
+                && SjekkOmGyldig.sjekkGyldigDato(txtDato.getText())){
 
-                if(konsert){
-                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
-                            kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 400, TypeArrangement.KONSERT);
-                    lokalregister.registrerKonsertArrangement(etDeltakerArrangement);
+                    int billettpris = Integer.parseInt(txtBillettpris.getText());
+
+                    if (konsert) {
+
+                        DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
+                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
+                             txtTidspunkt.getText(), ModelViewArrangement.antallPlasserKonsertsal(), TypeArrangement.KONSERT);
+
+                        Tableview.getItems().add(etDeltakerArrangement);
+                        skrivTilJobj.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
+
+                        //Oppretter kvittering
+                        if(jobj){
+                            skrivTilJobj.skriveTilFil("kvittering.jobj", etDeltakerArrangement);
+                        }
+                        else if(csv){
+                            skrivTilCsv.skriveTilFil("kvittering.csv", etDeltakerArrangement);
+                        }
+
+                    }
+                    else if (foredrag) {
+                        DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
+                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
+                                    txtTidspunkt.getText(), ModelViewArrangement.antallPlasserForedragssal(), TypeArrangement.FOREDRAG);
+                        Tableview.getItems().add(etDeltakerArrangement);
+                        skrivTilJobj.skriveTilFil("arrangement.jobj", etDeltakerArrangement);
+
+                        //Oppretter kvittering
+                        if(jobj){
+                            skrivTilJobj.skriveTilFil("kvittering.jobj", etDeltakerArrangement);
+                        }
+                        else if(csv){
+                            skrivTilCsv.skriveTilFil("kvittering.csv", etDeltakerArrangement);
+                        }
+                    }
+
                 }
-                else if(foredrag){
-                    DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement(
-                    kontaktperson, txtNavnArrangement.getText(), billettpris, tidspunkt, 100, TypeArrangement.FOREDRAG);
-                    lokalregister.registrerForedragsArrangement(etDeltakerArrangement);
-                } */
-
             }
-            catch(Exception e){
-                //feilmelding ut til bruker
-                String feilmelding = "Noe gikk galt.";
-                lblFullførBestilling.setText(feilmelding);
-
+            catch (InvalidTekstException e) {
+                FileExceptionHandler.generateAlert("Det er brukt tall der det kun skal være tekst. ");
+            }
+            catch (InvalidTelefonnummerException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
+            }
+            catch (InvalidDatoException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig dato. Format: dd/mm/åååå. ");
+            }
+            catch (InvalidKlokkeslettException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig klokkeslett. Format: tt:mm. ");
+            }
+            catch (InvalidNettsideAdresseException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig nettadresse skrevet inn.");
+            }
+            catch (InvalidEmailException e) {
+                FileExceptionHandler.generateAlert("Ikke gyldig email skrevet inn.");
+            }
+            catch (InvalidBillettprisException e) {
+                FileExceptionHandler.generateAlert("Billettpris må bestå av tall.");
             }
         }
+    }
 
-    //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
     private void avsluttProgram() {
-        Stage stage = (Stage) btnAvslutt.getScene().getWindow();
+        Stage stage = (Stage) txtTidspunkt.getScene().getWindow();
         stage.close();
     }
 

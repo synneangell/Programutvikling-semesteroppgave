@@ -1,116 +1,133 @@
 package org.openjfx.base;
 
+import org.openjfx.controller.uihelpers.InvalidBillettprisException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Arrangement implements Serializable {
     private Kontaktperson kontaktperson;
     private String arrangementNavn;
     private int billettpris;
-    private Dato dato;
-    private Klokkeslett klokkeslett;
+    private String dato;
+    private String klokkeslett;
     private int antallBilletter;
     TypeArrangement typeArrangement;
 
-    //Må dennne settes i konstruktøren?
-    ArrayList<Billett> billetter = new ArrayList<>(antallBilletter);
+    ArrayList<Billett> billetter = new ArrayList<>();
 
-    public Arrangement (Kontaktperson kontaktperson, String arrangementNavn, int billettpris, Dato dato, Klokkeslett klokkeslett, int antallBilletter, TypeArrangement typeArrangement){
+    public Arrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, String dato, String klokkeslett, int antallBilletter, TypeArrangement typeArrangement) {
         this.kontaktperson = kontaktperson;
         this.arrangementNavn = arrangementNavn;
         this.billettpris = billettpris;
         this.dato = dato;
         this.antallBilletter = antallBilletter;
+        this.klokkeslett = klokkeslett;
+        this.typeArrangement = typeArrangement;
+        for(int i = 0; i < antallBilletter; i++) {
+            billetter.add(new Billett(null));
+        }
     }
 
     public Kontaktperson getKontaktperson() {
         return kontaktperson;
     }
 
-    public String getArrangementNavn() {
-        return arrangementNavn;
-    }
-
-    public int getBillettpris() {
-        return billettpris;
-    }
-
-    public Dato getDato() {
-        return dato;
-    }
-
-    public Klokkeslett getKlokkeslett() {
-        return klokkeslett;
-    }
-
     public void setKontaktperson(Kontaktperson kontaktperson) {
         this.kontaktperson = kontaktperson;
+    }
+
+    public String getArrangementNavn() {
+        return arrangementNavn;
     }
 
     public void setArrangementNavn(String arrangementNavn) {
         this.arrangementNavn = arrangementNavn;
     }
 
-    public void setBillettpris(int billettpris) {
+    public int getBillettpris() {
+        return billettpris;
+    }
+
+    public void setBillettpris(int billettpris){
         this.billettpris = billettpris;
     }
 
-    public void setDato(Dato dato) {
+    public String getDato() {
+        return dato;
+    }
+
+    public void setDato(String dato) {
         this.dato = dato;
     }
 
-    public void setKlokketslett(Klokkeslett klokkeslett) {
+    public String getKlokkeslett() {
+        return klokkeslett;
+    }
+
+    public void setKlokkeslett(String klokkeslett) {
         this.klokkeslett = klokkeslett;
     }
 
-    public void leggTilBillett(Billett enBillett){
-       //Må returnere en feilmelding dersom det ikke er plass til flere billetter
-        billetter.add(enBillett);
+    public int getAntallBilletter() {
+        return antallBilletter;
     }
 
-    private String slettBillett(int referansenummer){
-        for (Billett enBillett : billetter){
-            if(enBillett.getReferansenummer() == referansenummer){
-                    //billetten er funnet og man sletter den fra alleBilletter arrayet.
-                    billetter.remove(enBillett);
-                    return "Billetten er slettet";
-                }
+    public void setAntallBilletter(int antallBilletter) {
+        this.antallBilletter = antallBilletter;
+    }
+
+    public String getTypeArrangement() {
+        String type = "";
+        if (typeArrangement == TypeArrangement.KINO) {
+            type = "Kino";
+        }
+
+        if (typeArrangement == TypeArrangement.FOREDRAG) {
+            type = "Foredrag";
+        }
+
+        if (typeArrangement == TypeArrangement.TEATER) {
+            type = "Teater";
+        }
+
+        if (typeArrangement == TypeArrangement.KONSERT) {
+            type = "Konsert";
+        }
+        return type;
+    }
+
+    public void setTypeArrangement(TypeArrangement typeArrangement) {
+        this.typeArrangement = typeArrangement;
+    }
+
+
+    public void leggTilBillett(Kjøper enKjøper){
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() == null)
+                enBillett.setKjøper(enKjøper);
             }
-            return "Fant ikke referansenummer";
     }
 
-    //Endre billett? Hva skal man kunne endre?
-    private void endreBillett(){
+    public int antallBilletterIgjen(){
+        int teller = 0;
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() == null){
+                teller++;
+            }
+        }
+        return teller;
     }
 
-    /*
-    public int compareTo(Arrangement arrangement) {
-        return (this.arrangementNavn).compareTo(arrangement.arrangementNavn);
-
-    }
-
-    //Sortere arrangementer etter dato?
-    @Override
-    public int compare(Arrangement a1, Arrangement a2) {
-        if (a1.getTidspunkt() == null || a2.getTidspunkt() == null)
-            return 0;
-        return a1.getTidspunkt().compareTo(a2.getTidspunkt());
-    }   */
-
-    public String program(Kontaktperson kontaktperson, String arrangementNavn, int billettPris, Date tidspunkt){
-        return "";
-    }
-
-    @Override
-    public String toString() {
-        return arrangementNavn+" : kl."+klokkeslett+" den "+dato;
-    }
-
-    /*
-    public String toString(){
-        String ut = "Kontaktperson: "+kontaktperson+" Arrangementnavn: "+arrangementNavn+" Billettpris: "+billettpris+
-                "Tidspunkt: "+tidspunkt+"\n";
+    public String hentBillett(Kjøper enKjøper){
+        String ut = "";
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() == enKjøper){
+                ut = "Hei"+enBillett.toString() + getArrangementNavn();
+            }
+        }
         return ut;
-    }*/
+    }
+
 }
+

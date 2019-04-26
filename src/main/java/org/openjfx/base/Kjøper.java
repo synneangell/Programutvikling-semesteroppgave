@@ -1,6 +1,8 @@
 package org.openjfx.base;
 
-public class Kjøper extends Person {
+import java.io.Serializable;
+
+public class Kjøper extends Person implements Serializable {
     private String telefonNr;
     private String email;
 
@@ -28,8 +30,7 @@ public class Kjøper extends Person {
 
     @Override
     public String toString() {
-        String ut = "Navn";
-        return ut;
+        return "\nNavn: " + getNavn() + ", telefonnummer: "+telefonNr+", email: "+email+". ";
     }
 
 }

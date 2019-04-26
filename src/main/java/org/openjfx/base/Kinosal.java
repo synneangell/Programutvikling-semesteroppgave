@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Kinosal extends Lokale {
 
-    public Kinosal(int plasser, ArrayList<Arrangement> arrangementer, int id) {
-        super(plasser, arrangementer, id);
+    public Kinosal(int plasser, int id) {
+        super(plasser, id);
     }
 
     public int getPlasser(){

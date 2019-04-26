@@ -3,13 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" prefHeight="759.0" prefWidth="736.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.KulturhusetController">
+<AnchorPane fx:id="rootPane" prefHeight="728.0" prefWidth="754.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.KulturhusetController">
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
@@ -17,17 +13,10 @@
       <Insets />
    </opaqueInsets>
    <children>
-      <Button fx:id="btnKjøpBillett" layoutX="171.0" layoutY="43.0" mnemonicParsing="false" onAction="#kjøpBillett" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Kjøp billett" />
-      <Button fx:id="btnBooklokale" layoutX="171.0" layoutY="110.0" mnemonicParsing="false" onAction="#bookLokale" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Book lokale" />
-      <Button fx:id="btnVisArrangementer" layoutX="172.0" layoutY="173.0" mnemonicParsing="false" onAction="#visAlleArrangementer" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Vis arrangementer" />
-      <Label fx:id="lblOversiktArrangementer" layoutX="91.0" layoutY="539.0" prefHeight="262.0" prefWidth="410.0" stylesheets="@styles.css" />
-      <ComboBox layoutX="476.0" layoutY="499.0" prefHeight="30.0" prefWidth="110.0" promptText="Sorter" />
-      <TableView fx:id="tvVisArrangementer" layoutX="11.0" layoutY="260.0" prefHeight="200.0" prefWidth="575.0">
-        <columns>
-          <TableColumn fx:id="ArrangementColumn" prefWidth="276.0" text="Arrangement" />
-          <TableColumn fx:id="KlokkeslettColumn" prefWidth="104.0" text="Klokkeslett" />
-            <TableColumn fx:id="DatoColumn" prefWidth="193.0" text="Dato" />
-        </columns>
-      </TableView>
+      <Button fx:id="btnKjøpBillett" layoutX="249.0" layoutY="196.0" mnemonicParsing="false" onAction="#kjøpBillett" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Kjøp billett" />
+      <Button fx:id="btnBooklokale" layoutX="249.0" layoutY="292.0" mnemonicParsing="false" onAction="#bookLokale" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Book lokale" />
+      <Button fx:id="btnEndreArrangement" layoutX="191.0" layoutY="387.0" mnemonicParsing="false" onAction="#endreArrangement" prefHeight="48.0" prefWidth="375.0" styleClass="knapperForside" stylesheets="@styles.css" text="Endre/slette arrangement" />
+      <Button fx:id="btnLesInnBestilling" layoutX="191.0" layoutY="479.0" mnemonicParsing="false" onAction="#lesInnBestilling" prefHeight="48.0" prefWidth="375.0" styleClass="knapperForside" stylesheets="@styles.css" text="Les inn lagrede bestillinger" />
+
    </children>
 </AnchorPane>
