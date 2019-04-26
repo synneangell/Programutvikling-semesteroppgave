@@ -144,6 +144,7 @@ public class BookLokaleController {
                 FileExceptionHandler.generateAlert("Billettpris må bestå av tall.");
             }
         }
+        AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
     }
 
     @FXML
@@ -158,7 +159,6 @@ public class BookLokaleController {
         else if(filtype == ".jobj"){
             jobj = true;
         }
-
     }
 
     private void avsluttProgram() {

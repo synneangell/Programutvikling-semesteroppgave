@@ -16,7 +16,6 @@ public class SkriveTilJobjFil extends SkriveTilFil {
         catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
 

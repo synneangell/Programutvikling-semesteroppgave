@@ -12,10 +12,9 @@ import java.util.List;
 
 public class LesArrangementFraCsvFil extends LeseFraFil {
 
-
     @Override
     public ArrayList<?> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException {
-     /*   ArrayList<Arrangement> arrangement = new ArrayList<>();
+        ArrayList<Arrangement> arrangement = new ArrayList<>();
         BufferedReader reader = null;
 
         try {
@@ -53,21 +52,24 @@ public class LesArrangementFraCsvFil extends LeseFraFil {
         String virksomhet = split[4];
         String opplysninger = split[5];
         String arrangementNavn = split[6];
-        int billettpris = parseNummer(split[7]);
+        int billettpris = parseNummer(split[7], "Billettprisen må være et nummer");
         String dato = split[8];
         String klokkeslett = split[9];
-        int antallBilletter = split[10];
-        TypeArrangement typeArrangement = split[11];
+        int antallBilletter = parseNummer(split[10], "AntallBilletter må være et nummer");
+        TypeArrangement typeArrangement = TypeArrangement.valueOf(split[11]);
+        Kontaktperson kontaktperson = new Kontaktperson(navn, telefonNr, emailAdresse, nettside, virksomhet, opplysninger);
 
-
-        return new Arrangement(new Kontaktperson(navn, telefonNr, emailAdresse, nettside, virksomhet, opplysninger)
-                    arrangementNavn, billettpris, dato, klokkeslett, antallBilletter, typeArrangement);
+        return new Arrangement(kontaktperson, arrangementNavn, billettpris, dato, klokkeslett, antallBilletter, typeArrangement);
+        //return null;
     }
 
-    private static int parseNummer (String str, String message) throws Inva
-
-
-        */
-        return null;
+    private static int parseNummer (String str, String errorMelding) throws InvalidBillettFormatException {
+        int number;
+        try {
+            number = Integer.parseInt(str);
+        } catch (NumberFormatException e){
+            throw new InvalidBillettFormatException(errorMelding);
+        }
+        return number;
     }
 }

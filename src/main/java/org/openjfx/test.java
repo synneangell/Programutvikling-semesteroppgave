@@ -17,9 +17,5 @@ public class test {
         SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
         skriveTilCsvFil.skriveTilFil("kvittering.csv", billett);
         System.out.println("Hei");
-
-        LesBillettFraCsvFil leseFraCsvFil = new LesBillettFraCsvFil();
-        leseFraCsvFil.leseFraFil("kvittering.csv");
-        System.out.println("lese fra csv");
     }
 }
