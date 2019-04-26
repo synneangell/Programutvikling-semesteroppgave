@@ -39,10 +39,10 @@ public class LesArrangementFraCsvFil extends LeseFraFil {
     }
 
     private static Arrangement parseArrangement(String line) throws InvalidBillettFormatException {
-        // Deler opp stringen i tre deler ved bruk av ";"
+        // Deler opp stringen i tre deler ved bruk av ","
         String[] split = line.split(",");
-        if(split.length != 11) {
-            throw new InvalidBillettFormatException("Må bruke semikolon ; til å separere de tre datafeltene");
+        if(split.length != 12) {
+            throw new InvalidBillettFormatException("Må bruke komma , til å separere de tre datafeltene");
         }
 
         String navn = split[0];
