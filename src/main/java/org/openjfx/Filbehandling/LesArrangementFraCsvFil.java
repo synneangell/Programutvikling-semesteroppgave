@@ -41,7 +41,7 @@ public class LesArrangementFraCsvFil extends LeseFraFil {
     private static Arrangement parseArrangement(String line) throws InvalidBillettFormatException {
         // Deler opp stringen i tre deler ved bruk av ";"
         String[] split = line.split(",");
-        if(split.length != 11) {
+        if(split.length != 12) {
             throw new InvalidBillettFormatException("Må bruke semikolon ; til å separere de tre datafeltene");
         }
 
