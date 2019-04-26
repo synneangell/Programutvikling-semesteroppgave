@@ -45,7 +45,6 @@ public class LesArrangementFraCsvFil extends LeseFraFil {
             throw new InvalidBillettFormatException("Må bruke semikolon ; til å separere de tre datafeltene");
         }
 
-        //TODO: fikse slik at programmet også leser inn hvilket type arrangement hører til bookingen
         String navn = split[0];
         String telefonNr = split[1];
         String emailAdresse = split[2];
@@ -57,13 +56,11 @@ public class LesArrangementFraCsvFil extends LeseFraFil {
         String dato = split[8];
         String klokkeslett = split[9];
         int antallBilletter = parseNummer(split[10], "AntallBilletter må være et nummer");
-        //TypeArrangement typeArrangement = split[11];
+        TypeArrangement typeArrangement = TypeArrangement.valueOf(split[11]);
+        Kontaktperson kontaktperson = new Kontaktperson(navn, telefonNr, emailAdresse, nettside, virksomhet, opplysninger);
 
-
-        //TODO: fikse feilen, skjønner ikke helt hva som er feil her.
-        //return new Arrangement((new Kontaktperson (navn, telefonNr, emailAdresse, nettside, virksomhet, opplysninger))
-        //    arrangementNavn, billettpris, dato, klokkeslett, antallBilletter);
-        return null;
+        return new Arrangement(kontaktperson, arrangementNavn, billettpris, dato, klokkeslett, antallBilletter, typeArrangement);
+        //return null;
     }
 
     private static int parseNummer (String str, String errorMelding) throws InvalidBillettFormatException {
