@@ -13,10 +13,10 @@
       <Insets />
    </opaqueInsets>
    <children>
-      <Button fx:id="btnKjøpBillett" layoutX="249.0" layoutY="196.0" mnemonicParsing="false" onAction="#kjøpBillett" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Kjøp billett" />
-      <Button fx:id="btnBooklokale" layoutX="249.0" layoutY="292.0" mnemonicParsing="false" onAction="#bookLokale" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Book lokale" />
+      <Button fx:id="btnOpprettBillett" layoutX="249.0" layoutY="196.0" mnemonicParsing="false" onAction="#kjøpBillett" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Opprett billett" />
+      <Button fx:id="btnOpprettArrangement" layoutX="249.0" layoutY="292.0" mnemonicParsing="false" onAction="#bookLokale" prefHeight="48.0" prefWidth="258.0" styleClass="knapperForside" stylesheets="@styles.css" text="Opprett arrangement" />
       <Button fx:id="btnEndreArrangement" layoutX="191.0" layoutY="387.0" mnemonicParsing="false" onAction="#endreArrangement" prefHeight="48.0" prefWidth="375.0" styleClass="knapperForside" stylesheets="@styles.css" text="Endre/slette arrangement" />
-      <Button fx:id="btnLesInnBestilling" layoutX="191.0" layoutY="479.0" mnemonicParsing="false" onAction="#lesInnBestilling" prefHeight="48.0" prefWidth="375.0" styleClass="knapperForside" stylesheets="@styles.css" text="Les inn lagrede bestillinger" />
+      <Button fx:id="btnLesInnBestilling" layoutX="165.0" layoutY="473.0" mnemonicParsing="false" onAction="#lesInnBestilling" prefHeight="56.0" prefWidth="428.0" styleClass="knapperForside" stylesheets="@styles.css" text="Last inn tidligere arbeid fra fil" />
 
    </children>
 </AnchorPane>

@@ -18,10 +18,9 @@ public class SkriveTilCsvFil extends SkriveTilFil {
     public void skriveTilFil(String filsti, Object o) throws IOException {
         List<String> data = new ArrayList<>();
 
-        data.add(o.toString());
+        data.add(o.toString()+";");
 
         Path file = Paths.get(filsti);
         Files.write(file, data, Charset.forName("UTF-8"));
     }
-
 }
