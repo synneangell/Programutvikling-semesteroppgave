@@ -148,16 +148,18 @@ public class BookLokaleController {
     }
 
     @FXML
-    void Lagre (ActionEvent event){
-        boolean csv = false;
-        boolean jobj = false;
+    void Lagre (ActionEvent event) throws IOException {
         String filtype = lagreTilFilBox.getValue().toString();
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
-        if(filtype == ".csv"){
-            csv = true;
+        if(filtype.equals(".csv")){
+            SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
+            skriveTilCsvFil.skriveTilFil("arrangement.csv",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
-        else if(filtype == ".jobj"){
-            jobj = true;
+        else if(filtype.equals(".jobj")){
+            SkriveTilJobjFil skriveTilJobjFil = new SkriveTilJobjFil();
+            skriveTilJobjFil.skriveTilFil("arrangement.jobj",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
+
         }
     }
 

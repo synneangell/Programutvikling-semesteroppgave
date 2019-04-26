@@ -23,11 +23,22 @@ public class test {
         ArrayList <Arrangement> arrangementer = new ArrayList<>();
         arrangementer.add(kinofilm);
 
+        /*
         SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
         skriveTilCsvFil.skriveTilFil("arrangement.csv", arrangementer);
 
         LesArrangementFraCsvFil lesArrangementFraCsvFil = new LesArrangementFraCsvFil();
         System.out.println(lesArrangementFraCsvFil.leseFraFil("arrangement.csv"));
+
+        */
+
+        SkriveTilJobjFil skriveTilJobjFil = new SkriveTilJobjFil();
+        skriveTilJobjFil.skriveTilFil("arrangement.jobj", arrangementer);
+
+        LeseDataFraJobjFil leseDataFraJobjFil = new LeseDataFraJobjFil();
+        System.out.println(leseDataFraJobjFil.leseFraFil("arrangement.jobj"));
+
+
 
     }
 
