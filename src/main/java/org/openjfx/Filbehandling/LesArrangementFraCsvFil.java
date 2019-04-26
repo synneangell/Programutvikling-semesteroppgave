@@ -51,7 +51,7 @@ public class LesArrangementFraCsvFil extends LeseFraFil{
         String virksomhet = split[4];
         String opplysninger = split[5];
         String arrangementNavn = split[6];
-        int billettpris = parseNumber(split[7]);
+        int billettpris = parseNummer(split[7]);
         String dato = split[8];
         String klokkeslett = split[9];
         int antallBilletter = split[10];
@@ -61,4 +61,6 @@ public class LesArrangementFraCsvFil extends LeseFraFil{
         return new Arrangement(new Kontaktperson(navn, telefonNr, emailAdresse, nettside, virksomhet, opplysninger)
                     arrangementNavn, billettpris, dato, klokkeslett, antallBilletter, typeArrangement);
     }
+
+    private static int parseNummer (String str, String message) throws Inva
 }
