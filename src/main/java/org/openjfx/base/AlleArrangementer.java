@@ -3,6 +3,8 @@ package org.openjfx.base;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+
 public class AlleArrangementer {
 
     private static AlleArrangementer instance;
@@ -12,7 +14,7 @@ public class AlleArrangementer {
     protected AlleArrangementer(){
         alleArrangementer = FXCollections.observableArrayList();
 
-        Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
+        /*Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
                 "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
 
 
@@ -42,7 +44,7 @@ public class AlleArrangementer {
         alleArrangementer.add(kinofilm3);
         alleArrangementer.add(teaterforestilling);
         alleArrangementer.add(teaterforestilling2);
-        alleArrangementer.add(teaterforestilling3);
+        alleArrangementer.add(teaterforestilling3);*/
 
     }
 
@@ -50,6 +52,19 @@ public class AlleArrangementer {
         return alleArrangementer;
     }
 
+    public ArrayList<Arrangement> gjørOmTilArrayList(ObservableList<Arrangement> observableList){
+        ArrayList<Arrangement> arrangementer = new ArrayList<>();
+        for(Arrangement etArrangement : observableList){
+            arrangementer.add(etArrangement);
+        }
+        return arrangementer;
+    }
+
+    public void gjørOmTilObservableList(ArrayList<Object> arrayList){
+        for(Object etArrangement : arrayList){
+            leggTilArrangement((Arrangement) etArrangement);
+        }
+    }
 
     public static AlleArrangementer getSingelton(){
         if(instance == null){
@@ -62,6 +77,7 @@ public class AlleArrangementer {
     public void leggTilArrangement(Arrangement etArrangement){
             alleArrangementer.add(etArrangement);
     }
+
 
 }
 

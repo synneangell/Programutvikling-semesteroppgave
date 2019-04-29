@@ -56,46 +56,7 @@ public class LesInnBestillingerController {
     @FXML
     private void SøkEtterFil(ActionEvent event){
 
-     FileChooser fc = new FileChooser();
 
-     fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JOBJ og CSV filer", "*.csv", "*.txt"));
-
-     File merkertFil = fc.showOpenDialog(null);
-
-        String res = "";
-        try (BufferedReader reader = new BufferedReader(new FileReader(merkertFil))) {
-
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-                res += line;
-                //lvOversikt.getItems().add(res);
-            }
-
-            System.out.println("resultat: " + line);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        int teller = 0;
-        String test = "";
-        for(int i = 0; i < res.length(); i++) {
-            teller++;
-            test += res.charAt(i);
-            if(teller == 50) {
-                teller = 0;
-                lvOversikt.getItems().add(test);
-                test = "";
-            }
-        }
-
-        if (merkertFil != null) {
-            //lvOversikt.getItems().add(res);
-            //Her må filsti være slik at man kan hente filen fra hvor som helst på pcen
-
-        } else {
-            System.out.println("Filen er ikke gyldig");
-        }
     }
   }
 

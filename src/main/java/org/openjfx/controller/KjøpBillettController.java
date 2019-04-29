@@ -21,7 +21,7 @@ import java.text.ParseException;
 public class KjøpBillettController {
 
     SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
-    BillettRegister billettregister = new BillettRegister();        //TODO: se på denne
+    AlleBilletter billettregister = new AlleBilletter();        //TODO: se på denne
     ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
     ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
 
@@ -89,9 +89,9 @@ public class KjøpBillettController {
                             etArrangement.leggTilBillett(enKjøper);
                             AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
                             //TODO: hva skal skrives til fil?
-                            skrivTilFil.skriveTilFil("billett.jobj", "Test");
-                            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
-                            rootKjøpBillett.getChildren().setAll(pane);
+//                            skrivTilFil.skriveTilFil("billett.jobj", "Test");
+//                            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
+//                            rootKjøpBillett.getChildren().setAll(pane);
                         }
                     } else {
                         FileExceptionHandler.generateAlert("Det er ikke nok billetter igjen. ");
@@ -119,9 +119,7 @@ public class KjøpBillettController {
          else if(filtype == ".jobj"){
              jobj = true;
          }
-
      }
-
 
       private void avsluttProgram() {
             Stage stage = (Stage) btnAvslutt.getScene().getWindow();

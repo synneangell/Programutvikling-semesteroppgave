@@ -131,5 +131,11 @@ public class Arrangement implements Serializable {
         return billetter;
     }
 
+    public String toString (){
+        return kontaktperson.getNavn()+","+kontaktperson.getTelefonNr()+","+kontaktperson.getEmailAdresse()+","
+                +kontaktperson.getNettside()+","+kontaktperson.getVirksomhet()+","+kontaktperson.getOpplysninger()+","+
+                arrangementNavn+","+billettpris+","+dato+","+klokkeslett+","+antallBilletter+","+typeArrangement;
+    }
+
 }
 

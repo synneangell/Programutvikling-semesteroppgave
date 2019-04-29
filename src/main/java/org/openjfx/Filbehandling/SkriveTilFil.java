@@ -7,6 +7,6 @@ import java.util.*;
 
 public abstract class SkriveTilFil {
 
-    public abstract void skriveTilFil(String filsti, Object o) throws IOException;
+    public abstract void skriveTilFil(String filsti, ArrayList<?> arrayList) throws IOException;
 
 }
