@@ -19,5 +19,3 @@ public class SkriveTilJobjFil extends SkriveTilFil {
 
     }
 }
-
-

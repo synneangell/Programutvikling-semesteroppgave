@@ -1,4 +1,4 @@
-package org.openjfx.Filbehandling;
+/* package org.openjfx.Filbehandling;
 
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LesArrangementFraCsvFil extends LeseFraFil{
-    @Override
+   @Override
     public ArrayList<?> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException {
         ArrayList<Arrangement> arrangement = new ArrayList<>();
         BufferedReader reader = null;
@@ -62,3 +62,4 @@ public class LesArrangementFraCsvFil extends LeseFraFil{
                     arrangementNavn, billettpris, dato, klokkeslett, antallBilletter, typeArrangement);
     }
 }
+*/
