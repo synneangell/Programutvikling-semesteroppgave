@@ -1,5 +1,9 @@
 package org.openjfx.base;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,16 +16,16 @@ public class Arrangement implements Serializable {
     private int antallBilletter;
     TypeArrangement typeArrangement;
 
-  ArrayList<Billett> billetter = new ArrayList<>();
+    static ArrayList<Billett> billetter = new ArrayList<>();
 
     public Arrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, String dato, String klokkeslett, int antallBilletter, TypeArrangement typeArrangement) {
         this.kontaktperson = kontaktperson;
         this.arrangementNavn = arrangementNavn;
         this.billettpris = billettpris;
         this.dato = dato;
-        this.antallBilletter = antallBilletter;
         this.klokkeslett = klokkeslett;
         this.typeArrangement = typeArrangement;
+        this.antallBilletter = antallBilletter;
         for(int i = 0; i < antallBilletter; i++) {
             billetter.add(new Billett(null));
         }
@@ -100,36 +104,52 @@ public class Arrangement implements Serializable {
     }
 
 
-    public void leggTilBillett(Kjøper enKjøper){
+    public String leggTilBillett(Kjøper enKjøper, int antallBilletter) {
+        String ut ="";
         for(Billett enBillett : billetter){
-            if(enBillett.getKjøper() == null)
+            if(enBillett.getKjøper()==null){
+                ut = "Vellykket kjøp!";
                 enBillett.setKjøper(enKjøper);
             }
-    }
-
-    public int antallBilletterIgjen(){
-        int teller = 0;
-        for(Billett enBillett : billetter){
-            if(enBillett.getKjøper() == null){
-                teller++;
+            else {
+                ut = "Ikke leidg billett";
             }
         }
-        return teller;
+        return ut;
     }
 
-    public ArrayList <Billett> hentBillettPerKjøper(Kjøper enKjøper){
-        ArrayList billetterTilKjøper = new ArrayList<>();
+
+    public int ledigBilletter(){
+        int ledigBilletter = 0;
         for(Billett enBillett : billetter){
-            if(enBillett.getKjøper() == enKjøper){
-                billetterTilKjøper.add(enBillett);
+            if(enBillett.getKjøper()==null){
+                ledigBilletter ++;
             }
         }
-        return billetterTilKjøper;
+        return ledigBilletter;
     }
 
-    public ArrayList <Billett> hentBilletterTilArrangement(Arrangement etArrangement){
-        return billetter;
+    public int solgteBilletter(){
+        int solgteBilletter = 0;
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper()!=null){
+                solgteBilletter ++;
+            }
+        }
+        return solgteBilletter;
     }
+
+
+    public ObservableList<Billett> visBilletterTilArrangement(){
+        ObservableList<Billett> billetterObservableList = FXCollections.observableArrayList();
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() != null) {
+                billetterObservableList.add(enBillett);
+            }
+        }
+        return billetterObservableList;
+    }
+
 
     public String toString (){
         return kontaktperson.getNavn()+","+kontaktperson.getTelefonNr()+","+kontaktperson.getEmailAdresse()+","

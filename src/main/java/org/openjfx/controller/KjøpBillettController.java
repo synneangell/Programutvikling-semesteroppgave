@@ -21,7 +21,6 @@ import java.text.ParseException;
 public class KjøpBillettController {
 
     SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
-    AlleBilletter billettregister = new AlleBilletter();        //TODO: se på denne
     ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
     ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
 
@@ -68,6 +67,7 @@ public class KjøpBillettController {
         chboxVelgAntall.setValue("1");
         lagreTilFilBox.setItems(filtyper);
         lagreTilFilBox.setValue(".csv");
+
     }
 
     @FXML
@@ -81,21 +81,29 @@ public class KjøpBillettController {
 
                     Arrangement etArrangement = tableView.getSelectionModel().getSelectedItem();
 
+                    System.out.println("Før billett opprettes:");
+                    System.out.println("Size: "+etArrangement.visBilletterTilArrangement().size());
+                    System.out.println("getAntallBilletter:"+etArrangement.getAntallBilletter());
+                    System.out.println("Ledige billetter: "+etArrangement.ledigBilletter());
+                    System.out.println("Solgte billetter: "+etArrangement.solgteBilletter());
+
                     //Oppretter x billetter som inneholder en kjøper og valgt arrangement:
                     int antallBilletter = Integer.valueOf((String) chboxVelgAntall.getValue());
-                    if (etArrangement.antallBilletterIgjen() >= antallBilletter) {
-                        Kjøper enKjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
-                        for (int i = 0; i < antallBilletter; i++) {
-                            etArrangement.leggTilBillett(enKjøper);
-                            AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
-                            //TODO: hva skal skrives til fil?
-//                            skrivTilFil.skriveTilFil("billett.jobj", "Test");
-//                            AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
-//                            rootKjøpBillett.getChildren().setAll(pane);
-                        }
-                    } else {
-                        FileExceptionHandler.generateAlert("Det er ikke nok billetter igjen. ");
-                    }
+                    System.out.println("Antall billetter valgt: "+antallBilletter);
+
+                    Kjøper enKjøper = new Kjøper(txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText());
+                    String ut = etArrangement.leggTilBillett(enKjøper, antallBilletter);
+
+                        AlertBoks.generateAlert(ut);
+
+                        System.out.println("Etter at billett har blitt opprettet: ");
+                        System.out.println("Size: "+etArrangement.visBilletterTilArrangement().size());
+                        System.out.println("getAntallBilletter:"+etArrangement.getAntallBilletter());
+                        System.out.println("Ledige billetter: "+etArrangement.ledigBilletter());
+                        System.out.println("Solgte billetter: "+etArrangement.solgteBilletter());
+                    //} else {
+                    //    FileExceptionHandler.generateAlert("Det er ikke nok billetter igjen. ");
+                    //}
                 }
             } catch (InvalidTekstException e) {
                 FileExceptionHandler.generateAlert("Det er brukt tall der det kun skal være tekst. ");
@@ -106,20 +114,20 @@ public class KjøpBillettController {
             }
         }
      }
+    @FXML
+    void Lagre (ActionEvent event) throws IOException {
+        String filtype = lagreTilFilBox.getValue().toString();
+        AlleBilletter alleBilletter = AlleBilletter.getSingelton();
 
-     @FXML
-     void Lagre (ActionEvent event){
-         boolean csv = false;
-         boolean jobj = false;
-         String filtype = lagreTilFilBox.getValue().toString();
-
-         if(filtype == ".csv"){
-             csv = true;
-         }
-         else if(filtype == ".jobj"){
-             jobj = true;
-         }
-     }
+        if(filtype.equals(".csv")){
+            SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
+            skriveTilCsvFil.skriveTilFil("billett.csv",alleBilletter.gjørOmBilletterTilArrayList(alleBilletter.getBilletter()));
+        }
+        else if(filtype.equals(".jobj")){
+            SkriveTilJobjFil skriveTilJobjFil = new SkriveTilJobjFil();
+            skriveTilJobjFil.skriveTilFil("billett.jobj",alleBilletter.gjørOmBilletterTilArrayList(alleBilletter.getBilletter()));
+        }
+    }
 
       private void avsluttProgram() {
             Stage stage = (Stage) btnAvslutt.getScene().getWindow();
