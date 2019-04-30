@@ -11,12 +11,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.openjfx.Filbehandling.SkriveJobjFil;
+import org.openjfx.Filbehandling.SkriveTilCsvFil;
+import org.openjfx.Filbehandling.SkriveTilJobjFil;
 import org.openjfx.base.*;
 
 public class EndreArrangementController {
-
-    SkriveJobjFil skrivTilFil = new SkriveJobjFil();
 
     @FXML
     private ComboBox lagreTilFilBox;
@@ -42,7 +41,7 @@ public class EndreArrangementController {
 
     @FXML
     public void initialize() {
-        // Setter opp kolonnene i Table View - tabellen
+        //Oppretter tabellen med arrangementer her:
         TypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
@@ -50,6 +49,7 @@ public class EndreArrangementController {
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
         Tableview.setItems(alleArrangementer.getArrangementer());
 
+        //Gjør tabellen "Editable":
         Tableview.setEditable(true);
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -57,16 +57,17 @@ public class EndreArrangementController {
     }
 
     @FXML
-    void Lagre (ActionEvent event){
-        boolean csv = false;
-        boolean jobj = false;
+    void Lagre (ActionEvent event) throws IOException {
         String filtype = lagreTilFilBox.getValue().toString();
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
-        if(filtype == ".csv"){
-            csv = true;
+        if(filtype.equals(".csv")){
+            SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
+            skriveTilCsvFil.skriveTilFil("arrangement.csv",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
-        else if(filtype == ".jobj"){
-            jobj = true;
+        else if(filtype.equals(".jobj")){
+            SkriveTilJobjFil skriveTilJobjFil = new SkriveTilJobjFil();
+            skriveTilJobjFil.skriveTilFil("arrangement.jobj",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
 
     }
@@ -98,7 +99,6 @@ public class EndreArrangementController {
 
     }
 
-    //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
     private void avsluttProgram() {
         Stage stage = (Stage) Tableview.getScene().getWindow();
         stage.close();

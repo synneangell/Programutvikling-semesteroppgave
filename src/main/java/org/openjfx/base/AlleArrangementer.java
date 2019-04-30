@@ -14,6 +14,8 @@ public class AlleArrangementer {
     protected AlleArrangementer(){
         alleArrangementer = FXCollections.observableArrayList();
 
+
+        //TODO: fjerne disse før levering!
         Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
                 "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
 
@@ -60,9 +62,9 @@ public class AlleArrangementer {
         return arrangementer;
     }
 
-    public void gjørOmTilObservableList(ArrayList<? extends  Arrangement> arrayList){
-        for(Arrangement etArrangement : arrayList){
-            leggTilArrangement(etArrangement);
+    public void gjørOmTilObservableList(ArrayList<Object> arrayList){
+        for(Object etArrangement : arrayList){
+            leggTilArrangement((Arrangement) etArrangement);
         }
     }
 
@@ -77,5 +79,20 @@ public class AlleArrangementer {
     public void leggTilArrangement(Arrangement etArrangement){
             alleArrangementer.add(etArrangement);
     }
+
+    public Arrangement getArrangement(Arrangement etArrangement){
+        return etArrangement;
+    }
+
+    public ArrayList<Billett> gjørOmBilletterTilArrayList(ObservableList<Billett> observableList){
+        ArrayList<Billett> billetter = new ArrayList<>();
+        for(Billett enBillett : observableList){
+            billetter.add(enBillett);
+        }
+        return billetter;
+    }
+
+
+
 }
 

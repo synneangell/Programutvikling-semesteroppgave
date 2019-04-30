@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class ArrangementCsvLeser extends LeseFil {
 
     @Override
-    public ArrayList<? extends Arrangement> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException {
-        ArrayList<Arrangement> arrangement = new ArrayList<>();
+    public ArrayList<Object> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException {
+        ArrayList<Object> arrangement = new ArrayList<>();
         BufferedReader reader = null;
 
         try {
