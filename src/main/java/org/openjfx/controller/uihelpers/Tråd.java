@@ -6,6 +6,7 @@ import org.openjfx.Filbehandling.LesArrangementFraCsvFil;
 import org.openjfx.Filbehandling.LesBillettFraCsvFil;
 import org.openjfx.Filbehandling.LeseDataFraJobjFil;
 import org.openjfx.base.AlleArrangementer;
+import org.openjfx.base.Arrangement;
 
 import java.io.File;
 
@@ -34,6 +35,7 @@ public class Tråd extends Task<Void> {
                     if (array[1].equals("csv")){
                         if(array[0].equals("billett")){
                             LesBillettFraCsvFil lesBillettFraCsvFil = new LesBillettFraCsvFil();
+                            //må legge inn billettene her til de ulike arrangementene sine arraylists
                             lesBillettFraCsvFil.leseFraFil(markertFil.getPath());
 
 
@@ -46,7 +48,10 @@ public class Tråd extends Task<Void> {
                     if (array[1].equals("jobj")){
                         if(array[0].equals("billett")){
                             LeseDataFraJobjFil leseDataFraJobjFil = new LeseDataFraJobjFil();
+                            //må legge inn billettene her til de ulike arrangementene sine arraylists
+
                             leseDataFraJobjFil.leseFraFil(markertFil.getPath());
+
 
                         }
                         if(array[0].equals("arrangement")){

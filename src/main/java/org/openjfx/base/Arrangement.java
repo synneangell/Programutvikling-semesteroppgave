@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Arrangement implements Serializable {
     private Kontaktperson kontaktperson;
@@ -15,8 +16,9 @@ public class Arrangement implements Serializable {
     private String klokkeslett;
     private int antallBilletter;
     TypeArrangement typeArrangement;
+    private int arrangementID;
 
-    static ArrayList<Billett> billetter = new ArrayList<>();
+    private ArrayList<Billett> billetter = new ArrayList<>();
 
     public Arrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, String dato, String klokkeslett, int antallBilletter, TypeArrangement typeArrangement) {
         this.kontaktperson = kontaktperson;
@@ -25,10 +27,20 @@ public class Arrangement implements Serializable {
         this.dato = dato;
         this.klokkeslett = klokkeslett;
         this.typeArrangement = typeArrangement;
+        arrangementID = GenererUnikID.genererID();
+        System.out.println(arrangementID);
         this.antallBilletter = antallBilletter;
         for(int i = 0; i < antallBilletter; i++) {
-            billetter.add(new Billett(null));
+            billetter.add(new Billett(null, arrangementID));
         }
+        for(Billett enBillett : billetter){
+            System.out.println(enBillett.getArrangementID());
+        }
+
+    }
+
+    public ArrayList<Billett> getBilletter() {
+        return billetter;
     }
 
     public Kontaktperson getKontaktperson() {
@@ -106,14 +118,15 @@ public class Arrangement implements Serializable {
 
     public String leggTilBillett(Kjøper enKjøper, int antallBilletter) {
         String ut ="";
-        for(Billett enBillett : billetter){
-            if(enBillett.getKjøper()==null){
-                ut = "Vellykket kjøp!";
-                enBillett.setKjøper(enKjøper);
+
+        for (int i = 0; i < antallBilletter; i++) {
+            for (int j = 0; j < billetter.size(); j++) {
+                if (billetter.get(i).getKjøper() == null) {
+                    billetter.get(i).setKjøper(enKjøper);
+                    ut = "Vellykket kjøp!";
+                }
             }
-            else {
-                ut = "Ikke leidg billett";
-            }
+
         }
         return ut;
     }
@@ -151,11 +164,14 @@ public class Arrangement implements Serializable {
     }
 
 
+
+
     public String toString (){
         return kontaktperson.getNavn()+","+kontaktperson.getTelefonNr()+","+kontaktperson.getEmailAdresse()+","
                 +kontaktperson.getNettside()+","+kontaktperson.getVirksomhet()+","+kontaktperson.getOpplysninger()+","+
                 arrangementNavn+","+billettpris+","+dato+","+klokkeslett+","+antallBilletter+","+typeArrangement;
     }
+
 
 }
 

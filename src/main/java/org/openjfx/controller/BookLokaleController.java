@@ -111,6 +111,7 @@ public class BookLokaleController {
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
                              txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getKonsertsal()), TypeArrangement.KONSERT);
                         Tableview.getItems().add(etDeltakerArrangement);
+                        AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
 
                     }
                     else if (foredrag) {
@@ -118,6 +119,7 @@ public class BookLokaleController {
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
                              txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getForedragssal()), TypeArrangement.FOREDRAG);
                         Tableview.getItems().add(etDeltakerArrangement);
+                        AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
 
                     }
 
@@ -145,7 +147,6 @@ public class BookLokaleController {
                 FileExceptionHandler.generateAlert("Billettpris må bestå av tall.");
             }
         }
-        AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
     }
 
     @FXML
