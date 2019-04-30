@@ -3,6 +3,7 @@ package org.openjfx.controller.uihelpers;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class SjekkOmGyldig {
@@ -55,6 +56,7 @@ public class SjekkOmGyldig {
         System.out.println(dateFormat.format(date));
 
         String[] datoNåArray = dateFormat.format(date).split("/");
+        System.out.println(Arrays.toString(datoNåArray));
         String[] datoArray = innDato.split("/");
 
         try {

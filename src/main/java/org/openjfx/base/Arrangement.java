@@ -3,6 +3,7 @@ package org.openjfx.base;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -156,6 +157,5 @@ public class Arrangement implements Serializable {
                 +kontaktperson.getNettside()+","+kontaktperson.getVirksomhet()+","+kontaktperson.getOpplysninger()+","+
                 arrangementNavn+","+billettpris+","+dato+","+klokkeslett+","+antallBilletter+","+typeArrangement;
     }
-
 }
 

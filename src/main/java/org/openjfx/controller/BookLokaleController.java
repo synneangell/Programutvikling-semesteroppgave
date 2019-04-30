@@ -2,6 +2,8 @@ package org.openjfx.controller;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javafx.collections.*;
 import javafx.event.ActionEvent;
@@ -20,6 +22,7 @@ public class BookLokaleController {
 
     ObservableList<String> typeArrangementer = FXCollections.observableArrayList("Konsert", "Foredrag");
     ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @FXML
     private TextField txtNavn, txtTelefonnummer, txtEmail, txtNettside, txtAndreOpplysninger, txtVirksomhet,
@@ -48,6 +51,10 @@ public class BookLokaleController {
 
     @FXML
     private TableColumn<Arrangement, String> DatoColumn;
+
+    @FXML
+    private DatePicker dato;
+
 
     @FXML
     public void initialize() {
@@ -84,7 +91,7 @@ public class BookLokaleController {
                 !txtEmail.getText().isEmpty() && !txtNettside.getText().isEmpty() &&
                 !txtAndreOpplysninger.getText().isEmpty() && !txtVirksomhet.getText().isEmpty() &&
                 !txtNavnArrangement.getText().isEmpty() && !txtBillettpris.getText().isEmpty() &&
-                !txtTidspunkt.getText().isEmpty() && !txtDato.getText().isEmpty() &&
+                !txtTidspunkt.getText().isEmpty() &&
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()) {
 
 
@@ -100,22 +107,22 @@ public class BookLokaleController {
                 if(SjekkOmGyldig.sjekkKunBokstaver(txtNavn.getText()) && SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText()) &&
                 SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText()) && SjekkOmGyldig.sjekkGyldigNettsideAdresse(txtNettside.getText()) &&
                 SjekkOmGyldig.sjekkKunBokstaver(txtAndreOpplysninger.getText()) && SjekkOmGyldig.sjekkKunBokstaver(txtVirksomhet.getText())
-                && SjekkOmGyldig.sjekkGyldigBillettpris(txtBillettpris.getText()) && SjekkOmGyldig.sjekkGyldigKlokkeslett(txtTidspunkt.getText())
-                && SjekkOmGyldig.sjekkGyldigDato(txtDato.getText())){
+                && SjekkOmGyldig.sjekkGyldigBillettpris(txtBillettpris.getText()) && SjekkOmGyldig.sjekkGyldigKlokkeslett(txtTidspunkt.getText())){
 
                     AlleLokaler alleLokaler = AlleLokaler.getSingelton();
                     int billettpris = Integer.parseInt(txtBillettpris.getText());
 
                     if (konsert) {
+
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
-                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
+                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, dato.getValue().format(dtf),
                              txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getKonsertsal()), TypeArrangement.KONSERT);
                         Tableview.getItems().add(etDeltakerArrangement);
 
                     }
                     else if (foredrag) {
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
-                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
+                            (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, dato.getValue().format(dtf),
                              txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getForedragssal()), TypeArrangement.FOREDRAG);
                         Tableview.getItems().add(etDeltakerArrangement);
 
@@ -129,9 +136,9 @@ public class BookLokaleController {
             catch (InvalidTelefonnummerException e) {
                 FileExceptionHandler.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
             }
-            catch (InvalidDatoException e) {
-                FileExceptionHandler.generateAlert("Ikke gyldig dato. Format: dd/mm/åååå. ");
-            }
+//            catch (InvalidDatoException e) {
+//                FileExceptionHandler.generateAlert("Ikke gyldig dato. Format: dd/mm/åååå. ");
+//            }
             catch (InvalidKlokkeslettException e) {
                 FileExceptionHandler.generateAlert("Ikke gyldig klokkeslett. Format: tt:mm. ");
             }

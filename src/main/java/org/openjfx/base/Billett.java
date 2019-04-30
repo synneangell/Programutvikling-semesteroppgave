@@ -1,7 +1,6 @@
 package org.openjfx.base;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Billett implements Serializable {
     private Kjøper kjøper;
@@ -21,5 +20,4 @@ public class Billett implements Serializable {
     public String toString(){
         return kjøper.toString();
     }
-
 }

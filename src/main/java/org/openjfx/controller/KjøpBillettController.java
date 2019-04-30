@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import org.openjfx.Filbehandling.*;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.*;
-
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -20,7 +19,7 @@ import java.text.ParseException;
 
 public class KjøpBillettController {
 
-    SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
+    SkriveJobjFil skrivTilFil = new SkriveJobjFil();
     ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
     ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
 
@@ -67,7 +66,6 @@ public class KjøpBillettController {
         chboxVelgAntall.setValue("1");
         lagreTilFilBox.setItems(filtyper);
         lagreTilFilBox.setValue(".csv");
-
     }
 
     @FXML
@@ -120,11 +118,11 @@ public class KjøpBillettController {
         AlleBilletter alleBilletter = AlleBilletter.getSingelton();
 
         if(filtype.equals(".csv")){
-            SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
+            SkriveCsvFil skriveTilCsvFil = new SkriveCsvFil();
             skriveTilCsvFil.skriveTilFil("billett.csv",alleBilletter.gjørOmBilletterTilArrayList(alleBilletter.getBilletter()));
         }
         else if(filtype.equals(".jobj")){
-            SkriveTilJobjFil skriveTilJobjFil = new SkriveTilJobjFil();
+            SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
             skriveTilJobjFil.skriveTilFil("billett.jobj",alleBilletter.gjørOmBilletterTilArrayList(alleBilletter.getBilletter()));
         }
     }

@@ -2,7 +2,6 @@ package org.openjfx.base;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 
 public class AlleBilletter {
@@ -50,8 +49,5 @@ public class AlleBilletter {
         }
         return billetter;
     }
-
-
-
 }
 

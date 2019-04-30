@@ -1,6 +1,5 @@
 package org.openjfx.controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +8,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
-
 import java.io.IOException;
 
 public class SeBilletter {
@@ -19,7 +17,6 @@ public class SeBilletter {
 
     @FXML
     private Button btnAvslutt;
-
 
     @FXML
     private TableView<Arrangement> tableViewArrangementer;
@@ -35,9 +32,6 @@ public class SeBilletter {
 
     @FXML
     private TableColumn<Arrangement, String> DatoColumn;
-
-    @FXML
-    private TableView<Billett> tableViewBilletter;
 
     @FXML
     private TableColumn<Person, String> KjøperNavnColumn;
@@ -80,10 +74,6 @@ public class SeBilletter {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
         rootSeBilletter.getChildren().setAll(pane);
     }
-
-
-    //Er det sånn at jeg bruker filechooser generelt til å lese hvilken som helst fil eller må jeg lage if setninger som
-    //igjen går ut ifra hva brukeren trykker på i programmet (csv eller jobj)
 
 
     @FXML

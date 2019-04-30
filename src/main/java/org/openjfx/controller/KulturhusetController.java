@@ -8,20 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import org.openjfx.Filbehandling.LesArrangementFraCsvFil;
-import org.openjfx.Filbehandling.LesBillettFraCsvFil;
-import org.openjfx.Filbehandling.LeseDataFraJobjFil;
-import org.openjfx.base.AlleArrangementer;
-import org.openjfx.base.Arrangement;
 import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
 import org.openjfx.controller.uihelpers.Tråd;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -64,7 +55,8 @@ public class KulturhusetController {
     }
 
     @FXML
-    void lesInnBestilling (ActionEvent event) throws IOException, InvalidBillettFormatException {
+    void lesInnBestilling (ActionEvent event) {
+
         lblLasterInn.setText("Laster inn fil...");
         btnLesInnBestilling.setDisable(true);
         Task<Void> task = new Tråd(this::threadDone);
@@ -90,6 +82,4 @@ public class KulturhusetController {
         AnchorPane pane3 = FXMLLoader.load(getClass().getResource("/org/openjfx/seBilletter.fxml"));
         rootPane.getChildren().setAll(pane3);
     }
-
-
 }
