@@ -1,5 +1,8 @@
 package org.openjfx.controller;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,15 +11,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
+
 import java.io.IOException;
 
-public class SeBilletter {
+public class SeBilletterController {
 
     @FXML
     private AnchorPane rootSeBilletter;
 
     @FXML
     private Button btnAvslutt;
+
 
     @FXML
     private TableView<Arrangement> tableViewArrangementer;
@@ -34,13 +39,10 @@ public class SeBilletter {
     private TableColumn<Arrangement, String> DatoColumn;
 
     @FXML
-    private TableColumn<Person, String> KjøperNavnColumn;
+    private TableView<Billett> tableViewBilletter;
 
     @FXML
-    private TableColumn<Kjøper, String> KjøperEmailColumn;
-
-    @FXML
-    private TableColumn<Kjøper, String> KjøperTelefonnummerColumn;
+    private TableColumn<Billett, Kjøper> KjøperNavnColumn;
 
 
     @FXML
@@ -50,13 +52,23 @@ public class SeBilletter {
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
+
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
+
         tableViewArrangementer.setItems(alleArrangementer.getArrangementer());
 
-        KjøperNavnColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("navn"));
-        KjøperEmailColumn.setCellValueFactory(new PropertyValueFactory<Kjøper, String>("email"));
-        KjøperTelefonnummerColumn.setCellValueFactory(new PropertyValueFactory<Kjøper, String>("telefonNr"));
-//        tableViewBilletter.setItems(tableViewArrangementer.getSelectionModel().getSelectedItem().visBilletterTilArrangement());
+
+        KjøperNavnColumn.setCellValueFactory(new PropertyValueFactory<Billett, Kjøper>("kjøper"));
+
+
+        tableViewArrangementer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Arrangement>() {
+            @Override
+            public void changed(ObservableValue<? extends Arrangement> observableValue, Arrangement arrangement, Arrangement t1) {
+                Arrangement valgtArrangement = tableViewArrangementer.getSelectionModel().getSelectedItem();
+                tableViewBilletter.setItems(valgtArrangement.visBilletterTilArrangement());
+            }
+        });
+
     }
 
     private void avsluttProgram() {

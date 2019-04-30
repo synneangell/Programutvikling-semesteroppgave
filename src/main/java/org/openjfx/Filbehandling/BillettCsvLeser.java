@@ -39,14 +39,17 @@ public class BillettCsvLeser extends LeseFil {
     private static Billett parseBillett(String line) throws InvalidBillettFormatException {
         // Deler opp stringen i tre deler ved bruk av ";"
         String[] split = line.split(",");
-        if(split.length != 3) {
+        if(split.length != 4) {
             throw new InvalidBillettFormatException("Må bruke semikolon ; til å separere de tre datafeltene");
         }
 
         String name = split[0];
         String telefonNr = split[1];
         String email = split[2];
+        String idString = split[3];
 
-        return new Billett(new Kjøper(name, telefonNr, email));
+        int id = Integer.parseInt(idString);
+
+        return new Billett(new Kjøper(name, telefonNr, email), id);
     }
 }
