@@ -1,6 +1,5 @@
 package org.openjfx.Filbehandling;
 
-import javafx.collections.ObservableList;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
 
@@ -9,9 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
-public class LesArrangementFraCsvFil extends LeseFraFil {
+public class ArrangementCsvLeser extends LeseFil {
 
     @Override
     public ArrayList<? extends Arrangement> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException {

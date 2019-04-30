@@ -1,9 +1,5 @@
 package org.openjfx.Filbehandling;
 
-import org.openjfx.base.Arrangement;
-import org.openjfx.base.Billett;
-
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-public class SkriveTilCsvFil extends SkriveTilFil {
+public class SkriveCsvFil extends SkriveFil {
     @Override
     public void skriveTilFil(String filsti, ArrayList<?> objekter) throws IOException {
 

@@ -77,7 +77,5 @@ public class AlleArrangementer {
     public void leggTilArrangement(Arrangement etArrangement){
             alleArrangementer.add(etArrangement);
     }
-
-
 }
 

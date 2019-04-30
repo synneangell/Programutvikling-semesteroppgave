@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-public class LeseDataFraJobjFil extends LeseFraFil {
+public class LeseJobjFil extends LeseFil {
 
     @Override
     public ArrayList<?> leseFraFil(String filsti) {

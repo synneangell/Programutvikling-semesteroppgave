@@ -20,7 +20,7 @@ import java.text.ParseException;
 
 public class KjøpBillettController {
 
-    SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
+    SkriveJobjFil skrivTilFil = new SkriveJobjFil();
     AlleBilletter billettregister = new AlleBilletter();        //TODO: se på denne
     ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
     ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");

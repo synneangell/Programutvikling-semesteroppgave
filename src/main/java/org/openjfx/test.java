@@ -32,10 +32,10 @@ public class test {
 
         */
 
-        SkriveTilJobjFil skriveTilJobjFil = new SkriveTilJobjFil();
+        SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
         skriveTilJobjFil.skriveTilFil("arrangement.jobj", arrangementer);
 
-        LeseDataFraJobjFil leseDataFraJobjFil = new LeseDataFraJobjFil();
+        LeseJobjFil leseDataFraJobjFil = new LeseJobjFil();
         System.out.println(leseDataFraJobjFil.leseFraFil("arrangement.jobj"));
 
 

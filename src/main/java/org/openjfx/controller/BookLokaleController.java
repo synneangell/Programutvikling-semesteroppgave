@@ -11,8 +11,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.openjfx.Filbehandling.SkriveTilCsvFil;
-import org.openjfx.Filbehandling.SkriveTilJobjFil;
+import org.openjfx.Filbehandling.SkriveCsvFil;
+import org.openjfx.Filbehandling.SkriveJobjFil;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.*;
 
@@ -153,11 +153,11 @@ public class BookLokaleController {
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
         if(filtype.equals(".csv")){
-            SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
+            SkriveCsvFil skriveTilCsvFil = new SkriveCsvFil();
             skriveTilCsvFil.skriveTilFil("arrangement.csv",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
         else if(filtype.equals(".jobj")){
-            SkriveTilJobjFil skriveTilJobjFil = new SkriveTilJobjFil();
+            SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
             skriveTilJobjFil.skriveTilFil("arrangement.jobj",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
 
         }

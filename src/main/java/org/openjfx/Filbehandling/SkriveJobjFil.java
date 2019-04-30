@@ -1,11 +1,9 @@
 package org.openjfx.Filbehandling;
 
-import org.openjfx.Filbehandling.SkriveTilFil;
-
 import java.io.*;
 import java.util.ArrayList;
 
-public class SkriveTilJobjFil extends SkriveTilFil {
+public class SkriveJobjFil extends SkriveFil {
 
     public void skriveTilFil(String filsti, ArrayList<?> objekter) {
         try (
@@ -16,6 +14,7 @@ public class SkriveTilJobjFil extends SkriveTilFil {
         }
         catch (IOException e) {
             e.printStackTrace();
+
         }
     }
 }

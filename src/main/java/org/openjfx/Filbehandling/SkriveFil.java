@@ -1,11 +1,9 @@
 package org.openjfx.Filbehandling;
 
-import org.openjfx.base.Billett;
-
 import java.io.IOException;
 import java.util.*;
 
-public abstract class SkriveTilFil {
+public abstract class SkriveFil {
 
     public abstract void skriveTilFil(String filsti, ArrayList<?> arrayList) throws IOException;
 

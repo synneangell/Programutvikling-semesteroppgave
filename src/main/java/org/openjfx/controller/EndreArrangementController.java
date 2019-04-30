@@ -11,12 +11,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.openjfx.Filbehandling.SkriveTilJobjFil;
+import org.openjfx.Filbehandling.SkriveJobjFil;
 import org.openjfx.base.*;
 
 public class EndreArrangementController {
 
-    SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
+    SkriveJobjFil skrivTilFil = new SkriveJobjFil();
 
     @FXML
     private ComboBox lagreTilFilBox;
