@@ -1,22 +1,21 @@
 package org.openjfx.controller;
 
 import java.io.IOException;
-
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.openjfx.Filbehandling.SkriveTilJobjFil;
 import org.openjfx.base.*;
 
 public class EndreArrangementController {
-
-    SkriveTilJobjFil skrivTilFil = new SkriveTilJobjFil();
 
     @FXML
     private ComboBox lagreTilFilBox;
@@ -26,6 +25,9 @@ public class EndreArrangementController {
 
     @FXML
     private TableView<Arrangement> Tableview;
+
+    @FXML
+    private TextField txtSøk;
 
     @FXML
     private TableColumn<Arrangement, String> TypeColumn;
@@ -56,6 +58,41 @@ public class EndreArrangementController {
         DatoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
+
+    @FXML
+    private void SøkeHistorie (KeyEvent SH) {
+
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
+
+        FilteredList<Arrangement> filter = new FilteredList<>(alleArrangementer.getArrangementer(), e->true);
+        txtSøk.textProperty().addListener((Observable, oldValue, newValue) -> {
+            filter.setPredicate(arrang -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String tekstFyll = newValue.toLowerCase();
+                if (arrang.getArrangementNavn().toLowerCase().indexOf(tekstFyll) != -1) {
+                    return true;
+                }
+                if (arrang.getTypeArrangement().toLowerCase().indexOf(tekstFyll) != -1) {
+                    return true;
+                }
+                if (arrang.getKlokkeslett().toLowerCase().indexOf(tekstFyll) != -1) {
+                    return true;
+                }
+                if (arrang.getDato().toLowerCase().indexOf(tekstFyll) != -1) {
+                    return true;
+                }
+                return false;
+            });
+
+            SortedList<Arrangement> sortedList = new SortedList<>(filter);
+            sortedList.comparatorProperty().bind(Tableview.comparatorProperty());
+            Tableview.setItems(sortedList);
+        });
+    }
+
+
     @FXML
     void Lagre (ActionEvent event){
         boolean csv = false;
@@ -68,7 +105,6 @@ public class EndreArrangementController {
         else if(filtype == ".jobj"){
             jobj = true;
         }
-
     }
 
     public void endreNavnArrangement(TableColumn.CellEditEvent endretCelle) {
@@ -95,7 +131,6 @@ public class EndreArrangementController {
             arrangementer.remove(etArrangement);
 
         }
-
     }
 
     //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:

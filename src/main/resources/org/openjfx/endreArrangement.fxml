@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane fx:id="rootEndreArrangement" prefHeight="728.0" prefWidth="754.0" styleClass="root" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.controller.EndreArrangementController">
@@ -15,9 +16,9 @@
         <TableView fx:id="Tableview" layoutX="13.0" layoutY="120.0" prefHeight="401.0" prefWidth="728.0">
             <columns>
                 <TableColumn fx:id="TypeColumn" prefWidth="75.0" text="Type" />
-                <TableColumn fx:id="ArrangementNavnColumn" prefWidth="313.0" text="Arrangementnavn" onEditCommit="#endreNavnArrangement"/>
-                <TableColumn fx:id="KlokkeslettColumn" prefWidth="211.0" text="Klokkeslett" onEditCommit="#endreNavnArrangement"/>
-                <TableColumn fx:id="DatoColumn" prefWidth="125.0" text="Dato" onEditCommit="#endreNavnArrangement"/>
+                <TableColumn fx:id="ArrangementNavnColumn" onEditCommit="#endreNavnArrangement" prefWidth="313.0" text="Arrangementnavn" />
+                <TableColumn fx:id="KlokkeslettColumn" onEditCommit="#endreNavnArrangement" prefWidth="211.0" text="Klokkeslett" />
+                <TableColumn fx:id="DatoColumn" onEditCommit="#endreNavnArrangement" prefWidth="125.0" text="Dato" />
             </columns>
         </TableView>
         <Label layoutX="246.0" layoutY="31.0" prefHeight="26.0" prefWidth="318.0" styleClass="overskrift" stylesheets="@styles.css" text="Gjør endringer/slett arrangement" />
@@ -25,5 +26,7 @@
       <ComboBox fx:id="lagreTilFilBox" layoutX="616.0" layoutY="31.0" prefHeight="27.0" prefWidth="123.0" />
       <Label layoutX="616.0" layoutY="14.0" text="Lagre endringer:" />
       <Button fx:id="btnLagre" layoutX="620.0" layoutY="69.0" mnemonicParsing="false" onAction="#Lagre" prefHeight="27.0" prefWidth="116.0" styleClass="andreKnapper" text="Lagre" />
+      <TextField fx:id="txtSøk" layoutX="13.0" layoutY="561.0" onKeyTyped="#SøkeHistorie" prefHeight="38.0" prefWidth="217.0" promptText="Søk..." />
+      <Label layoutX="14.0" layoutY="543.0" text="For å filtrere arrangementer:" />
     </children>
 </AnchorPane>
