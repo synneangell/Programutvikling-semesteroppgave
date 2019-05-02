@@ -120,7 +120,6 @@ public class Arrangement implements Serializable {
                     ut = "Vellykket kjøp!";
                 }
             }
-
         }
         return ut;
     }
@@ -132,11 +131,7 @@ public class Arrangement implements Serializable {
 
     public int ledigBilletter(){
         int ledigBilletter = 0;
-        for(Billett enBillett : billetter){
-            if(enBillett.getKjøper()==null){
-                ledigBilletter ++;
-            }
-        }
+        ledigBilletter = getAntallBilletter()-solgteBilletter();
         return ledigBilletter;
     }
 

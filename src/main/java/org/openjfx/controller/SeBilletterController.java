@@ -2,7 +2,6 @@ package org.openjfx.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -24,7 +23,6 @@ public class SeBilletterController {
 
     @FXML
     private Button btnAvslutt;
-
 
     @FXML
     private TableView<Arrangement> tableViewArrangementer;
@@ -50,10 +48,15 @@ public class SeBilletterController {
     @FXML
     private TextField txtSøk;
 
+    @FXML
+    private Label lblAntallSolgt;
+
+    @FXML
+    private Label lblAntallLedige;
+
 
     @FXML
     public void initialize() {
-        //Tabellen lages her:
         ArrangementTypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
@@ -72,6 +75,8 @@ public class SeBilletterController {
             public void changed(ObservableValue<? extends Arrangement> observableValue, Arrangement arrangement, Arrangement t1) {
                 Arrangement valgtArrangement = tableViewArrangementer.getSelectionModel().getSelectedItem();
                 tableViewBilletter.setItems(valgtArrangement.visBilletterTilArrangement());
+                lblAntallLedige.setText(String.valueOf(valgtArrangement.ledigBilletter()));
+                lblAntallSolgt.setText(String.valueOf(valgtArrangement.solgteBilletter()));
             }
         });
 
@@ -127,10 +132,8 @@ public class SeBilletterController {
         rootSeBilletter.getChildren().setAll(pane);
     }
 
-
     @FXML
     private void SøkEtterFil(ActionEvent event){
-
 
     }
   }

@@ -27,5 +27,9 @@
       <Label layoutX="318.0" layoutY="52.0" prefHeight="20.0" prefWidth="130.0" text="Velg arrangement" />
        <TextField fx:id="txtSøk" layoutX="14.0" layoutY="319.0" onKeyTyped="#SøkeHistorie" prefHeight="38.0" prefWidth="217.0" promptText="Søk..." />
        <Label layoutX="15.0" layoutY="301.0" text="For å filtrere arrangementer:" />
+      <Label fx:id="lblAntallSolgt" layoutX="564.0" layoutY="413.0" />
+      <Label layoutX="564.0" layoutY="385.0" text="Antall billetter solgt:" />
+      <Label layoutX="564.0" layoutY="462.0" text="Antall ledige billetter:" />
+      <Label fx:id="lblAntallLedige" layoutX="564.0" layoutY="486.0" />
    </children>
 </AnchorPane>

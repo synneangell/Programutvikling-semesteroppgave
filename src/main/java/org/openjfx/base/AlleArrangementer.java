@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class AlleArrangementer {
 
     private static AlleArrangementer instance;
-    private ObservableList<Arrangement> alleArrangementer = null;
+    private ObservableList <Arrangement> alleArrangementer = null;
 
 
     protected AlleArrangementer(){
@@ -70,11 +70,7 @@ public class AlleArrangementer {
             alleArrangementer.add(etArrangement);
     }
 
-    public Arrangement getArrangement(Arrangement etArrangement){
-        return etArrangement;
-    }
-
-    public ArrayList<Arrangement> gjørOmTilArrayList(ObservableList<Arrangement> observableList){
+    public ArrayList<Arrangement> gjørOmTilArrayList(ObservableList <Arrangement> observableList){
         ArrayList<Arrangement> arrangementer = new ArrayList<>();
         for(Arrangement etArrangement : observableList){
             arrangementer.add(etArrangement);
@@ -82,15 +78,15 @@ public class AlleArrangementer {
         return arrangementer;
     }
 
-    public void gjørOmTilObservableList(ArrayList<Object> arrayList){
+    public void gjørOmTilObservableList(ArrayList <Object> arrayList){
         for(Object etArrangement : arrayList){
             leggTilArrangement((Arrangement) etArrangement);
         }
 
     }
 
-    public ArrayList<Billett> gjørOmBilletterTilArrayList(ObservableList<Billett> observableList){
-        ArrayList<Billett> billetter = new ArrayList<>();
+    public ArrayList <Billett> gjørOmBilletterTilArrayList(ObservableList <Billett> observableList){
+        ArrayList <Billett> billetter = new ArrayList<>();
         for(Billett enBillett : observableList){
             billetter.add(enBillett);
         }
@@ -101,10 +97,10 @@ public class AlleArrangementer {
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
         for(Arrangement etArrangement : alleArrangementer.getArrangementer()) {
-            for (Object enBillett : billetter) {
+            for(Object enBillett : billetter) {
                 if(((Billett)enBillett).getArrangementNavn().equals(etArrangement.getArrangementNavn()) &&
                 ((Billett)enBillett).getArrangementDato().equals(etArrangement.getDato()) &&
-                        ( ((Billett)enBillett).getArrangementKlokkeslett().equals(etArrangement.getKlokkeslett()))) {
+                (((Billett)enBillett).getArrangementKlokkeslett().equals(etArrangement.getKlokkeslett()))) {
                     etArrangement.leggTilBillettFraFil((Billett) enBillett);
                 }
             }

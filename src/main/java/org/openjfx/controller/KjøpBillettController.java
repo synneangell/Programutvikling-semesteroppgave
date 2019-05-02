@@ -55,12 +55,17 @@ public class KjøpBillettController {
 
 
     @FXML
+    private TableColumn<Arrangement, Integer> PrisColumn;
+
+
+    @FXML
     public void initialize() {
         // Setter opp kolonnene i Table View - tabellen
         ArrangementTypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
+        PrisColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, Integer>("billettpris"));
 
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
         tableView.setItems(alleArrangementer.getArrangementer());
