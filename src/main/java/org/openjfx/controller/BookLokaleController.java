@@ -51,15 +51,17 @@ public class BookLokaleController {
 
     @FXML
     public void initialize() {
-        //Tabellen lages her:
+        //Tabellen med arrangementer opprettes:
         TypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
+
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
         Tableview.setItems(alleArrangementer.getArrangementer());
         velgTypeArrangement.setItems(typeArrangementer);
         velgTypeArrangement.setValue("Konsert");
+
         lagreTilFilBox.setItems(filtyper);
         lagreTilFilBox.setValue(".csv");
     }
@@ -105,18 +107,19 @@ public class BookLokaleController {
                     int billettpris = Integer.parseInt(txtBillettpris.getText());
 
                     if (konsert) {
-
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
                              txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getKonsertsal()), TypeArrangement.KONSERT);
                         Tableview.getItems().add(etDeltakerArrangement);
+                        AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
 
                     }
                     else if (foredrag) {
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, txtDato.getText(),
-                                    txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getForedragssal()), TypeArrangement.FOREDRAG);
+                             txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getForedragssal()), TypeArrangement.FOREDRAG);
                         Tableview.getItems().add(etDeltakerArrangement);
+                        AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
 
                     }
 
@@ -144,7 +147,6 @@ public class BookLokaleController {
                 FileExceptionHandler.generateAlert("Billettpris må bestå av tall.");
             }
         }
-        AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
     }
 
     @FXML

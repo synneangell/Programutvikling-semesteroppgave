@@ -1,19 +1,23 @@
 package org.openjfx.controller;
 
 import java.io.IOException;
+
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.openjfx.Filbehandling.SkriveTilCsvFil;
+import org.openjfx.Filbehandling.SkriveTilJobjFil;
 import org.openjfx.base.*;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.input.KeyEvent;
+
 
 public class EndreArrangementController {
 
@@ -27,9 +31,6 @@ public class EndreArrangementController {
     private TableView<Arrangement> Tableview;
 
     @FXML
-    private TextField txtSøk;
-
-    @FXML
     private TableColumn<Arrangement, String> TypeColumn;
 
     @FXML
@@ -41,10 +42,12 @@ public class EndreArrangementController {
     @FXML
     private TableColumn<Arrangement, String> DatoColumn;
 
+    @FXML
+    private TextField txtSøk;
 
     @FXML
     public void initialize() {
-        // Setter opp kolonnene i Table View - tabellen
+        //Oppretter tabellen med arrangementer her:
         TypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
@@ -52,6 +55,7 @@ public class EndreArrangementController {
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
         Tableview.setItems(alleArrangementer.getArrangementer());
 
+        //Gjør tabellen "Editable":
         Tableview.setEditable(true);
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -94,17 +98,19 @@ public class EndreArrangementController {
 
 
     @FXML
-    void Lagre (ActionEvent event){
-        boolean csv = false;
-        boolean jobj = false;
+    void Lagre (ActionEvent event) throws IOException {
         String filtype = lagreTilFilBox.getValue().toString();
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
-        if(filtype == ".csv"){
-            csv = true;
+        if(filtype.equals(".csv")){
+            SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
+            skriveTilCsvFil.skriveTilFil("arrangement.csv",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
-        else if(filtype == ".jobj"){
-            jobj = true;
+        else if(filtype.equals(".jobj")){
+            SkriveTilJobjFil skriveTilJobjFil = new SkriveTilJobjFil();
+            skriveTilJobjFil.skriveTilFil("arrangement.jobj",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
+
     }
 
     public void endreNavnArrangement(TableColumn.CellEditEvent endretCelle) {
@@ -131,9 +137,9 @@ public class EndreArrangementController {
             arrangementer.remove(etArrangement);
 
         }
+
     }
 
-    //Kode for å enten lukke vindu med bookLokale, og kode for å avslutte hele programmet:
     private void avsluttProgram() {
         Stage stage = (Stage) Tableview.getScene().getWindow();
         stage.close();

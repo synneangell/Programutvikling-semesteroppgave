@@ -1,7 +1,12 @@
 package org.openjfx.base;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Arrangement implements Serializable {
     private Kontaktperson kontaktperson;
@@ -11,20 +16,31 @@ public class Arrangement implements Serializable {
     private String klokkeslett;
     private int antallBilletter;
     TypeArrangement typeArrangement;
+    private int arrangementID;
 
-  ArrayList<Billett> billetter = new ArrayList<>();
+    private ArrayList<Billett> billetter = new ArrayList<>();
 
     public Arrangement(Kontaktperson kontaktperson, String arrangementNavn, int billettpris, String dato, String klokkeslett, int antallBilletter, TypeArrangement typeArrangement) {
         this.kontaktperson = kontaktperson;
         this.arrangementNavn = arrangementNavn;
         this.billettpris = billettpris;
         this.dato = dato;
-        this.antallBilletter = antallBilletter;
         this.klokkeslett = klokkeslett;
         this.typeArrangement = typeArrangement;
+        arrangementID = GenererUnikID.genererID();
+        System.out.println(arrangementID);
+        this.antallBilletter = antallBilletter;
         for(int i = 0; i < antallBilletter; i++) {
-            billetter.add(new Billett(null));
+            billetter.add(new Billett(null, arrangementID));
         }
+        for(Billett enBillett : billetter){
+            System.out.println(enBillett.getArrangementID());
+        }
+
+    }
+
+    public ArrayList<Billett> getBilletter() {
+        return billetter;
     }
 
     public Kontaktperson getKontaktperson() {
@@ -100,42 +116,62 @@ public class Arrangement implements Serializable {
     }
 
 
-    public void leggTilBillett(Kjøper enKjøper){
-        for(Billett enBillett : billetter){
-            if(enBillett.getKjøper() == null)
-                enBillett.setKjøper(enKjøper);
+    public String leggTilBillett(Kjøper enKjøper, int antallBilletter) {
+        String ut ="";
+
+        for (int i = 0; i < antallBilletter; i++) {
+            for (int j = 0; j < billetter.size(); j++) {
+                if (billetter.get(i).getKjøper() == null) {
+                    billetter.get(i).setKjøper(enKjøper);
+                    ut = "Vellykket kjøp!";
+                }
             }
+
+        }
+        return ut;
     }
 
-    public int antallBilletterIgjen(){
-        int teller = 0;
+
+    public int ledigBilletter(){
+        int ledigBilletter = 0;
         for(Billett enBillett : billetter){
-            if(enBillett.getKjøper() == null){
-                teller++;
+            if(enBillett.getKjøper()==null){
+                ledigBilletter ++;
             }
         }
-        return teller;
+        return ledigBilletter;
     }
 
-    public ArrayList <Billett> hentBillettPerKjøper(Kjøper enKjøper){
-        ArrayList billetterTilKjøper = new ArrayList<>();
+    public int solgteBilletter(){
+        int solgteBilletter = 0;
         for(Billett enBillett : billetter){
-            if(enBillett.getKjøper() == enKjøper){
-                billetterTilKjøper.add(enBillett);
+            if(enBillett.getKjøper()!=null){
+                solgteBilletter ++;
             }
         }
-        return billetterTilKjøper;
+        return solgteBilletter;
     }
 
-    public ArrayList <Billett> hentBilletterTilArrangement(Arrangement etArrangement){
-        return billetter;
+
+    public ObservableList<Billett> visBilletterTilArrangement(){
+        ObservableList<Billett> billetterObservableList = FXCollections.observableArrayList();
+        for(Billett enBillett : billetter){
+            if(enBillett.getKjøper() != null) {
+                billetterObservableList.add(enBillett);
+            }
+        }
+        return billetterObservableList;
     }
+
+
+
 
     public String toString (){
         return kontaktperson.getNavn()+","+kontaktperson.getTelefonNr()+","+kontaktperson.getEmailAdresse()+","
                 +kontaktperson.getNettside()+","+kontaktperson.getVirksomhet()+","+kontaktperson.getOpplysninger()+","+
                 arrangementNavn+","+billettpris+","+dato+","+klokkeslett+","+antallBilletter+","+typeArrangement;
     }
+
 
 }
 

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 public class Billett implements Serializable {
     private Kjøper kjøper;
+    private int arrangementID;
 
-    public Billett(Kjøper kjøper){
+    public Billett(Kjøper kjøper, int arrangementID){
+        this.arrangementID = arrangementID;
         this.kjøper = kjøper;
     }
 
@@ -18,8 +20,17 @@ public class Billett implements Serializable {
         this.kjøper = kjøper;
     }
 
+
+    public int getArrangementID() {
+        return arrangementID;
+    }
+
+    public void setArrangementID(int arrangementID) {
+        this.arrangementID = arrangementID;
+    }
+
     public String toString(){
-        return kjøper.toString();
+        return kjøper.toString()+","+arrangementID;
     }
 
 }
