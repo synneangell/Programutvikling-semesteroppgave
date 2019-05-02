@@ -46,9 +46,8 @@ public class BillettCsvLeser extends LeseFil {
         String name = split[0];
         String telefonNr = split[1];
         String email = split[2];
-        String idString = split[3];
+        String id = split[3];
 
-        int id = Integer.parseInt(idString);
 
         return new Billett(new Kjøper(name, telefonNr, email), id);
     }

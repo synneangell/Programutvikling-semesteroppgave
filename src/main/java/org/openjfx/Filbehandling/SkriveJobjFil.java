@@ -18,5 +18,3 @@ public class SkriveJobjFil extends SkriveFil {
         }
     }
 }
-
-

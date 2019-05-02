@@ -14,6 +14,10 @@ import javafx.stage.Stage;
 import org.openjfx.Filbehandling.SkriveCsvFil;
 import org.openjfx.Filbehandling.SkriveJobjFil;
 import org.openjfx.base.*;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.input.KeyEvent;
+
 
 public class EndreArrangementController {
 
@@ -38,6 +42,8 @@ public class EndreArrangementController {
     @FXML
     private TableColumn<Arrangement, String> DatoColumn;
 
+    @FXML
+    private TextField txtSøk;
 
     @FXML
     public void initialize() {
@@ -55,6 +61,41 @@ public class EndreArrangementController {
         KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         DatoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
+
+
+    @FXML
+    private void SøkeHistorie (KeyEvent SH) {
+
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
+
+        FilteredList<Arrangement> filter = new FilteredList<>(alleArrangementer.getArrangementer(), e->true);
+        txtSøk.textProperty().addListener((Observable, oldValue, newValue) -> {
+            filter.setPredicate(arrang -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String tekstFyll = newValue.toLowerCase();
+                if (arrang.getArrangementNavn().toLowerCase().indexOf(tekstFyll) != -1) {
+                    return true;
+                }
+                if (arrang.getTypeArrangement().toLowerCase().indexOf(tekstFyll) != -1) {
+                    return true;
+                }
+                if (arrang.getKlokkeslett().toLowerCase().indexOf(tekstFyll) != -1) {
+                    return true;
+                }
+                if (arrang.getDato().toLowerCase().indexOf(tekstFyll) != -1) {
+                    return true;
+                }
+                return false;
+            });
+
+            SortedList<Arrangement> sortedList = new SortedList<>(filter);
+            sortedList.comparatorProperty().bind(Tableview.comparatorProperty());
+            Tableview.setItems(sortedList);
+        });
+    }
+
 
     @FXML
     void Lagre (ActionEvent event) throws IOException {
