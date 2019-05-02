@@ -16,7 +16,9 @@ public class Arrangement implements Serializable {
     private String klokkeslett;
     private int antallBilletter;
     TypeArrangement typeArrangement;
-    private int arrangementID;
+    private String arrangementID;
+
+    UUID uuid = UUID.randomUUID();
 
     private ArrayList<Billett> billetter = new ArrayList<>();
 
@@ -27,7 +29,7 @@ public class Arrangement implements Serializable {
         this.dato = dato;
         this.klokkeslett = klokkeslett;
         this.typeArrangement = typeArrangement;
-        arrangementID = GenererUnikID.genererID();
+        arrangementID = UUID.randomUUID().toString();
         System.out.println(arrangementID);
         this.antallBilletter = antallBilletter;
         for(int i = 0; i < antallBilletter; i++) {

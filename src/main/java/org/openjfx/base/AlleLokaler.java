@@ -3,12 +3,7 @@ package org.openjfx.base;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
-import static org.openjfx.base.AlleArrangementer.*;
-
 public class AlleLokaler {
-
 
     private static AlleLokaler instance;
     private ObservableList<Lokale> alleLokaler = null;
@@ -105,6 +100,5 @@ public class AlleLokaler {
     public static int antallPlasser(Lokale etLokale){
         return etLokale.getPlasser();
     }
-
 }
 

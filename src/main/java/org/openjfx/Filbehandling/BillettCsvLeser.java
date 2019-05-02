@@ -8,9 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
-public class LesBillettFraCsvFil extends LeseFraFil {
+public class BillettCsvLeser extends LeseFil {
     @Override
     public ArrayList<Object> leseFraFil(String filsti) throws InvalidBillettFormatException, IOException{
        ArrayList<Object> billett = new ArrayList<>();
