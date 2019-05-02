@@ -95,5 +95,19 @@ public class AlleArrangementer {
         }
         return billetter;
     }
+
+    public void LeggBillettFraFilTilArrangement(ArrayList<Object> billetter){
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
+
+        for(Arrangement etArrangement : alleArrangementer.getArrangementer()) {
+            for (Object enBillett : billetter) {
+                if(((Billett)enBillett).getArrangementNavn().equals(etArrangement.getArrangementNavn()) &&
+                ((Billett)enBillett).getArrangementDato().equals(etArrangement.getDato()) &&
+                        ( ((Billett)enBillett).getArrangementKlokkeslett().equals(etArrangement.getKlokkeslett()))) {
+                    etArrangement.leggTilBillettFraFil((Billett) enBillett);
+                }
+            }
+        }
+    }
 }
 

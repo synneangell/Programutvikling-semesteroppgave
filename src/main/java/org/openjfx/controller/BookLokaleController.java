@@ -138,9 +138,6 @@ public class BookLokaleController {
             catch (InvalidTelefonnummerException e) {
                 FileExceptionHandler.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
             }
-//            catch (InvalidDatoException e) {
-//                FileExceptionHandler.generateAlert("Ikke gyldig dato. Format: dd/mm/åååå. ");
-//            }
             catch (InvalidKlokkeslettException e) {
                 FileExceptionHandler.generateAlert("Ikke gyldig klokkeslett. Format: tt:mm. ");
             }

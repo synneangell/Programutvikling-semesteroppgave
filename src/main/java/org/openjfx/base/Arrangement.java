@@ -16,9 +16,6 @@ public class Arrangement implements Serializable {
     private String klokkeslett;
     private int antallBilletter;
     TypeArrangement typeArrangement;
-    private String arrangementID;
-
-    UUID uuid = UUID.randomUUID();
 
     private ArrayList<Billett> billetter = new ArrayList<>();
 
@@ -29,14 +26,9 @@ public class Arrangement implements Serializable {
         this.dato = dato;
         this.klokkeslett = klokkeslett;
         this.typeArrangement = typeArrangement;
-        arrangementID = UUID.randomUUID().toString();
-        System.out.println(arrangementID);
         this.antallBilletter = antallBilletter;
         for(int i = 0; i < antallBilletter; i++) {
-            billetter.add(new Billett(null, arrangementID));
-        }
-        for(Billett enBillett : billetter){
-            System.out.println(enBillett.getArrangementID());
+            billetter.add(new Billett(null, arrangementNavn, dato, klokkeslett));
         }
 
     }
@@ -131,6 +123,10 @@ public class Arrangement implements Serializable {
 
         }
         return ut;
+    }
+
+    public void leggTilBillettFraFil(Billett enBillett){
+        billetter.add(enBillett);
     }
 
 

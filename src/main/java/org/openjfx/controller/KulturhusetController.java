@@ -12,6 +12,7 @@ import org.openjfx.Filbehandling.ArrangementCsvLeser;
 import org.openjfx.Filbehandling.BillettCsvLeser;
 import org.openjfx.Filbehandling.LeseJobjFil;
 import org.openjfx.base.AlleArrangementer;
+import org.openjfx.base.Billett;
 import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
 import org.openjfx.controller.uihelpers.InvalidFilData;
 import org.openjfx.controller.uihelpers.Tråd;
@@ -77,7 +78,7 @@ public class KulturhusetController {
                         if (array[1].equals("csv")){
                             if(array[0].equals("billett")){
                                 BillettCsvLeser lesBillettFraCsvFil = new BillettCsvLeser();
-                                lesBillettFraCsvFil.leseFraFil(markertFil.getPath());
+                                alleArrangementer.LeggBillettFraFilTilArrangement(lesBillettFraCsvFil.leseFraFil(markertFil.getPath()));
 
                             }
                             if(array[0].equals("arrangement")){
@@ -88,7 +89,7 @@ public class KulturhusetController {
                         if (array[1].equals("jobj")){
                             if(array[0].equals("billett")){
                                 LeseJobjFil leseDataFraJobjFil = new LeseJobjFil();
-                                leseDataFraJobjFil.leseFraFil(markertFil.getPath());
+                                alleArrangementer.LeggBillettFraFilTilArrangement(leseDataFraJobjFil.leseFraFil(markertFil.getPath()));
 
                             }
                             if(array[0].equals("arrangement")){
