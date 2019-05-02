@@ -2,9 +2,7 @@ package org.openjfx.controller;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

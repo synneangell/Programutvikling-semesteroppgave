@@ -3,11 +3,14 @@ package org.openjfx.controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
@@ -44,6 +47,9 @@ public class SeBilletterController {
     @FXML
     private TableColumn<Billett, Kjøper> KjøperNavnColumn;
 
+    @FXML
+    private TextField txtSøk;
+
 
     @FXML
     public void initialize() {
@@ -70,6 +76,40 @@ public class SeBilletterController {
         });
 
     }
+
+    @FXML
+    private void SøkeHistorie (KeyEvent SH) {
+
+        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
+
+            FilteredList<Arrangement> filter = new FilteredList<>(alleArrangementer.getArrangementer(), e->true);
+            txtSøk.textProperty().addListener((Observable, oldValue, newValue) -> {
+                filter.setPredicate(arrang -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String tekstFyll = newValue.toLowerCase();
+                    if (arrang.getArrangementNavn().toLowerCase().indexOf(tekstFyll) != -1) {
+                        return true;
+                    }
+                    if (arrang.getTypeArrangement().toLowerCase().indexOf(tekstFyll) != -1) {
+                        return true;
+                    }
+                    if (arrang.getKlokkeslett().toLowerCase().indexOf(tekstFyll) != -1) {
+                        return true;
+                    }
+                    if (arrang.getDato().toLowerCase().indexOf(tekstFyll) != -1) {
+                        return true;
+                    }
+                    return false;
+                });
+
+                SortedList<Arrangement> sortedList = new SortedList<>(filter);
+                sortedList.comparatorProperty().bind(tableViewArrangementer.comparatorProperty());
+                tableViewArrangementer.setItems(sortedList);
+            });
+        }
+
 
     private void avsluttProgram() {
         Stage stage = (Stage) btnAvslutt.getScene().getWindow();
