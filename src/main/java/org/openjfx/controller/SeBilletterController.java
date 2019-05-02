@@ -82,33 +82,34 @@ public class SeBilletterController {
 
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
-        FilteredList<Arrangement> filter = new FilteredList<>(alleArrangementer.getArrangementer(), e->true);
-        txtSøk.textProperty().addListener((Observable, oldValue, newValue) -> {
-            filter.setPredicate(arrang -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String tekstFyll = newValue.toLowerCase();
-                if (arrang.getArrangementNavn().toLowerCase().indexOf(tekstFyll) != -1) {
-                    return true;
-                }
-                if (arrang.getTypeArrangement().toLowerCase().indexOf(tekstFyll) != -1) {
-                    return true;
-                }
-                if (arrang.getKlokkeslett().toLowerCase().indexOf(tekstFyll) != -1) {
-                    return true;
-                }
-                if (arrang.getDato().toLowerCase().indexOf(tekstFyll) != -1) {
-                    return true;
-                }
-                return false;
-            });
+            FilteredList<Arrangement> filter = new FilteredList<>(alleArrangementer.getArrangementer(), e->true);
+            txtSøk.textProperty().addListener((Observable, oldValue, newValue) -> {
+                filter.setPredicate(arrang -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String tekstFyll = newValue.toLowerCase();
+                    if (arrang.getArrangementNavn().toLowerCase().indexOf(tekstFyll) != -1) {
+                        return true;
+                    }
+                    if (arrang.getTypeArrangement().toLowerCase().indexOf(tekstFyll) != -1) {
+                        return true;
+                    }
+                    if (arrang.getKlokkeslett().toLowerCase().indexOf(tekstFyll) != -1) {
+                        return true;
+                    }
+                    if (arrang.getDato().toLowerCase().indexOf(tekstFyll) != -1) {
+                        return true;
+                    }
+                    return false;
+                });
 
-            SortedList<Arrangement> sortedList = new SortedList<>(filter);
-            sortedList.comparatorProperty().bind(tableViewArrangementer.comparatorProperty());
-            tableViewArrangementer.setItems(sortedList);
-        });
-    }
+                SortedList<Arrangement> sortedList = new SortedList<>(filter);
+                sortedList.comparatorProperty().bind(tableViewArrangementer.comparatorProperty());
+                tableViewArrangementer.setItems(sortedList);
+            });
+        }
+
 
     private void avsluttProgram() {
         Stage stage = (Stage) btnAvslutt.getScene().getWindow();

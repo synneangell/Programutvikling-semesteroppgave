@@ -66,34 +66,6 @@ public class EndreArrangementController {
     @FXML
     private void SøkeHistorie (KeyEvent SH) {
 
-        AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
-
-        FilteredList<Arrangement> filter = new FilteredList<>(alleArrangementer.getArrangementer(), e->true);
-        txtSøk.textProperty().addListener((Observable, oldValue, newValue) -> {
-            filter.setPredicate(arrang -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                String tekstFyll = newValue.toLowerCase();
-                if (arrang.getArrangementNavn().toLowerCase().indexOf(tekstFyll) != -1) {
-                    return true;
-                }
-                if (arrang.getTypeArrangement().toLowerCase().indexOf(tekstFyll) != -1) {
-                    return true;
-                }
-                if (arrang.getKlokkeslett().toLowerCase().indexOf(tekstFyll) != -1) {
-                    return true;
-                }
-                if (arrang.getDato().toLowerCase().indexOf(tekstFyll) != -1) {
-                    return true;
-                }
-                return false;
-            });
-
-            SortedList<Arrangement> sortedList = new SortedList<>(filter);
-            sortedList.comparatorProperty().bind(Tableview.comparatorProperty());
-            Tableview.setItems(sortedList);
-        });
     }
 
 

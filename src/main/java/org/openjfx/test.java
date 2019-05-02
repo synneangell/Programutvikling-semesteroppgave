@@ -1,9 +1,12 @@
 package org.openjfx;
 
+import javafx.stage.FileChooser;
 import org.openjfx.Filbehandling.*;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
+import org.openjfx.controller.uihelpers.TrådSkriverStarter;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -11,7 +14,7 @@ public class test {
 
     public static void main(String[] args) throws IOException, InvalidBillettFormatException {
 
-        Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
+       /* Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
                 "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
 
 
@@ -32,14 +35,11 @@ public class test {
 
         */
 
-        SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
+      /*  SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
         skriveTilJobjFil.skriveTilFil("arrangement.jobj", arrangementer);
 
         LeseJobjFil leseDataFraJobjFil = new LeseJobjFil();
-        System.out.println(leseDataFraJobjFil.leseFraFil("arrangement.jobj"));
-
-
+        System.out.println(leseDataFraJobjFil.leseFraFil("arrangement.jobj")); */
 
     }
-
 }
