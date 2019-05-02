@@ -86,6 +86,7 @@ public class AlleArrangementer {
         for(Object etArrangement : arrayList){
             leggTilArrangement((Arrangement) etArrangement);
         }
+
     }
 
     public ArrayList<Billett> gjørOmBilletterTilArrayList(ObservableList<Billett> observableList){
