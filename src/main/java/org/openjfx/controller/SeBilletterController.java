@@ -2,7 +2,6 @@ package org.openjfx.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +20,6 @@ public class SeBilletterController {
 
     @FXML
     private Button btnAvslutt;
-
 
     @FXML
     private TableView<Arrangement> tableViewArrangementer;
@@ -86,7 +84,6 @@ public class SeBilletterController {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
         rootSeBilletter.getChildren().setAll(pane);
     }
-
 
     @FXML
     private void SøkEtterFil(ActionEvent event){

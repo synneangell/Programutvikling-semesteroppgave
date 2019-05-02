@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import org.openjfx.Filbehandling.*;
 import org.openjfx.base.*;
 import org.openjfx.controller.uihelpers.*;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -119,11 +118,11 @@ public class KjøpBillettController {
         }
 
         if(filtype.equals(".csv")){
-            SkriveTilCsvFil skriveTilCsvFil = new SkriveTilCsvFil();
+            SkriveCsvFil skriveTilCsvFil = new SkriveCsvFil();
             skriveTilCsvFil.skriveTilFil("billett.csv", lagreBilletterTilFil);
         }
         else if(filtype.equals(".jobj")){
-            SkriveTilJobjFil skriveTilJobjFil = new SkriveTilJobjFil();
+            SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
             skriveTilJobjFil.skriveTilFil("billett.jobj",lagreBilletterTilFil);
         }
     }

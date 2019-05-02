@@ -2,9 +2,9 @@ package org.openjfx.controller.uihelpers;
 
 import javafx.concurrent.Task;
 import javafx.stage.FileChooser;
-import org.openjfx.Filbehandling.LesArrangementFraCsvFil;
-import org.openjfx.Filbehandling.LesBillettFraCsvFil;
-import org.openjfx.Filbehandling.LeseDataFraJobjFil;
+import org.openjfx.Filbehandling.ArrangementCsvLeser;
+import org.openjfx.Filbehandling.BillettCsvLeser;
+import org.openjfx.Filbehandling.LeseJobjFil;
 import org.openjfx.base.AlleArrangementer;
 import org.openjfx.base.Arrangement;
 
@@ -34,20 +34,20 @@ public class Tråd extends Task<Void> {
                 if(array.length > 1) {
                     if (array[1].equals("csv")){
                         if(array[0].equals("billett")){
-                            LesBillettFraCsvFil lesBillettFraCsvFil = new LesBillettFraCsvFil();
+                            BillettCsvLeser lesBillettFraCsvFil = new BillettCsvLeser();
                             //må legge inn billettene her til de ulike arrangementene sine arraylists
                             lesBillettFraCsvFil.leseFraFil(markertFil.getPath());
 
 
                         }
                         if(array[0].equals("arrangement")){
-                            LesArrangementFraCsvFil lesArrangementFraCsvFil = new LesArrangementFraCsvFil();
+                            ArrangementCsvLeser lesArrangementFraCsvFil = new ArrangementCsvLeser();
                             alleArrangementer.gjørOmTilObservableList(lesArrangementFraCsvFil.leseFraFil(markertFil.getPath()));
                         }
                     }
                     if (array[1].equals("jobj")){
                         if(array[0].equals("billett")){
-                            LeseDataFraJobjFil leseDataFraJobjFil = new LeseDataFraJobjFil();
+                            LeseJobjFil leseDataFraJobjFil = new LeseJobjFil();
                             //må legge inn billettene her til de ulike arrangementene sine arraylists
 
                             leseDataFraJobjFil.leseFraFil(markertFil.getPath());
@@ -55,14 +55,11 @@ public class Tråd extends Task<Void> {
 
                         }
                         if(array[0].equals("arrangement")){
-                            LeseDataFraJobjFil leseDataFraJobjFil = new LeseDataFraJobjFil();
+                            LeseJobjFil leseDataFraJobjFil = new LeseJobjFil();
                             alleArrangementer.gjørOmTilObservableList(leseDataFraJobjFil.leseFraFil(markertFil.getPath()));
                         }
                     }
-
                 }
-
-
 
             } else {
                 String feilmelding = "Filen er ikke gyldig";
