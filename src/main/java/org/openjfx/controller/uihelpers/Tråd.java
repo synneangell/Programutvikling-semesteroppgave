@@ -5,7 +5,6 @@ import javafx.stage.FileChooser;
 import org.openjfx.Filbehandling.ArrangementCsvLeser;
 import org.openjfx.Filbehandling.BillettCsvLeser;
 import org.openjfx.Filbehandling.LeseJobjFil;
-
 import java.io.File;
 import java.io.IOException;
 import org.openjfx.base.AlleArrangementer;
