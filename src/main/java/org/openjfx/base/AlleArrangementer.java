@@ -58,19 +58,6 @@ public class AlleArrangementer {
         return alleArrangementer;
     }
 
-    public ArrayList<Arrangement> gjørOmTilArrayList(ObservableList<Arrangement> observableList){
-        ArrayList<Arrangement> arrangementer = new ArrayList<>();
-        for(Arrangement etArrangement : observableList){
-            arrangementer.add(etArrangement);
-        }
-        return arrangementer;
-    }
-
-    public void gjørOmTilObservableList(ArrayList<Object> arrayList){
-        for(Object etArrangement : arrayList){
-            leggTilArrangement((Arrangement) etArrangement);
-        }
-    }
 
     public static AlleArrangementer getSingelton(){
         if(instance == null){
@@ -85,6 +72,20 @@ public class AlleArrangementer {
 
     public Arrangement getArrangement(Arrangement etArrangement){
         return etArrangement;
+    }
+
+    public ArrayList<Arrangement> gjørOmTilArrayList(ObservableList<Arrangement> observableList){
+        ArrayList<Arrangement> arrangementer = new ArrayList<>();
+        for(Arrangement etArrangement : observableList){
+            arrangementer.add(etArrangement);
+        }
+        return arrangementer;
+    }
+
+    public void gjørOmTilObservableList(ArrayList<Object> arrayList){
+        for(Object etArrangement : arrayList){
+            leggTilArrangement((Arrangement) etArrangement);
+        }
     }
 
     public ArrayList<Billett> gjørOmBilletterTilArrayList(ObservableList<Billett> observableList){
