@@ -66,7 +66,6 @@ public class SeBilletterController {
 
         tableViewArrangementer.setItems(alleArrangementer.getArrangementer());
 
-
         KjøperNavnColumn.setCellValueFactory(new PropertyValueFactory<Billett, Kjøper>("kjøper"));
 
 
