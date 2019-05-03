@@ -28,7 +28,7 @@ public class EndreArrangementController {
     private AnchorPane rootEndreArrangement;
 
     @FXML
-    private TableView<Arrangement> Tableview;
+    private TableView<Arrangement> tableviewArrangementer;
 
     @FXML
     private TableColumn<Arrangement, String> TypeColumn;
@@ -53,10 +53,10 @@ public class EndreArrangementController {
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
-        Tableview.setItems(alleArrangementer.getArrangementer());
+        tableviewArrangementer.setItems(alleArrangementer.getArrangementer());
 
         //Gjør tabellen "Editable":
-        Tableview.setEditable(true);
+        tableviewArrangementer.setEditable(true);
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         DatoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -91,8 +91,8 @@ public class EndreArrangementController {
             });
 
             SortedList<Arrangement> sortedList = new SortedList<>(filter);
-            sortedList.comparatorProperty().bind(Tableview.comparatorProperty());
-            Tableview.setItems(sortedList);
+            sortedList.comparatorProperty().bind(tableviewArrangementer.comparatorProperty());
+            tableviewArrangementer.setItems(sortedList);
         });
     }
 
@@ -114,25 +114,25 @@ public class EndreArrangementController {
     }
 
     public void endreNavnArrangement(TableColumn.CellEditEvent endretCelle) {
-        Arrangement valgtArrangement = Tableview.getSelectionModel().getSelectedItem();
+        Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
         valgtArrangement.setArrangementNavn(endretCelle.getNewValue().toString());
     }
 
 
     public void endreKlokkeslettArrangement(TableColumn.CellEditEvent endretCelle) {
-        Arrangement valgtArrangement = Tableview.getSelectionModel().getSelectedItem();
+        Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
         valgtArrangement.setKlokkeslett(endretCelle.getNewValue().toString());
     }
 
     public void endreDatoArrangement(TableColumn.CellEditEvent endretCelle) {
-        Arrangement valgtArrangement = Tableview.getSelectionModel().getSelectedItem();
+        Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
         valgtArrangement.setDato(endretCelle.getNewValue().toString());
     }
 
     public void slettArrangement(){
         ObservableList<Arrangement> valgtRad, arrangementer;
-        arrangementer = Tableview.getItems();
-        valgtRad = Tableview.getSelectionModel().getSelectedItems();
+        arrangementer = tableviewArrangementer.getItems();
+        valgtRad = tableviewArrangementer.getSelectionModel().getSelectedItems();
         for(Arrangement etArrangement : valgtRad){
             arrangementer.remove(etArrangement);
 
@@ -141,7 +141,7 @@ public class EndreArrangementController {
     }
 
     private void avsluttProgram() {
-        Stage stage = (Stage) Tableview.getScene().getWindow();
+        Stage stage = (Stage) tableviewArrangementer.getScene().getWindow();
         stage.close();
     }
 
