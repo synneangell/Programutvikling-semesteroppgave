@@ -21,8 +21,6 @@ public class TrådLeser implements Callable<ObservableList<Object>> {
     @Override
     public ObservableList<Object> call() throws InvalidBillettFormatException, IOException, InvalidFilDataException, InterruptedException {
 
-        //Metoder som skal kalles legges her. Run kalles på implisivt når man oppretter en tråd med denne klassen.
-        //Pass på at returverditypen i call tilsvarer den typen som Callable er satt til!
         return read();
     }
 

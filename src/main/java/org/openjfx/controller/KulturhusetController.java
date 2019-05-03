@@ -29,13 +29,13 @@ public class KulturhusetController {
     }
 
     @FXML
-    void kjøpBillett (ActionEvent event) throws IOException {
-        launchKjøpBillett();
+    void opprettBillett (ActionEvent event) throws IOException {
+        launchOpprettBillett();
     }
 
     @FXML
-    void bookLokale (ActionEvent event) throws IOException {
-        launchBookLokale();
+    void opprettArrangement (ActionEvent event) throws IOException {
+        launchOpprettArrangement();
     }
 
     @FXML
@@ -64,13 +64,13 @@ public class KulturhusetController {
         }
     }
 
-    private void launchKjøpBillett() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kjøpBillett.fxml"));
+    private void launchOpprettBillett() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/opprettBillett.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
-    private void launchBookLokale() throws IOException {
-        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/org/openjfx/bookLokale.fxml"));
+    private void launchOpprettArrangement() throws IOException {
+        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/org/openjfx/opprettArrangement.fxml"));
         rootPane.getChildren().setAll(pane2);
     }
 
