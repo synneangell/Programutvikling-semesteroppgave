@@ -1,5 +1,7 @@
 package org.openjfx.controller;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import org.openjfx.controller.hjelpeklasser.InvalidFilDataException;
 import org.openjfx.controller.hjelpeklasser.TrådLeserStarter;
 import java.io.File;
 import java.io.IOException;
@@ -54,13 +57,20 @@ public class KulturhusetController {
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JOBJ og CSV filer", "*.csv", "*.jobj"));
         File markertFil = fc.showOpenDialog(null);
 
-        try {
-            TrådLeserStarter.startLeser(markertFil);
-            threadFerdig();
-        }
-        catch (ExecutionException | InterruptedException e) {
-            lblLasterInn.setText("Filen ble ikke lastet inn.");
-            e.printStackTrace();
+        if (markertFil != null){
+            lblLasterInn.setText("Filen lastes inn...");
+            Platform.runLater(() -> {
+                try {
+                    TrådLeserStarter.startLeser(markertFil);
+                    threadFerdig();
+                }
+                catch (ExecutionException | InterruptedException e) {
+                    lblLasterInn.setText("Filen ble ikke lastet inn.");
+                    e.printStackTrace();
+                }
+            });
+        } else {
+            lblLasterInn.setText("Filen ble ikke lastet inn");
         }
     }
 
