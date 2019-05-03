@@ -9,5 +9,4 @@ public class Deltaker extends Person implements Serializable {
         super(navn);
         this.egenskap = egenskap;
     }
-
 }

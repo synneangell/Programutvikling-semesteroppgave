@@ -9,7 +9,6 @@ public class Kontaktperson extends Person implements Serializable {
     private String virksomhet;
     private String opplysninger;
 
-
     public Kontaktperson(String navn, String telefonNr, String emailAdresse, String nettside, String virksomhet, String opplysninger){
         super(navn);
         this.telefonNr = telefonNr;

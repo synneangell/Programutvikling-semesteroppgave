@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import org.openjfx.Filbehandling.*;
 import org.openjfx.base.*;
 import org.openjfx.controller.hjelpeklasser.*;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -53,10 +52,8 @@ public class KjøpBillettController {
     @FXML
     private TableColumn<Arrangement, String> DatoColumn;
 
-
     @FXML
     private TableColumn<Arrangement, Integer> PrisColumn;
-
 
     @FXML
     public void initialize() {
@@ -75,14 +72,12 @@ public class KjøpBillettController {
 
         lagreTilFilBox.setItems(filtyper);
         lagreTilFilBox.setValue(".csv");
-
     }
 
     @FXML
      void fullførBestilling(ActionEvent event) throws ParseException, IOException {
 
-            if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()) {
-
+        if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()) {
                 try {
                     if (SjekkOmGyldig.sjekkKunBokstaver(txtNavn.getText()) && SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText()) &&
                             SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText())) {
@@ -95,8 +90,6 @@ public class KjøpBillettController {
                         String ut = etArrangement.leggTilBillett(enKjøper, antallBilletter);
 
                         AlertBoks.generateAlert(ut);
-
-
                     }
                 } catch (InvalidTekstException e) {
                     FeilhåndteringsAlertBoks.generateAlert("Det er brukt tall der det kun skal være tekst. ");
@@ -107,8 +100,6 @@ public class KjøpBillettController {
                 }
             }
         }
-
-
 
    @FXML
     void Lagre (ActionEvent event) throws IOException {

@@ -1,7 +1,6 @@
 package org.openjfx.controller.hjelpeklasser;
 
 import javafx.collections.ObservableList;
-
 import java.io.File;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;

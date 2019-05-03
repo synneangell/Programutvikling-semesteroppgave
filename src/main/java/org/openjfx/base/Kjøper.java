@@ -16,5 +16,4 @@ public class Kjøper extends Person implements Serializable {
     public String toString() {
         return getNavn() + "," + telefonNr + "," + email;
     }
-
 }

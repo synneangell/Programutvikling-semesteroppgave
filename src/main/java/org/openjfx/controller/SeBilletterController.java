@@ -13,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
-
 import java.io.IOException;
 
 public class SeBilletterController {
@@ -53,7 +52,6 @@ public class SeBilletterController {
 
     @FXML
     private Label lblAntallLedige;
-
 
     @FXML
     public void initialize() {
@@ -114,7 +112,6 @@ public class SeBilletterController {
             });
         }
 
-
     private void avsluttProgram() {
         Stage stage = (Stage) btnAvslutt.getScene().getWindow();
         stage.close();
@@ -133,7 +130,6 @@ public class SeBilletterController {
 
     @FXML
     private void SøkEtterFil(ActionEvent event){
-
     }
   }
 

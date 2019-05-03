@@ -13,11 +13,9 @@ public class AlleArrangementer {
     protected AlleArrangementer(){
         alleArrangementer = FXCollections.observableArrayList();
 
-
         //TODO: fjerne disse før levering!
         Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
                 "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
-
 
         //Oppretter noen forestillinger som skal ligge inne i systemet
         Arrangement kinofilm = new Arrangement
@@ -31,7 +29,6 @@ public class AlleArrangementer {
         Arrangement kinofilm3 = new Arrangement
                 (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, "22/03/2019",
                         "20:30", 100, TypeArrangement.KINO);
-
 
         // Oppretter teaterforestilling:
         Arrangement teaterforestilling = new Arrangement
@@ -58,7 +55,6 @@ public class AlleArrangementer {
         return alleArrangementer;
     }
 
-
     public static AlleArrangementer getSingelton(){
         if(instance == null){
             instance = new AlleArrangementer();
@@ -82,7 +78,6 @@ public class AlleArrangementer {
         for(Object etArrangement : arrayList){
             leggTilArrangement((Arrangement) etArrangement);
         }
-
     }
 
     public ArrayList <Billett> gjørOmBilletterTilArrayList(ObservableList <Billett> observableList){

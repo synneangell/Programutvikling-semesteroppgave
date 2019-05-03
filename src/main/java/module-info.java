@@ -10,5 +10,4 @@ module hellofx {
 
     opens org.openjfx.base to javafx.fxml;
     exports org.openjfx.base;
-
 }

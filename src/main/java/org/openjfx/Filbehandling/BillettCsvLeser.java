@@ -23,11 +23,11 @@ public class BillettCsvLeser extends LeseFil {
             while ((line = reader.readLine()) != null) {
                 billett.add(parseBillett(line));
             }
-
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new InvalidBillettFormatException("Billetten er ikke formatert riktig");
-
-        } finally {
+        }
+        finally {
             if(reader != null) {
                 reader.close();
             }

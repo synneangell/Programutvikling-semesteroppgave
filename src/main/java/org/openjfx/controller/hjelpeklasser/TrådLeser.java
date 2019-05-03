@@ -40,7 +40,6 @@ public class TrådLeser implements Callable<ObservableList<Object>> {
                         BillettCsvLeser lesBillettFraCsvFil = new BillettCsvLeser();
                         alleArrangementer.LeggBillettFraFilTilArrangement(lesBillettFraCsvFil.leseFraFil(markertFil.getPath()));
                         // returVerdi =
-
                     }
                     if(array[0].equals("arrangement")){
                         ArrangementCsvLeser lesArrangementFraCsvFil = new ArrangementCsvLeser();
@@ -53,7 +52,6 @@ public class TrådLeser implements Callable<ObservableList<Object>> {
                         LeseJobjFil leseDataFraJobjFil = new LeseJobjFil();
                         alleArrangementer.LeggBillettFraFilTilArrangement(leseDataFraJobjFil.leseFraFil(markertFil.getPath()));
                         //returVerdi = ??
-
                     }
                     if(array[0].equals("arrangement")){
                         LeseJobjFil leseDataFraJobjFil = new LeseJobjFil();
@@ -62,11 +60,9 @@ public class TrådLeser implements Callable<ObservableList<Object>> {
                     }
                 }
             }
-
         } else {
             throw new InvalidFilDataException("Filen er ikke gyldig");
         }
-
         return returVerdi;
     }
 }

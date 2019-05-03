@@ -13,7 +13,6 @@ public class AlleLokaler {
     Lokale teatersal = null;
     Lokale kinosal = null;
 
-
     public Lokale getForedragssal() {
         return foredragssal;
     }
@@ -21,7 +20,6 @@ public class AlleLokaler {
     public Lokale getKonsertsal() {
         return konsertsal;
     }
-
 
     protected AlleLokaler(){
         alleLokaler = FXCollections.observableArrayList();
@@ -45,7 +43,6 @@ public class AlleLokaler {
         }
         return instance;
     }
-
 
     public void leggTilLokale(Lokale etLokale){
         alleLokaler.add(etLokale);

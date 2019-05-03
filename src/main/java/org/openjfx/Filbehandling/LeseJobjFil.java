@@ -14,9 +14,11 @@ public class LeseJobjFil extends LeseFil {
         try (FileInputStream fin = new FileInputStream(filsti);
              ObjectInputStream oin = new ObjectInputStream(fin)) {
             objekter = (ArrayList<Object>) oin.readObject();
-        } catch(IOException e) {
+        }
+        catch(IOException e) {
             System.err.println("Could not read file. Cause: " + e.getCause());
-        } catch(ClassNotFoundException e) {
+        }
+        catch(ClassNotFoundException e) {
             System.err.println("Could not convert Object");
         }
         return objekter;

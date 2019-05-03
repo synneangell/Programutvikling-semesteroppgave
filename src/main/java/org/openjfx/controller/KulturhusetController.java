@@ -57,12 +57,12 @@ public class KulturhusetController {
         try {
             TrådLeserStarter.startLeser(markertFil);
             threadFerdig();
-        } catch (ExecutionException | InterruptedException e) {
+        }
+        catch (ExecutionException | InterruptedException e) {
             lblLasterInn.setText("Filen ble ikke lastet inn.");
             e.printStackTrace();
         }
     }
-
 
     private void launchKjøpBillett() throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kjøpBillett.fxml"));

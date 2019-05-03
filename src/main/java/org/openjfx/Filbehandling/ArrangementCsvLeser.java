@@ -2,7 +2,6 @@ package org.openjfx.Filbehandling;
 
 import org.openjfx.base.*;
 import org.openjfx.controller.hjelpeklasser.InvalidBillettFormatException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,10 +23,8 @@ public class ArrangementCsvLeser extends LeseFil {
             while ((line = reader.readLine()) != null) {
                 arrangement.add(parseArrangement(line));
             }
-
         } catch (IOException e) {
             System.out.println("");
-
         } finally {
             if(reader != null) {
                 reader.close();
@@ -69,6 +66,4 @@ public class ArrangementCsvLeser extends LeseFil {
         }
         return number;
     }
-
-
 }

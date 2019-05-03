@@ -2,11 +2,8 @@ package org.openjfx.base;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class Arrangement implements Serializable {
     private Kontaktperson kontaktperson;
@@ -30,7 +27,6 @@ public class Arrangement implements Serializable {
         for(int i = 0; i < antallBilletter; i++) {
             billetter.add(new Billett(null, arrangementNavn, dato, klokkeslett));
         }
-
     }
 
     public ArrayList<Billett> getBilletter() {
@@ -135,7 +131,5 @@ public class Arrangement implements Serializable {
                 +kontaktperson.getNettside()+","+kontaktperson.getVirksomhet()+","+kontaktperson.getOpplysninger()+","+
                 arrangementNavn+","+billettpris+","+dato+","+klokkeslett+","+antallBilletter+","+typeArrangement;
     }
-
-
 }
 

@@ -53,7 +53,6 @@ public class BookLokaleController {
     @FXML
     private DatePicker dato;
 
-
     @FXML
     public void initialize() {
         //Tabellen med arrangementer opprettes her:
@@ -85,14 +84,12 @@ public class BookLokaleController {
             foredrag = true;
         }
 
-
         if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() &&
                 !txtEmail.getText().isEmpty() && !txtNettside.getText().isEmpty() &&
                 !txtAndreOpplysninger.getText().isEmpty() && !txtVirksomhet.getText().isEmpty() &&
                 !txtNavnArrangement.getText().isEmpty() && !txtBillettpris.getText().isEmpty() &&
                 !txtTidspunkt.getText().isEmpty() &&
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()) {
-
 
             //Validering av inputfelter:
             try {
@@ -115,10 +112,8 @@ public class BookLokaleController {
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, dato.getValue().format(dtf),
                              txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getKonsertsal()), TypeArrangement.KONSERT);
-
                         Tableview.getItems().add(etDeltakerArrangement);
                         AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
-
                     }
                     else if (foredrag) {
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
@@ -128,7 +123,6 @@ public class BookLokaleController {
                         Tableview.getItems().add(etDeltakerArrangement);
                         AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
                     }
-
                 }
             }
             catch (InvalidTekstException e) {
@@ -164,7 +158,6 @@ public class BookLokaleController {
         else if(filtype.equals(".jobj")){
             SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
             skriveTilJobjFil.skriveTilFil("arrangement.jobj",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
-
         }
     }
 

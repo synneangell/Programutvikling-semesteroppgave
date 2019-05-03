@@ -23,12 +23,10 @@ public class MainApp extends Application {
         stage.setTitle("Kulturhuset");
         stage.setScene(scene);
         stage.show();
-
         //new FileChooser().showSaveDialog(null);
     }
 
     public static void main(String[] args) {
         launch(args);
     }
-
 }

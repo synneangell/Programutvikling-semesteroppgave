@@ -2,7 +2,6 @@ package org.openjfx.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -19,7 +18,6 @@ import org.openjfx.Filbehandling.SkriveCsvFil;
 import org.openjfx.Filbehandling.SkriveJobjFil;
 import org.openjfx.base.*;
 import javafx.scene.input.KeyEvent;
-
 
 public class EndreArrangementController {
 
@@ -69,7 +67,6 @@ public class EndreArrangementController {
         lagreTilFilBox.setValue(".csv");
     }
 
-
     @FXML
     private void SøkeHistorie (KeyEvent SH) {
 
@@ -101,7 +98,6 @@ public class EndreArrangementController {
             sortedList.comparatorProperty().bind(tableviewArrangementer.comparatorProperty());
             tableviewArrangementer.setItems(sortedList);
         });
-
     }
 
 
@@ -119,7 +115,6 @@ public class EndreArrangementController {
                 }
             }
         }
-
         if(filtype.equals(".csv")){
             SkriveCsvFil skriveTilCsvFil = new SkriveCsvFil();
             skriveTilCsvFil.skriveTilFil("billett.csv", lagreBilletterTilFil);
@@ -134,7 +129,6 @@ public class EndreArrangementController {
         Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
         valgtArrangement.setArrangementNavn(endretCelle.getNewValue().toString());
     }
-
 
     public void endreKlokkeslettArrangement(TableColumn.CellEditEvent endretCelle) {
         Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
@@ -152,9 +146,7 @@ public class EndreArrangementController {
         valgtRad = tableviewArrangementer.getSelectionModel().getSelectedItems();
         for(Arrangement etArrangement : valgtRad){
             arrangementer.remove(etArrangement);
-
         }
-
     }
 
     private void avsluttProgram() {
