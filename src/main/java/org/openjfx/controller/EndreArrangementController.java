@@ -1,11 +1,8 @@
 package org.openjfx.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,11 +14,12 @@ import javafx.stage.Stage;
 import org.openjfx.Filbehandling.SkriveCsvFil;
 import org.openjfx.Filbehandling.SkriveJobjFil;
 import org.openjfx.base.*;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.input.KeyEvent;
 
-public class EndreArrangementController {
 
-    ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
+public class EndreArrangementController {
 
     @FXML
     private ComboBox lagreTilFilBox;
@@ -62,10 +60,8 @@ public class EndreArrangementController {
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         DatoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        lagreTilFilBox.setItems(filtyper);
-        lagreTilFilBox.setValue(".csv");
     }
+
 
     @FXML
     private void SøkeHistorie (KeyEvent SH) {
@@ -114,12 +110,14 @@ public class EndreArrangementController {
             SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
             skriveTilJobjFil.skriveTilFil("arrangement.jobj",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
+
     }
 
     public void endreNavnArrangement(TableColumn.CellEditEvent endretCelle) {
         Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
         valgtArrangement.setArrangementNavn(endretCelle.getNewValue().toString());
     }
+
 
     public void endreKlokkeslettArrangement(TableColumn.CellEditEvent endretCelle) {
         Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
@@ -137,7 +135,9 @@ public class EndreArrangementController {
         valgtRad = tableviewArrangementer.getSelectionModel().getSelectedItems();
         for(Arrangement etArrangement : valgtRad){
             arrangementer.remove(etArrangement);
+
         }
+
     }
 
     private void avsluttProgram() {
