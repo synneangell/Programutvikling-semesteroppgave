@@ -1,5 +1,6 @@
-package org.openjfx.controller.uihelpers;
+package org.openjfx.controller.hjelpeklasser;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.openjfx.Filbehandling.ArrangementCsvLeser;
 import org.openjfx.Filbehandling.BillettCsvLeser;
@@ -7,7 +8,6 @@ import org.openjfx.Filbehandling.LeseJobjFil;
 import org.openjfx.base.AlleArrangementer;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 public class TrådLeser implements Callable<ObservableList<Object>> {
@@ -19,16 +19,14 @@ public class TrådLeser implements Callable<ObservableList<Object>> {
     }
 
     @Override
-    public ObservableList<Object> call() throws InvalidBillettFormatException, IOException, InvalidFilData {
+    public ObservableList<Object> call() throws InvalidBillettFormatException, IOException, InvalidFilDataException, InterruptedException {
 
-        //Metoder som skal kalles legges her. Run kalles på implisivt når man oppretter en tråd med denne klassen.
-        //Pass på at returverditypen i call tilsvarer den typen som Callable er satt til!
         return read();
     }
 
-     private ObservableList<Object> read() throws InvalidFilData, IOException, InvalidBillettFormatException {
+    private ObservableList<Object> read() throws InvalidFilDataException, IOException, InvalidBillettFormatException {
 
-        ArrayList<Object> returVerdi = new ArrayList<>();
+        ObservableList<Object> returVerdi = FXCollections.observableArrayList();
 
         if (markertFil != null) {
             AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
@@ -38,32 +36,31 @@ public class TrådLeser implements Callable<ObservableList<Object>> {
                 if (array[1].equals("csv")){
                     if(array[0].equals("billett")){
                         BillettCsvLeser lesBillettFraCsvFil = new BillettCsvLeser();
-                        returVerdi = lesBillettFraCsvFil.leseFraFil(markertFil.getPath());
-
+                        alleArrangementer.LeggBillettFraFilTilArrangement(lesBillettFraCsvFil.leseFraFil(markertFil.getPath()));
+                        // returVerdi =
                     }
                     if(array[0].equals("arrangement")){
                         ArrangementCsvLeser lesArrangementFraCsvFil = new ArrangementCsvLeser();
                         alleArrangementer.gjørOmTilObservableList(lesArrangementFraCsvFil.leseFraFil(markertFil.getPath()));
-                        returVerdi = alleArrangementer.getArrangementer();
+                        //returVerdi = alleArrangementer.getArrangementer();
                     }
                 }
                 if (array[1].equals("jobj")){
                     if(array[0].equals("billett")){
                         LeseJobjFil leseDataFraJobjFil = new LeseJobjFil();
-                        returVerdi = leseDataFraJobjFil.leseFraFil(markertFil.getPath());
-
+                        alleArrangementer.LeggBillettFraFilTilArrangement(leseDataFraJobjFil.leseFraFil(markertFil.getPath()));
+                        //returVerdi = ??
                     }
                     if(array[0].equals("arrangement")){
                         LeseJobjFil leseDataFraJobjFil = new LeseJobjFil();
-                        returVerdi = alleArrangementer.gjørOmTilArrayList(leseDataFraJobjFil.leseFraFil(markertFil.getPath()));
+                        alleArrangementer.gjørOmTilObservableList(leseDataFraJobjFil.leseFraFil(markertFil.getPath()));
+                        //returVerdi = ??
                     }
                 }
             }
-
         } else {
-            throw new InvalidFilData("Filen er ikke gyldig");
+            throw new InvalidFilDataException("Filen er ikke gyldig");
         }
-
         return returVerdi;
     }
 }

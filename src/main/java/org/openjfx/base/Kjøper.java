@@ -12,25 +12,8 @@ public class Kjøper extends Person implements Serializable {
         this.email = email;
     }
 
-    public String getTelefonNr() {
-        return telefonNr;
-    }
-
-    public void setTelefonNr(String telefonNr) {
-        this.telefonNr = telefonNr;
-    }
-
-    public String getemail() {
-        return email;
-    }
-
-    public void setemail(String email) {
-        this.email = email;
-    }
-
     @Override
     public String toString() {
         return getNavn() + "," + telefonNr + "," + email;
     }
-
 }

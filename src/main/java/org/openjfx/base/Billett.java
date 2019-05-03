@@ -3,14 +3,6 @@ package org.openjfx.base;
 import java.io.Serializable;
 
 public class Billett implements Serializable {
-    private Kjøper kjøper;
-    private String arrangementID;
-
-    public Billett(Kjøper kjøper, String arrangementID){
-        this.arrangementID = arrangementID;
-        this.kjøper = kjøper;
-    }
-
     public Kjøper getKjøper() {
         return kjøper;
     }
@@ -19,16 +11,31 @@ public class Billett implements Serializable {
         this.kjøper = kjøper;
     }
 
-
-    public String getArrangementID() {
-        return arrangementID;
+    public String getArrangementNavn() {
+        return arrangementNavn;
     }
 
-    public void setArrangementID(String arrangementID) {
-        this.arrangementID = arrangementID;
+    public String getArrangementDato() {
+        return arrangementDato;
+    }
+
+    public String getArrangementKlokkeslett() {
+        return arrangementKlokkeslett;
+    }
+
+    private Kjøper kjøper;
+    private String arrangementNavn;
+    private String arrangementDato;
+    private String arrangementKlokkeslett;
+
+    public Billett(Kjøper kjøper, String arrangementNavn, String arrangementDato, String arrangementKlokkeslett){
+        this.arrangementNavn = arrangementNavn;
+        this.arrangementDato = arrangementDato;
+        this.arrangementKlokkeslett = arrangementKlokkeslett;
+        this.kjøper = kjøper;
     }
 
     public String toString(){
-        return kjøper.toString()+","+arrangementID;
+        return kjøper.toString()+","+arrangementNavn+","+arrangementDato+","+arrangementKlokkeslett;
     }
 }

@@ -8,8 +8,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
 public class SkriveCsvFil extends SkriveFil {
+
     @Override
     public void skriveTilFil(String filsti, ArrayList<?> objekter) throws IOException {
 

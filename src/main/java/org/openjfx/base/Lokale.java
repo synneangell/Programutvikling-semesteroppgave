@@ -13,20 +13,12 @@ public class Lokale {
         arrangementer = new ArrayList<>();
     }
 
-
     public void leggTilArrangement(Arrangement etArrangement){
         arrangementer.add(etArrangement);
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getPlasser() {
         return plasser;
     }
 
-    public ArrayList<Arrangement> hentArrangementer(){
-        return arrangementer;
-    }
 }

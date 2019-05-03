@@ -13,37 +13,12 @@ public class AlleLokaler {
     Lokale teatersal = null;
     Lokale kinosal = null;
 
-
     public Lokale getForedragssal() {
         return foredragssal;
     }
 
-    public void setForedragssal(Lokale foredragssal) {
-        this.foredragssal = foredragssal;
-    }
-
     public Lokale getKonsertsal() {
         return konsertsal;
-    }
-
-    public void setKonsertsal(Lokale konsertsal) {
-        this.konsertsal = konsertsal;
-    }
-
-    public Lokale getTeatersal() {
-        return teatersal;
-    }
-
-    public void setTeatersal(Lokale teatersal) {
-        this.teatersal = teatersal;
-    }
-
-    public Lokale getKinosal() {
-        return kinosal;
-    }
-
-    public void setKinosal(Lokale kinosal) {
-        this.kinosal = kinosal;
     }
 
     protected AlleLokaler(){
@@ -62,18 +37,12 @@ public class AlleLokaler {
         leggArrangementerILokaler(alleArrangementer.getArrangementer());
     }
 
-    public ObservableList<Lokale> getLokaler(){
-        return alleLokaler;
-    }
-
-
     public static AlleLokaler getSingelton(){
         if(instance == null){
             instance = new AlleLokaler();
         }
         return instance;
     }
-
 
     public void leggTilLokale(Lokale etLokale){
         alleLokaler.add(etLokale);

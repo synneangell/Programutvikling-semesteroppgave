@@ -1,7 +1,7 @@
-package org.openjfx.controller.uihelpers;
+package org.openjfx.controller.hjelpeklasser;
 
+import javafx.collections.ObservableList;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -9,11 +9,11 @@ import java.util.concurrent.Future;
 
 public class TrådLeserStarter {
 
-    public static ArrayList<Object> startLeser(File markertFil) throws ExecutionException, InterruptedException {
+    public static ObservableList<Object> startLeser(File markertFil) throws ExecutionException, InterruptedException {
 
         ExecutorService service = Executors.newFixedThreadPool(1);
-        ArrayList<Object> resultat = null;
-        Future<ArrayList<Object>> returnedValues = service.submit(new TrådLeser(markertFil));
+        ObservableList<Object> resultat = null;
+        Future<ObservableList<Object>> returnedValues = service.submit(new TrådLeser(markertFil));
         resultat = returnedValues.get();
         service.shutdown();
         return resultat;

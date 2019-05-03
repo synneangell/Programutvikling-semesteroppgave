@@ -2,11 +2,8 @@ package org.openjfx.base;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class Arrangement implements Serializable {
     private Kontaktperson kontaktperson;
@@ -16,9 +13,6 @@ public class Arrangement implements Serializable {
     private String klokkeslett;
     private int antallBilletter;
     TypeArrangement typeArrangement;
-    private String arrangementID;
-
-    UUID uuid = UUID.randomUUID();
 
     private ArrayList<Billett> billetter = new ArrayList<>();
 
@@ -29,28 +23,14 @@ public class Arrangement implements Serializable {
         this.dato = dato;
         this.klokkeslett = klokkeslett;
         this.typeArrangement = typeArrangement;
-        arrangementID = UUID.randomUUID().toString();
-        System.out.println(arrangementID);
         this.antallBilletter = antallBilletter;
         for(int i = 0; i < antallBilletter; i++) {
-            billetter.add(new Billett(null, arrangementID));
+            billetter.add(new Billett(null, arrangementNavn, dato, klokkeslett));
         }
-        for(Billett enBillett : billetter){
-            System.out.println(enBillett.getArrangementID());
-        }
-
     }
 
     public ArrayList<Billett> getBilletter() {
         return billetter;
-    }
-
-    public Kontaktperson getKontaktperson() {
-        return kontaktperson;
-    }
-
-    public void setKontaktperson(Kontaktperson kontaktperson) {
-        this.kontaktperson = kontaktperson;
     }
 
     public String getArrangementNavn() {
@@ -59,14 +39,6 @@ public class Arrangement implements Serializable {
 
     public void setArrangementNavn(String arrangementNavn) {
         this.arrangementNavn = arrangementNavn;
-    }
-
-    public int getBillettpris() {
-        return billettpris;
-    }
-
-    public void setBillettpris(int billettpris){
-        this.billettpris = billettpris;
     }
 
     public String getDato() {
@@ -89,10 +61,6 @@ public class Arrangement implements Serializable {
         return antallBilletter;
     }
 
-    public void setAntallBilletter(int antallBilletter) {
-        this.antallBilletter = antallBilletter;
-    }
-
     public String getTypeArrangement() {
         String type = "";
         if (typeArrangement == TypeArrangement.KINO) {
@@ -113,11 +81,6 @@ public class Arrangement implements Serializable {
         return type;
     }
 
-    public void setTypeArrangement(TypeArrangement typeArrangement) {
-        this.typeArrangement = typeArrangement;
-    }
-
-
     public String leggTilBillett(Kjøper enKjøper, int antallBilletter) {
         String ut ="";
 
@@ -128,19 +91,18 @@ public class Arrangement implements Serializable {
                     ut = "Vellykket kjøp!";
                 }
             }
-
         }
         return ut;
+    }
+
+    public void leggTilBillettFraFil(Billett enBillett){
+        billetter.add(enBillett);
     }
 
 
     public int ledigBilletter(){
         int ledigBilletter = 0;
-        for(Billett enBillett : billetter){
-            if(enBillett.getKjøper()==null){
-                ledigBilletter ++;
-            }
-        }
+        ledigBilletter = getAntallBilletter()-solgteBilletter();
         return ledigBilletter;
     }
 
@@ -154,7 +116,6 @@ public class Arrangement implements Serializable {
         return solgteBilletter;
     }
 
-
     public ObservableList<Billett> visBilletterTilArrangement(){
         ObservableList<Billett> billetterObservableList = FXCollections.observableArrayList();
         for(Billett enBillett : billetter){
@@ -165,15 +126,10 @@ public class Arrangement implements Serializable {
         return billetterObservableList;
     }
 
-
-
-
     public String toString (){
         return kontaktperson.getNavn()+","+kontaktperson.getTelefonNr()+","+kontaktperson.getEmailAdresse()+","
                 +kontaktperson.getNettside()+","+kontaktperson.getVirksomhet()+","+kontaktperson.getOpplysninger()+","+
                 arrangementNavn+","+billettpris+","+dato+","+klokkeslett+","+antallBilletter+","+typeArrangement;
     }
-
-
 }
 

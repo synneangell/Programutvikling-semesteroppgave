@@ -2,7 +2,6 @@ package org.openjfx.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -14,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.base.*;
-
 import java.io.IOException;
 
 public class SeBilletterController {
@@ -24,7 +22,6 @@ public class SeBilletterController {
 
     @FXML
     private Button btnAvslutt;
-
 
     @FXML
     private TableView<Arrangement> tableViewArrangementer;
@@ -50,31 +47,34 @@ public class SeBilletterController {
     @FXML
     private TextField txtSøk;
 
+    @FXML
+    private Label lblAntallSolgt, lblAntallLedige;
+
 
     @FXML
     public void initialize() {
-        //Tabellen lages her:
+        //Oppretter tabellen som viser arrangementene:
         ArrangementTypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
 
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
-
         tableViewArrangementer.setItems(alleArrangementer.getArrangementer());
 
-
+        //Oppretter tabellen som viser hver billett:
         KjøperNavnColumn.setCellValueFactory(new PropertyValueFactory<Billett, Kjøper>("kjøper"));
 
-
+        //Ut i fra hvilket arrangement som er valgt, skal følgende billetter vises:
         tableViewArrangementer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Arrangement>() {
             @Override
             public void changed(ObservableValue<? extends Arrangement> observableValue, Arrangement arrangement, Arrangement t1) {
                 Arrangement valgtArrangement = tableViewArrangementer.getSelectionModel().getSelectedItem();
                 tableViewBilletter.setItems(valgtArrangement.visBilletterTilArrangement());
+                lblAntallLedige.setText(String.valueOf(valgtArrangement.ledigBilletter()));
+                lblAntallSolgt.setText(String.valueOf(valgtArrangement.solgteBilletter()));
             }
         });
-
     }
 
     @FXML
@@ -110,7 +110,6 @@ public class SeBilletterController {
             });
         }
 
-
     private void avsluttProgram() {
         Stage stage = (Stage) btnAvslutt.getScene().getWindow();
         stage.close();
@@ -127,11 +126,8 @@ public class SeBilletterController {
         rootSeBilletter.getChildren().setAll(pane);
     }
 
-
     @FXML
     private void SøkEtterFil(ActionEvent event){
-
-
     }
   }
 
