@@ -61,6 +61,11 @@ public class Arrangement implements Serializable {
         return antallBilletter;
     }
 
+    public int getBillettpris() {
+        return billettpris;
+    }
+
+
     public String getTypeArrangement() {
         String type = "";
         if (typeArrangement == TypeArrangement.KINO) {
