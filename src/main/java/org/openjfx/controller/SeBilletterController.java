@@ -57,18 +57,19 @@ public class SeBilletterController {
 
     @FXML
     public void initialize() {
+        //Oppretter tabellen som viser arrangementene:
         ArrangementTypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
 
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
-
         tableViewArrangementer.setItems(alleArrangementer.getArrangementer());
 
+        //Oppretter tabellen som viser hver billett:
         KjøperNavnColumn.setCellValueFactory(new PropertyValueFactory<Billett, Kjøper>("kjøper"));
 
-
+        //Ut i fra hvilket arrangement som er valgt, skal følgende billetter vises:
         tableViewArrangementer.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Arrangement>() {
             @Override
             public void changed(ObservableValue<? extends Arrangement> observableValue, Arrangement arrangement, Arrangement t1) {
@@ -78,7 +79,6 @@ public class SeBilletterController {
                 lblAntallSolgt.setText(String.valueOf(valgtArrangement.solgteBilletter()));
             }
         });
-
     }
 
     @FXML

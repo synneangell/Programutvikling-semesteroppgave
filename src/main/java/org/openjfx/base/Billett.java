@@ -15,24 +15,12 @@ public class Billett implements Serializable {
         return arrangementNavn;
     }
 
-    public void setArrangementNavn(String arrangementNavn) {
-        this.arrangementNavn = arrangementNavn;
-    }
-
     public String getArrangementDato() {
         return arrangementDato;
     }
 
-    public void setArrangementDato(String arrangementDato) {
-        this.arrangementDato = arrangementDato;
-    }
-
     public String getArrangementKlokkeslett() {
         return arrangementKlokkeslett;
-    }
-
-    public void setArrangementKlokkeslett(String arrangementKlokkeslett) {
-        this.arrangementKlokkeslett = arrangementKlokkeslett;
     }
 
     private Kjøper kjøper;
@@ -46,9 +34,6 @@ public class Billett implements Serializable {
         this.arrangementKlokkeslett = arrangementKlokkeslett;
         this.kjøper = kjøper;
     }
-
-
-
 
     public String toString(){
         return kjøper.toString()+","+arrangementNavn+","+arrangementDato+","+arrangementKlokkeslett;

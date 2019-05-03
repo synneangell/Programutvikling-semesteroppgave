@@ -1,7 +1,7 @@
 package org.openjfx.Filbehandling;
 
 import org.openjfx.base.*;
-import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
+import org.openjfx.controller.hjelpeklasser.InvalidBillettFormatException;
 
 import java.io.BufferedReader;
 import java.io.IOException;

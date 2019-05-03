@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.openjfx.Filbehandling.*;
 import org.openjfx.base.*;
-import org.openjfx.controller.uihelpers.*;
+import org.openjfx.controller.hjelpeklasser.*;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -60,7 +60,7 @@ public class KjøpBillettController {
 
     @FXML
     public void initialize() {
-        // Setter opp kolonnene i Table View - tabellen
+        //Oppretter tabellen som viser arrangementene:
         ArrangementTypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
@@ -69,8 +69,10 @@ public class KjøpBillettController {
 
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
         tableView.setItems(alleArrangementer.getArrangementer());
+
         chboxVelgAntall.setItems(AntallBilletter);
         chboxVelgAntall.setValue("1");
+
         lagreTilFilBox.setItems(filtyper);
         lagreTilFilBox.setValue(".csv");
 
@@ -97,11 +99,11 @@ public class KjøpBillettController {
 
                     }
                 } catch (InvalidTekstException e) {
-                    FileExceptionHandler.generateAlert("Det er brukt tall der det kun skal være tekst. ");
+                    FeilhåndteringsAlertBoks.generateAlert("Det er brukt tall der det kun skal være tekst. ");
                 } catch (InvalidTelefonnummerException e) {
-                    FileExceptionHandler.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
+                    FeilhåndteringsAlertBoks.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
                 } catch (InvalidEmailException e) {
-                    FileExceptionHandler.generateAlert("Ikke gyldig email skrevet inn.");
+                    FeilhåndteringsAlertBoks.generateAlert("Ikke gyldig email skrevet inn.");
                 }
             }
         }

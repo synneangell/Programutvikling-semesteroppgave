@@ -1,7 +1,9 @@
 package org.openjfx.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,12 +16,12 @@ import javafx.stage.Stage;
 import org.openjfx.Filbehandling.SkriveCsvFil;
 import org.openjfx.Filbehandling.SkriveJobjFil;
 import org.openjfx.base.*;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.scene.input.KeyEvent;
 
 
 public class EndreArrangementController {
+
+    ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
 
     @FXML
     private ComboBox lagreTilFilBox;
@@ -60,11 +62,15 @@ public class EndreArrangementController {
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         DatoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        lagreTilFilBox.setItems(filtyper);
+        lagreTilFilBox.setValue(".csv");
     }
 
 
     @FXML
     private void SøkeHistorie (KeyEvent SH) {
+
 
     }
 
@@ -74,15 +80,24 @@ public class EndreArrangementController {
         String filtype = lagreTilFilBox.getValue().toString();
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
+        ArrayList<Billett> lagreBilletterTilFil = new ArrayList<>();
+
+        for(Arrangement etArrangement : alleArrangementer.getArrangementer()){
+            for(Billett enBillett : etArrangement.getBilletter()){
+                if(enBillett.getKjøper() != null) {
+                    lagreBilletterTilFil.add(enBillett);
+                }
+            }
+        }
+
         if(filtype.equals(".csv")){
             SkriveCsvFil skriveTilCsvFil = new SkriveCsvFil();
-            skriveTilCsvFil.skriveTilFil("arrangement.csv",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
+            skriveTilCsvFil.skriveTilFil("billett.csv", lagreBilletterTilFil);
         }
         else if(filtype.equals(".jobj")){
             SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
-            skriveTilJobjFil.skriveTilFil("arrangement.jobj",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
+            skriveTilJobjFil.skriveTilFil("billett.jobj",lagreBilletterTilFil);
         }
-
     }
 
     public void endreNavnArrangement(TableColumn.CellEditEvent endretCelle) {

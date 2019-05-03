@@ -1,10 +1,6 @@
-package org.openjfx.controller.uihelpers;
+package org.openjfx.controller.hjelpeklasser;
 
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import org.openjfx.controller.KjøpBillettController;
-
-import java.util.Optional;
 
 public class AlertBoks {
 

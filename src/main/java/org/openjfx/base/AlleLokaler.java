@@ -18,33 +18,10 @@ public class AlleLokaler {
         return foredragssal;
     }
 
-    public void setForedragssal(Lokale foredragssal) {
-        this.foredragssal = foredragssal;
-    }
-
     public Lokale getKonsertsal() {
         return konsertsal;
     }
 
-    public void setKonsertsal(Lokale konsertsal) {
-        this.konsertsal = konsertsal;
-    }
-
-    public Lokale getTeatersal() {
-        return teatersal;
-    }
-
-    public void setTeatersal(Lokale teatersal) {
-        this.teatersal = teatersal;
-    }
-
-    public Lokale getKinosal() {
-        return kinosal;
-    }
-
-    public void setKinosal(Lokale kinosal) {
-        this.kinosal = kinosal;
-    }
 
     protected AlleLokaler(){
         alleLokaler = FXCollections.observableArrayList();
@@ -61,11 +38,6 @@ public class AlleLokaler {
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
         leggArrangementerILokaler(alleArrangementer.getArrangementer());
     }
-
-    public ObservableList<Lokale> getLokaler(){
-        return alleLokaler;
-    }
-
 
     public static AlleLokaler getSingelton(){
         if(instance == null){

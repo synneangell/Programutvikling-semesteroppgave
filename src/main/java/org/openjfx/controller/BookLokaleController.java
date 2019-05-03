@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import org.openjfx.Filbehandling.SkriveCsvFil;
 import org.openjfx.Filbehandling.SkriveJobjFil;
 import org.openjfx.base.*;
-import org.openjfx.controller.uihelpers.*;
+import org.openjfx.controller.hjelpeklasser.*;
 
 public class BookLokaleController {
 
@@ -56,7 +56,7 @@ public class BookLokaleController {
 
     @FXML
     public void initialize() {
-        //Tabellen med arrangementer opprettes:
+        //Tabellen med arrangementer opprettes her:
         TypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
@@ -74,6 +74,7 @@ public class BookLokaleController {
     @FXML
     void fullførBooking(ActionEvent event) throws ParseException, InvalidTekstException, IOException {
 
+        //Dette gjøres for å vite hvilket lokale arrangementet skal legges til
         boolean konsert = false;
         boolean foredrag = false;
         String valg = velgTypeArrangement.getValue().toString();
@@ -93,28 +94,28 @@ public class BookLokaleController {
                 !txtEgenskapDeltaker.getText().isEmpty() && !txtDeltakerNavn.getText().isEmpty()) {
 
 
-
-            Kontaktperson kontaktperson = new Kontaktperson(
-                    txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText(),
-                    txtNettside.getText(), txtAndreOpplysninger.getText(), txtVirksomhet.getText());
-
-            Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(), txtEgenskapDeltaker.getText());
-
-
+            //Validering av inputfelter:
             try {
                 if(SjekkOmGyldig.sjekkKunBokstaver(txtNavn.getText()) && SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText()) &&
                 SjekkOmGyldig.sjekkGyldigEmail(txtEmail.getText()) && SjekkOmGyldig.sjekkGyldigNettsideAdresse(txtNettside.getText()) &&
                 SjekkOmGyldig.sjekkKunBokstaver(txtAndreOpplysninger.getText()) && SjekkOmGyldig.sjekkKunBokstaver(txtVirksomhet.getText())
                 && SjekkOmGyldig.sjekkGyldigBillettpris(txtBillettpris.getText()) && SjekkOmGyldig.sjekkGyldigKlokkeslett(txtTidspunkt.getText())){
 
+                    Kontaktperson kontaktperson = new Kontaktperson(
+                            txtNavn.getText(), txtTelefonnummer.getText(), txtEmail.getText(),
+                            txtNettside.getText(), txtAndreOpplysninger.getText(), txtVirksomhet.getText());
+
+                    Deltaker deltaker = new Deltaker(txtDeltakerNavn.getText(), txtEgenskapDeltaker.getText());
+
                     AlleLokaler alleLokaler = AlleLokaler.getSingelton();
+
                     int billettpris = Integer.parseInt(txtBillettpris.getText());
 
                     if (konsert) {
-
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, dato.getValue().format(dtf),
                              txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getKonsertsal()), TypeArrangement.KONSERT);
+
                         Tableview.getItems().add(etDeltakerArrangement);
                         AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
 
@@ -123,30 +124,30 @@ public class BookLokaleController {
                         DeltakerArrangement etDeltakerArrangement = new DeltakerArrangement
                             (kontaktperson, deltaker, txtNavnArrangement.getText(), billettpris, dato.getValue().format(dtf),
                              txtTidspunkt.getText(), AlleLokaler.antallPlasser(alleLokaler.getForedragssal()), TypeArrangement.FOREDRAG);
+
                         Tableview.getItems().add(etDeltakerArrangement);
                         AlertBoks.generateAlert("Din bestillingen er gjennomført! ");
-
                     }
 
                 }
             }
             catch (InvalidTekstException e) {
-                FileExceptionHandler.generateAlert("Det er brukt tall der det kun skal være tekst. ");
+                FeilhåndteringsAlertBoks.generateAlert("Det er brukt tall der det kun skal være tekst. ");
             }
             catch (InvalidTelefonnummerException e) {
-                FileExceptionHandler.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
+                FeilhåndteringsAlertBoks.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
             }
             catch (InvalidKlokkeslettException e) {
-                FileExceptionHandler.generateAlert("Ikke gyldig klokkeslett. Format: tt:mm. ");
+                FeilhåndteringsAlertBoks.generateAlert("Ikke gyldig klokkeslett. Format: tt:mm. ");
             }
             catch (InvalidNettsideAdresseException e) {
-                FileExceptionHandler.generateAlert("Ikke gyldig nettadresse skrevet inn.");
+                FeilhåndteringsAlertBoks.generateAlert("Ikke gyldig nettadresse skrevet inn.");
             }
             catch (InvalidEmailException e) {
-                FileExceptionHandler.generateAlert("Ikke gyldig email skrevet inn.");
+                FeilhåndteringsAlertBoks.generateAlert("Ikke gyldig email skrevet inn.");
             }
             catch (InvalidBillettprisException e) {
-                FileExceptionHandler.generateAlert("Billettpris må bestå av tall.");
+                FeilhåndteringsAlertBoks.generateAlert("Billettpris må bestå av tall.");
             }
         }
     }

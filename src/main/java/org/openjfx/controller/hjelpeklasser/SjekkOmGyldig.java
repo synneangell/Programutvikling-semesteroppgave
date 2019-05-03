@@ -1,10 +1,4 @@
-package org.openjfx.controller.uihelpers;
-
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
+package org.openjfx.controller.hjelpeklasser;
 
 public class SjekkOmGyldig {
 
@@ -46,56 +40,6 @@ public class SjekkOmGyldig {
         }
         return true;
     }
-
-    //TODO: Hvordan sikre at datoer som har vært ikke kan velges??
-
-    public static boolean sjekkGyldigDato(String innDato) throws InvalidDatoException {
-
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        System.out.println(dateFormat.format(date));
-
-        String[] datoNåArray = dateFormat.format(date).split("/");
-        System.out.println(Arrays.toString(datoNåArray));
-        String[] datoArray = innDato.split("/");
-
-        try {
-            int dagNå = Integer.parseInt(datoNåArray[0]);
-            int månedNå = Integer.parseInt(datoNåArray[1]);
-            int årNå = Integer.parseInt(datoNåArray[2]);
-            int innDag = Integer.parseInt(datoArray[0]);
-            int innMåned = Integer.parseInt(datoArray[1]);
-            int innÅr = Integer.parseInt(datoArray[2]);
-
-            System.out.println(dagNå);
-            System.out.println(månedNå);
-            System.out.println(årNå);
-
-            System.out.println(innDag);
-            System.out.println(innMåned);
-            System.out.println(innÅr);
-
-            if (datoArray.length != 2) {
-                throw new InvalidDatoException("Ikke gyldig format for dato.");
-            } else if (årNå > innÅr) {
-                throw new InvalidDatoException("Dato må være frem i tid.");
-            } else if (årNå == innÅr && månedNå > innMåned) {
-                throw new InvalidDatoException("Dato må være frem i tid.");
-            } else if (årNå == innÅr && månedNå == innMåned && dagNå > innDag) {
-                throw new InvalidDatoException("Dato må være frem i tid.");
-            }
-        }
-        catch (NumberFormatException e){
-            throw new InvalidDatoException("Dato må være skrevet med tall");
-        }
-        return true;
-    }
-
-    /*  dato = innDato.matches("^[0-3][0-9][/][0-1][0-9][/][2][0-9][1-9][0-9]$");
-        if (!dato) {
-            throw new InvalidDatoException(feilmelding);
-        }
-        return true; */
 
     public static boolean sjekkGyldigKlokkeslett(String innKlokkeslett) throws InvalidKlokkeslettException {
 

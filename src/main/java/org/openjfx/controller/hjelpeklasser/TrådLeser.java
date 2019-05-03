@@ -1,15 +1,13 @@
-package org.openjfx.controller.uihelpers;
+package org.openjfx.controller.hjelpeklasser;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.stage.FileChooser;
 import org.openjfx.Filbehandling.ArrangementCsvLeser;
 import org.openjfx.Filbehandling.BillettCsvLeser;
 import org.openjfx.Filbehandling.LeseJobjFil;
 import org.openjfx.base.AlleArrangementer;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 public class TrådLeser implements Callable<ObservableList<Object>> {
@@ -21,14 +19,14 @@ public class TrådLeser implements Callable<ObservableList<Object>> {
     }
 
     @Override
-    public ObservableList<Object> call() throws InvalidBillettFormatException, IOException, InvalidFilData, InterruptedException {
+    public ObservableList<Object> call() throws InvalidBillettFormatException, IOException, InvalidFilDataException, InterruptedException {
 
         //Metoder som skal kalles legges her. Run kalles på implisivt når man oppretter en tråd med denne klassen.
         //Pass på at returverditypen i call tilsvarer den typen som Callable er satt til!
         return read();
     }
 
-    private ObservableList<Object> read() throws InvalidFilData, IOException, InvalidBillettFormatException {
+    private ObservableList<Object> read() throws InvalidFilDataException, IOException, InvalidBillettFormatException {
 
         ObservableList<Object> returVerdi = FXCollections.observableArrayList();
 
@@ -66,7 +64,7 @@ public class TrådLeser implements Callable<ObservableList<Object>> {
             }
 
         } else {
-            throw new InvalidFilData("Filen er ikke gyldig");
+            throw new InvalidFilDataException("Filen er ikke gyldig");
         }
 
         return returVerdi;

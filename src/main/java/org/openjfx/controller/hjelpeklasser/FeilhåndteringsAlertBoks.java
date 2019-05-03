@@ -1,10 +1,8 @@
-package org.openjfx.controller.uihelpers;
+package org.openjfx.controller.hjelpeklasser;
 
 import javafx.scene.control.Alert;
 
-import java.io.IOException;
-
-public class FileExceptionHandler {
+public class FeilhåndteringsAlertBoks {
 
     public static void generateAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.WARNING);

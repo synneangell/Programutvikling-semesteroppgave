@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import org.openjfx.controller.uihelpers.TrådLeserStarter;
+import org.openjfx.controller.hjelpeklasser.TrådLeserStarter;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -58,6 +58,7 @@ public class KulturhusetController {
             TrådLeserStarter.startLeser(markertFil);
             threadFerdig();
         } catch (ExecutionException | InterruptedException e) {
+            lblLasterInn.setText("Filen ble ikke lastet inn.");
             e.printStackTrace();
         }
     }

@@ -37,28 +37,12 @@ public class Arrangement implements Serializable {
         return billetter;
     }
 
-    public Kontaktperson getKontaktperson() {
-        return kontaktperson;
-    }
-
-    public void setKontaktperson(Kontaktperson kontaktperson) {
-        this.kontaktperson = kontaktperson;
-    }
-
     public String getArrangementNavn() {
         return arrangementNavn;
     }
 
     public void setArrangementNavn(String arrangementNavn) {
         this.arrangementNavn = arrangementNavn;
-    }
-
-    public int getBillettpris() {
-        return billettpris;
-    }
-
-    public void setBillettpris(int billettpris){
-        this.billettpris = billettpris;
     }
 
     public String getDato() {
@@ -81,10 +65,6 @@ public class Arrangement implements Serializable {
         return antallBilletter;
     }
 
-    public void setAntallBilletter(int antallBilletter) {
-        this.antallBilletter = antallBilletter;
-    }
-
     public String getTypeArrangement() {
         String type = "";
         if (typeArrangement == TypeArrangement.KINO) {
@@ -104,11 +84,6 @@ public class Arrangement implements Serializable {
         }
         return type;
     }
-
-    public void setTypeArrangement(TypeArrangement typeArrangement) {
-        this.typeArrangement = typeArrangement;
-    }
-
 
     public String leggTilBillett(Kjøper enKjøper, int antallBilletter) {
         String ut ="";
@@ -145,7 +120,6 @@ public class Arrangement implements Serializable {
         return solgteBilletter;
     }
 
-
     public ObservableList<Billett> visBilletterTilArrangement(){
         ObservableList<Billett> billetterObservableList = FXCollections.observableArrayList();
         for(Billett enBillett : billetter){
@@ -155,9 +129,6 @@ public class Arrangement implements Serializable {
         }
         return billetterObservableList;
     }
-
-
-
 
     public String toString (){
         return kontaktperson.getNavn()+","+kontaktperson.getTelefonNr()+","+kontaktperson.getEmailAdresse()+","

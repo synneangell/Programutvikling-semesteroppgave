@@ -19,44 +19,23 @@ public class Kontaktperson extends Person implements Serializable {
         this.opplysninger = opplysninger;
     }
 
-
     public String getTelefonNr() {
         return telefonNr;
-    }
-
-    public void setTelefonNr(String telefonNr) {
-        this.telefonNr = telefonNr;
     }
 
     public String getEmailAdresse() {
         return emailAdresse;
     }
 
-    public void setEmailAdresse(String emailAdresse) {
-        this.emailAdresse = emailAdresse;
-    }
-
     public String getNettside() {
         return nettside;
-    }
-
-    public void setNettside(String nettside) {
-        this.nettside = nettside;
     }
 
     public String getVirksomhet() {
         return virksomhet;
     }
 
-    public void setVirksomhet(String virksomhet) {
-        this.virksomhet = virksomhet;
-    }
-
     public String getOpplysninger() {
         return opplysninger;
-    }
-
-    public void setOpplysninger(String opplysninger) {
-        this.opplysninger = opplysninger;
     }
 }

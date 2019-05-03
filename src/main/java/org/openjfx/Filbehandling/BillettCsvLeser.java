@@ -2,7 +2,7 @@ package org.openjfx.Filbehandling;
 
 import org.openjfx.base.Billett;
 import org.openjfx.base.Kjøper;
-import org.openjfx.controller.uihelpers.InvalidBillettFormatException;
+import org.openjfx.controller.hjelpeklasser.InvalidBillettFormatException;
 import java.io.*;
 import java.io.IOException;
 import java.nio.file.Files;
