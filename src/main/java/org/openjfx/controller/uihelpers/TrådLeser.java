@@ -1,7 +1,6 @@
 package org.openjfx.controller.uihelpers;
 
 import javafx.collections.ObservableList;
-import javafx.stage.FileChooser;
 import org.openjfx.Filbehandling.ArrangementCsvLeser;
 import org.openjfx.Filbehandling.BillettCsvLeser;
 import org.openjfx.Filbehandling.LeseJobjFil;
@@ -27,7 +26,7 @@ public class TrådLeser implements Callable<ObservableList<Object>> {
         return read();
     }
 
-    private ObservableList<Object> read() throws InvalidFilData, IOException, InvalidBillettFormatException {
+     private ObservableList<Object> read() throws InvalidFilData, IOException, InvalidBillettFormatException {
 
         ArrayList<Object> returVerdi = new ArrayList<>();
 
