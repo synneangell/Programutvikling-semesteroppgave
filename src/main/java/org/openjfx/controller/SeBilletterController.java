@@ -48,10 +48,8 @@ public class SeBilletterController {
     private TextField txtSøk;
 
     @FXML
-    private Label lblAntallSolgt;
+    private Label lblAntallSolgt, lblAntallLedige;
 
-    @FXML
-    private Label lblAntallLedige;
 
     @FXML
     public void initialize() {

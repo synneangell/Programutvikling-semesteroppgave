@@ -16,7 +16,7 @@ import org.openjfx.Filbehandling.SkriveJobjFil;
 import org.openjfx.base.*;
 import org.openjfx.controller.hjelpeklasser.*;
 
-public class BookLokaleController {
+public class OpprettArrangement {
 
     ObservableList<String> typeArrangementer = FXCollections.observableArrayList("Konsert", "Foredrag");
     ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");

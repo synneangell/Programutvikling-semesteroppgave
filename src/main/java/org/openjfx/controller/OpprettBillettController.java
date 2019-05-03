@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-public class KulturhusetController {
+public class OpprettBillettController {
 
     @FXML
     private AnchorPane rootPane;
@@ -66,12 +66,12 @@ public class KulturhusetController {
     }
 
     private void launchKjøpBillett() throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kjøpBillett.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/OpprettBillett.fxml"));
         rootPane.getChildren().setAll(pane);
     }
 
     private void launchBookLokale() throws IOException {
-        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/org/openjfx/bookLokale.fxml"));
+        AnchorPane pane2 = FXMLLoader.load(getClass().getResource("/org/openjfx/OpprettArrangement.fxml"));
         rootPane.getChildren().setAll(pane2);
     }
 
