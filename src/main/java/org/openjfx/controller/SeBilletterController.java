@@ -127,9 +127,5 @@ public class SeBilletterController {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/org/openjfx/kulturhuset.fxml"));
         rootSeBilletter.getChildren().setAll(pane);
     }
-
-    @FXML
-    private void SøkEtterFil(ActionEvent event){
-    }
   }
 

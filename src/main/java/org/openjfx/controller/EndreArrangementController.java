@@ -1,11 +1,8 @@
 package org.openjfx.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import javafx.collections.FXCollections;
+
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,11 +14,12 @@ import javafx.stage.Stage;
 import org.openjfx.Filbehandling.SkriveCsvFil;
 import org.openjfx.Filbehandling.SkriveJobjFil;
 import org.openjfx.base.*;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.input.KeyEvent;
 
-public class EndreArrangementController {
 
-    ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
+public class EndreArrangementController {
 
     @FXML
     private ComboBox lagreTilFilBox;
@@ -30,7 +28,7 @@ public class EndreArrangementController {
     private AnchorPane rootEndreArrangement;
 
     @FXML
-    private TableView<Arrangement> tableviewArrangementer;
+    private TableView<Arrangement> Tableview;
 
     @FXML
     private TableColumn<Arrangement, String> TypeColumn;
@@ -55,17 +53,15 @@ public class EndreArrangementController {
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
         DatoColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("dato"));
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
-        tableviewArrangementer.setItems(alleArrangementer.getArrangementer());
+        Tableview.setItems(alleArrangementer.getArrangementer());
 
         //Gjør tabellen "Editable":
-        tableviewArrangementer.setEditable(true);
+        Tableview.setEditable(true);
         ArrangementNavnColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         KlokkeslettColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         DatoColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        lagreTilFilBox.setItems(filtyper);
-        lagreTilFilBox.setValue(".csv");
     }
+
 
     @FXML
     private void SøkeHistorie (KeyEvent SH) {
@@ -95,8 +91,8 @@ public class EndreArrangementController {
             });
 
             SortedList<Arrangement> sortedList = new SortedList<>(filter);
-            sortedList.comparatorProperty().bind(tableviewArrangementer.comparatorProperty());
-            tableviewArrangementer.setItems(sortedList);
+            sortedList.comparatorProperty().bind(Tableview.comparatorProperty());
+            Tableview.setItems(sortedList);
         });
     }
 
@@ -106,51 +102,46 @@ public class EndreArrangementController {
         String filtype = lagreTilFilBox.getValue().toString();
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
-        ArrayList<Billett> lagreBilletterTilFil = new ArrayList<>();
-
-        for(Arrangement etArrangement : alleArrangementer.getArrangementer()){
-            for(Billett enBillett : etArrangement.getBilletter()){
-                if(enBillett.getKjøper() != null) {
-                    lagreBilletterTilFil.add(enBillett);
-                }
-            }
-        }
         if(filtype.equals(".csv")){
             SkriveCsvFil skriveTilCsvFil = new SkriveCsvFil();
-            skriveTilCsvFil.skriveTilFil("billett.csv", lagreBilletterTilFil);
+            skriveTilCsvFil.skriveTilFil("arrangement.csv",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
         else if(filtype.equals(".jobj")){
             SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
-            skriveTilJobjFil.skriveTilFil("billett.jobj",lagreBilletterTilFil);
+            skriveTilJobjFil.skriveTilFil("arrangement.jobj",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
+
     }
 
     public void endreNavnArrangement(TableColumn.CellEditEvent endretCelle) {
-        Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
+        Arrangement valgtArrangement = Tableview.getSelectionModel().getSelectedItem();
         valgtArrangement.setArrangementNavn(endretCelle.getNewValue().toString());
     }
 
+
     public void endreKlokkeslettArrangement(TableColumn.CellEditEvent endretCelle) {
-        Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
+        Arrangement valgtArrangement = Tableview.getSelectionModel().getSelectedItem();
         valgtArrangement.setKlokkeslett(endretCelle.getNewValue().toString());
     }
 
     public void endreDatoArrangement(TableColumn.CellEditEvent endretCelle) {
-        Arrangement valgtArrangement = tableviewArrangementer.getSelectionModel().getSelectedItem();
+        Arrangement valgtArrangement = Tableview.getSelectionModel().getSelectedItem();
         valgtArrangement.setDato(endretCelle.getNewValue().toString());
     }
 
     public void slettArrangement(){
         ObservableList<Arrangement> valgtRad, arrangementer;
-        arrangementer = tableviewArrangementer.getItems();
-        valgtRad = tableviewArrangementer.getSelectionModel().getSelectedItems();
+        arrangementer = Tableview.getItems();
+        valgtRad = Tableview.getSelectionModel().getSelectedItems();
         for(Arrangement etArrangement : valgtRad){
             arrangementer.remove(etArrangement);
+
         }
+
     }
 
     private void avsluttProgram() {
-        Stage stage = (Stage) tableviewArrangementer.getScene().getWindow();
+        Stage stage = (Stage) Tableview.getScene().getWindow();
         stage.close();
     }
 
