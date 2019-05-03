@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class OpprettBillettController {
 
+    // Antall billetter en bruker kan opprette/ kjøpe:
     ObservableList<String> AntallBilletter = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
     ObservableList<String> filtyper = FXCollections.observableArrayList(".jobj", ".csv");
 
@@ -25,10 +26,7 @@ public class OpprettBillettController {
     private TextField txtNavn, txtTelefonnummer, txtEmail;
 
     @FXML
-    private ComboBox chboxVelgAntall;
-
-    @FXML
-    private ComboBox lagreTilFilBox;
+    private ComboBox chboxVelgAntall, lagreTilFilBox;
 
     @FXML
     private Button btnAvslutt;
@@ -40,23 +38,14 @@ public class OpprettBillettController {
     private TableView<Arrangement> tableView;
 
     @FXML
-    private TableColumn<Arrangement, String> ArrangementTypeColumn;
-
-    @FXML
-    private TableColumn<Arrangement, String> ArrangementNavnColumn;
-
-    @FXML
-    private TableColumn<Arrangement, String> KlokkeslettColumn;
-
-    @FXML
-    private TableColumn<Arrangement, String> DatoColumn;
+    private TableColumn<Arrangement, String> ArrangementTypeColumn, ArrangementNavnColumn, KlokkeslettColumn, DatoColumn;
 
     @FXML
     private TableColumn<Arrangement, Integer> PrisColumn;
 
     @FXML
     public void initialize() {
-        //Oppretter tabellen som viser arrangementene:
+        // Oppretter tabellen som viser arrangementene med de ulike kolonnene:
         ArrangementTypeColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("typeArrangement"));
         ArrangementNavnColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("arrangementNavn"));
         KlokkeslettColumn.setCellValueFactory(new PropertyValueFactory<Arrangement, String>("klokkeslett"));
@@ -66,6 +55,7 @@ public class OpprettBillettController {
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
         tableView.setItems(alleArrangementer.getArrangementer());
 
+        // Sørger for at bruker har valgt billett eller filtype:
         chboxVelgAntall.setItems(AntallBilletter);
         chboxVelgAntall.setValue("1");
 
@@ -76,6 +66,7 @@ public class OpprettBillettController {
     @FXML
      void fullførBestilling(ActionEvent event) throws ParseException, IOException {
 
+        // Hvis feltene er tomme, kan man opprette en ny kjøper, og passer på at feltene er korrekt utfylt.
         if (!txtNavn.getText().isEmpty() && !txtTelefonnummer.getText().isEmpty() && !txtEmail.getText().isEmpty()) {
                 try {
                     if (SjekkOmGyldig.sjekkKunBokstaver(txtNavn.getText()) && SjekkOmGyldig.sjekkGyldigTlfNr(txtTelefonnummer.getText()) &&
@@ -90,16 +81,20 @@ public class OpprettBillettController {
 
                         AlertBoks.generateAlert(ut);
                     }
-                } catch (InvalidTekstException e) {
+                }
+                catch (InvalidTekstException e) {
                     FeilhåndteringsAlertBoks.generateAlert("Det er brukt tall der det kun skal være tekst. ");
-                } catch (InvalidTelefonnummerException e) {
+                }
+                catch (InvalidTelefonnummerException e) {
                     FeilhåndteringsAlertBoks.generateAlert("Ikke gyldig telefonnummer skrevet inn. ");
-                } catch (InvalidEmailException e) {
+                }
+                catch (InvalidEmailException e) {
                     FeilhåndteringsAlertBoks.generateAlert("Ikke gyldig email skrevet inn.");
                 }
             }
         }
 
+   // Lagrer billetten som er opprettet til fil:
    @FXML
     void Lagre (ActionEvent event) throws IOException {
     String filtype = lagreTilFilBox.getValue().toString();
