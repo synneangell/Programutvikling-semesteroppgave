@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import org.openjfx.controller.hjelpeklasser.TrådLeser;
 import org.openjfx.controller.hjelpeklasser.TrådLeserStarter;
 import java.io.File;
 import java.io.IOException;

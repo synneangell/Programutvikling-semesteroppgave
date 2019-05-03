@@ -106,22 +106,13 @@ public class EndreArrangementController {
         String filtype = lagreTilFilBox.getValue().toString();
         AlleArrangementer alleArrangementer = AlleArrangementer.getSingelton();
 
-        ArrayList<Billett> lagreBilletterTilFil = new ArrayList<>();
-
-        for(Arrangement etArrangement : alleArrangementer.getArrangementer()){
-            for(Billett enBillett : etArrangement.getBilletter()){
-                if(enBillett.getKjøper() != null) {
-                    lagreBilletterTilFil.add(enBillett);
-                }
-            }
-        }
         if(filtype.equals(".csv")){
             SkriveCsvFil skriveTilCsvFil = new SkriveCsvFil();
-            skriveTilCsvFil.skriveTilFil("billett.csv", lagreBilletterTilFil);
+            skriveTilCsvFil.skriveTilFil("arrangement.csv",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
         else if(filtype.equals(".jobj")){
             SkriveJobjFil skriveTilJobjFil = new SkriveJobjFil();
-            skriveTilJobjFil.skriveTilFil("billett.jobj",lagreBilletterTilFil);
+            skriveTilJobjFil.skriveTilFil("arrangement.jobj",alleArrangementer.gjørOmTilArrayList(alleArrangementer.getArrangementer()));
         }
     }
 

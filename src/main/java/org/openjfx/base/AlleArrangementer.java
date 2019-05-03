@@ -12,43 +12,6 @@ public class AlleArrangementer {
 
     protected AlleArrangementer(){
         alleArrangementer = FXCollections.observableArrayList();
-
-        //TODO: fjerne disse før levering!
-        Kontaktperson forestillingsAnsvarlig = new Kontaktperson("Aksel Ansvarlig", "22442314",
-                "kontakt@kulturhuset.no", "kulturhuset.no", "Kulturhuset", "");
-
-        //Oppretter noen forestillinger som skal ligge inne i systemet
-        Arrangement kinofilm = new Arrangement
-                (forestillingsAnsvarlig, "Pulp Fiction", 110, "22/03/2019",
-                        "18:30", 100, TypeArrangement.KINO);
-
-        Arrangement kinofilm2 = new Arrangement
-                (forestillingsAnsvarlig, "The Hateful Eight", 120, "24/03/2019",
-                        "18:30",100, TypeArrangement.KINO);
-
-        Arrangement kinofilm3 = new Arrangement
-                (forestillingsAnsvarlig, "Once Upon a Time in Hollywood", 150, "22/03/2019",
-                        "20:30", 100, TypeArrangement.KINO);
-
-        // Oppretter teaterforestilling:
-        Arrangement teaterforestilling = new Arrangement
-                (forestillingsAnsvarlig, "Sweeney Todd", 200, "25/03/2019",
-                        "18:30", 100, TypeArrangement.TEATER);
-
-        Arrangement teaterforestilling2 = new Arrangement
-                (forestillingsAnsvarlig, "Cats", 220, "26/03/2019",
-                        "18:30", 100, TypeArrangement.TEATER);
-
-        Arrangement teaterforestilling3 = new Arrangement
-                (forestillingsAnsvarlig, "Les Miserables", 250, "27/03/2019",
-                        "18:30", 100, TypeArrangement.TEATER);
-
-        alleArrangementer.add(kinofilm);
-        alleArrangementer.add(kinofilm2);
-        alleArrangementer.add(kinofilm3);
-        alleArrangementer.add(teaterforestilling);
-        alleArrangementer.add(teaterforestilling2);
-        alleArrangementer.add(teaterforestilling3);
     }
 
     public ObservableList<Arrangement> getArrangementer(){
